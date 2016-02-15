@@ -46,10 +46,10 @@ const ListItemHallList = React.createClass({
   render () {
     let hallListTitle = (this.props.banquetHallList.length === 0)?(
       <dt>
-        <span>宴会厅</span>
-        <span>桌数</span>
-        <span>层高</span>
-        <span>柱数</span>
+        <span>---</span>
+        <span>---</span>
+        <span>---</span>
+        <span>---</span>
       </dt>
     ):(
       <dt>

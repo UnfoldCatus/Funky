@@ -12,8 +12,8 @@
           else $adaptation.attr('class','adaptation-1680 root-view');
       });
   }
-  $(function(){
-    adaptation();
-  });
+  // $(function(){
+  //   adaptation();
+  // });
 
 })(jQuery,undefined)
