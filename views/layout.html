@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible” content=”IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/app.css">
+    <!--[if gte IE 9]><!-->
+    <script src="script/jquery-2.2.0.min.js"></script>
+    <!--<![endif]-->
+    <!--[if lt IE 9]>
+    <script src="script/jquery-1.12.0.min.js" charset="utf-8"></script>
+    <script src="script/es5-shim.min.js" charset="utf-8"></script>
+    <script src="script/es5-sham.min.js" charset="utf-8"></script>
+    <script src="script/console-polyfill.js" charset="utf-8"></script>
+    <![endif]-->
+    <script src="script/adaptation.min.js" charset="utf-8"></script>
+    <title>金色百年</title>
+  </head>
+  <body>
+    <div class='adaptation-1200 root-view' id='adaptation'>
+      <% include modules/header.html %>
+      <div id="J_Main">
+      <%- body %>
+      </div>
+      <% include modules/footer.html %>
+    </div>
+  </body>
+</html>

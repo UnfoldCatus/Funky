@@ -5,8 +5,8 @@
   "main": "react-server.js",
   "scripts": {
     "start": "NODE_ENV=development babel-node ./react-server.js",
-    "build-sample": "browserify ./src/sample.js -o ./assets/script/sample.js",
-    "build-pringles": "browserify ./src/pringles.js -o ./assets/script/pringles.js",
+    "build-sample": "watchify ./src/client/sample.js | uglifyjs -c -m -o ./assets/script/modules/sample.min.js",
+    "build-hotel": "watchify ./src/client/hotel.js -o 'uglifyjs -cm > ./assets/script/modules/hotel.min.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -30,9 +30,12 @@
     "budo": "^8.0.2",
     "koa-logger": "^1.3.0",
     "node-pre-gyp": "^0.6.21",
+    "uglify-js": "^2.6.1",
     "watchify": "^3.7.0"
   },
   "dependencies": {
+    "console-polyfill": "^0.2.2",
+    "es5-shim": "^4.5.2",
     "immutable": "^3.7.6",
     "koa": "^1.1.2",
     "koa-ejs": "^3.0.0",

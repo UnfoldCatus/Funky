@@ -39,24 +39,24 @@ export const siteRouter = new Router()
 
 /** 客片 **/
 siteRouter.get('/pringles',function* index(next){
-  yield this.render('pringles-list', { 'reactMarkup':renderToString( <PringlesList />) })
+  yield this.render('modules/pringles-list', { 'reactMarkup':renderToString( <PringlesList />) })
 })
 
 
 /** 婚宴预订 **/
 // 列表
 siteRouter.get('/hotel',function* index(next){
-  yield this.render('hotel-list', { 'reactMarkup':renderToString( <HotelList />) })
+  yield this.render('modules/hotel-list', { 'reactMarkup':renderToString( <HotelList />) })
 })
 // 详情
 
 
 /** 作品 **/
 siteRouter.get('/sample',function* index(next){
-  yield this.render('sample-list', { 'reactMarkup':renderToString( <SampleList />) })
+  yield this.render('modules/sample-list', { 'reactMarkup':renderToString( <SampleList />) })
 })
 
 /** 礼服 **/
 siteRouter.get('/dress',function* index(next){
-  yield this.render('dress-list', { 'reactMarkup':renderToString( <DressList />) })
+  yield this.render('modules/dress-list', { 'reactMarkup':renderToString( <DressList />) })
 })

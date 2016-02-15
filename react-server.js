@@ -8,16 +8,17 @@ import StaticFile from 'koa-static'
 import { apiRouter } from './routes'
 import { siteRouter } from './routes'
 const ReactServer = Koa()
-/**初始化模板引擎 使用ejs作为页面引擎
+/**
+初始化模板引擎 使用ejs作为页面引擎
 可以在中间件中用this.render('templateName',jsonData)
 来生成页面
 api请查看 [http://www.embeddedjs.com/]
 **/
 ejsEngine(ReactServer, {
-  root: Path.join(__dirname, 'view'),
+  root: Path.join(__dirname, 'views'),
   layout: 'layout',
   viewExt: 'html',
-  cache: false,
+  cache: true,
   debug: true
 })
 
@@ -38,12 +39,11 @@ ejsEngine(ReactServer, {
 
 实践中选择了方案二。当然这样做有一个大的问题就是SEO时，机器人爬到的页面只有框架部分没有动态数据。 因为动态数据都是在js加载以后通过xhr请求的。
 
-
 **/
 
 process.env.NODE_ENV === 'development' && ReactServer.use(Logger()) // 只有在NODE_ENV为development才加载日志
-ReactServer.use(Favicon(__dirname + '/assets/template/favico.png')) // favico
-ReactServer.use(StaticFile('./assets')) // 其他静态资源：js/images/css
+ReactServer.use(Favicon(__dirname + '/assets/images/favicon.png')) // favico
+ReactServer.use(StaticFile('./assets',{'maxage':3*60*1000})) // 其他静态资源：js/images/css
 
 ReactServer.use(siteRouter.routes()) // 网站路由
 ReactServer.use(apiRouter.routes())// api路由
