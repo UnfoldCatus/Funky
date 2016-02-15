@@ -8,6 +8,7 @@ const Navigation = React.createClass({
       <div>
         {
           _.map(MenuConfig[this.props.menuKey],(v,k)=>{
+            //确定menu 的 class类型
             let menuClass = 'item'
             if (v.link === '/' || v.link === '/home') {
               menuClass = 'item'
@@ -29,7 +30,6 @@ const Navigation = React.createClass({
             )
           })
         }
-
       </div>
     )
   },
@@ -44,7 +44,6 @@ const Navigation = React.createClass({
     }
   },
   componentWillReceiveProps(nextProps) {
-    console.log('Menu:',nextProps);
   }
 })
 
