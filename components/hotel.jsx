@@ -2,17 +2,17 @@ import React, { PropTypes } from 'react'
 import _ from 'lodash'
 /**
 组件结构
-<HotelList>
-  <HotelListFilter />
+<Hotel>
   <MediaSlider />
-  <List> <= hotels
+  <HotelListFilter />
+  <HotelList> <= hotels
     <ListItem>
       <MediaItem />
       <ListItemHallList />
       <ListItemFeatureLabel />
     </ListItem>
-  </List>
-</HotelList>
+  </HotelList>
+</Hotel>
 **/
 
 /*每个酒店的特殊标签 */
@@ -90,7 +90,7 @@ const ListItemHallList = React.createClass({
   }
 })
 /*酒店列表*/
-const List = React.createClass({
+const HotelList = React.createClass({
   render () {
     return (
       <ul className='list-recommend'>
@@ -125,9 +125,6 @@ const HotelListFilter = React.createClass({
     let dataKey=this.props.sorterKey.join(',')
     let valueKey =this.props.valueKey
     let valueName = this.props.name
-    /**
-    <span class='tab' data-key='someKey,otherKey' data-value='someValue,otherValue'>someName</span>
-    **/
     return (
       <div className='filter-box'>
         <span className='title'><i className={this.props.klass}></i>{this.props.title}</span>
@@ -237,7 +234,7 @@ const ListItem = React.createClass({
 
 
 /*Main:酒店列表组件*/
-const HotelList = React.createClass({
+const Hotel = React.createClass({
   render () {
     return (
       <div className='hyyd-view hotel-page'>
@@ -293,7 +290,7 @@ const HotelList = React.createClass({
               </div>
             </div>
           </div>
-          <List hotels={this.state.hotels} />
+          <HotelList hotels={this.state.hotels} />
           <div>
             <div onClick={this.loadMore} id="J_MoreButton">
               <div className="more-btn"><span>点击查看更多</span></div>
@@ -412,4 +409,4 @@ const HotelList = React.createClass({
 })
 
 
-export { HotelList }
+export { Hotel }

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-const SupplyList = React.createClass({
+const Supply = React.createClass({
   render () {
     return (
       <h1>SupplyList</h1>
@@ -8,4 +8,4 @@ const SupplyList = React.createClass({
   }
 })
 
-export  { SupplyList }
+export  { Supply }

@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react'
-import { AdvList } from './adv-list.jsx'
+import { Adv } from './adv.jsx'
 
-const SampleList = React.createClass({
+const Sample = React.createClass({
   getInitialState() {
     return {
-      name:'AdvList'
+      name:'Adv'
     }
   },
   render () {
     return (
-        <AdvList name={this.state.name} />
+        <Adv name={this.state.name} />
     )
   },
   componentDidUpdate(prevProps, prevState) {
@@ -23,4 +23,4 @@ const SampleList = React.createClass({
     })
   }
 })
-export { SampleList }
+export { Sample }

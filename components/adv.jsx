@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-const AdvList = React.createClass({
+const Adv = React.createClass({
   propTypes: {
     name: React.PropTypes.string
   },
@@ -22,4 +22,4 @@ const AdvList = React.createClass({
     console.log('AdvList loaded');
   }
 })
-export { AdvList }
+export { Adv }

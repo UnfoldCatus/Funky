@@ -7,21 +7,23 @@ value为components模块
 import React, { PropTypes } from 'react'
 
 import { Home } from '../home.jsx'
-import { SampleList } from '../sample-list.jsx'
-import { PringlesList } from '../pringles-list.jsx'
-import { HotelList } from '../hotel-list.jsx'
-import { AdvList } from '../adv-list.jsx'
-import { DressList } from '../dress-list.jsx'
-import { SupplyList } from '../supply-list.jsx'
+import { Sample } from '../sample.jsx'
+import { Pringles } from '../pringles.jsx'
+import { Hotel } from '../hotel.jsx'
+import { HotelRequire } from '../hotel-require.jsx'
+import { Adv } from '../adv.jsx'
+import { Dress } from '../dress.jsx'
+import { Supply } from '../supply.jsx'
 
 const ComponentsIndex = {
   'home':<Home />,
-  'sample-list': <SampleList />,
-  'pringles-list':<PringlesList />,
-  'hotel-list':<HotelList />,
-  'adv-list':<AdvList />,
-  'dress-list':<DressList />,
-  'supply-list':<SupplyList />
+  'sample': <Sample />,
+  'pringles':<Pringles />,
+  'hotel':<Hotel />,
+  'hotel-require':<HotelRequire />,
+  'adv':<Adv />,
+  'dress':<Dress />,
+'supply':<Supply />
 }
 
 

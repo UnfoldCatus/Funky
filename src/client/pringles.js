@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
 import ReactDOM from 'react-dom'
-import { PringlesList } from '../../components/pringles-list.jsx'
+import { Pringles } from '../../components/pringles.jsx'
 
-ReactDOM.render(<PringlesList />,document.getElementById('J_Main'))
+ReactDOM.render(<Pringles />,document.getElementById('J_Main'))

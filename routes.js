@@ -6,13 +6,6 @@ import { MenuConfig } from './components/config/menu-config'
 import { ComponentsIndex} from './components/config/components-index'
 /*菜单*/
 import { Navigation } from './components/navigation.jsx'
-// import { Home } from './components/home.jsx'
-// import { SampleList } from './components/sample-list.jsx'
-// import { PringlesList } from './components/pringles-list.jsx'
-// import { HotelList } from './components/hotel-list.jsx'
-// import { AdvList } from './components/adv-list.jsx'
-// import { DressList } from './components/dress-list.jsx'
-// import { SupplyList } from './components/hotel-list.jsx'
 
 /**
   api 资源路由
@@ -70,26 +63,30 @@ siteRouter.get('/home',function* index(next){
 
 /** 客片 **/
 siteRouter.get('/pringles',function* index(next){
-  yield this.render('modules/pringles-list', renderOption('pringles-list','pringles','/pringles','/shot'))
+  yield this.render('modules/pringles', renderOption('pringles','pringles','/pringles','/shot'))
 })
 
 
 /** 婚宴预订 **/
 // 列表
 siteRouter.get('/hotel',function* index(next){
-  yield this.render('modules/hotel-list', renderOption('hotel-list','hotel','/hotel','/hotel'))
+  yield this.render('modules/hotel', renderOption('hotel','hotel','/hotel','/hotel'))
 })
-// 详情
+// 提交婚宴预订需求
+siteRouter.get('/hotel-require',function* index(next){
+  yield this.render('modules/hotel-require', renderOption('hotel-require','hotel','/hotel-require','/hotel'))
+})
+
 
 
 /** 作品 **/
 siteRouter.get('/sample',function* index(next){
-  yield this.render('modules/sample-list',renderOption('sample-list','sample','/sample','/shot'))
+  yield this.render('modules/sample',renderOption('sample','sample','/sample','/shot'))
 })
 
 /** 礼服 **/
 siteRouter.get('/dress',function* index(next){
-  yield this.render('modules/dress-list', renderOption('dress-list','dress','/dress','/dress'))
+  yield this.render('modules/dress', renderOption('dress','dress','/dress','/dress'))
 })
 
 export { siteRouter }

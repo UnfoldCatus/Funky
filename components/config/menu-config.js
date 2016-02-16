@@ -97,7 +97,7 @@ const MenuConfig = {
     {
       cn:'作品欣赏',
       en:'WORKS',
-      link:'/samples'
+      link:'/sample'
     },
     {
       cn:'客片欣赏',

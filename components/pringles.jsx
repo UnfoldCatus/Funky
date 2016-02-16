@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-export const PringlesList = React.createClass({
+export const Pringles = React.createClass({
   render () {
     return (
       <div>PringlesList!!</div>
