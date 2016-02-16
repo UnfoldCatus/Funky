@@ -31,11 +31,16 @@ apiRouter.get('/',function* apiRoot(next){
 **/
 
 const siteRouter = new Router()
-let renderOption = (templateName,scriptName,menuKey,parentKey) => {
+/**
+  templateName: ejs模板名称
+  menuKey MenuConfig中配置的link字段
+  parentKey MenuConfig中的顶层模块的key
+*/
+let renderOption = (templateName,menuKey,parentKey) => {
   return {
     'reactMarkup':renderToString(ComponentsIndex[templateName]),
     'reactNavMarkup':renderToString(<Navigation menuKey={parentKey ||'/'} currentKey={menuKey} />),
-    'main':scriptName
+    'main':templateName // 客户端渲染使用的脚本名称和模板名称一致
   }
 }
 /**
@@ -47,46 +52,54 @@ let renderOption = (templateName,scriptName,menuKey,parentKey) => {
 1. 配置人员在 menu-config.js 中新增菜单。 需要填写url结构，中文，因为名称
 2. 配置人员在 components-index.js 中指名 ejs模板和组件的对应关系
 3. routes根据 MenuConfig 和 ComponentsIndex 构建路由表
+4. 在components里面增加新的jsx
+5. 默认情况下。ejs会使用default.html进行jsx页面渲染。除非必要， 才需要用户新增自己的ejs模板页面
+  例如：新的活动页（静态）
 
-
-
+i
 **/
 /** 首页 **/
 siteRouter.get('/',function* index(next){
-  yield this.render('modules/home', renderOption('home','home','/','/'))
+  yield this.render('modules/default', renderOption('home','/','/'))
 })
 
 /** /home 也是首页 **/
 siteRouter.get('/home',function* index(next){
-  yield this.render('modules/home', renderOption('home','home','/home','/home'))
+  yield this.render('modules/default', renderOption('home','/home','/home'))
+})
+
+siteRouter.get('/shot',function* index(next){
+  yield this.render('modules/default', renderOption('shot','/shot','/shot'))
+})
+
+
+/** 作品 **/
+siteRouter.get('/sample',function* index(next){
+  yield this.render('modules/default',renderOption('sample','/sample','/shot'))
 })
 
 /** 客片 **/
 siteRouter.get('/pringles',function* index(next){
-  yield this.render('modules/pringles', renderOption('pringles','pringles','/pringles','/shot'))
+  yield this.render('modules/default', renderOption('pringles','/pringles','/shot'))
 })
 
 
 /** 婚宴预订 **/
 // 列表
 siteRouter.get('/hotel',function* index(next){
-  yield this.render('modules/hotel', renderOption('hotel','hotel','/hotel','/hotel'))
+  yield this.render('modules/default', renderOption('hotel','/hotel','/hotel'))
 })
 // 提交婚宴预订需求
 siteRouter.get('/hotel-require',function* index(next){
-  yield this.render('modules/hotel-require', renderOption('hotel-require','hotel','/hotel-require','/hotel'))
+  yield this.render('modules/default', renderOption('hotel-require','/hotel-require','/hotel'))
 })
 
 
 
-/** 作品 **/
-siteRouter.get('/sample',function* index(next){
-  yield this.render('modules/sample',renderOption('sample','sample','/sample','/shot'))
-})
 
 /** 礼服 **/
 siteRouter.get('/dress',function* index(next){
-  yield this.render('modules/dress', renderOption('dress','dress','/dress','/dress'))
+  yield this.render('modules/default', renderOption('dress','/dress','/dress'))
 })
 
 export { siteRouter }
