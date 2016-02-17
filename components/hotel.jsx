@@ -1,16 +1,17 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
+import { ListFilter } from './common/list-filter.jsx'
 /**
 组件结构
 <Hotel>
   <MediaSlider />
-  <HotelListFilter />
+  <ListFilter />
   <HotelList> <= hotels
-    <ListItem>
+    <HotelListItem>
       <MediaItem />
       <ListItemHallList />
       <ListItemFeatureLabel />
-    </ListItem>
+    </HotelListItem>
   </HotelList>
 </Hotel>
 **/
@@ -97,7 +98,7 @@ const HotelList = React.createClass({
         {
           _.map(this.props.hotels,(v,k)=>{
             return(
-              <ListItem key={k} {...v} />
+              <HotelListItem key={k} {...v} />
             )
           })
         }
@@ -117,52 +118,7 @@ const HotelList = React.createClass({
   }
 })
 
-
-
-/*筛选条件*/
-const HotelListFilter = React.createClass({
-  render () {
-    let dataKey=this.props.sorterKey.join(',')
-    let valueKey =this.props.valueKey
-    let valueName = this.props.name
-    return (
-      <div className='filter-box'>
-        <span className='title'><i className={this.props.klass}></i>{this.props.title}</span>
-        <div className='tab-box'>
-          <span className='tab' data-key='' data-value=''>全部</span>
-          {
-            _.map(this.props.conditions,(v,k)=>{
-              return (
-                <span key={k} className='tab' data-key={dataKey} data-value={_.values(_.pick(v,valueKey)).join(',')}>{v[valueName]}</span>
-              )
-            })
-          }
-        </div>
-      </div>
-    )
-  },
-  propTypes: {
-    klass: PropTypes.string,
-    title: PropTypes.string,
-    conditions:PropTypes.array,
-    name:PropTypes.string,
-    valueKey:PropTypes.array,
-    sorterKey:PropTypes.array
-  },
-  getDefaultProps(){
-    return {
-      klass:'',
-      title:'加载中...',
-      conditions:[],
-      name:'',
-      valueKey:[],
-      sorterKey:[]
-    }
-  }
-})
-
-
-const ListItem = React.createClass({
+const HotelListItem = React.createClass({
   render () {
     return (
       <li className='item-box clearfix'>
@@ -245,10 +201,10 @@ const Hotel = React.createClass({
         </div>
         <div className="layout-center-box J_HotelListFilterPanel" style={{minHeight:440+'px'}}>
 
-          <HotelListFilter title={'区域'} name={'name'} klass={'ico-18-js ico-1-1-js'} valueKey={['id']} conditions={this.state.areas} sorterKey={['cityId']} />
-          <HotelListFilter title={'分类'} name={'typeName'} klass={'ico-1-js ico-1-2-js'} valueKey={['hotelTypeId']} conditions={this.state.types} sorterKey={['hotelType']} />
-          <HotelListFilter title={'桌数'} name={'name'} klass={'ico-18-js ico-18-2-js'} valueKey={['minTable','maxTable']} conditions={this.state.seatsCount} sorterKey={['minTable','maxTable']} />
-          <HotelListFilter title={'价格'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']} conditions={this.state.prices}  sorterKey={['minPrice','maxPrice']}/>
+          <ListFilter title={'区域'} name={'name'} klass={'ico-18-js ico-1-1-js'} valueKey={['id']} conditions={this.state.areas} sorterKey={['cityId']} />
+          <ListFilter title={'分类'} name={'typeName'} klass={'ico-1-js ico-1-2-js'} valueKey={['hotelTypeId']} conditions={this.state.types} sorterKey={['hotelType']} />
+          <ListFilter title={'桌数'} name={'name'} klass={'ico-18-js ico-18-2-js'} valueKey={['minTable','maxTable']} conditions={this.state.seatsCount} sorterKey={['minTable','maxTable']} />
+          <ListFilter title={'价格'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']} conditions={this.state.prices}  sorterKey={['minPrice','maxPrice']}/>
 
           <div className="screening-2-jsbn">
             <div className="line-1"></div>

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=development babel-node ./react-server.js",
     "build-sample": "watchify ./src/client/sample.js -o 'uglifyjs -cm > ./assets/script/modules/sample.min.js'",
+    "build-pringles": "watchify ./src/client/pringles.js -o 'uglifyjs -cm > ./assets/script/modules/pringles.min.js'",
     "build-hotel": "watchify ./src/client/hotel.js -o 'uglifyjs -cm > ./assets/script/modules/hotel.min.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

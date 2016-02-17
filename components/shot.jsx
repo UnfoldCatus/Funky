@@ -3,8 +3,26 @@ import { ShotConfig } from './config/shot-config'
 import { Banner } from './common/banner.jsx'
 import { MediaSlider } from './common/media-slider.jsx'
 import _ from 'lodash'
-
 /**
+
+  组件结构
+  <Shot>
+    <MediaSlider />
+    <Banner />
+    <MultiBanner />
+    <Banner />
+    <SamplesMash />
+    <Banner />
+    <Banner />
+  </Shot>
+
+**/
+
+
+
+/*  *
+MultiBanner
+
 多图片组合 如图顺序
     =________,=
 
@@ -40,7 +58,9 @@ const MultiBanner = React.createClass({
   }
 })
 
-
+/*
+  精彩样片合集
+*/
 const SamplesMash = React.createClass({
   render () {
     return (
@@ -48,10 +68,6 @@ const SamplesMash = React.createClass({
     )
   }
 })
-
-
-
-
 
 
 
