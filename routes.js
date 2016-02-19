@@ -99,6 +99,9 @@ siteRouter.get('/hotel-require',function* index(next){
 })
 
 
+siteRouter.get('/scheme',function* index(next){
+  yield this.render('modules/default', renderOption('scheme','/scheme','/scheme'))
+})
 
 
 /** 礼服 **/

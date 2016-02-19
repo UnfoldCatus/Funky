@@ -16,6 +16,7 @@ import { Suite } from '../suite.jsx'
 
 import { Hotel } from '../hotel.jsx'
 import { HotelRequire } from '../hotel-require.jsx'
+import { Scheme } from '../scheme.jsx'
 import { Adv } from '../adv.jsx'
 import { Dress } from '../dress.jsx'
 import { Supply } from '../supply.jsx'
@@ -28,6 +29,7 @@ const ComponentsIndex = {
   'suite':<Suite />,
   'hotel':<Hotel />,
   'hotel-require':<HotelRequire />,
+  'scheme':<Scheme />,
   'adv':<Adv />,
   'dress':<Dress />,
   'supply':<Supply />
