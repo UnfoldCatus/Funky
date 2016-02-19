@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react'
 import _ from 'lodash'
 import { MediaSlider } from './common/media-slider.jsx'
 import { MediaItem } from './common/media-item.jsx'
-
 import { SuiteConfig } from './config/suite-config'
 /**
   组件结构
@@ -13,6 +12,25 @@ import { SuiteConfig } from './config/suite-config'
     <AdSide />
   </Suite>
 **/
+
+const SuiteInfo = React.createClass({
+  render () {
+    //info信息用|符号做分割
+    let infoData = this.props.info && this.props.info.split && this.props.info.split('|') || []
+    return (
+      <div className="info">
+          <div className="overview">
+          {
+              _.map(infoData,(v,k)=>{
+                  return (<p key={k}><b>{v}</b></p>)
+              })
+          }
+          </div>
+      </div>
+    )
+  }
+})
+
 
 const SuiteList = React.createClass({
   render () {
@@ -40,7 +58,7 @@ const SuiteList = React.createClass({
                       </div>
                     </div>
                     <div className='viewport'>
-                      <SuitesInfo info={v.shootAdress} />
+                      <SuiteInfo info={v.shootAdress} />
                     </div>
                   </div>
                   <div className="func transition-border"></div>
@@ -61,6 +79,9 @@ const SuiteList = React.createClass({
       data:[],
       totalCount:0
     }
+  },
+  componentWillReceiveProps(nextProps) {
+      console.log('newdata!');
   }
 })
 
@@ -104,11 +125,11 @@ const Suite = React.createClass({
       </div>
     )
   },
-  getInitialState: function() {
+  getInitialState() {
     return {
       data:{}
     };
-  },
+  }
 })
 
 export { Suite }
