@@ -35,10 +35,15 @@ const SampleList = React.createClass({
   },
   getDefaultProps(){
     return {
-      totalPage:1,
-      data:[{
-        contentName:'test'
-      }]
+      totalPage:6,
+      data:[
+        { contentName:'test' },
+        { contentName:'test' },
+        { contentName:'test' },
+        { contentName:'test' },
+        { contentName:'test' },
+        { contentName:'test' }
+    ]
     }
   }
 })

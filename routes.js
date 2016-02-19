@@ -82,6 +82,10 @@ siteRouter.get('/sample',function* index(next){
 siteRouter.get('/pringles',function* index(next){
   yield this.render('modules/default', renderOption('pringles','/pringles','/shot'))
 })
+/* 套系 */
+siteRouter.get('/suite',function* index(next){
+  yield this.render('modules/default', renderOption('suite','/suite','/shot'))
+})
 
 
 /** 婚宴预订 **/

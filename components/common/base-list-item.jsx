@@ -8,7 +8,7 @@ const BaseListIem = React.createClass({
     return (
       <ul className="list-recommend">
           {
-            _.map(this.props.data,function(v,k){
+            _.map(this.props.data,(v,k)=>{
               return (
                 <li className="item-box" key={k}>
                   <a className='img-box' href='/' target='_blank'>
