@@ -4,7 +4,7 @@ import { Banner } from './common/banner.jsx'
 import { CasesConfig } from './config/cases-config'
 import { ListFilter } from './common/list-filter.jsx'
 import _ from 'lodash'
-import { SchemeListItem } from './common/scheme-list-item.jsx'
+import { CasesList } from './common/cases-list.jsx'
 const CasesCategory  = React.createClass({
   render () {
     return (
@@ -45,30 +45,7 @@ const CasesCategory  = React.createClass({
 })
 
 
-const CasesList  = React.createClass({
-  render () {
-    return (
-      <div className="case-list-view">
-        <div className="screening-results">
-          <span className="find"><span>找到最佳案例</span><b>{this.props.totalPage}</b><span>套</span></span>
-        </div>
-        <SchemeListItem {...this.props}/>
-      </div>
-    )
-  },
-  propTypes: {
-    totalPage: React.PropTypes.number,
-    data:React.PropTypes.array
-  },
-  getDefaultProps(){
-    return {
-      totalPage:1,
-      data:[
-        {schemeName:'test',weddingDate:'2015-10-10'}
-      ]
-    }
-  }
-})
+
 
 
 
@@ -101,11 +78,7 @@ const Cases = React.createClass({
       'list':{}
     }
   },
-  loadMore(){
-
-  }
-
-
+  loadMore(){ }
 })
 
 export { Cases }

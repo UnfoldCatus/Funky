@@ -106,7 +106,18 @@ siteRouter.get('/scheme',function* index(next){
 siteRouter.get('/cases',function* index(next){
   yield this.render('modules/default', renderOption('cases','/cases','/scheme'))
 })
-
+/** 婚礼跟拍 **/
+siteRouter.get('/weddingpat',function* index(next){
+  yield this.render('modules/default', renderOption('weddingpat','/weddingpat','/scheme'))
+})
+/** 婚礼视频 **/
+siteRouter.get('/weddingvideo',function* index(next){
+  yield this.render('modules/default', renderOption('weddingvideo','/weddingvideo','/scheme'))
+})
+/** 提交婚庆需求 **/
+siteRouter.get('/scheme-require',function* index(next){
+  yield this.render('modules/default', renderOption('scheme-require','/scheme-require','/scheme'))
+})
 
 /** 礼服 **/
 siteRouter.get('/dress',function* index(next){
