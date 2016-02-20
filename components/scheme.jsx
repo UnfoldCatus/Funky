@@ -5,7 +5,17 @@ import { Banner } from './common/banner.jsx'
 import { Group5 } from './common/group5.jsx'
 import _ from 'lodash'
 
+/**
+ 组件结构
 
+<Scheme>
+  <MediaSlider />
+  <Banner />
+  <Group5 />
+  <SchemeList />
+  <NavGallery />
+</Scheme>
+ **/
 const SchemeList = React.createClass({
   render () {
     return (
@@ -69,32 +79,6 @@ const Scheme = React.createClass({
           <div className='tit-img-team mgt60 mgb30' />
           <PhotoGallery gallery={SchemeConfig['PhotoGallery']} />
           <div className="tit-img-hlr mgb30 mgt60" />
-            {/*<ul className="nav-f4-box">
-              <a href='#/f4?tab=dresser'>
-                <li className="item-box">
-                  <div className="hzs"><span></span></div>
-                  <span className="hzs-word"></span>
-                </li>
-              </a>
-              <a href='#/f4?tab=host'>
-                <li className="item-box">
-                  <div className="zcr"><span></span></div>
-                  <span className="zcr-word"></span>
-                </li>
-              </a>
-              <a href='#/f4?tab=photographer'>
-                <li className="item-box">
-                  <div className="sys"><span></span></div>
-                  <span className="sys-word"></span>
-                </li>
-              </a>
-              <a href='#/f4?tab=camera'>
-                <li className="item-box">
-                  <div className="sxs"><span></span></div>
-                  <span className="sxs-word"></span>
-                </li>
-              </a>
-            </ul>*/}
           <NavGallery gallery={SchemeConfig['NavGallery']} />
         </div>
       </div>

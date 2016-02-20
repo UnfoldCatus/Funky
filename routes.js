@@ -98,9 +98,13 @@ siteRouter.get('/hotel-require',function* index(next){
   yield this.render('modules/default', renderOption('hotel-require','/hotel-require','/hotel'))
 })
 
-
+/** 婚庆定制 **/
 siteRouter.get('/scheme',function* index(next){
   yield this.render('modules/default', renderOption('scheme','/scheme','/scheme'))
+})
+/**  实景案例 **/
+siteRouter.get('/cases',function* index(next){
+  yield this.render('modules/default', renderOption('cases','/cases','/scheme'))
 })
 
 

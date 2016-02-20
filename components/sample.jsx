@@ -63,7 +63,7 @@ const Sample = React.createClass({
             <span className="sel sec nnn">艺术写真</span>
           </div>
           <div className='J_FilterCtrl' onClick={this.toggleFun}>
-            <ListFilter title={'风格'} name={'styleName'} klass={'ico-1-js ico-1-2-js'} valueKey={['styleId']} conditions={this.state.styles} sorterKey={['cityId']} />
+            <ListFilter title={'风格'} name={'styleName'} klass={'ico-1-js ico-1-2-js'} valueKey={['styleId']} conditions={this.state.styles} sorterKey={['styleId']} />
             <ListFilter title={'场景'} name={'addressName'} klass={'ico-1-js ico-1-3-js'} valueKey={['addressId']} conditions={this.state.scenes} sorterKey={['addressId']} />
           </div>
           <SampleList {...this.state.list}/>
