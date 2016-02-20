@@ -43,7 +43,7 @@ const Group5 = React.createClass({
   },
   getInitialState() {
     return {
-      groupItems:[]
+      groupItems:[{},{},{},{},{}]
     };
   },
 

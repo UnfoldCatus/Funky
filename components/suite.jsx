@@ -127,7 +127,16 @@ const Suite = React.createClass({
   },
   getInitialState() {
     return {
-      data:{}
+      data:{
+        totalCount:5,
+        data:[
+          {},
+          {},
+          {},
+          {},
+          {}
+        ]
+      }
     };
   }
 })
