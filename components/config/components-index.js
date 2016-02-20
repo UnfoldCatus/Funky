@@ -35,7 +35,7 @@ const ComponentsIndex = {
   'cases':<Cases />,
   'adv':<Adv />,
   'dress':<Dress />,
-  'supply':<Supply />
+'supply':<Supply />
 }
 
 

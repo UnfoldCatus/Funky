@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Adv } from './adv.jsx'
 import { MediaSlider } from './common/media-slider.jsx'
-import { BaseListIem } from './common/base-list-item.jsx'
+import { ShotListItem } from './common/shot-list-item.jsx'
 import { Banner } from './common/banner.jsx'
 import { ListFilter } from './common/list-filter.jsx'
 import { SampleConfig } from './config/sample-config'
@@ -12,7 +12,7 @@ import { SampleConfig } from './config/sample-config'
   <Banner /> <-SampleConfig.Banner
   <ListFilter />
   <SampleList>
-    <BaseListIem />
+    <ShotListItem />
   </SampleList>
 </Sample>
 
@@ -26,7 +26,7 @@ const SampleList = React.createClass({
         <div className="screening-results">
           <span className="find"><span>找到作品</span><b>{this.props.totalPage}</b><span>套</span></span>
         </div>
-        <BaseListIem {...this.props} type='sample' />
+        <ShotListItem {...this.props} type='sample' />
       </div>
     )
   },

@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import { ShotConfig } from './config/shot-config'
 import { Banner } from './common/banner.jsx'
 import { MediaSlider } from './common/media-slider.jsx'
+import { ShotListItem } from './common/shot-list-item.jsx'
 import _ from 'lodash'
 /**
 
@@ -58,18 +59,6 @@ const MultiBanner = React.createClass({
   }
 })
 
-/*
-  精彩样片合集
-*/
-const SamplesMash = React.createClass({
-  render () {
-    return (
-      <h1>SamplesMash</h1>
-    )
-  }
-})
-
-
 
 
 /*Main: */
@@ -88,7 +77,7 @@ const Shot = React.createClass({
           <div className="tit-img-zxmz mgb30 mgt60">
             <a className="tit-img-more" href="/sample"></a>
           </div>
-          <SamplesMash />
+          <ShotListItem {...this.state.list} type='sample' />
           <div className="tit-img-sys mgb30 mgt60">
             <a className="tit-img-detail" style={{display:'none'}} href="#/photographers"></a>
           </div>
@@ -104,7 +93,21 @@ const Shot = React.createClass({
         </div>
       </div>
     )
-  }
+  },
+  getInitialState() {
+    return {
+      list:{
+        data:[
+          { contentName:'test' },
+          { contentName:'test' },
+          { contentName:'test' },
+          { contentName:'test' },
+          { contentName:'test' },
+          { contentName:'test' }
+        ]
+      }
+    };
+  },
 })
 
 export { Shot }

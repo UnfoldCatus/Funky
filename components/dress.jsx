@@ -75,7 +75,7 @@ const ListItem  = React.createClass({
       data-reactid=".0.1.0.$0.0.0" />
     </a>
   </div>*/}
-export const Dress = React.createClass({
+const Dress = React.createClass({
   render () {
     return (
       <div className="hslf-view">
@@ -92,3 +92,6 @@ export const Dress = React.createClass({
     )
   }
 })
+
+
+export { Dress }
