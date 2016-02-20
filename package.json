@@ -1,0 +1,72 @@
+{
+  "name": "funky",
+  "version": "2.0.0",
+  "description": "Functional Reactive Structure",
+  "main": "react-server.js",
+  "scripts": {
+    "start": "NODE_ENV=development babel-node ./react-server.js",
+    "build-sample": "watchify ./src/client/sample.js -o 'uglifyjs -cm > ./assets/script/modules/sample.min.js'",
+    "build-pringles": "watchify ./src/client/pringles.js -o 'uglifyjs -cm > ./assets/script/modules/pringles.min.js'",
+    "build-hotel": "watchify ./src/client/hotel.js -o 'uglifyjs -cm > ./assets/script/modules/hotel.min.js'",
+    "build-suite": "watchify ./src/client/suite.js -o 'uglifyjs -cm > ./assets/script/modules/suite.min.js'",
+    "build-cases": "watchify ./src/client/cases.js -o 'uglifyjs -cm > ./assets/script/modules/cases.min.js'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/appleseedez/Funky.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/appleseedez/Funky/issues"
+  },
+  "homepage": "https://github.com/appleseedez/Funky#readme",
+  "devDependencies": {
+    "babel": "^6.5.1",
+    "babel-cli": "^6.5.1",
+    "babel-plugin-transform-react-jsx": "^6.5.0",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "babelify": "^7.2.0",
+    "browserify": "^13.0.0",
+    "budo": "^8.0.2",
+    "koa-logger": "^1.3.0",
+    "node-pre-gyp": "^0.6.21",
+    "uglify-js": "^2.6.1",
+    "watchify": "^3.7.0"
+  },
+  "dependencies": {
+    "console-polyfill": "^0.2.2",
+    "es5-shim": "^4.5.2",
+    "immutable": "^3.7.6",
+    "koa": "^1.1.2",
+    "koa-ejs": "^3.0.0",
+    "koa-favicon": "^1.2.0",
+    "koa-router": "^5.3.0",
+    "koa-static": "^2.0.0",
+    "lodash": "^4.2.1",
+    "path": "^0.12.7",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-dom-stream": "^0.5.0",
+    "react-router": "^2.0.0-rc5",
+    "rx": "^4.0.7",
+    "thinky": "^2.2.4",
+    "thunkify": "^2.1.2"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ],
+    "plugins": [
+      "transform-react-jsx"
+    ]
+  }
+}
