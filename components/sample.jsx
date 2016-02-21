@@ -5,6 +5,7 @@ import { ShotListItem } from './common/shot-list-item.jsx'
 import { Banner } from './common/banner.jsx'
 import { ListFilter } from './common/list-filter.jsx'
 import { SampleConfig } from './config/sample-config'
+
 /**
 组件结构
 <Sample> <= styles,scenes,list
@@ -47,6 +48,7 @@ const SampleList = React.createClass({
     }
   }
 })
+/** main **/
 const Sample = React.createClass({
   render () {
     return (
@@ -84,5 +86,11 @@ const Sample = React.createClass({
     )
   },
 
+  /*只能被客户端调用*/
+  componentDidMount() {
+    fetch('/api/').then(res => {
+      return res.json()
+    }).then(data => console.log(data))
+  }
 })
 export { Sample }

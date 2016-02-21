@@ -37,8 +37,12 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
+    "boom": "^3.1.2",
     "console-polyfill": "^0.2.2",
     "es5-shim": "^4.5.2",
+    "es6-promise": "^3.1.2",
+    "fetch-detector": "^1.0.0",
+    "fetch-ie8": "^1.4.1",
     "immutable": "^3.7.6",
     "koa": "^1.1.2",
     "koa-ejs": "^3.0.0",

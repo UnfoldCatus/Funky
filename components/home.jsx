@@ -4,6 +4,7 @@ import _ from 'lodash'
 import { Group5 } from './common/group5.jsx'
 import { Banner} from './common/banner.jsx'
 import { HomeConfig } from './config/home-config'
+
 const Home = React.createClass({
   render () {
     return (
@@ -24,6 +25,9 @@ const Home = React.createClass({
         </div>
       </div>
     )
+  },
+  componentDidMount() {
+  
   }
 })
 
