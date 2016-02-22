@@ -153,4 +153,8 @@ siteRouter.get('/dress',function* index(next){
   yield this.render('modules/default', renderOption('dress','/dress','/dress'))
 })
 
+siteRouter.get('/dress-details',function* index(next){
+  yield this.render('modules/default', renderOption('dress-details','/dress-details','/dress'))
+})
+
 export { siteRouter }
