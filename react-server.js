@@ -93,12 +93,7 @@ let dataFetchMiddleWare = function* (next) {
       let proxyFetcher = thunkify(memCacheMgr.getData)
       this.dataSource = yield proxyFetcher(this.request.url, this.request.url)
     }
-  }
-  yield next
-}
-ReactServer.use(dataFetchMiddleWare)
 
-ReactServer.use(function * (next) {
   this.dataSource = _.isArray(this.dataSource)?this.dataSource:[]
   if (this.APIKey === 'Suite' && this.dataSource[0]['pcDetailImages']) {
       let images = []
@@ -128,7 +123,12 @@ ReactServer.use(function * (next) {
       count: this.count ||this.dataSource.length
     }
     this.body = data
-})
+
+  }
+  yield next
+}
+ReactServer.use(dataFetchMiddleWare)
+
 
 ReactServer.use(siteRouter.routes()) // 网站路由
 
