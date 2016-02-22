@@ -3,6 +3,7 @@ import { MediaSlider } from './common/media-slider.jsx'
 import { SchemeConfig } from './config/scheme-config'
 import { Banner } from './common/banner.jsx'
 import { Group5 } from './common/group5.jsx'
+import { SchemeListItem } from './common/scheme-list-item.jsx'
 import _ from 'lodash'
 
 /**
@@ -12,19 +13,10 @@ import _ from 'lodash'
   <MediaSlider />
   <Banner />
   <Group5 />
-  <SchemeList />
+  <SchemeListItem />
   <NavGallery />
 </Scheme>
  **/
-const SchemeList = React.createClass({
-  render () {
-    return (
-      <h1>SchemeList</h1>
-    )
-  }
-})
-
-
 
 const PhotoGallery = React.createClass({
   render () {
@@ -32,11 +24,19 @@ const PhotoGallery = React.createClass({
       <div className='photo-box'>
       {
         _.map(this.props.gallery,(v,k)=>{
-          return <img src={v.imageUrl} />
+          return <img src={v.imageUrl} key={k} />
         })
       }
       </div>
     )
+  },
+  propTypes: {
+    gallery: React.PropTypes.array
+  },
+  getDefaultProps(){
+    return {
+      gallery:[]
+    }
   }
 })
 
@@ -47,7 +47,7 @@ const NavGallery = React.createClass({
       {
         _.map(this.props.gallery,(v,k)=>{
           return (
-            <a href={v.link}>
+            <a href={v.link} key={k}>
               <li className="item-box">
                 <div className={v.klass}><span></span></div>
                 <span className={v.klass+'-word'}></span>
@@ -59,7 +59,14 @@ const NavGallery = React.createClass({
       }
       </ul>
     )
-
+  },
+  propTypes: {
+    gallery: React.PropTypes.array
+  },
+  getDefaultProps(){
+    return {
+      gallery:[]
+    }
   }
 })
 
@@ -75,7 +82,7 @@ const Scheme = React.createClass({
         <div className='layout-center-box'>
           <Banner {...SchemeConfig['Banner'][0]} />
           <Group5 config={SchemeConfig['Group5']} />
-          <SchemeList />
+          <SchemeListItem {...this.state.list} />
           <div className='tit-img-team mgt60 mgb30' />
           <PhotoGallery gallery={SchemeConfig['PhotoGallery']} />
           <div className="tit-img-hlr mgb30 mgt60" />
@@ -83,7 +90,21 @@ const Scheme = React.createClass({
         </div>
       </div>
     )
-  }
+  },
+  getInitialState() {
+    return {
+      list:{
+        data:[
+          {schemeName:'test',weddingDate:'2015-10-10'},
+          {schemeName:'test',weddingDate:'2015-10-10'},
+          {schemeName:'test',weddingDate:'2015-10-10'},
+          {schemeName:'test',weddingDate:'2015-10-10'},
+          {schemeName:'test',weddingDate:'2015-10-10'},
+          {schemeName:'test',weddingDate:'2015-10-10'},
+        ]
+      }
+    };
+  },
 })
 
 export { Scheme }

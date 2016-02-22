@@ -1,5 +1,6 @@
 import Router from 'koa-router'
 import React, { PropTypes } from 'react'
+import _ from 'lodash'
 import { renderToString } from 'react-dom/server'
 
 import { MenuConfig } from './components/config/menu-config'
@@ -7,6 +8,13 @@ import { ComponentsIndex} from './components/config/components-index'
 /*菜单*/
 import { Navigation } from './components/navigation.jsx'
 
+
+/** api的路由逻辑**/
+import hotelApi from './components/server/api/hotel'
+import sampleApi from './components/server/api/sample'
+import pringlesApi from './components/server/api/pringles'
+import advApi from './components/server/api/adv'
+import suiteApi from './components/server/api/suite'
 /**
   api 资源路由
 **/
@@ -25,6 +33,27 @@ apiRouter.get('/',function* apiRoot(next){
 })
 
 
+/* Adv */
+_.each(advApi, (value, key) => {
+  apiRouter[key.split('+')[0]](key.split('+')[1], value)
+})
+
+/* Hotel */
+_.each(hotelApi, (value, key) => {
+    apiRouter[key.split('+')[0]](key.split('+')[1], value)
+  })
+  /* Sample */
+_.each(sampleApi, (value, key) => {
+    apiRouter[key.split('+')[0]](key.split('+')[1], value)
+  })
+  /* Pringles */
+_.each(pringlesApi, (value, key) => {
+    apiRouter[key.split('+')[0]](key.split('+')[1], value)
+  })
+  /* Suite */
+_.each(suiteApi, (value, key) => {
+  apiRouter[key.split('+')[0]](key.split('+')[1], value)
+})
 
 /**
  platform 主站的页面路由
@@ -106,7 +135,18 @@ siteRouter.get('/scheme',function* index(next){
 siteRouter.get('/cases',function* index(next){
   yield this.render('modules/default', renderOption('cases','/cases','/scheme'))
 })
-
+/** 婚礼跟拍 **/
+siteRouter.get('/weddingpat',function* index(next){
+  yield this.render('modules/default', renderOption('weddingpat','/weddingpat','/scheme'))
+})
+/** 婚礼视频 **/
+siteRouter.get('/weddingvideo',function* index(next){
+  yield this.render('modules/default', renderOption('weddingvideo','/weddingvideo','/scheme'))
+})
+/** 提交婚庆需求 **/
+siteRouter.get('/scheme-require',function* index(next){
+  yield this.render('modules/default', renderOption('scheme-require','/scheme-require','/scheme'))
+})
 
 /** 礼服 **/
 siteRouter.get('/dress',function* index(next){

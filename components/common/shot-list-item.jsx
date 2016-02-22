@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { MediaItem } from './media-item.jsx'
 import { MediaLayer } from './media-layer.jsx'
 import _ from 'lodash'
-const BaseListIem = React.createClass({
+const ShotListItem = React.createClass({
   render () {
     let type = this.props.type
     return (
@@ -33,4 +33,4 @@ const BaseListIem = React.createClass({
   }
 })
 
-export { BaseListIem }
+export { ShotListItem }

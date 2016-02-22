@@ -38,7 +38,6 @@ const PringlesMarkup = React.createClass({
 
 const MediaLayer = React.createClass({
   render () {
-
     switch (this.props.type) {
       case 'sample':
       return (

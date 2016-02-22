@@ -13,11 +13,13 @@ import { Shot } from '../shot.jsx'
 import { Sample } from '../sample.jsx'
 import { Pringles } from '../pringles.jsx'
 import { Suite } from '../suite.jsx'
-
 import { Hotel } from '../hotel.jsx'
 import { HotelRequire } from '../hotel-require.jsx'
 import { Scheme } from '../scheme.jsx'
 import { Cases } from '../cases.jsx'
+import { WeddingPat } from '../wedding-pat.jsx'
+import { WeddingVideo } from '../wedding-video.jsx'
+import { SchemeRequire } from '../scheme-require.jsx'
 
 import { Adv } from '../adv.jsx'
 import { Dress } from '../dress.jsx'
@@ -33,6 +35,9 @@ const ComponentsIndex = {
   'hotel-require':<HotelRequire />,
   'scheme':<Scheme />,
   'cases':<Cases />,
+  'weddingpat':<WeddingPat />,
+  'weddingvideo':<WeddingVideo />,
+  'scheme-require':<SchemeRequire />,
   'adv':<Adv />,
   'dress':<Dress />,
   'supply':<Supply />

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { MediaSlider } from './common/media-slider.jsx'
-import { BaseListIem } from './common/base-list-item.jsx'
+import { ShotListItem } from './common/shot-list-item.jsx'
 import { Banner } from './common/banner.jsx'
 /**
 <Pringles>
@@ -27,7 +27,7 @@ const PringlesList = React.createClass({
         <div className="screening-results">
           <span className="find"><span>找到最佳客片</span><b>{this.props.totalPage}</b><span>套</span></span>
         </div>
-        <BaseListIem {...this.props} type='pringles' />
+        <ShotListItem {...this.props} type='pringles' />
       </div>
     )
   },
