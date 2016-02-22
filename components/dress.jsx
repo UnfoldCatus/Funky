@@ -79,7 +79,7 @@ const DressList  = React.createClass({
                     <div className="show-box">
                       <div className="layer-box" />
                       <h2>巴拉巴拉阿里巴巴</h2>
-                      <a>
+                      <a href='/dress-details'>
                         <img src="http://image.jsbn.com/WebImage/cq/jpg/20150928/08259969567059184420/20150928140751853987_1417x945.jpg" />
                       </a>
                     </div>

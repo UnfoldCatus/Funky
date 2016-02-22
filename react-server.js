@@ -75,9 +75,9 @@ ReactServer.use(apiRouter.routes()) // api路由
  dataFetchMiddleWare的工作就是依据已经设置的APIKey 进行数据抓取工作。
 
  **/
-let dataFetchMiddleWare = function* (next) {
+let dataFetchMiddleWare = function*(next) {
   if (this.APIKey) {
-    console.log('APIKey:',this.APIKey);
+    console.log('APIKey:', this.APIKey);
     // DBUtil.isCacheDataUsable 方法 返回真表示数据缓存可用。否则表示数据正在同步。不可以从缓存拉
     if (DBUtil.isCacheDataUsable(this.APIKey)) {
       //从缓存数据库中去查询。
@@ -93,9 +93,9 @@ let dataFetchMiddleWare = function* (next) {
       let proxyFetcher = thunkify(memCacheMgr.getData)
       this.dataSource = yield proxyFetcher(this.request.url, this.request.url)
     }
-
-  this.dataSource = _.isArray(this.dataSource)?this.dataSource:[]
-  if (this.APIKey === 'Suite' && this.dataSource[0]['pcDetailImages']) {
+    // 针对2.0的套系数据格式进行修正
+    this.dataSource = _.isArray(this.dataSource) ? this.dataSource : []
+    if (this.APIKey === 'Suite' && this.dataSource[0]['pcDetailImages']) {
       let images = []
       let origin = JSON.parse(this.dataSource[0]['pcDetailImages'])
       let keys = [
@@ -106,13 +106,13 @@ let dataFetchMiddleWare = function* (next) {
         'pc_baseSampleImages',
         'pc_processImages'
       ]
-      _.each(keys,function(v){
-        _.each(origin[v]||[],function(v1){
+      _.each(keys, function(v) {
+        _.each(origin[v] || [], function(v1) {
           images.push(v1)
         })
       })
       this.dataSource[0]['pcDetailImages'] = JSON.stringify(images)
-  }
+    }
 
 
     let data = {
@@ -120,13 +120,14 @@ let dataFetchMiddleWare = function* (next) {
       message: "",
       data: this.dataSource,
       code: 200,
-      count: this.count ||this.dataSource.length
+      count: this.count || this.dataSource.length
     }
     this.body = data
 
   }
   yield next
 }
+
 ReactServer.use(dataFetchMiddleWare)
 
 
