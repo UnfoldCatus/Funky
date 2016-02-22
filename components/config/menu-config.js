@@ -33,7 +33,7 @@ const MenuConfig = {
     {
       cn:'婚礼用品',
       en:'SUPPLIES',
-      link:'/supplies'
+      link:'/supply'
     },
     {
       cn:'婚车租赁',
@@ -75,7 +75,7 @@ const MenuConfig = {
     {
       cn:'婚礼用品',
       en:'SUPPLIES',
-      link:'/supplies'
+      link:'/supply'
     },
     {
       cn:'婚车租赁',
@@ -228,7 +228,7 @@ const MenuConfig = {
       link:'/weddingclass/5'
     }
   ],
-  '/supplies':[
+  '/supply':[
     {
       cn:'全站首页',
       en:'HOME',
@@ -237,7 +237,7 @@ const MenuConfig = {
     {
       cn:'婚礼用品首页',
       en:'SUPPLIES',
-      link:'/supplies'
+      link:'/supply'
     },
     {
       cn:'用品贴士',

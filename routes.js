@@ -157,4 +157,14 @@ siteRouter.get('/dress-details',function* index(next){
   yield this.render('modules/default', renderOption('dress-details','/dress','/dress'))
 })
 
+/** 婚礼用品 **/
+siteRouter.get('/supply',function* index(next){
+  yield this.render('modules/default', renderOption('supply','/supply','/supply'))
+})
+/** 婚车租赁 **/
+siteRouter.get('/car',function* index(next){
+  yield this.render('modules/default', renderOption('car','/car','/car'))
+})
+
+
 export { siteRouter }
