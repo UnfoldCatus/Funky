@@ -1,7 +1,7 @@
 @import "resources.css";
 @import "nav-all.css";
 @import "lightbox.css";
-@import "video-js.min.css";
+@import "./video-js.min.css";
 @import "title-img.css";
 * {
   outline: none;
@@ -1500,7 +1500,7 @@ a:hover {
   margin-bottom: 0;
 }
 .adaptation-1200 .home-view .list-recommend-2 .item-box:hover {
-  box-shadow: 0px 0px 20px #333;
+  box-shadow: 0px 0px 50px #ccc;
 }
 .adaptation-1200 .home-view .list-recommend-2 .title-box {
   padding: 13px 0px;
@@ -1822,13 +1822,13 @@ a:hover {
   top: 0px;
   left: 800px;
 }
-.adaptation-1200 .hssy-home-view .suite-home-link {
+.adaptation-1200 .hssy-home-view .weddingmv-link {
   height: 203px;
   width: 400px;
   top: 401px;
   left: 400px;
 }
-.adaptation-1200 .hssy-home-view .weddingmv-link {
+.adaptation-1200 .hssy-home-view .suite-home-link {
   height: 203px;
   width: 400px;
   top: 401px;
@@ -4885,6 +4885,29 @@ a:hover {
   text-align: center;
   font-size: 24px;
 }
+.adaptation-1200 .hlsp-view .more-btn {
+  padding: 14px 0;
+  width: 420px;
+  margin: 30px auto;
+  border: 2px solid #f6f6f6;
+  text-align: center;
+  cursor: pointer;
+  -moz-transition: all 0.5s ease 0s;
+  -webkit-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  -ms-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+}
+.adaptation-1200 .hlsp-view .more-btn span {
+  color: #999;
+  font-size: 20px;
+  line-height: 22px;
+  padding-right: 35px;
+  background: url(../img/arrow-1-js.png) no-repeat right;
+}
+.adaptation-1200 .hlsp-view .more-btn:hover {
+  background-color: #f6f6f6;
+}
 .adaptation-1200 .xchs-view .list-recommend .item-box {
   position: relative;
   width: 100%;
@@ -6393,6 +6416,23 @@ a:hover {
 .adaptation-1200 .hslf-view .show-box:hover h2 {
   bottom: 0;
 }
+.adaptation-1200 .hslf-xq-view .title-hslf-xq {
+  border-left: 8px solid #000000;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 10px;
+  border-left-color: #F7D625;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.adaptation-1200 .hslf-xq-view .title-hslf-xq h1 {
+  color: #454545;
+  font-weight: normal;
+  font-size: 24px;
+}
+.adaptation-1200 .hslf-xq-view .title-hslf-xq h1 {
+  color: #E5253A;
+}
 .adaptation-1200 .hslf-xq-view .list-recommend {
   width: 1230px;
   margin-right: -30px;
@@ -6461,6 +6501,30 @@ a:hover {
 .adaptation-1200 .hslf-xq-view .list-recommend .first-img-box img {
   width: 100%;
   height: 100%;
+}
+.adaptation-1200 .hslf-xq-view .list-recommend .layer-box {
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  top: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -moz-transition: all 0.2s ease 0s;
+  -webkit-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  -ms-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+  background-color: #fff;
+}
+.adaptation-1200 .hslf-xq-view .list-recommend .item-box:hover .layer-box {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.adaptation-1200 .hslf-xq-view .list-recommend .item-box:hover .layer-title {
+  opacity: 1;
+  filter: alpha(opacity=100);
 }
 .adaptation-1200 .wdy-view {
   *zoom: 1;
