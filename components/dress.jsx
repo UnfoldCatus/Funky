@@ -4,14 +4,57 @@ import { MediaSlider } from './common/media-slider.jsx'
 import { Banner } from './common/banner.jsx'
 import { DressConfig } from './config/dress-config'
 
+/**
+组件结构
+<Dress> <= styles,scenes,list
+  <MediaSliderWapper />
+    <MediaSlider /> <= advs
+  <Banner /> <-SampleConfig.Banner
+  <DressList>
+    <ShotListItem />
+  </DressList>
+</Dress>
+
+**/
+
 /* 礼服分类项 */
-const ListItem  = React.createClass({
+const DressList  = React.createClass({
   render () {
     return (
       <div>
         {
           _.map(this.props.dressTypes, (v, k) => {
             return (
+
+              // <div>
+              //   <div className="title-box">
+              //     <h1>{v.zhName}</h1>
+              //     <span>{v.enName}</span>
+              //   </div>
+              //   <div className="dress-brand">
+              //     <div className="center-box">
+              //       <ul className="tab-box">
+              //         {
+              //           _.map(this.props.titles,(v1,k1)=>{
+              //             return (
+              //               <li className="item item-sel">
+              //                   <img src={v1.url} />
+              //               </li>
+              //             )
+              //           })
+              //         }
+              //       </ul>
+              //       <div className="show-box">
+              //         <div className="layer-box" />
+              //         <h2>{v.desc}</h2>
+              //         <a href='#' target="_blank">
+              //           <img src={v.fovUrl} />
+              //         </a>
+              //       </div>
+              //     </div>
+              //   </div>
+              // </div>
+
               <div>
                 <div className="title-box">
                   <h1>国际婚纱</h1>
@@ -19,7 +62,6 @@ const ListItem  = React.createClass({
                 </div>
                 <div className="dress-brand">
                   <div className="center-box">
-
                     <ul className="tab-box">
                       <li className="item item-sel">
                         <img src="http://oi22.com/wp-content/uploads/2013/01/022259tRe.jpg" />
@@ -37,7 +79,7 @@ const ListItem  = React.createClass({
                     <div className="show-box">
                       <div className="layer-box" />
                       <h2>巴拉巴拉阿里巴巴</h2>
-                      <a>
+                      <a href='/dress-details'>
                         <img src="http://image.jsbn.com/WebImage/cq/jpg/20150928/08259969567059184420/20150928140751853987_1417x945.jpg" />
                       </a>
                     </div>
@@ -61,32 +103,33 @@ const ListItem  = React.createClass({
   }
 });
 
-{/*<div className="layout-center-box">
-  <div className="bannar-box">
-    <a href="http://www.jsbn.com/#/sale-strategy?type=zuhe"
-      style={{textAlign: 'center'}}
-      className="img-box "
-      data-width={1200}
-      data-height={680}
-      target="_self"
-      data-reactid=".0.1.0.$0.0">
-      <img
-      src="http://image.jsbn.com/WebImage/cq/jpg/20151006/97453672485760581447/20151006192249051678_1200x680.jpg@1200w_680h_90Q"
-      data-reactid=".0.1.0.$0.0.0" />
-    </a>
-  </div>*/}
+const MediaSliderWapper = React.createClass({
+  render () {
+    if (!this.props.isNil) {
+      return (
+        <div id="slider_top" className="slider-box bannar" style={{height:'450px'}}>
+          <MediaSlider />
+        </div>
+      );
+    } else {
+      return (
+        <MediaSlider />
+      );
+    }
+  }
+});
+
+
 const Dress = React.createClass({
   render () {
     return (
       <div className="hslf-view">
         <div className="bannar-all-box">
-          <div id="slider_top" className="slider-box bannar" style={{height:'450px'}}>
-            <MediaSlider />
-          </div>
+          <MediaSliderWapper isNil="true" />
         </div>
         <div className="layout-center-box">
           <Banner {...DressConfig['Banner'][0]} />
-          <ListItem />
+          <DressList />
         </div>
       </div>
     )

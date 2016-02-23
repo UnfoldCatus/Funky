@@ -23,7 +23,9 @@ import { SchemeRequire } from '../scheme-require.jsx'
 
 import { Adv } from '../adv.jsx'
 import { Dress } from '../dress.jsx'
+import { DressDetails } from '../dress-details.jsx'
 import { Supply } from '../supply.jsx'
+
 
 const ComponentsIndex = {
   'home':<Home />,
@@ -40,6 +42,7 @@ const ComponentsIndex = {
   'scheme-require':<SchemeRequire />,
   'adv':<Adv />,
   'dress':<Dress />,
+  'dress-details':<DressDetails />,
   'supply':<Supply />
 }
 
