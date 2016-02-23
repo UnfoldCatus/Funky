@@ -53,8 +53,10 @@ const ImageItem = React.createClass({
 
 const MediaItem = React.createClass({
   render () {
+    let factors = this.props.aspectRatio.split(':')
+    let height = this.props.width*parseFloat(factors[1])/parseFloat(factors[0])
     return (
-      <h1>MediaItem</h1>
+      <ImageItem  {...this.props} height={height} />
     )
   },
   propTypes: {
@@ -67,12 +69,9 @@ const MediaItem = React.createClass({
   },
   getDefaultProps(){
     return {
-      autoplay:false,
-      width:-1,
-      height:-1,
-      coverUrl:'',
-      mediaUrl:'',
-      aspectRatio:'1:1'
+      width:380,
+      mediaUrl:'//placehold.it/380x570',
+      aspectRatio:'2:3'
     }
   }
 })

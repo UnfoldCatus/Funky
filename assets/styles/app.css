@@ -1,7 +1,7 @@
 @import "resources.css";
 @import "nav-all.css";
 @import "lightbox.css";
-@import "../../bower_components/video.js/dist/video-js.css";
+@import "./video-js.min.css";
 @import "title-img.css";
 * {
   outline: none;
