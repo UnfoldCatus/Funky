@@ -28,8 +28,7 @@ const DressList  = React.createClass({
 
               // <div>
               //   <div className="title-box">
-              //     <h1>{v.zhName}</h1>
-              //     <span>{v.enName}</span>
+              //     <h1>{v.enName + " " + v.zhName}</h1>
               //   </div>
               //   <div className="dress-brand">
               //     <div className="center-box">
@@ -57,8 +56,7 @@ const DressList  = React.createClass({
 
               <div>
                 <div className="title-box">
-                  <h1>国际婚纱</h1>
-                  <span>明星礼服</span>
+                  <h1>WEDDING DRESS 国际婚纱</h1>
                 </div>
                 <div className="dress-brand">
                   <div className="center-box">
@@ -76,13 +74,11 @@ const DressList  = React.createClass({
                         <img src="http://oi22.com/wp-content/uploads/2013/01/022305orZ.jpg" />
                       </li>
                     </ul>
-                    <div className="show-box">
+                    <a className="show-box" href='/dress-details'>
                       <div className="layer-box" />
                       <h2>巴拉巴拉阿里巴巴</h2>
-                      <a href='/dress-details'>
-                        <img src="http://image.jsbn.com/WebImage/cq/jpg/20150928/08259969567059184420/20150928140751853987_1417x945.jpg" />
-                      </a>
-                    </div>
+                      <img src="http://image.jsbn.com/WebImage/cq/jpg/20150928/08259969567059184420/20150928140751853987_1417x945.jpg" />
+                    </a>
                   </div>
                 </div>
               </div>
