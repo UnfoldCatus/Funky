@@ -130,7 +130,6 @@ let dataFetchMiddleWare = function*(next) {
 
 ReactServer.use(dataFetchMiddleWare)
 
-
 ReactServer.use(siteRouter.routes()) // 网站路由
 
 
