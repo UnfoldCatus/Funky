@@ -39,12 +39,32 @@ import React, { PropTypes } from 'react'
   mediaUrl 视频资源/图片资源
 
 **/
-
+const RegForDimension = /_(\d{1,4})x(\d{1,4})\.\w+g$/i
 const ImageItem = React.createClass({
   render () {
+    /**
+    如果mediaUrl是有带widthXheight的。
+    就应该把这个实际的图片尺寸提取出来。
+    如果没有，则按照传入的参数进行设置
+    **/
+    let width = this.props.width
+    let height = this.props.height
+    let found = this.props.mediaUrl.match(RegForDimension)
+    /**
+      图片压缩参数: 如果是在development环境下就不要加压缩参数。
+      水印: 如果配置了要显示水印才显示。
+     **/
+    let imageOption = '@' + this.props.width+'h_'+this.props.height+'w_'+'90Q'
+    imageOption =  this.props.water? (imageOption+'|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'):imageOption
+    let mediaUrl = this.props.mediaUrl
+    // let mediaUrl = ( process.env.NODE_ENV === 'development')? this.props.mediaUrl: (this.props.mediaUrl + imageOption)
+    if (found && 3 === found.length) {
+      width = parseFloat(found[1])
+      height = parseFloat(found[2])
+    }
     return (
-      <div className='J_MediaWrapper' data-width={this.props.width} data-height={this.props.height}>
-        <img src={this.props.mediaUrl} />
+      <div className='J_MediaWrapper' data-width={width} data-height={height}>
+        <img src={mediaUrl} />
       </div>
     )
   }
@@ -53,11 +73,32 @@ const ImageItem = React.createClass({
 
 const MediaItem = React.createClass({
   render () {
+    /**
+    width 和 height 任意传入一个。
+     **/
     let factors = this.props.aspectRatio.split(':')
-    let height = this.props.width*parseFloat(factors[1])/parseFloat(factors[0])
-    return (
-      <ImageItem  {...this.props} height={height} />
-    )
+    let width = 1
+    let height = 1
+    if (this.props.width) {
+      height = parseInt(this.props.width*parseFloat(factors[1])/parseFloat(factors[0]))
+      width = this.props.width
+    }else if(this.props.height) {
+      width = parseInt(this.props.height*parseFloat(factors[0])/parseFloat(factors[1]))
+      height = this.props.height
+    }else {
+      console.log('高度或者宽度必须指定一个啊.');
+    }
+
+    if (this.props.autoplay) {
+      return (
+        <h1>Vidoe</h1>
+      )
+    }else {
+      return (
+        <ImageItem  {...this.props} height={height} width={width} />
+      )
+    }
+
   },
   propTypes: {
     autoplay: React.PropTypes.bool,
@@ -65,11 +106,11 @@ const MediaItem = React.createClass({
     height:React.PropTypes.number,
     aspectRatio:React.PropTypes.string,
     coverUrl:React.PropTypes.string,
-    mediaUrl:React.PropTypes.string
+    mediaUrl:React.PropTypes.string,
+    water:React.PropTypes.bool
   },
   getDefaultProps(){
     return {
-      width:380,
       mediaUrl:'//placehold.it/380x570',
       aspectRatio:'2:3'
     }

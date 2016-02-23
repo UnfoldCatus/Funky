@@ -12,7 +12,7 @@ const ShotListItem = React.createClass({
               return (
                 <li className="item-box" key={k}>
                   <a className='img-box' href='/' target='_blank'>
-                    <MediaItem />
+                    <MediaItem  aspectRatio={'2:3'} width={380} mediaUrl={'//placehold.it/380x570'} />
                     <div className="layer-box" />
                     <MediaLayer  {...v} type={type} />
                   </a>
