@@ -24,27 +24,31 @@ import { SchemeRequire } from '../scheme-require.jsx'
 import { Adv } from '../adv.jsx'
 import { Dress } from '../dress.jsx'
 import { DressDetails } from '../dress-details.jsx'
+import { Movie } from '../movie.jsx'
 import { Supply } from '../supply.jsx'
 
 
 const ComponentsIndex = {
-  'home':<Home />,
+  'home': <Home />,
   'shot': <Shot />,
   'sample': <Sample />,
-  'pringles':<Pringles />,
-  'suite':<Suite />,
-  'hotel':<Hotel />,
-  'hotel-require':<HotelRequire />,
-  'scheme':<Scheme />,
-  'cases':<Cases />,
-  'weddingpat':<WeddingPat />,
-  'weddingvideo':<WeddingVideo />,
-  'scheme-require':<SchemeRequire />,
-  'adv':<Adv />,
-  'dress':<Dress />,
-  'dress-details':<DressDetails />,
-  'supply':<Supply />
+  'pringles': <Pringles />,
+  'suite': <Suite />,
+  'hotel': <Hotel />,
+  'hotel-require': <HotelRequire />,
+  'scheme': <Scheme />,
+  'cases': <Cases />,
+  'weddingpat': <WeddingPat />,
+  'weddingvideo': <WeddingVideo />,
+  'scheme-require': <SchemeRequire />,
+  'adv': <Adv />,
+  'dress': <Dress />,
+  'dress-details': <DressDetails />,
+  'movie': <Movie />,
+  'supply': <Supply />
 }
 
 
-export { ComponentsIndex }
+export {
+  ComponentsIndex
+}
