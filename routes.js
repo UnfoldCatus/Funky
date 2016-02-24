@@ -21,6 +21,12 @@ import followPhotoApi from './components/server/api/followPhoto.js'
 import pringlesSeasonApi from './components/server/api/pringlesSeason.js'
 import followVideoApi from './components/server/api/followVideo.js'
 import followVideoSeasonApi from './components/server/api/followVideoSeason.js'
+
+import photographerApi from './components/server/api/f4/photographer.js'
+import cameraApi from './components/server/api/f4/camera.js'
+import dresserApi from './components/server/api/f4/dresser.js'
+import hostApi from './components/server/api/f4/host.js'
+
   /**
     api 资源路由
   **/
@@ -41,7 +47,11 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/followPhoto/all':'婚礼跟拍',
     '/api/followPhotoSeason/all':'婚礼跟拍分季',
     '/api/followVideo/all': '婚礼视频',
-    '/api/followVideoSeason/all': '婚礼视频分季'
+    '/api/followVideoSeason/all': '婚礼视频分季',
+    '/api/f4/photographer': '四大金刚-摄影师作品',
+    '/api/f4/camera': '四大金刚-摄像师作品',
+    '/api/f4/dresser': '四大金刚-化妆师作品',
+    '/api/f4/host': '四大金刚-主持师作品'
   }
 })
 
@@ -57,7 +67,11 @@ const apiRouterList = [
   followPhotoApi,
   followVideoApi,
   followPhotoSeasonApi,
-  followVideoSeasonApi
+  followVideoSeasonApi,
+  photographerApi,
+  cameraApi,
+  dresserApi,
+  hostApi
 ]
 _.each(apiRouterList,(route,index)=>{
   _.each(route,(value,key)=>{
