@@ -31,7 +31,7 @@ var models = {
   "PringlesSeason": PringlesSeason,
   "Suite": Suite,
   "Cases":Cases,
-  "Follow": FollowPhoto,
+  "FollowPhoto": FollowPhoto,
   "FollowPhotoSeason": FollowPhotoSeason,
   "FollowVideo": FollowVideo,
   "FollowVideoSeason": FollowVideoSeason,
