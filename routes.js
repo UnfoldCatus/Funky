@@ -1,27 +1,11 @@
 import Router from 'koa-router'
-import React, {
-  PropTypes
-}
-from 'react'
+import React, { PropTypes } from 'react'
 import _ from 'lodash'
-import {
-  renderToString
-}
-from 'react-dom/server'
-
-import {
-  MenuConfig
-}
-from './components/config/menu-config'
-import {
-  ComponentsIndex
-}
-from './components/config/components-index'
+import { renderToString } from 'react-dom/server'
+import { MenuConfig } from './components/config/menu-config'
+import { ComponentsIndex } from './components/config/components-index'
   /*菜单*/
-import {
-  Navigation
-}
-from './components/navigation.jsx'
+import { Navigation } from './components/navigation.jsx'
 
 
 /** api的路由逻辑**/
@@ -30,6 +14,9 @@ import sampleApi from './components/server/api/sample'
 import pringlesApi from './components/server/api/pringles'
 import advApi from './components/server/api/adv'
 import suiteApi from './components/server/api/suite'
+
+import casesApi from './components/server/api/cases.js'
+import followApi from './components/server/api/follow.js'
   /**
     api 资源路由
   **/
@@ -40,10 +27,13 @@ apiRouter.get('/', function* apiRoot(next) {
   yield next
   // 列出所有资源到列表
   this.body = {
-    '/api/adv/all': '广告',
-    '/api/sample/all': '作品',
-    '/api/pringles/all': '客片',
-    '/api/hotel/all': '婚宴预订'
+    '/api/sample/all':'作品',
+    '/api/pringles/all':'客片',
+    '/api/pringlesSeason/list':'客片分季',
+    '/api/hotel/all':'酒店',
+    '/api/cases/all':'实景案例',
+    '/api/follow/all':'婚礼跟拍',
+    '/api/followPhotoSeason/all':'婚礼跟拍分季'
   }
 })
 
@@ -185,6 +175,4 @@ siteRouter.get('/car', function* index(next) {
 })
 
 
-export {
-  siteRouter
-}
+export { siteRouter }
