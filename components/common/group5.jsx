@@ -7,11 +7,23 @@ const Group5 = React.createClass({
       <div className="nav-box">
         {
           _.map(this.state.groupItems,(v,k)=>{
-            return (
-              <li key={k} className={(k === 0)?'big-box':'small-box'}>
-                <MediaItem />
-              </li>
-            )
+            if (k===0) {
+              return (
+                <li key={k} className='big-box'>
+                  <a href='/' className='l-item img-box' >
+                    <MediaItem width={620} aspectRatio={'124:75'} mediaUrl={'//placehold.it/620x375'} />
+                  </a>
+                </li>
+              )
+            }else {
+              return (
+                <li key={k} className='small-box'>
+                  <a href='/' className='img-box'>
+                    <MediaItem width={270} aspectRatio={'3:2'} mediaUrl={'//placehold.it/270x180'} />
+                  </a>
+                </li>
+              )
+            }
           })
         }
         {/*列表为空，默认输出*/}

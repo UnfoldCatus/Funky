@@ -3,6 +3,8 @@ import _ from 'lodash'
 import env from '../cache/db/config'
 let r = env.Thinky.r
 
+// 婚庆策划--实景案例API
+
 const casesApi = {
 
     'get+/cases/all': function*(next) {
@@ -11,8 +13,8 @@ const casesApi = {
         yield next
     },
 
+    // 获取案例
     'get+/cases/:position': function*(next) {
-
         if (this.params.position === 'all') {
             this.model = cases.filter({})
         } else {
@@ -32,8 +34,8 @@ const casesApi = {
                 this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
                 this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
             } else if(k.indexOf('styleId') !== -1) {
-                this.model = this.model.filter(function(post){
-                    return r.expr(this.request.query['styleId']).contains(post("caseStyle"))});
+                // 风格 TODO:服务器返回的是字符串如"123,275,468,",这里采用"%id,%"的方式匹配
+                this.model = this.model.filter(r.row("caseStyle").match(".*?"+this.request.query['styleId']+","+".*?"));
             } else if(k.indexOf('minPrice') !== -1) {
                 // 最低价格
                 this.model = this.model.filter(r.row('totalCost').gt(Number(this.request.query['minPrice'])));
@@ -41,6 +43,16 @@ const casesApi = {
                 // 最高价格
                 this.model = this.model.filter(r.row('totalCost').lt(Number(this.request.query['maxPrice'])));
             }
+        })
+
+        this.APIKey = 'Cases'
+        yield next
+    },
+
+    // 获取案例详情
+    'get+/cases/detail/:id': function*(next) {
+        this.model = cases.filter({
+            id: this.params.id
         })
 
         this.APIKey = 'Cases'

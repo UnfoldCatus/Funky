@@ -9,20 +9,20 @@ const SchemeListItem = React.createClass({
           _.map(this.props.data,(v,k)=>{
               return (
                 <li className="item-box" key={k}>
-									<div className='img-box'>
-										<MediaItem aspectRatio={'3:2'} width={380} mediaUrl={'//placehold.it/380x253'}/>
+                  <div className='img-box'>
+                    <MediaItem aspectRatio={'3:2'} width={380} mediaUrl={'//placehold.it/380x253'} />
                     <a className="layer-box" href={'/'} target='_blank'>
-											<div className="layer"/>
-											<div className="info">
-												<h3>{v.schemeName}</h3>
-												<div className="date">
-													<b>{v.price || ''}</b>
-													<span>({v.weddingDate})</span>
-												</div>
-											</div>
-										</a>
-									</div>
-								</li>
+                      <div className="layer"/>
+                      <div className="info">
+                        <h3>{v.schemeName}</h3>
+                        <div className="date">
+                          <b>{v.price || ''}</b>
+                          <span>({v.weddingDate})</span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </li>
               )
           })
         }
