@@ -28,9 +28,9 @@ const config = {
     // 实景案例
     CasesPath:'/api/cases/all',
     // 婚礼跟拍
-    Follow:'/api/follow/all',
+    FollowPath:'/api/follow/all',
     // 婚礼跟拍分季
-    FollowPhotoSeason: '/api/followPhotoSeason/all'
+    FollowPhotoSeasonPath: '/api/followPhotoSeason/all'
 };
 
 const Thinky = require('thinky')(config.rethink);
