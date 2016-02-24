@@ -25,8 +25,7 @@ const DressList  = React.createClass({
         {
           _.map(this.props.dressTypes, (v, k) => {
             return (
-
-              // <div>
+              // <div key={k}>
               //   <div className="title-box">
               //     <h1>{v.enName + " " + v.zhName}</h1>
               //   </div>

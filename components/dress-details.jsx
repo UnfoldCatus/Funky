@@ -16,7 +16,7 @@ const DressDetails = React.createClass({
                       {
                           _.map(this.props.dressItems, (v,k) => {
                               return (
-                                  <li className="item-box">
+                                  <li key={k} className="item-box">
                                       <a className="img-box" href="">
                                           <div className="layer-box"></div>
                                           <img src="http://image.jsbn.com/WebImage/cq/jpg/20150928/77520046727262073264/20150928162340001190_945x1418.jpg@550h_90Q" />

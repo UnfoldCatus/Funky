@@ -4,6 +4,8 @@
 var env=require("../config");
 var type=env.Thinky.type;
 
+// 婚庆策划--实景案例模型
+
 /*
  {
  "success": true,
@@ -31,7 +33,7 @@ var type=env.Thinky.type;
  "theme": "惜•缘",
  "personDescription": "摄影师、摄像师、化妆师、主持人",
  "weddingName": "惜•缘",
- "caseStyle": "12,14",
+ "caseStyle": "12,14,",
  "holdingTime": "2016-01-21",
  "position": "scheme_list",
  "weight": 9
@@ -89,10 +91,8 @@ const Cases = env.Thinky.createModel('cases', {
     personDescription: type.string(),
     // 婚礼名称
     weddingName: type.string(),
-    /************************************start************************************/
-    // 风格 服务器返回的是一个字符串,为了筛选风格,缓存层处理成数组
-    caseStyle: type.array(),
-    /************************************end*************************************/
+    // 风格
+    caseStyle: type.string(),
     // 婚礼时间
     holdingTime: type.string(),
     // 婚礼地点

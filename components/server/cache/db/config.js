@@ -24,7 +24,9 @@ const config = {
     // 婚纱摄影团队
     // 婚纱纪实MV
     // 套系
-    SuitePath:'/api/suite/all'
+    SuitePath:'/api/suite/all',
+    // 实景案例
+    CasesPath:'/api/cases/all'
 };
 
 const Thinky = require('thinky')(config.rethink);
