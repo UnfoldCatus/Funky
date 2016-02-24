@@ -3,6 +3,8 @@ import _ from 'lodash'
 import env from '../cache/db/config'
 let r = env.Thinky.r
 
+// 婚庆策划--实景案例API
+
 const casesApi = {
 
     'get+/cases/all': function*(next) {
