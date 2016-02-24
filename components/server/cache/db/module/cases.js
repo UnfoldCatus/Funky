@@ -44,7 +44,7 @@ var type=env.Thinky.type;
  }
 */
 
-// 广告模型
+// 实景案例模型
 const Cases = env.Thinky.createModel('cases', {
     // Id
     id: type.number(),

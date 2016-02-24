@@ -26,7 +26,11 @@ const config = {
     // 套系
     SuitePath:'/api/suite/all',
     // 实景案例
-    CasesPath:'/api/cases/all'
+    CasesPath:'/api/cases/all',
+    // 婚礼跟拍
+    Follow:'/api/follow/all',
+    // 婚礼跟拍分季
+    FollowPhotoSeason: '/api/followPhotoSeason/all'
 };
 
 const Thinky = require('thinky')(config.rethink);
