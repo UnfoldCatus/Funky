@@ -4,6 +4,8 @@
 var env=require("../config");
 var type=env.Thinky.type;
 
+// 婚庆策划--实景案例模型
+
 /*
  {
  "success": true,
