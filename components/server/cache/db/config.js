@@ -26,7 +26,7 @@ const config = {
     // 套系
     SuitePath:'/api/suite/all',
     // 实景案例
-    CasesPath:'api/cases/all'
+    CasesPath:'/api/cases/all'
 };
 
 const Thinky = require('thinky')(config.rethink);
