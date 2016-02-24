@@ -162,7 +162,7 @@ DBUtil.prototype.isCacheDataUsable = function(moduleName) {
 };
 
 exports.Instance = function() {
-  var tasks = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason', 'Suite', 'Cases', 'Follow', 'FollowPhotoSeason'];
+  var tasks = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason', 'Suite', 'Cases'];
   if (dbTool == null) {
     dbTool = new DBUtil();
     // 程序启动取一次数据
