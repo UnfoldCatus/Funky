@@ -69,19 +69,23 @@ function GetData(path, cb) {
       chunks += chunk;
     });
     res.on('end', function() {
-      if (chunks === "") {
-        var err = new Error('服务器异常,拉取数据失败');
+      if (res.statusCode != 200) {
+        var err = new Error('资源请求异常');
         cb(err);
       } else {
-        var json = JSON.parse(chunks);
-        if (json.code == 200) {
-          cb(null, json);
-        } else {
-          var err = new Error('服务器异常');
+        if (chunks === "") {
+          var err = new Error('服务器异常,拉取数据失败');
           cb(err);
+        } else {
+          var json = JSON.parse(chunks);
+          if (json.code == 200) {
+            cb(null, json);
+          } else {
+            var err = new Error('服务器异常');
+            cb(err);
+          }
         }
       }
-
     });
     res.on('error', function(e) {
       cb(e);
@@ -168,7 +172,8 @@ DBUtil.prototype.isCacheDataUsable = function(moduleName) {
 };
 
 exports.Instance = function() {
-  var tasks = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason', 'Suite', 'Cases', 'Follow', 'FollowPhotoSeason'];
+  //var tasks = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason', 'Suite', 'Cases', 'Follow', 'FollowPhotoSeason'];
+  var tasks = ['PringlesSeason'];
   if (dbTool == null) {
     dbTool = new DBUtil();
     // 程序启动取一次数据

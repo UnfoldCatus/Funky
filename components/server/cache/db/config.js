@@ -20,7 +20,7 @@ const config = {
     // 客片数据
     PringlesPath:"/api/pringles/all",
     // 客片分季数据
-    PringlesSeasonPath:"/api/pringlesSeason/list",
+    PringlesSeasonPath:"/api/pringlesSeason/all",
     // 婚纱摄影团队
     // 婚纱纪实MV
     // 套系
