@@ -34,7 +34,15 @@ const config = {
     // 婚礼视频
     FollowVideoPath: '/api/followVideo/all',
     // 婚礼视频分季
-    FollowVideoSeasonPath: '/api/followVideoSeason/all'
+    FollowVideoSeasonPath: '/api/followVideoSeason/all',
+    // 四大金刚-摄影师作品
+    F4PhotographerPath: '/api/f4/photographer',
+    // 四大金刚-摄像师作品
+    F4CameraPath: '/api/f4/camera',
+    // 四大金刚-化妆师作品
+    F4DresserPath: '/api/f4/dresser',
+    // 四大金刚-主持人作品
+    F4HostPath: '/api/f4/host'
 };
 
 const Thinky = require('thinky')(config.rethink);

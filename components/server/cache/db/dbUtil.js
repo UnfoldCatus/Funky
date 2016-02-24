@@ -2,18 +2,22 @@
  * Created by chenjianjun on 15/12/8.
  */
 var http = require('http');
-var env = require("./config");
-var Hotel = require("./module/hotel");
-var Adv = require("./module/adv");
-var Pringles = require("./module/pringles");
-var PringlesSeason = require("./module/pringlesSeason");
-var Sample = require("./module/sample");
-var Suite = require("./module/suite");
-var Cases = require("./module/cases");
-var FollowPhoto = require("./module/followPhoto");
-var FollowPhotoSeason = require("./module/followPhotoSeason");
-var FollowVideo = require("./module/followVideo");
-var FollowVideoSeason = require("./module/followVideoSeason");
+var env = require("./config.js");
+var Hotel = require("./module/hotel.js");
+var Adv = require("./module/adv.js");
+var Pringles = require("./module/pringles.js");
+var PringlesSeason = require("./module/pringlesSeason.js");
+var Sample = require("./module/sample.js");
+var Suite = require("./module/suite.js");
+var Cases = require("./module/cases.js");
+var FollowPhoto = require("./module/followPhoto.js");
+var FollowPhotoSeason = require("./module/followPhotoSeason.js");
+var FollowVideo = require("./module/followVideo.js");
+var FollowVideoSeason = require("./module/followVideoSeason.js");
+var F4Photographer = require("./module/f4/photographer.js");
+var F4Camera = require("./module/f4/camera.js");
+var F4Dresser = require("./module/f4/dresser.js");
+var F4Host = require("./module/f4/host.js");
 var qs = require('querystring');
 var r = env.Thinky.r;
 var _ = require('lodash')
@@ -30,7 +34,11 @@ var models = {
   "Follow": FollowPhoto,
   "FollowPhotoSeason": FollowPhotoSeason,
   "FollowVideo": FollowVideo,
-  "FollowVideoSeason": FollowVideoSeason
+  "FollowVideoSeason": FollowVideoSeason,
+  "F4Photographer": F4Photographer,
+  "F4Camera": F4Camera,
+  "F4Dresser": F4Dresser,
+  "F4Host": F4Host
 
 }
 
@@ -46,7 +54,11 @@ var mSyncFlg = {
   "FollowPhoto": false,
   "FollowPhotoSeason": false,
   "FollowVideo": false,
-  "FollowVideoSeason": false
+  "FollowVideoSeason": false,
+  "F4Photographer": false,
+  "F4Camera": false,
+  "F4Dresser": false,
+  "F4Host": false
 };
 
 //查询工具类
@@ -178,7 +190,9 @@ DBUtil.prototype.isCacheDataUsable = function(moduleName) {
 };
 
 exports.Instance = function() {
-  var tasks = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason', 'Suite', 'Cases', 'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason'];
+  var tasks = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason', 'Suite', 'Cases',
+    'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason',
+    'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host'];
   if (dbTool == null) {
     dbTool = new DBUtil();
     // 程序启动取一次数据
