@@ -17,6 +17,8 @@ import suiteApi from './components/server/api/suite'
 
 import casesApi from './components/server/api/cases.js'
 import followApi from './components/server/api/follow.js'
+import followPhotoSeasonApi from './components/server/api/followPhotoSeason.js'
+import pringlesSeasonApi from './components/server/api/pringlesSeason.js'
   /**
     api 资源路由
   **/
@@ -57,6 +59,22 @@ _.each(pringlesApi, (value, key) => {
   })
   /* Suite */
 _.each(suiteApi, (value, key) => {
+  apiRouter[key.split('+')[0]](key.split('+')[1], value)
+})
+/* Cases */
+_.each(casesApi, (value, key) => {
+  apiRouter[key.split('+')[0]](key.split('+')[1], value)
+})
+/* followApi */
+_.each(followApi, (value, key) => {
+  apiRouter[key.split('+')[0]](key.split('+')[1], value)
+})
+/* followPhotoSeason */
+_.each(followPhotoSeasonApi, (value, key) => {
+  apiRouter[key.split('+')[0]](key.split('+')[1], value)
+})
+/* pringlesSeason */
+_.each(pringlesSeasonApi, (value, key) => {
   apiRouter[key.split('+')[0]](key.split('+')[1], value)
 })
 

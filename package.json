@@ -57,7 +57,7 @@
     "react-router": "^2.0.0-rc5",
     "rx": "^4.0.7",
     "thinky": "^2.2.4",
-    "thunkify": "^2.1.2"
+    "thunkify-wrap": "^1.0.4"
   },
   "browserify": {
     "transform": [

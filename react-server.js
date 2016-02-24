@@ -5,7 +5,7 @@ import Path from 'path'
 import Favicon from 'koa-favicon'
 import Logger from 'koa-logger'
 import StaticFile from 'koa-static'
-import thunkify from 'thunkify'
+import thunkify from 'thunkify-wrap'
 import Boom from 'boom'
 import { apiRouter } from './routes'
 import { siteRouter } from './routes'
@@ -75,6 +75,14 @@ ReactServer.use(apiRouter.routes()) // api路由
  dataFetchMiddleWare的工作就是依据已经设置的APIKey 进行数据抓取工作。
 
  **/
+
+
+ /** 先创建一个thunkify的版本 **/
+ // 为了能够使用yield 需要此处对函数进行偏函数化。
+ // 就是将一个带callback的任意函数转换为
+ // 只带callback的函数
+let proxyFetcher = thunkify.genify(memCacheMgr.getData)
+
 let dataFetchMiddleWare = function*(next) {
   if (this.APIKey) {
     console.log('APIKey:', this.APIKey);
@@ -87,11 +95,8 @@ let dataFetchMiddleWare = function*(next) {
 
     } else {
       //缓存数据不可用。 去做代理数据请求
-      // 为了能够使用yield 需要此处对函数进行偏函数化。
-      // 就是将一个带callback的任意函数转换为
-      // 只带callback的函数
-      let proxyFetcher = thunkify(memCacheMgr.getData)
-      this.dataSource = yield proxyFetcher(this.request.url, this.request.url)
+      let retData  = yield* proxyFetcher(this.request.url,this.request.url)
+      this.dataSource = retData.data
     }
     // 针对2.0的套系数据格式进行修正
     this.dataSource = _.isArray(this.dataSource) ? this.dataSource : []

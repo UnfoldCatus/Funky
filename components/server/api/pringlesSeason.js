@@ -7,7 +7,7 @@ import env from '../cache/db/config'
 let r = env.Thinky.r
 
 // 婚纱摄影--客片分季路由
-const followPhotoSeasonApi = {
+const pringlesSeasonApi = {
 
     'get+/pringlesSeason/all': function*(next) {
         this.model = pringlesSeason
@@ -42,4 +42,4 @@ const followPhotoSeasonApi = {
         yield next
     }
 }
-export default followPhotoSeasonApi
+export default pringlesSeasonApi
