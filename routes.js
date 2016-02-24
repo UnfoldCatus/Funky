@@ -16,7 +16,7 @@ import advApi from './components/server/api/adv'
 import suiteApi from './components/server/api/suite'
 
 import casesApi from './components/server/api/cases.js'
-import followApi from './components/server/api/follow.js'
+import followPhotoApi from './components/server/api/followPhoto.js'
   /**
     api 资源路由
   **/
@@ -32,8 +32,10 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/pringlesSeason/list':'客片分季',
     '/api/hotel/all':'酒店',
     '/api/cases/all':'实景案例',
-    '/api/follow/all':'婚礼跟拍',
-    '/api/followPhotoSeason/all':'婚礼跟拍分季'
+    '/api/followPhoto/all':'婚礼跟拍',
+    '/api/followPhotoSeason/all':'婚礼跟拍分季',
+      '/api/followVideo/all': '婚礼视频',
+      '/api/followVideoSeason/all': '婚礼视频分季'
   }
 })
 

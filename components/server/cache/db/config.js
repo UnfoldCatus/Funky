@@ -28,9 +28,13 @@ const config = {
     // 实景案例
     CasesPath:'/api/cases/all',
     // 婚礼跟拍
-    FollowPath:'/api/follow/all',
+    FollowPhotoPath:'/api/followPhoto/all',
     // 婚礼跟拍分季
-    FollowPhotoSeasonPath: '/api/followPhotoSeason/all'
+    FollowPhotoSeasonPath: '/api/followPhotoSeason/all',
+    // 婚礼视频
+    FollowVideoPath: '/api/followVideo/all',
+    // 婚礼视频分季
+    FollowVideoSeasonPath: '/api/followVideoSeason/all'
 };
 
 const Thinky = require('thinky')(config.rethink);

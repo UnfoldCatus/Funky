@@ -43,7 +43,7 @@ var type=env.Thinky.type;
 * */
 
 // 婚礼跟拍模型
-const Follow = env.Thinky.createModel('follow', {
+const FollowPhoto = env.Thinky.createModel('followPhoto', {
     // Id
     id: type.number(),
     // 创建时间
@@ -101,6 +101,6 @@ const Follow = env.Thinky.createModel('follow', {
     weight: type.number()
 })
 
-Follow.ensureIndex('weight');
+FollowPhoto.ensureIndex('weight');
 
-module.exports=Follow;
+module.exports=FollowPhoto;
