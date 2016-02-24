@@ -53,7 +53,7 @@ const DressList  = React.createClass({
               //   </div>
               // </div>
 
-              <div>
+              <div key={k}>
                 <div className="title-box">
                   <h1>WEDDING DRESS 国际婚纱</h1>
                 </div>

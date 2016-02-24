@@ -16,9 +16,11 @@ import advApi from './components/server/api/adv'
 import suiteApi from './components/server/api/suite'
 
 import casesApi from './components/server/api/cases.js'
-import followApi from './components/server/api/follow.js'
 import followPhotoSeasonApi from './components/server/api/followPhotoSeason.js'
+import followPhotoApi from './components/server/api/followPhoto.js'
 import pringlesSeasonApi from './components/server/api/pringlesSeason.js'
+import followVideoApi from './components/server/api/followVideo.js'
+import followVideoSeasonApi from './components/server/api/followVideoSeason.js'
   /**
     api 资源路由
   **/
@@ -29,53 +31,38 @@ apiRouter.get('/', function* apiRoot(next) {
   yield next
   // 列出所有资源到列表
   this.body = {
+    '/api/adv/all':'广告',
     '/api/sample/all':'作品',
     '/api/pringles/all':'客片',
     '/api/pringlesSeason/list':'客片分季',
     '/api/hotel/all':'酒店',
+    '/api/suite/all':'套系',
     '/api/cases/all':'实景案例',
-    '/api/follow/all':'婚礼跟拍',
-    '/api/followPhotoSeason/all':'婚礼跟拍分季'
+    '/api/followPhoto/all':'婚礼跟拍',
+    '/api/followPhotoSeason/all':'婚礼跟拍分季',
+    '/api/followVideo/all': '婚礼视频',
+    '/api/followVideoSeason/all': '婚礼视频分季'
   }
 })
 
-
-/* Adv */
-_.each(advApi, (value, key) => {
-  apiRouter[key.split('+')[0]](key.split('+')[1], value)
-})
-
-/* Hotel */
-_.each(hotelApi, (value, key) => {
+/** 把api的router在此生成 **/
+const apiRouterList = [
+  advApi,
+  hotelApi,
+  sampleApi,
+  pringlesApi,
+  pringlesSeasonApi,
+  suiteApi,
+  casesApi,
+  followPhotoApi,
+  followVideoApi,
+  followPhotoSeasonApi,
+  followVideoSeasonApi
+]
+_.each(apiRouterList,(route,index)=>{
+  _.each(route,(value,key)=>{
     apiRouter[key.split('+')[0]](key.split('+')[1], value)
   })
-  /* Sample */
-_.each(sampleApi, (value, key) => {
-    apiRouter[key.split('+')[0]](key.split('+')[1], value)
-  })
-  /* Pringles */
-_.each(pringlesApi, (value, key) => {
-    apiRouter[key.split('+')[0]](key.split('+')[1], value)
-  })
-  /* Suite */
-_.each(suiteApi, (value, key) => {
-  apiRouter[key.split('+')[0]](key.split('+')[1], value)
-})
-/* Cases */
-_.each(casesApi, (value, key) => {
-  apiRouter[key.split('+')[0]](key.split('+')[1], value)
-})
-/* followApi */
-_.each(followApi, (value, key) => {
-  apiRouter[key.split('+')[0]](key.split('+')[1], value)
-})
-/* followPhotoSeason */
-_.each(followPhotoSeasonApi, (value, key) => {
-  apiRouter[key.split('+')[0]](key.split('+')[1], value)
-})
-/* pringlesSeason */
-_.each(pringlesSeasonApi, (value, key) => {
-  apiRouter[key.split('+')[0]](key.split('+')[1], value)
 })
 
 /**

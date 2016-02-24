@@ -10,8 +10,10 @@ var PringlesSeason = require("./module/pringlesSeason");
 var Sample = require("./module/sample");
 var Suite = require("./module/suite");
 var Cases = require("./module/cases");
-var Follow = require("./module/follow");
+var FollowPhoto = require("./module/followPhoto");
 var FollowPhotoSeason = require("./module/followPhotoSeason");
+var FollowVideo = require("./module/followVideo");
+var FollowVideoSeason = require("./module/followVideoSeason");
 var qs = require('querystring');
 var r = env.Thinky.r;
 var _ = require('lodash')
@@ -25,8 +27,10 @@ var models = {
   "PringlesSeason": PringlesSeason,
   "Suite": Suite,
   "Cases":Cases,
-  "Follow": Follow,
-  "FollowPhotoSeason": FollowPhotoSeason
+  "Follow": FollowPhoto,
+  "FollowPhotoSeason": FollowPhotoSeason,
+  "FollowVideo": FollowVideo,
+  "FollowVideoSeason": FollowVideoSeason
 
 }
 
@@ -39,8 +43,10 @@ var mSyncFlg = {
   "PringlesSeason": false,
   "Suite": false,
   "Cases": false,
-  "Follow": false,
-  "FollowPhotoSeason": false
+  "FollowPhoto": false,
+  "FollowPhotoSeason": false,
+  "FollowVideo": false,
+  "FollowVideoSeason": false
 };
 
 //查询工具类
@@ -70,7 +76,7 @@ function GetData(path, cb) {
     });
     res.on('end', function() {
       if (res.statusCode != 200) {
-        var err = new Error('资源请求异常');
+        var err = new Error('资源请求异常,URI:'+options.path);
         cb(err);
       } else {
         if (chunks === "") {
@@ -172,8 +178,7 @@ DBUtil.prototype.isCacheDataUsable = function(moduleName) {
 };
 
 exports.Instance = function() {
-  //var tasks = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason', 'Suite', 'Cases', 'Follow', 'FollowPhotoSeason'];
-  var tasks = ['PringlesSeason'];
+  var tasks = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason', 'Suite', 'Cases', 'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason'];
   if (dbTool == null) {
     dbTool = new DBUtil();
     // 程序启动取一次数据

@@ -1,24 +1,23 @@
 /**
  * Created by chenjianjun on 16/2/24.
  */
-
-import follow from '../cache/db/module/follow.js'
+import followVideo from '../cache/db/module/followVideo.js'
 import _ from 'lodash'
 import env from '../cache/db/config.js'
 let r = env.Thinky.r
 
 // 婚庆策划--婚礼跟拍API
 
-const followApi = {
+const followVideoApi = {
 
-    'get+/follow/all': function*(next) {
-        this.model = follow
-        this.APIKey = 'Follow'
+    'get+/followVideo/all': function*(next) {
+        this.model = followVideo
+        this.APIKey = 'FollowVideo'
         yield next
     },
 
     // 获取跟拍
-    'get+/follow/:position': function*(next) {
+    'get+/followVideo/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = follow.filter({})
         } else {
@@ -45,19 +44,19 @@ const followApi = {
             }
         })
 
-        this.APIKey = 'Follow'
+        this.APIKey = 'FollowVideo'
         yield next
     },
 
     // 获取跟拍详情
-    'get+/follow/detail/:id': function*(next) {
+    'get+/followVideo/detail/:id': function*(next) {
         this.model = follow.filter({
             id: this.params.id
         })
 
-        this.APIKey = 'Follow'
+        this.APIKey = 'FollowVideo'
         yield next
     }
 
 }
-export default followApi
+export default followVideoApi
