@@ -9,6 +9,7 @@ var Pringles = require("./module/pringles");
 var PringlesSeason = require("./module/pringlesSeason");
 var Sample = require("./module/sample");
 var Suite = require("./module/suite");
+var Cases = require("./module/cases");
 var qs = require('querystring');
 var r = env.Thinky.r;
 var _ = require('lodash')
@@ -20,7 +21,8 @@ var models = {
   "Sample": Sample,
   "Pringles": Pringles,
   "PringlesSeason": PringlesSeason,
-  "Suite": Suite
+  "Suite": Suite,
+  "Cases":Cases
 
 }
 
@@ -31,7 +33,8 @@ var mSyncFlg = {
   "Sample": false,
   "Pringles": false,
   "PringlesSeason": false,
-  "Suite": false
+  "Suite": false,
+  "Cases": false
 };
 
 //查询工具类
@@ -153,7 +156,7 @@ DBUtil.prototype.isCacheDataUsable = function(moduleName) {
 };
 
 exports.Instance = function() {
-  var tasks = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason', 'Suite'];
+  var tasks = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason', 'Suite', 'Cases'];
   if (dbTool == null) {
     dbTool = new DBUtil();
     // 程序启动取一次数据
