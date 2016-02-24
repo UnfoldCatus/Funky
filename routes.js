@@ -28,7 +28,11 @@ apiRouter.get('/',function* apiRoot(next){
     '/api/adv/all':'广告',
     '/api/sample/all':'作品',
     '/api/pringles/all':'客片',
-    '/api/hotel/all':'婚宴预订'
+    '/api/pringlesSeason/list':'客片分季',
+    '/api/hotel/all':'酒店',
+    '/api/cases/all':'实景案例',
+    '/api/follow/all':'婚礼跟拍',
+    '/api/followPhotoSeason/all':'婚礼跟拍分季'
   }
 })
 

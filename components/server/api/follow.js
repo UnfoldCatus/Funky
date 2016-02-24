@@ -7,7 +7,7 @@ import _ from 'lodash'
 import env from '../cache/db/config.js'
 let r = env.Thinky.r
 
-// 婚庆策划--实景案例API
+// 婚庆策划--婚礼跟拍API
 
 const followApi = {
 
@@ -17,7 +17,7 @@ const followApi = {
         yield next
     },
 
-    // 获取案例
+    // 获取跟拍
     'get+/follow/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = follow.filter({})
@@ -49,7 +49,7 @@ const followApi = {
         yield next
     },
 
-    // 获取案例详情
+    // 获取跟拍详情
     'get+/follow/detail/:id': function*(next) {
         this.model = follow.filter({
             id: this.params.id
