@@ -14,6 +14,7 @@ var Suite = require("./module/suite.js");
 var FilterConditionShootStyle = require("./module/filterCondition/shootStyle.js");
 var FilterConditionExterior = require("./module/filterCondition/exterior.js");
 var Cases = require("./module/cases.js");
+var Case3D = require("./module/case3D.js");
 var FollowPhoto = require("./module/followPhoto.js");
 var FollowPhotoSeason = require("./module/followPhotoSeason.js");
 var FollowVideo = require("./module/followVideo.js");
@@ -38,7 +39,8 @@ var models = {
   "Suite": Suite,
   "FilterConditionShootStyle": FilterConditionShootStyle,
   "FilterConditionExterior": FilterConditionExterior,
-  "Cases":Cases,
+  "Cases": Cases,
+  "Case3D": Case3D,
   "FollowPhoto": FollowPhoto,
   "FollowPhotoSeason": FollowPhotoSeason,
   "FollowVideo": FollowVideo,
@@ -63,6 +65,7 @@ var mSyncFlg = {
   "FilterConditionShootStyle": false,
   "FilterConditionExterior": false,
   "Cases": false,
+  "Case3D": false,
   "FollowPhoto": false,
   "FollowPhotoSeason": false,
   "FollowVideo": false,
@@ -206,7 +209,8 @@ exports.Instance = function() {
     'RecordVideo', 'RecordVideoSeason', 'Suite', 'Cases',
     'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason',
     'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host',
-    'FilterConditionShootStyle', 'FilterConditionExterior'
+    'FilterConditionShootStyle', 'FilterConditionExterior',
+    'Case3D'
   ];
   if (dbTool == null) {
     dbTool = new DBUtil();

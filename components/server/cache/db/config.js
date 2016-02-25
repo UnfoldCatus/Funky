@@ -33,6 +33,8 @@ const config = {
     FilterConditionExteriorPath:'/api/exterior/all',
     // 实景案例
     CasesPath:'/api/cases/all',
+    // 3D案例
+    Case3DPath:'/api/case3D/all',
     // 婚礼跟拍
     FollowPhotoPath:'/api/followPhoto/all',
     // 婚礼跟拍分季
