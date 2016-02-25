@@ -49,7 +49,7 @@ const MediaSlider = React.createClass({
       .then(res => {return res.json()})
       .then(j=>{
         this.setState({ data:j.data },()=>{
-          $('#slider_top').Slider()
+          $('#slider_top').length>0 && $('#slider_top').Slider()
         })
       })
     }

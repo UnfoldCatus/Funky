@@ -11,6 +11,7 @@
     "build-hotel": "watchify ./src/client/hotel.js -o 'uglifyjs -cm > ./assets/script/modules/hotel.min.js'",
     "build-suite": "watchify ./src/client/suite.js -o 'uglifyjs -cm > ./assets/script/modules/suite.min.js'",
     "build-cases": "watchify ./src/client/cases.js -o 'uglifyjs -cm > ./assets/script/modules/cases.min.js'",
+    "build-home": "watchify ./src/client/home.js -o 'uglifyjs -cm > ./assets/script/modules/home.min.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
