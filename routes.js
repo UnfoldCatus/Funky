@@ -14,6 +14,8 @@ import sampleApi from './components/server/api/sample'
 import pringlesApi from './components/server/api/pringles'
 import advApi from './components/server/api/adv'
 import suiteApi from './components/server/api/suite'
+import recordVideoApi from './components/server/api/recordVideo.js'
+import recordVideoSeasonApi from './components/server/api/recordVideoSeason.js'
 
 import casesApi from './components/server/api/cases.js'
 import followPhotoSeasonApi from './components/server/api/followPhotoSeason.js'
@@ -27,6 +29,10 @@ import photographerApi from './components/server/api/f4/photographer.js'
 import cameraApi from './components/server/api/f4/camera.js'
 import dresserApi from './components/server/api/f4/dresser.js'
 import hostApi from './components/server/api/f4/host.js'
+
+// 纪实MV
+// 纪实MV分季
+
 
   /**
     api 资源路由
@@ -49,12 +55,14 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/followPhotoSeason/all':'婚礼跟拍分季',
     '/api/followVideo/all': '婚礼视频',
     '/api/followVideoSeason/all': '婚礼视频分季',
-    '/api/exterior/all':'外景搜索条件',
-    '/api/shootStyle/all':'风格搜索条件',
+    '/api/exterior/all':'婚纱摄影-外景地搜索条件',
+    '/api/shootStyle/all':'婚纱摄影-风格搜索条件',
     '/api/f4/photographer': '四大金刚-摄影师作品',
     '/api/f4/camera': '四大金刚-摄像师作品',
     '/api/f4/dresser': '四大金刚-化妆师作品',
-    '/api/f4/host': '四大金刚-主持师作品'
+    '/api/f4/host': '四大金刚-主持师作品',
+    '/api/recordVideo/all': '婚纱摄影-纪实MV',
+    '/api/recordVideoSeason/all': '婚纱摄影-纪实MV分季'
   }
 })
 
@@ -66,6 +74,8 @@ const apiRouterList = [
   pringlesApi,
   pringlesSeasonApi,
   suiteApi,
+  recordVideoApi,
+  recordVideoSeasonApi,
   casesApi,
   followPhotoApi,
   followVideoApi,
