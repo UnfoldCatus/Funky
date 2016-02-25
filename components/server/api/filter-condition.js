@@ -5,6 +5,11 @@ import filterConditionShootStyle from '../cache/db/module/filterCondition/shootS
 import filterConditionExterior from '../cache/db/module/filterCondition/exterior.js'
 import filterConditionHotelType from '../cache/db/module/filterCondition/hotelType.js'
 import filterConditionHotelDistricts from '../cache/db/module/filterCondition/hotelDistricts.js'
+
+import filterConditionWeddingCarModels from '../cache/db/module/filterCondition/weddingCarModels.js'
+import filterConditionWeddingCarLevel from '../cache/db/module/filterCondition/weddingCarLevel.js'
+import filterConditionWeddingCarBrand from '../cache/db/module/filterCondition/weddingCarBrand.js'
+
 import _ from 'lodash'
 import env from '../cache/db/config.js'
 let r = env.Thinky.r
@@ -111,6 +116,84 @@ const filterConditionApi = {
     })
 
     this.APIKey = 'FilterConditionHotelDistricts';
+    yield next
+  },
+
+  'get+/weddingCarModels/all':function*(next){ // 婚礼租车型号
+    if (this.params.position === 'all') {
+      this.model = filterConditionWeddingCarModels.filter({})
+    } else {
+      this.model = filterConditionWeddingCarModels.filter({
+        position: this.params.position
+      })
+    }
+    this.model = this.model.orderBy(r.desc('weight'))
+
+    _.each(this.request.query, (v, k) => {
+      if (k.indexOf('pageSize') !== -1) {
+        let limit = 0
+        limit = Number(this.request.query['pageIndex'] || '1') - 1
+        if (limit < 0) {
+          limit = 0
+        }
+        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
+        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+      }
+    })
+
+    this.APIKey = 'FilterConditionWeddingCarModels';
+    yield next
+  },
+
+  'get+/weddingCarLevel/all':function*(next){ // 婚礼租车档次
+    if (this.params.position === 'all') {
+      this.model = filterConditionWeddingCarLevel.filter({})
+    } else {
+      this.model = filterConditionWeddingCarLevel.filter({
+        position: this.params.position
+      })
+    }
+    this.model = this.model.orderBy(r.desc('weight'))
+
+    _.each(this.request.query, (v, k) => {
+      if (k.indexOf('pageSize') !== -1) {
+        let limit = 0
+        limit = Number(this.request.query['pageIndex'] || '1') - 1
+        if (limit < 0) {
+          limit = 0
+        }
+        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
+        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+      }
+    })
+
+    this.APIKey = 'FilterConditionWeddingCarLevel';
+    yield next
+  },
+
+  'get+/weddingCarBrand/all':function*(next){ // 婚礼租车品牌
+    if (this.params.position === 'all') {
+      this.model = filterConditionWeddingCarBrand.filter({})
+    } else {
+      this.model = filterConditionWeddingCarBrand.filter({
+        position: this.params.position
+      })
+    }
+    this.model = this.model.orderBy(r.desc('weight'))
+
+    _.each(this.request.query, (v, k) => {
+      if (k.indexOf('pageSize') !== -1) {
+        let limit = 0
+        limit = Number(this.request.query['pageIndex'] || '1') - 1
+        if (limit < 0) {
+          limit = 0
+        }
+        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
+        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+      }
+    })
+
+    this.APIKey = 'FilterConditionWeddingCarBrand';
     yield next
   }
 

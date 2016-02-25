@@ -26,6 +26,12 @@ var F4Photographer = require("./module/f4/photographer.js");
 var F4Camera = require("./module/f4/camera.js");
 var F4Dresser = require("./module/f4/dresser.js");
 var F4Host = require("./module/f4/host.js");
+
+var FilterConditionWeddingCarModels = require("./module/filterCondition/weddingCarModels.js");
+var FilterConditionWeddingCarLevel = require("./module/filterCondition/weddingCarLevel.js");
+var FilterConditionWeddingCarBrand = require("./module/filterCondition/weddingCarBrand.js");
+
+
 var qs = require('querystring');
 var r = env.Thinky.r;
 var _ = require('lodash')
@@ -54,7 +60,10 @@ var models = {
   "F4Photographer": F4Photographer,
   "F4Camera": F4Camera,
   "F4Dresser": F4Dresser,
-  "F4Host": F4Host
+  "F4Host": F4Host,
+  "FilterConditionWeddingCarModels": FilterConditionWeddingCarModels,
+  "FilterConditionWeddingCarLevel": FilterConditionWeddingCarLevel,
+  "FilterConditionWeddingCarBrand": FilterConditionWeddingCarBrand
 
 }
 
@@ -220,7 +229,8 @@ exports.Instance = function() {
     'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host',
     'FilterConditionShootStyle', 'FilterConditionExterior',
     'Case3D', 'FilterConditionHotelType', 'FilterConditionHotelDistricts',
-    'FilterConditionCaseStyle'
+    'FilterConditionCaseStyle', 'FilterConditionWeddingCarModels', 'FilterConditionWeddingCarLevel',
+    'FilterConditionWeddingCarBrand'
   ];
   if (dbTool == null) {
     dbTool = new DBUtil();
