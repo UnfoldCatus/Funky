@@ -63,7 +63,7 @@ const ImageItem = React.createClass({
       height = parseFloat(found[2])
     }
     return (
-      <div className='J_MediaWrapper' data-width={width} data-height={height}>
+      <div className='J_MediaWrapper' style={{'height':'100%'}} data-width={width} data-height={height}>
         <img src={mediaUrl} />
       </div>
     )
@@ -98,7 +98,6 @@ const MediaItem = React.createClass({
         <ImageItem  {...this.props} height={height} width={width} />
       )
     }
-
   },
   propTypes: {
     autoplay: React.PropTypes.bool,

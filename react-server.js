@@ -145,7 +145,7 @@ if (process.env.NODE_ENV === 'test') {
   module.exports = ReactServer.callback();
 } else {
   ReactServer.listen(7001);
-  console.log('open http://localhost:7001')
+  console.log('open http://cd.jsbn.com:7001')
 }
 
 ReactServer.on('error', function (err) {

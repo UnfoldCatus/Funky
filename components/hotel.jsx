@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
 import { ListFilter } from './common/list-filter.jsx'
+import { HotelConfig } from './config/hotel-config.js'
+import { MediaSlider } from './common/media-slider.jsx'
 /**
 组件结构
 <Hotel>
@@ -196,7 +198,7 @@ const Hotel = React.createClass({
       <div className='hyyd-view hotel-page'>
         <div className="bannar-all-box">
           <div id="slider_top" className="slider-box bannar" style={{height:'450px'}}>
-            {/*MediaSlider*/}
+            <MediaSlider {...HotelConfig['MediaSlider']}/>
           </div>
         </div>
         <div className="layout-center-box J_HotelListFilterPanel" style={{minHeight:440+'px'}}>

@@ -51,7 +51,7 @@ const followVideoApi = {
     // 获取跟拍详情
     'get+/followVideo/detail/:id': function*(next) {
         this.model = followVideo.filter({
-            id: this.params.id
+            id: parseInt(this.params.id)
         })
 
         this.APIKey = 'FollowVideo'

@@ -10,24 +10,24 @@ const Home = React.createClass({
     return (
       <div className='home-view'>
         <div className='bannar-all-box' >
-          <div className='slider-box bannar' style={{top:'0px'}} id='slider-home'>
+          <div className='slider-box bannar' style={{height:'680px'}} id='slider_top'>
             <MediaSlider {...HomeConfig['MediaSlider']} />
           </div>
         </div>
         <div className="space-40-eav"></div>
-        <div className='hqdz-home-view mgt60'>
+        <div className='hqdz-home-view mgt30'>
           <div className='layout-center-box'>
-            <Group5 {...HomeConfig['Group5']}/>
+            <div className='mgb20'>
+              <Group5 {...HomeConfig['Group5']}/>
+            </div>
           </div>
         </div>
         <div className='layout-center-box'>
           <Banner {...HomeConfig['Banner'][0]} />
         </div>
+
       </div>
     )
-  },
-  componentDidMount() {
-
   }
 })
 

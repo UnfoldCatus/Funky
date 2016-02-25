@@ -45,7 +45,6 @@ const ShotListItem = React.createClass({
         $('.J_Count').html(j.count)
       })
     }
-
   }
 })
 

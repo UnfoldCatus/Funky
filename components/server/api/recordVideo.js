@@ -51,7 +51,7 @@ const recordVideoApi = {
     // 获取跟拍详情
     'get+/recordVideo/detail/:id': function*(next) {
         this.model = recordVideo.filter({
-            id: this.params.id
+            id: parseInt(this.params.id)
         })
 
         this.APIKey = 'RecordVideo'

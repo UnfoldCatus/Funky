@@ -9,14 +9,14 @@ let r = env.Thinky.r
 // 婚庆策划--婚礼跟拍分季路由r
 const recordVideoSeasonApi = {
 
-    'get+/followVideoSeason/all': function*(next) {
+    'get+/recordVideoSeason/all': function*(next) {
         this.model = recordVideoSeason
         this.APIKey = 'RecordVideoSeason'
         yield next
     },
 
     // 获取分季节
-    'get+/followVideoSeason/:position': function*(next) {
+    'get+/recordVideoSeason/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = recordVideoSeason.filter({})
         } else {

@@ -4,19 +4,30 @@ const SchemeConfig = {
       'imageUrl':'//image.jsbn.com/static/hqdz.jpg'
     }
   ],
+  'MediaSlider':{
+    'baseUrl':'//cd.jsbn.com:7001/api/',
+    'dataUrl':'adv/scheme_top',
+    'aspectRatio':'192:68',
+    'height':680
+  },
+  //列表数据
+  'SchemeListItem': {
+    'baseUrl':'//cd.jsbn.com:7001/api/',
+    'dataUrl': 'cases/scheme_recommend_list'
+  },
   'Group5':{
-    'video-lage':{
-      'frameWidth':620,
-      'frameHeight':375,
-      'aspectRatio':'124:75',
-      'autoPlay':false
-    },
-    'video-small':{
-      'frameWidth':270,
-      'frameHeight':180,
-      'aspectRatio':'3:2',
-      'autoPlay':false
-    }
+    'baseUrl':'//cd.jsbn.com:7001/api/',// 数据请求地址
+    'dataUrl':'adv/scheme_hot',// 数据请求地址
+    'dimension':[  //4+1 4和1的尺寸配置
+      {
+        'aspectRatio':'124:75',
+        'width':620
+      },
+      {
+        'aspectRatio':'3:2',
+        'width':270
+      }
+    ]
   },
   'PhotoGallery':[
     { 'imageUrl':'//image.jsbn.com/static/team/team-hqdz_01.jpg' },

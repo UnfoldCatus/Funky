@@ -38,7 +38,7 @@ const ComponentsIndex = {
   'hotel-require': <HotelRequire />,
   'scheme': <Scheme />,
   'cases': <Cases />,
-  'weddingpat': <WeddingPat />,
+  'wedding-pat': <WeddingPat />,
   'weddingvideo': <WeddingVideo />,
   'scheme-require': <SchemeRequire />,
   'adv': <Adv />,

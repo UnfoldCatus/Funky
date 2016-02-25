@@ -44,7 +44,9 @@ const SuiteList = React.createClass({
           _.map(this.props.data,(v,k)=>{
             return (
               <li className="item-box" key={k}>
-                <MediaItem />
+                <a className='img-box' href='/'>
+                  <MediaItem aspectRatio={'55:32'} height={320} mediaUrl={'//placehold.it/550x320'} />
+                </a>
                 <div className='r-box'>
                   <div className="price">
                     <em>¥</em><b>{parseFloat(v.price).toFixed(2)}</b>
@@ -111,7 +113,7 @@ const Suite = React.createClass({
       <div className="txbj-view">
         <div className="custom-banner bannar-all-box mgb30">
           <div id="slider_top" className="slider-box-1-js bannar" style={{height:"450px"}}>
-            <MediaSlider />
+            <MediaSlider {...SuiteConfig['MediaSlider']}/>
           </div>
         </div>
         <div className="layout-center-box">
