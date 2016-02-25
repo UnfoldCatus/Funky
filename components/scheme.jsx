@@ -76,13 +76,15 @@ const Scheme = React.createClass({
       <div className='hqdz-home-view'>
         <div id='slider_top' className='slider-box bannar-all-box mgb30'>
           <div className='bannar' style={{height:'680px'}}>
-            <MediaSlider />
+            <MediaSlider {...SchemeConfig['MediaSlider']} />
           </div>
         </div>
         <div className='layout-center-box'>
           <Banner {...SchemeConfig['Banner'][0]} />
-          <Group5 config={SchemeConfig['Group5']} />
-          <SchemeListItem {...this.state.list} />
+          <div className='mgb20' >
+            <Group5 {...SchemeConfig['Group5']} />
+          </div>
+          <SchemeListItem {...SchemeConfig['SchemeListItem']}/>
           <div className='tit-img-team mgt60 mgb30' />
           <PhotoGallery gallery={SchemeConfig['PhotoGallery']} />
           <div className="tit-img-hlr mgb30 mgt60" />
@@ -90,21 +92,7 @@ const Scheme = React.createClass({
         </div>
       </div>
     )
-  },
-  getInitialState() {
-    return {
-      list:{
-        data:[
-          {schemeName:'test',weddingDate:'2015-10-10'},
-          {schemeName:'test',weddingDate:'2015-10-10'},
-          {schemeName:'test',weddingDate:'2015-10-10'},
-          {schemeName:'test',weddingDate:'2015-10-10'},
-          {schemeName:'test',weddingDate:'2015-10-10'},
-          {schemeName:'test',weddingDate:'2015-10-10'},
-        ]
-      }
-    };
-  },
+  }
 })
 
 export { Scheme }

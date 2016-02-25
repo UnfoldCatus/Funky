@@ -12,6 +12,7 @@
     "build-suite": "watchify ./src/client/suite.js -o 'uglifyjs -cm > ./assets/script/modules/suite.min.js'",
     "build-cases": "watchify ./src/client/cases.js -o 'uglifyjs -cm > ./assets/script/modules/cases.min.js'",
     "build-home": "watchify ./src/client/home.js -o 'uglifyjs -cm > ./assets/script/modules/home.min.js'",
+    "build-scheme": "watchify ./src/client/scheme.js -o 'uglifyjs -cm > ./assets/script/modules/scheme.min.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -98,7 +98,6 @@ const MediaItem = React.createClass({
         <ImageItem  {...this.props} height={height} width={width} />
       )
     }
-
   },
   propTypes: {
     autoplay: React.PropTypes.bool,

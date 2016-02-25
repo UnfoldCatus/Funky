@@ -44,6 +44,7 @@ const MediaSlider = React.createClass({
     }
   },
   componentDidMount() {
+    /** 数据请求 **/
     if (this.props.dataUrl !== undefined) {
       fetch(this.props.baseUrl + this.props.dataUrl)
       .then(res => {return res.json()})

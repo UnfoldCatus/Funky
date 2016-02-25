@@ -3,23 +3,24 @@ import { MediaItem } from './media-item.jsx'
 import _ from 'lodash'
 const Group5 = React.createClass({
   render () {
+    let dimension = this.props.dimension
     return (
       <div className="nav-box">
-        {
-          _.map(this.state.groupItems,(v,k)=>{
+        {  // 因为是一组资源 一共5个 如果超出5个忽略 目前必须要求达到5个
+          _.map(this.state.data.slice(0,5),(v,k)=>{
             if (k===0) {
               return (
                 <li key={k} className='big-box'>
-                  <a href='/' className='l-item img-box' >
-                    <MediaItem width={620} aspectRatio={'124:75'} mediaUrl={'//placehold.it/620x375'} />
+                  <a href={v.linkUrl} className='l-item img-box' >
+                    <MediaItem {...dimension[0]} mediaUrl={v.coverUrlWeb||'//placehold.it/620x375'} />
                   </a>
                 </li>
               )
             }else {
               return (
                 <li key={k} className='small-box'>
-                  <a href='/' className='img-box'>
-                    <MediaItem width={270} aspectRatio={'3:2'} mediaUrl={'//placehold.it/270x180'} />
+                  <a href={v.linkUrl} className='img-box'>
+                    <MediaItem {...dimension[1]} mediaUrl={v.coverUrlWeb||'//placehold.it/270x180'} />
                   </a>
                 </li>
               )
@@ -27,43 +28,35 @@ const Group5 = React.createClass({
           })
         }
         {/*列表为空，默认输出*/}
-        {(this.state.groupItems.length === 0 )&& <h1>Empty Group5</h1>}
+        {(this.state.data.length === 0 )&& <h1>请添加5个资源</h1>}
       </div>
     )
   },
   propTypes: {
-    config: React.PropTypes.object
+    dataUrl: React.PropTypes.string
   },
   getDefaultProps(){
     return {
-      config:{
-        'video-lage':{
-          'frameWidth':620,
-          'frameHeight':375,
-          'aspectRatio':'124:75',
-          'autoPlay':false
-        },
-        'video-small':{
-          'frameWidth':270,
-          'frameHeight':180,
-          'aspectRatio':'3:2',
-          'autoPlay':false
-        },
-        'resourceUrl':''
-      },
+      dataUrl:undefined
     }
   },
   getInitialState() {
     return {
-      groupItems:[{},{},{},{},{}]
+      data:[]
     };
   },
 
   componentDidMount() {
-    if (this.props.config.resourceUrl !== '') {
-      console.log('should start loading resource');
-    }else {
-      console.log('config.resourceUrl is bank');
+    /** 数据请求 **/
+    if (this.props.dataUrl !== undefined) {
+      fetch(this.props.baseUrl + this.props.dataUrl)
+      .then(res => {return res.json()})
+      .then(j =>{
+        console.log(j);
+        this.setState({ data:j.data },()=>{
+          console.log('has data loaded');
+        })
+      })
     }
   }
 })
