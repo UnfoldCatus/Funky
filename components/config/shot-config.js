@@ -26,11 +26,13 @@ const ShotConfig = {
       'link': '/weddingmv'
     }]
   }],
+  //列表数据
   'ShotListItem': {
     'type':'sample',
     'baseUrl':'//cd.jsbn.com:7001/api/',
     'dataUrl': 'sample/samples_list'
   },
+  //顶部广告
   'MediaSlider':{
     'baseUrl':'//cd.jsbn.com:7001/api/',
     'dataUrl':'adv/shot_top',
