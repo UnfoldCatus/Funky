@@ -4,6 +4,7 @@
 var http = require('http');
 var env = require("./config.js");
 var Hotel = require("./module/hotel.js");
+var FilterConditionHotelType = require("./module/filterCondition/hotelType.js");
 var Adv = require("./module/adv.js");
 var Pringles = require("./module/pringles.js");
 var PringlesSeason = require("./module/pringlesSeason.js");
@@ -31,6 +32,7 @@ var _ = require('lodash')
 var models = {
   "Adv": Adv,
   "Hotel": Hotel,
+  "FilterConditionHotelType": FilterConditionHotelType,
   "Sample": Sample,
   "Pringles": Pringles,
   "PringlesSeason": PringlesSeason,
@@ -56,6 +58,7 @@ var dbTool = null;
 var mSyncFlg = {
   "Adv": false,
   "Hotel": false,
+  "FilterConditionHotelType": false,
   "Sample": false,
   "Pringles": false,
   "PringlesSeason": false,
@@ -210,7 +213,7 @@ exports.Instance = function() {
     'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason',
     'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host',
     'FilterConditionShootStyle', 'FilterConditionExterior',
-    'Case3D'
+    'Case3D', 'FilterConditionHotelType'
   ];
   if (dbTool == null) {
     dbTool = new DBUtil();

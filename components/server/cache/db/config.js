@@ -13,6 +13,8 @@ const config = {
     },
     // 酒店数据
     HotelPath:"/api/hotel/all",
+    // 酒店类型
+    FilterConditionHotelTypePath:'/api/hotelType/all',
     // 广告数据
     AdvPath:"/api/adv/all",
     // 样片数据
