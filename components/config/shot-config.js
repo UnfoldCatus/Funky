@@ -28,8 +28,14 @@ const ShotConfig = {
   }],
   'ShotListItem': {
     'type':'sample',
-    'baseUrl':'//localhost:7001/api/',
+    'baseUrl':'//cd.jsbn.com:7001/api/',
     'dataUrl': 'sample/samples_list'
+  },
+  'MediaSlider':{
+    'baseUrl':'//cd.jsbn.com:7001/api/',
+    'dataUrl':'adv/shot_top',
+    'aspectRatio':'192:68',
+    'height':680
   }
 }
 

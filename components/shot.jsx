@@ -66,8 +66,10 @@ const Shot = React.createClass({
   render () {
     return (
       <div className="hssy-home-view">
-        <div className='custom-banner custom-container-banner container'>
-          <MediaSlider resourceLink='adv/shot_top' />
+        <div className="bannar-all-box">
+          <div id="slider_top" className="slider-box bannar" style={{height:'680px'}}>
+            <MediaSlider {...ShotConfig['MediaSlider']} />
+          </div>
         </div>
         <div className='layout-center-box'>
           <div className='adv-1 shot-adv mgb30'>

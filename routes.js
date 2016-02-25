@@ -22,7 +22,13 @@ import pringlesSeasonApi from './components/server/api/pringlesSeason.js'
 import followVideoApi from './components/server/api/followVideo.js'
 import followVideoSeasonApi from './components/server/api/followVideoSeason.js'
 import filterConditionApi from './components/server/api/filter-condition.js'
-   /**
+
+import photographerApi from './components/server/api/f4/photographer.js'
+import cameraApi from './components/server/api/f4/camera.js'
+import dresserApi from './components/server/api/f4/dresser.js'
+import hostApi from './components/server/api/f4/host.js'
+
+  /**
     api 资源路由
   **/
 export const apiRouter = new Router({
@@ -44,7 +50,11 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/followVideo/all': '婚礼视频',
     '/api/followVideoSeason/all': '婚礼视频分季',
     '/api/exterior/all':'外景搜索条件',
-    '/api/shootStyle/all':'风格搜索条件'
+    '/api/shootStyle/all':'风格搜索条件',
+    '/api/f4/photographer': '四大金刚-摄影师作品',
+    '/api/f4/camera': '四大金刚-摄像师作品',
+    '/api/f4/dresser': '四大金刚-化妆师作品',
+    '/api/f4/host': '四大金刚-主持师作品'
   }
 })
 
@@ -61,7 +71,11 @@ const apiRouterList = [
   followVideoApi,
   followPhotoSeasonApi,
   followVideoSeasonApi,
-  filterConditionApi
+  filterConditionApi,
+  photographerApi,
+  cameraApi,
+  dresserApi,
+  hostApi
 ]
 _.each(apiRouterList,(route,index)=>{
   _.each(route,(value,key)=>{
