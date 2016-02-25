@@ -4,6 +4,7 @@
 var http = require('http');
 var env = require("./config.js");
 var Hotel = require("./module/hotel.js");
+var FilterConditionHotelType = require("./module/filterCondition/hotelType.js");
 var Adv = require("./module/adv.js");
 var Pringles = require("./module/pringles.js");
 var PringlesSeason = require("./module/pringlesSeason.js");
@@ -14,6 +15,7 @@ var Suite = require("./module/suite.js");
 var FilterConditionShootStyle = require("./module/filterCondition/shootStyle.js");
 var FilterConditionExterior = require("./module/filterCondition/exterior.js");
 var Cases = require("./module/cases.js");
+var Case3D = require("./module/case3D.js");
 var FollowPhoto = require("./module/followPhoto.js");
 var FollowPhotoSeason = require("./module/followPhotoSeason.js");
 var FollowVideo = require("./module/followVideo.js");
@@ -30,6 +32,7 @@ var _ = require('lodash')
 var models = {
   "Adv": Adv,
   "Hotel": Hotel,
+  "FilterConditionHotelType": FilterConditionHotelType,
   "Sample": Sample,
   "Pringles": Pringles,
   "PringlesSeason": PringlesSeason,
@@ -38,7 +41,8 @@ var models = {
   "Suite": Suite,
   "FilterConditionShootStyle": FilterConditionShootStyle,
   "FilterConditionExterior": FilterConditionExterior,
-  "Cases":Cases,
+  "Cases": Cases,
+  "Case3D": Case3D,
   "FollowPhoto": FollowPhoto,
   "FollowPhotoSeason": FollowPhotoSeason,
   "FollowVideo": FollowVideo,
@@ -54,6 +58,7 @@ var dbTool = null;
 var mSyncFlg = {
   "Adv": false,
   "Hotel": false,
+  "FilterConditionHotelType": false,
   "Sample": false,
   "Pringles": false,
   "PringlesSeason": false,
@@ -63,6 +68,7 @@ var mSyncFlg = {
   "FilterConditionShootStyle": false,
   "FilterConditionExterior": false,
   "Cases": false,
+  "Case3D": false,
   "FollowPhoto": false,
   "FollowPhotoSeason": false,
   "FollowVideo": false,
@@ -206,7 +212,8 @@ exports.Instance = function() {
     'RecordVideo', 'RecordVideoSeason', 'Suite', 'Cases',
     'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason',
     'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host',
-    'FilterConditionShootStyle', 'FilterConditionExterior'
+    'FilterConditionShootStyle', 'FilterConditionExterior',
+    'Case3D', 'FilterConditionHotelType'
   ];
   if (dbTool == null) {
     dbTool = new DBUtil();

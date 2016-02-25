@@ -13,6 +13,8 @@ const config = {
     },
     // 酒店数据
     HotelPath:"/api/hotel/all",
+    // 酒店类型
+    FilterConditionHotelTypePath:'/api/hotelType/all',
     // 广告数据
     AdvPath:"/api/adv/all",
     // 样片数据
@@ -33,6 +35,8 @@ const config = {
     FilterConditionExteriorPath:'/api/exterior/all',
     // 实景案例
     CasesPath:'/api/cases/all',
+    // 3D案例
+    Case3DPath:'/api/case3D/all',
     // 婚礼跟拍
     FollowPhotoPath:'/api/followPhoto/all',
     // 婚礼跟拍分季
