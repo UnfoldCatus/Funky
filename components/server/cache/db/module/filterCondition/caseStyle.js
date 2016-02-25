@@ -4,29 +4,30 @@
 var env=require("../../config");
 var type=env.Thinky.type;
 
-// 婚宴预订--酒店类型模型
+// 婚庆策划--案例风格模型
 /*
  {
  "success": true,
  "message": null,
  "data": [
      {
-     "id": 4,
-     "createTime": "2015-11-24 15:12:37",
-     "updateTime": "2015-11-24 15:12:37",
-     "operater": 0,
+     "id": 1,
+     "createTime": "2015-11-20 11:42:00",
+     "updateTime": "2015-11-20 11:47:19",
+     "operater": 1,
      "isUsed": 1,
-     "name": "特色酒店",
-     "description": "特色酒店"
-     }
+     "name": "大气唯美",
+     "description": "大气唯美",
+     "weight": 100
+     },
  ],
  "code": 200,
  "count": 0
  }
  * */
 
-// 酒店类型模型
-const FilterConditionHotelType = env.Thinky.createModel('filterConditionHotelType', {
+// 外景地模型
+const FilterConditionCaseStyle = env.Thinky.createModel('filterConditionCaseStyle', {
     // Id
     id: type.number(),
     // 创建时间
@@ -45,6 +46,6 @@ const FilterConditionHotelType = env.Thinky.createModel('filterConditionHotelTyp
     weight: type.number()
 })
 
-FilterConditionHotelType.ensureIndex('weight');
+FilterConditionCaseStyle.ensureIndex('weight');
 
-module.exports=FilterConditionHotelType;
+module.exports=FilterConditionCaseStyle;

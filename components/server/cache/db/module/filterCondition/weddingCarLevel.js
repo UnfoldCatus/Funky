@@ -4,21 +4,21 @@
 var env=require("../../config");
 var type=env.Thinky.type;
 
-// 婚宴预订--酒店类型模型
+// 婚礼租车--档次
 /*
  {
  "success": true,
  "message": null,
  "data": [
-     {
-     "id": 4,
-     "createTime": "2015-11-24 15:12:37",
-     "updateTime": "2015-11-24 15:12:37",
-     "operater": 0,
-     "isUsed": 1,
-     "name": "特色酒店",
-     "description": "特色酒店"
-     }
+ {
+ "id": 4,
+ "createTime": "2015-11-24 15:12:37",
+ "updateTime": "2015-11-24 15:12:37",
+ "operater": 0,
+ "isUsed": 1,
+ "name": "222",
+ "description": "222222"
+ }
  ],
  "code": 200,
  "count": 0
@@ -26,7 +26,7 @@ var type=env.Thinky.type;
  * */
 
 // 酒店类型模型
-const FilterConditionHotelType = env.Thinky.createModel('filterConditionHotelType', {
+const FilterConditionWeddingCarLevel = env.Thinky.createModel('filterConditionWeddingCarLevel', {
     // Id
     id: type.number(),
     // 创建时间
@@ -37,14 +37,14 @@ const FilterConditionHotelType = env.Thinky.createModel('filterConditionHotelTyp
     operater: type.number(),
     // 是否有效 有效0：无效 1：有效
     isUsed: type.number(),
-    // 名称
+    // 型号名
     name: type.string(),
     // 描述
-    description: type.string(),
-    // 权重
-    weight: type.number()
+    description: type.string()
+    //// 权重
+    //weight: type.number()
 })
 
-FilterConditionHotelType.ensureIndex('weight');
+//FilterConditionWeddingCarLevel.ensureIndex('weight');
 
-module.exports=FilterConditionHotelType;
+module.exports=FilterConditionWeddingCarLevel;
