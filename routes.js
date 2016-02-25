@@ -7,7 +7,6 @@ import { ComponentsIndex } from './components/config/components-index'
   /*菜单*/
 import { Navigation } from './components/navigation.jsx'
 
-
 /** api的路由逻辑**/
 import hotelApi from './components/server/api/hotel'
 import sampleApi from './components/server/api/sample'
@@ -24,10 +23,7 @@ import pringlesSeasonApi from './components/server/api/pringlesSeason.js'
 import followVideoApi from './components/server/api/followVideo.js'
 import followVideoSeasonApi from './components/server/api/followVideoSeason.js'
 import filterConditionApi from './components/server/api/filter-condition.js'
-import photographerApi from './components/server/api/f4/photographer.js'
-import cameraApi from './components/server/api/f4/camera.js'
-import dresserApi from './components/server/api/f4/dresser.js'
-import hostApi from './components/server/api/f4/host.js'
+import f4Api from './components/server/api/f4.js'
 import wdyVideoApi from './components/server/api/wdyVideo.js'
 
   /**
@@ -88,11 +84,8 @@ const apiRouterList = [
   followVideoApi,
   followPhotoSeasonApi,
   followVideoSeasonApi,
+  f4Api,
   filterConditionApi,
-  photographerApi,
-  cameraApi,
-  dresserApi,
-  hostApi,
   wdyVideoApi
 ]
 _.each(apiRouterList,(route,index)=>{
