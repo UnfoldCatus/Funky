@@ -52,7 +52,7 @@ const followPhotoApi = {
     // 获取跟拍详情
     'get+/followPhoto/detail/:id': function*(next) {
         this.model = followPhoto.filter({
-            id: this.params.id
+            id: parseInt(this.params.id)
         })
 
         this.APIKey = 'FollowPhoto'

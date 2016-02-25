@@ -16,23 +16,19 @@ import advApi from './components/server/api/adv'
 import suiteApi from './components/server/api/suite'
 import recordVideoApi from './components/server/api/recordVideo.js'
 import recordVideoSeasonApi from './components/server/api/recordVideoSeason.js'
-
 import casesApi from './components/server/api/cases.js'
+import case3DApi from './components/server/api/case3D.js'
 import followPhotoSeasonApi from './components/server/api/followPhotoSeason.js'
 import followPhotoApi from './components/server/api/followPhoto.js'
 import pringlesSeasonApi from './components/server/api/pringlesSeason.js'
 import followVideoApi from './components/server/api/followVideo.js'
 import followVideoSeasonApi from './components/server/api/followVideoSeason.js'
 import filterConditionApi from './components/server/api/filter-condition.js'
-
 import photographerApi from './components/server/api/f4/photographer.js'
 import cameraApi from './components/server/api/f4/camera.js'
 import dresserApi from './components/server/api/f4/dresser.js'
 import hostApi from './components/server/api/f4/host.js'
-
-// 纪实MV
-// 纪实MV分季
-
+import wdyVideoApi from './components/server/api/wdyVideo.js'
 
   /**
     api 资源路由
@@ -49,8 +45,12 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/pringles/all':'客片',
     '/api/pringlesSeason/list':'客片分季',
     '/api/hotel/all':'酒店',
+    '/api/hotelType/all':'婚宴预订-酒店类型搜索条件',
+    '/api/hotelDistricts/all': '婚宴预订-酒店区域搜索条件',
     '/api/suite/all':'套系',
     '/api/cases/all':'实景案例',
+    '/api/case3D/all':'3D案例',
+    '/api/caseStyle/all':'婚庆定制-案例风格搜索条件',
     '/api/followPhoto/all':'婚礼跟拍',
     '/api/followPhotoSeason/all':'婚礼跟拍分季',
     '/api/followVideo/all': '婚礼视频',
@@ -62,7 +62,13 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/f4/dresser': '四大金刚-化妆师作品',
     '/api/f4/host': '四大金刚-主持师作品',
     '/api/recordVideo/all': '婚纱摄影-纪实MV',
-    '/api/recordVideoSeason/all': '婚纱摄影-纪实MV分季'
+    '/api/recordVideoSeason/all': '婚纱摄影-纪实MV分季',
+    '/api/weddingCarModels/all': '婚车租赁-型号搜索条件',
+    '/api/weddingCarLevel/all': '婚车租赁-档次搜索条件',
+    '/api/weddingCarBrand/all': '婚车租赁-品牌搜索条件',
+    '/api/suppliesBrand/all': '婚车用品-品牌搜索条件',
+    '/api/suppliesType/all': '婚车用品-类型搜索条件',
+    '/api/video/all': '微电影'
   }
 })
 
@@ -77,6 +83,7 @@ const apiRouterList = [
   recordVideoApi,
   recordVideoSeasonApi,
   casesApi,
+  case3DApi,
   followPhotoApi,
   followVideoApi,
   followPhotoSeasonApi,
@@ -85,7 +92,8 @@ const apiRouterList = [
   photographerApi,
   cameraApi,
   dresserApi,
-  hostApi
+  hostApi,
+  wdyVideoApi
 ]
 _.each(apiRouterList,(route,index)=>{
   _.each(route,(value,key)=>{
@@ -175,7 +183,7 @@ siteRouter.get('/cases', function* index(next) {
   })
   /** 婚礼跟拍 **/
 siteRouter.get('/weddingpat', function* index(next) {
-    yield this.render('modules/default', renderOption('weddingpat', '/weddingpat', '/scheme'))
+    yield this.render('modules/default', renderOption('wedding-pat', '/weddingpat', '/scheme'))
   })
   /** 婚礼视频 **/
 siteRouter.get('/weddingvideo', function* index(next) {

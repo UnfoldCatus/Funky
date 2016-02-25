@@ -9,7 +9,7 @@ const WeddingPat = React.createClass({
       <div className="hlgp-view">
           <div className="bannar-all-box">
             <div id="slider_top" className="slider-box bannar" style={{height:'450px'}}>
-              <MediaSlider />
+              <MediaSlider {...WeddingPatConfig['MediaSlider']} />
             </div>
           </div>
           <div className="layout-center-box">

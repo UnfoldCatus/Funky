@@ -4,6 +4,8 @@
 var http = require('http');
 var env = require("./config.js");
 var Hotel = require("./module/hotel.js");
+var FilterConditionHotelType = require("./module/filterCondition/hotelType.js");
+var FilterConditionHotelDistricts = require("./module/filterCondition/hotelDistricts.js");
 var Adv = require("./module/adv.js");
 var Pringles = require("./module/pringles.js");
 var PringlesSeason = require("./module/pringlesSeason.js");
@@ -14,6 +16,8 @@ var Suite = require("./module/suite.js");
 var FilterConditionShootStyle = require("./module/filterCondition/shootStyle.js");
 var FilterConditionExterior = require("./module/filterCondition/exterior.js");
 var Cases = require("./module/cases.js");
+var Case3D = require("./module/case3D.js");
+var FilterConditionCaseStyle = require("./module/filterCondition/caseStyle.js");
 var FollowPhoto = require("./module/followPhoto.js");
 var FollowPhotoSeason = require("./module/followPhotoSeason.js");
 var FollowVideo = require("./module/followVideo.js");
@@ -22,6 +26,14 @@ var F4Photographer = require("./module/f4/photographer.js");
 var F4Camera = require("./module/f4/camera.js");
 var F4Dresser = require("./module/f4/dresser.js");
 var F4Host = require("./module/f4/host.js");
+var FilterConditionWeddingCarModels = require("./module/filterCondition/weddingCarModels.js");
+var FilterConditionWeddingCarLevel = require("./module/filterCondition/weddingCarLevel.js");
+var FilterConditionWeddingCarBrand = require("./module/filterCondition/weddingCarBrand.js");
+var FilterConditionSuppliesBrand = require("./module/filterCondition/suppliesBrand.js");
+var FilterConditionSuppliesType = require("./module/filterCondition/suppliesType.js");
+
+var WdyVideo = require("./module/wdyVideo.js");
+
 var qs = require('querystring');
 var r = env.Thinky.r;
 var _ = require('lodash')
@@ -30,6 +42,8 @@ var _ = require('lodash')
 var models = {
   "Adv": Adv,
   "Hotel": Hotel,
+  "FilterConditionHotelType": FilterConditionHotelType,
+  "FilterConditionHotelDistricts": FilterConditionHotelDistricts,
   "Sample": Sample,
   "Pringles": Pringles,
   "PringlesSeason": PringlesSeason,
@@ -38,7 +52,9 @@ var models = {
   "Suite": Suite,
   "FilterConditionShootStyle": FilterConditionShootStyle,
   "FilterConditionExterior": FilterConditionExterior,
-  "Cases":Cases,
+  "Cases": Cases,
+  "Case3D": Case3D,
+  "FilterConditionCaseStyle": FilterConditionCaseStyle,
   "FollowPhoto": FollowPhoto,
   "FollowPhotoSeason": FollowPhotoSeason,
   "FollowVideo": FollowVideo,
@@ -46,7 +62,13 @@ var models = {
   "F4Photographer": F4Photographer,
   "F4Camera": F4Camera,
   "F4Dresser": F4Dresser,
-  "F4Host": F4Host
+  "F4Host": F4Host,
+  "FilterConditionWeddingCarModels": FilterConditionWeddingCarModels,
+  "FilterConditionWeddingCarLevel": FilterConditionWeddingCarLevel,
+  "FilterConditionWeddingCarBrand": FilterConditionWeddingCarBrand,
+  "FilterConditionSuppliesBrand": FilterConditionSuppliesBrand,
+  "FilterConditionSuppliesType": FilterConditionSuppliesType,
+  "WdyVideo": WdyVideo
 
 }
 
@@ -54,6 +76,8 @@ var dbTool = null;
 var mSyncFlg = {
   "Adv": false,
   "Hotel": false,
+  "FilterConditionHotelType": false,
+  "FilterConditionHotelDistricts": false,
   "Sample": false,
   "Pringles": false,
   "PringlesSeason": false,
@@ -63,6 +87,8 @@ var mSyncFlg = {
   "FilterConditionShootStyle": false,
   "FilterConditionExterior": false,
   "Cases": false,
+  "Case3D": false,
+  "FilterConditionCaseStyle": false,
   "FollowPhoto": false,
   "FollowPhotoSeason": false,
   "FollowVideo": false,
@@ -70,7 +96,13 @@ var mSyncFlg = {
   "F4Photographer": false,
   "F4Camera": false,
   "F4Dresser": false,
-  "F4Host": false
+  "F4Host": false,
+  "FilterConditionWeddingCarModels": false,
+  "FilterConditionWeddingCarLevel": false,
+  "FilterConditionWeddingCarBrand": false,
+  "FilterConditionSuppliesBrand": false,
+  "FilterConditionSuppliesType": false,
+  "WdyVideo": false
 };
 
 //查询工具类
@@ -206,7 +238,11 @@ exports.Instance = function() {
     'RecordVideo', 'RecordVideoSeason', 'Suite', 'Cases',
     'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason',
     'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host',
-    'FilterConditionShootStyle', 'FilterConditionExterior'
+    'FilterConditionShootStyle', 'FilterConditionExterior',
+    'Case3D', 'FilterConditionHotelType', 'FilterConditionHotelDistricts',
+    'FilterConditionCaseStyle', 'FilterConditionWeddingCarModels', 'FilterConditionWeddingCarLevel',
+    'FilterConditionWeddingCarBrand', 'FilterConditionSuppliesBrand', 'FilterConditionSuppliesType',
+    'WdyVideo'
   ];
   if (dbTool == null) {
     dbTool = new DBUtil();

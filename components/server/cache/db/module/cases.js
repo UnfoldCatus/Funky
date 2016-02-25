@@ -32,6 +32,11 @@ var type=env.Thinky.type;
  "color": "红色",
  "theme": "惜•缘",
  "personDescription": "摄影师、摄像师、化妆师、主持人",
+ "hotelId": 1,
+ "hotelName": "test01111",
+ "banquetHallId": 1,
+ "banquetHallName": "hall01",
+ "weddingId": 1,
  "weddingName": "惜•缘",
  "caseStyle": "12,14,",
  "holdingTime": "2016-01-21",
@@ -89,10 +94,20 @@ const Cases = env.Thinky.createModel('cases', {
     theme: type.string(),
     // 婚礼人
     personDescription: type.string(),
-    // 婚礼名称
-    weddingName: type.string(),
     // 风格
     caseStyle: type.string(),
+    // 酒店ID
+    hotelId: type.number(),
+    // 酒店名称
+    hotelName: type.string(),
+    // 宴会厅ID
+    banquetHallId: type.number(),
+    // 宴会厅名称
+    banquetHallName: type.string(),
+    // 婚礼ID
+    weddingId: type.number(),
+    // 婚礼名称
+    weddingName: type.string(),
     // 婚礼时间
     holdingTime: type.string(),
     // 婚礼地点

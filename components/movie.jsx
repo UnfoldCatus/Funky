@@ -2,8 +2,9 @@ import React, { PropTypes } from 'react'
 import _ from 'lodash'
 import { MediaSlider } from './common/media-slider.jsx'
 import { Banner } from './common/banner.jsx'
+import { MovieConfig } from './config/movie-config'
 
-let Item = React.createClass({
+const Item = React.createClass({
   render: function() {
     return (
       <li className="item-box">
@@ -25,13 +26,13 @@ let Item = React.createClass({
   }
 });
 
-let ItemList = React.createClass({  
+const ItemList = React.createClass({
   render: function() {
     var self = this
     return (
       <ul className='list-recommend'>
         {
-            $.map(this.props.list,function(v,k){
+            _.map(this.props.list,function(v,k){
                 return <Item title={v.name} detail={'#'+self.getPathname()+'/'+v.videoId} cover={v.coverImage.imageUrl} key={k} remark={v.remark}/>
             })
         }
@@ -52,11 +53,11 @@ const Movie = React.createClass({
 	    <div className="wdy-view">
 	      <div className="bannar-all-box">
 	        <div id="slider_top" className="slider-box bannar" style={{height:'450px'}}>
-	            <MediaSlider />
+	            <MediaSlider {...MovieConfig['MediaSlider']}/>
 	        </div>
 	      </div>
 	      <div className='layout-center-box'>
-	        {/*<StaticAdv imageUrl='//image.jsbn.com/static/wdy.jpg' />*/}
+          <Banner {...MovieConfig['Banner'][0]} />
 		      <div className="nav-box">
 		        <img src="http://image.jsbn.com/static/wdy-nav.png" />
 		        <ul className="hover-box J_Tab">

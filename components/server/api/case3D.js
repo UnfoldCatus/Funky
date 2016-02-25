@@ -1,27 +1,27 @@
 /**
  * Created by chenjianjun on 16/2/25.
  */
-import recordVideo from '../cache/db/module/recordVideo.js'
+import case3D from '../cache/db/module/case3D.js'
 import _ from 'lodash'
-import env from '../cache/db/config.js'
+import env from '../cache/db/config'
 let r = env.Thinky.r
 
-// 婚庆策划--婚礼跟拍API
+// 婚庆策划--3D案例API
 
-const recordVideoApi = {
+const cases3DApi = {
 
-    'get+/recordVideo/all': function*(next) {
-        this.model = recordVideo
-        this.APIKey = 'RecordVideo'
+    'get+/case3D/all': function*(next) {
+        this.model = case3D
+        this.APIKey = 'Cases3D'
         yield next
     },
 
-    // 获取跟拍
-    'get+/recordVideo/:position': function*(next) {
+    // 获取3D案例
+    'get+/case3D/:position': function*(next) {
         if (this.params.position === 'all') {
-            this.model = recordVideo.filter({})
+            this.model = case3D.filter({})
         } else {
-            this.model = recordVideo.filter({
+            this.model = case3D.filter({
                 position: this.params.position
             })
         }
@@ -36,27 +36,22 @@ const recordVideoApi = {
                 }
                 this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
                 this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-            } else if(k.indexOf('seasonId') !== -1) {
-                // 分季ID
-                this.model = this.model.filter({
-                    seasonId: Number(this.request.query['seasonId'])
-                });
             }
         })
 
-        this.APIKey = 'RecordVideo'
+        this.APIKey = 'Cases3D'
         yield next
     },
 
-    // 获取跟拍详情
-    'get+/recordVideo/detail/:id': function*(next) {
-        this.model = recordVideo.filter({
+    // 获取3D案例详情
+    'get+/case3D/detail/:id': function*(next) {
+        this.model = case3D.filter({
             id: parseInt(this.params.id)
         })
 
-        this.APIKey = 'RecordVideo'
+        this.APIKey = 'Cases3D'
         yield next
     }
 
 }
-export default recordVideoApi
+export default cases3DApi
