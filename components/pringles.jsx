@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import { MediaSlider } from './common/media-slider.jsx'
 import { ShotListItem } from './common/shot-list-item.jsx'
 import { Banner } from './common/banner.jsx'
+import { PringlesConfig } from './config/pringles-config'
 /**
 <Pringles>
   <MediaSlider />
@@ -25,9 +26,9 @@ const PringlesList = React.createClass({
     return (
       <div className="samples-list">
         <div className="screening-results">
-          <span className="find"><span>找到最佳客片</span><b>{this.props.totalPage}</b><span>套</span></span>
+          <span className="find"><span>找到最佳客片</span><b className='J_Count'>{this.props.totalPage}</b><span>套</span></span>
         </div>
-        <ShotListItem {...this.props} type='pringles' />
+        <ShotListItem {...PringlesConfig['ShotListItem']} />
       </div>
     )
   },
@@ -36,12 +37,7 @@ const PringlesList = React.createClass({
   },
   getDefaultProps(){
     return {
-      totalPage:1,
-      data:[{
-        contentName:'丁丁蒸着吃',
-        actorNameMale:'李君',
-        actorNameFemale:'李佳'
-      }]
+      totalPage:1
     }
   }
 })
@@ -52,14 +48,14 @@ const Pringles = React.createClass({
       <div className='kpxs-view'>
           <div id="slider_top" className="slider-box bannar-all-box" style={{height:'450px'}}>
             <div className="bannar" style={{height:'450px'}}>
-              <MediaSlider />
+              <MediaSlider {...PringlesConfig['MediaSlider']}/>
             </div>
           </div>
           <div className="layout-center-box">
-            <div className="bannar-box mgt30">
-              <img src="//image.jsbn.com/static/kpxs.png" />
+            <div className='mgt30'>
+              <Banner {...PringlesConfig['Banner'][0]}/>
             </div>
-              <PringlesList {...this.props.list} />
+              <PringlesList />
           </div>
           <div onClick={this.loadMore} id="J_MoreButton">
               <div className="more-btn"><span>点击查看更多</span></div>
@@ -70,17 +66,6 @@ const Pringles = React.createClass({
           </div>
       </div>
     )
-  },
-  propTypes: {
-    list: React.PropTypes.array
-  },
-  getDefaultProps(){
-    return {
-      list:[]
-    }
-  },
-  componentDidMount() {
-    console.log('pringles');
   }
 })
 

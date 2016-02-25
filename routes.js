@@ -1,27 +1,11 @@
 import Router from 'koa-router'
-import React, {
-  PropTypes
-}
-from 'react'
+import React, { PropTypes } from 'react'
 import _ from 'lodash'
-import {
-  renderToString
-}
-from 'react-dom/server'
-
-import {
-  MenuConfig
-}
-from './components/config/menu-config'
-import {
-  ComponentsIndex
-}
-from './components/config/components-index'
+import { renderToString } from 'react-dom/server'
+import { MenuConfig } from './components/config/menu-config'
+import { ComponentsIndex } from './components/config/components-index'
   /*菜单*/
-import {
-  Navigation
-}
-from './components/navigation.jsx'
+import { Navigation } from './components/navigation.jsx'
 
 
 /** api的路由逻辑**/
@@ -30,6 +14,20 @@ import sampleApi from './components/server/api/sample'
 import pringlesApi from './components/server/api/pringles'
 import advApi from './components/server/api/adv'
 import suiteApi from './components/server/api/suite'
+
+import casesApi from './components/server/api/cases.js'
+import followPhotoSeasonApi from './components/server/api/followPhotoSeason.js'
+import followPhotoApi from './components/server/api/followPhoto.js'
+import pringlesSeasonApi from './components/server/api/pringlesSeason.js'
+import followVideoApi from './components/server/api/followVideo.js'
+import followVideoSeasonApi from './components/server/api/followVideoSeason.js'
+import filterConditionApi from './components/server/api/filter-condition.js'
+
+import photographerApi from './components/server/api/f4/photographer.js'
+import cameraApi from './components/server/api/f4/camera.js'
+import dresserApi from './components/server/api/f4/dresser.js'
+import hostApi from './components/server/api/f4/host.js'
+
   /**
     api 资源路由
   **/
@@ -40,34 +38,49 @@ apiRouter.get('/', function* apiRoot(next) {
   yield next
   // 列出所有资源到列表
   this.body = {
-    '/api/adv/all': '广告',
-    '/api/sample/all': '作品',
-    '/api/pringles/all': '客片',
-    '/api/hotel/all': '婚宴预订'
+    '/api/adv/all':'广告',
+    '/api/sample/all':'作品',
+    '/api/pringles/all':'客片',
+    '/api/pringlesSeason/list':'客片分季',
+    '/api/hotel/all':'酒店',
+    '/api/suite/all':'套系',
+    '/api/cases/all':'实景案例',
+    '/api/followPhoto/all':'婚礼跟拍',
+    '/api/followPhotoSeason/all':'婚礼跟拍分季',
+    '/api/followVideo/all': '婚礼视频',
+    '/api/followVideoSeason/all': '婚礼视频分季',
+    '/api/exterior/all':'外景搜索条件',
+    '/api/shootStyle/all':'风格搜索条件',
+    '/api/f4/photographer': '四大金刚-摄影师作品',
+    '/api/f4/camera': '四大金刚-摄像师作品',
+    '/api/f4/dresser': '四大金刚-化妆师作品',
+    '/api/f4/host': '四大金刚-主持师作品'
   }
 })
 
-
-/* Adv */
-_.each(advApi, (value, key) => {
-  apiRouter[key.split('+')[0]](key.split('+')[1], value)
-})
-
-/* Hotel */
-_.each(hotelApi, (value, key) => {
+/** 把api的router在此生成 **/
+const apiRouterList = [
+  advApi,
+  hotelApi,
+  sampleApi,
+  pringlesApi,
+  pringlesSeasonApi,
+  suiteApi,
+  casesApi,
+  followPhotoApi,
+  followVideoApi,
+  followPhotoSeasonApi,
+  followVideoSeasonApi,
+  filterConditionApi,
+  photographerApi,
+  cameraApi,
+  dresserApi,
+  hostApi
+]
+_.each(apiRouterList,(route,index)=>{
+  _.each(route,(value,key)=>{
     apiRouter[key.split('+')[0]](key.split('+')[1], value)
   })
-  /* Sample */
-_.each(sampleApi, (value, key) => {
-    apiRouter[key.split('+')[0]](key.split('+')[1], value)
-  })
-  /* Pringles */
-_.each(pringlesApi, (value, key) => {
-    apiRouter[key.split('+')[0]](key.split('+')[1], value)
-  })
-  /* Suite */
-_.each(suiteApi, (value, key) => {
-  apiRouter[key.split('+')[0]](key.split('+')[1], value)
 })
 
 /**
@@ -185,6 +198,4 @@ siteRouter.get('/car', function* index(next) {
 })
 
 
-export {
-  siteRouter
-}
+export { siteRouter }

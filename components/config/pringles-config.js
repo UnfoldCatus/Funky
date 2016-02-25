@@ -1,22 +1,22 @@
-const SampleConfig  = {
+const PringlesConfig  = {
   //静态banner
   'Banner':[
     {
-      'imageUrl': '//image.jsbn.com/static/ypxs.jpg'
+      'imageUrl': '//image.jsbn.com/static/kpxs.png'
     }
   ],
   'ShotListItem':{
-    'type':'sample',
+    'type':'pringles',
     'baseUrl':'//cd.jsbn.com:7001/api/',
-    'dataUrl':'sample/samples_list'
+    'dataUrl':'pringles/pringles_list'
   },
   'MediaSlider':{
     'baseUrl':'//cd.jsbn.com:7001/api/',
-    'dataUrl':'adv/samples_top',
+    'dataUrl':'adv/pringles_top',
     'aspectRatio':'192:45',
     'height':450
   }
 }
 
 
-export { SampleConfig }
+export { PringlesConfig }

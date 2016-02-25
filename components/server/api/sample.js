@@ -23,7 +23,6 @@ const samleApi = {
     }
     let all = yield this.model
     this.count = all.length
-  console.log('count:',this.count);
     this.model = this.model.orderBy(r.desc('weight'))
 
     _.each(this.request.query, (v, k) => {

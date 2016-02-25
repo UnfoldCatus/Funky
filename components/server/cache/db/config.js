@@ -7,7 +7,7 @@ const config = {
     api_host: (process.env.NODE_ENV === 'production')?'120.25.104.171':'192.168.1.5',
     cache_time_check: 60000*3, // 缓存清理时间,30分钟
     rethink:{
-        db:'cache',
+        db:'venus',
         host:'127.0.0.1',
         port:'28015'
     },
@@ -20,13 +20,33 @@ const config = {
     // 客片数据
     PringlesPath:"/api/pringles/all",
     // 客片分季数据
-    PringlesSeasonPath:"/api/pringlesSeason/list",
+    PringlesSeasonPath:"/api/pringlesSeason/all",
+    // 纪实MV
+    RecordVideoPath:"/api/recordVideoSeason/all",
+    // 纪实MV分季
+    RecordVideoSeasonPath:"/api/recordVideoSeason/all",
     // 婚纱摄影团队
     // 婚纱纪实MV
     // 套系
     SuitePath:'/api/suite/all',
     // 实景案例
-    CasesPath:'/api/cases/all'
+    CasesPath:'/api/cases/all',
+    // 婚礼跟拍
+    FollowPhotoPath:'/api/followPhoto/all',
+    // 婚礼跟拍分季
+    FollowPhotoSeasonPath: '/api/followPhotoSeason/all',
+    // 婚礼视频
+    FollowVideoPath: '/api/followVideo/all',
+    // 婚礼视频分季
+    FollowVideoSeasonPath: '/api/followVideoSeason/all',
+    // 四大金刚-摄影师作品
+    F4PhotographerPath: '/api/f4/photographer',
+    // 四大金刚-摄像师作品
+    F4CameraPath: '/api/f4/camera',
+    // 四大金刚-化妆师作品
+    F4DresserPath: '/api/f4/dresser',
+    // 四大金刚-主持人作品
+    F4HostPath: '/api/f4/host'
 };
 
 const Thinky = require('thinky')(config.rethink);
