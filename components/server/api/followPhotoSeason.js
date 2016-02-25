@@ -18,9 +18,9 @@ const followPhotoSeasonApi = {
     // 获取分季节
     'get+/followPhotoSeason/:position': function*(next) {
         if (this.params.position === 'all') {
-            this.model = cases.filter({})
+            this.model = followPhotoSeason.filter({})
         } else {
-            this.model = cases.filter({
+            this.model = followPhotoSeason.filter({
                 position: this.params.position
             })
         }

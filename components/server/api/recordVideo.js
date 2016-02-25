@@ -1,28 +1,27 @@
 /**
- * Created by chenjianjun on 16/2/24.
+ * Created by chenjianjun on 16/2/25.
  */
-
-import followPhoto from '../cache/db/module/followPhoto.js'
+import recordVideo from '../cache/db/module/recordVideo.js'
 import _ from 'lodash'
 import env from '../cache/db/config.js'
 let r = env.Thinky.r
 
 // 婚庆策划--婚礼跟拍API
 
-const followPhotoApi = {
+const recordVideoApi = {
 
-    'get+/followPhoto/all': function*(next) {
-        this.model = followPhoto
-        this.APIKey = 'FollowPhoto'
+    'get+/recordVideo/all': function*(next) {
+        this.model = recordVideo
+        this.APIKey = 'RecordVideo'
         yield next
     },
 
     // 获取跟拍
-    'get+/followPhoto/:position': function*(next) {
+    'get+/recordVideo/:position': function*(next) {
         if (this.params.position === 'all') {
-            this.model = followPhoto.filter({})
+            this.model = recordVideo.filter({})
         } else {
-            this.model = followPhoto.filter({
+            this.model = recordVideo.filter({
                 position: this.params.position
             })
         }
@@ -45,19 +44,19 @@ const followPhotoApi = {
             }
         })
 
-        this.APIKey = 'FollowPhoto'
+        this.APIKey = 'RecordVideo'
         yield next
     },
 
     // 获取跟拍详情
-    'get+/followPhoto/detail/:id': function*(next) {
-        this.model = followPhoto.filter({
+    'get+/recordVideo/detail/:id': function*(next) {
+        this.model = recordVideo.filter({
             id: this.params.id
         })
 
-        this.APIKey = 'FollowPhoto'
+        this.APIKey = 'RecordVideo'
         yield next
     }
 
 }
-export default followPhotoApi
+export default recordVideoApi
