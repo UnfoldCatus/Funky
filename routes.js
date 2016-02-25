@@ -51,6 +51,7 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/pringlesSeason/list':'客片分季',
     '/api/hotel/all':'酒店',
     '/api/hotelType/all':'婚宴预订-酒店类型搜索条件',
+    '/api/hotelDistricts/all': '婚宴预订-酒店区域搜索条件',
     '/api/suite/all':'套系',
     '/api/cases/all':'实景案例',
     '/api/case3D/all':'3D案例',

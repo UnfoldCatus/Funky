@@ -5,6 +5,7 @@ var http = require('http');
 var env = require("./config.js");
 var Hotel = require("./module/hotel.js");
 var FilterConditionHotelType = require("./module/filterCondition/hotelType.js");
+var FilterConditionHotelDistricts = require("./module/filterCondition/hotelDistricts.js");
 var Adv = require("./module/adv.js");
 var Pringles = require("./module/pringles.js");
 var PringlesSeason = require("./module/pringlesSeason.js");
@@ -34,6 +35,7 @@ var models = {
   "Adv": Adv,
   "Hotel": Hotel,
   "FilterConditionHotelType": FilterConditionHotelType,
+  "FilterConditionHotelDistricts": FilterConditionHotelDistricts,
   "Sample": Sample,
   "Pringles": Pringles,
   "PringlesSeason": PringlesSeason,
@@ -61,6 +63,7 @@ var mSyncFlg = {
   "Adv": false,
   "Hotel": false,
   "FilterConditionHotelType": false,
+  "FilterConditionHotelDistricts": false,
   "Sample": false,
   "Pringles": false,
   "PringlesSeason": false,
@@ -216,7 +219,8 @@ exports.Instance = function() {
     'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason',
     'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host',
     'FilterConditionShootStyle', 'FilterConditionExterior',
-    'Case3D', 'FilterConditionHotelType', 'FilterConditionCaseStyle'
+    'Case3D', 'FilterConditionHotelType', 'FilterConditionHotelDistricts',
+    'FilterConditionCaseStyle'
   ];
   if (dbTool == null) {
     dbTool = new DBUtil();

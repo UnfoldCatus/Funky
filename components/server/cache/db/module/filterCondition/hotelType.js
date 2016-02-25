@@ -4,7 +4,7 @@
 var env=require("../../config");
 var type=env.Thinky.type;
 
-// 婚宴预订--摄影风格模型
+// 婚宴预订--酒店类型模型
 /*
  {
  "success": true,

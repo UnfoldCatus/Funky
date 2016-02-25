@@ -15,6 +15,8 @@ const config = {
     HotelPath:"/api/hotel/all",
     // 酒店类型
     FilterConditionHotelTypePath:'/api/hotelType/all',
+    // 酒店区域
+    FilterConditionHotelDistrictsPath: '/api/hotelDistricts/all',
     // 广告数据
     AdvPath:"/api/adv/all",
     // 样片数据

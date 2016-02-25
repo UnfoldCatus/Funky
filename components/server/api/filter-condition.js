@@ -4,6 +4,7 @@
 import filterConditionShootStyle from '../cache/db/module/filterCondition/shootStyle.js'
 import filterConditionExterior from '../cache/db/module/filterCondition/exterior.js'
 import filterConditionHotelType from '../cache/db/module/filterCondition/hotelType.js'
+import filterConditionHotelDistricts from '../cache/db/module/filterCondition/hotelDistricts.js'
 import _ from 'lodash'
 import env from '../cache/db/config.js'
 let r = env.Thinky.r
@@ -84,6 +85,32 @@ const filterConditionApi = {
     })
 
     this.APIKey = 'FilterConditionHotelType';
+    yield next
+  },
+
+  'get+/hotelDistricts/all':function*(next){ //酒店区域
+    if (this.params.position === 'all') {
+      this.model = filterConditionHotelDistricts.filter({})
+    } else {
+      this.model = filterConditionHotelDistricts.filter({
+        position: this.params.position
+      })
+    }
+    this.model = this.model.orderBy(r.desc('weight'))
+
+    _.each(this.request.query, (v, k) => {
+      if (k.indexOf('pageSize') !== -1) {
+        let limit = 0
+        limit = Number(this.request.query['pageIndex'] || '1') - 1
+        if (limit < 0) {
+          limit = 0
+        }
+        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
+        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+      }
+    })
+
+    this.APIKey = 'FilterConditionHotelDistricts';
     yield next
   }
 
