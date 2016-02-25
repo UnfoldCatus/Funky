@@ -26,7 +26,6 @@ var type=env.Thinky.type;
  "weddingId": 8,
  "weddingName": "惜•缘",
  "seasonId": 228,
- "seasonName": "2016年1月第二季",
  "position": "weddingvideo_list",
  "weight": 100
  }

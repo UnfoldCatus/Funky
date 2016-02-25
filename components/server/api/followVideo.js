@@ -19,9 +19,9 @@ const followVideoApi = {
     // 获取跟拍
     'get+/followVideo/:position': function*(next) {
         if (this.params.position === 'all') {
-            this.model = follow.filter({})
+            this.model = followVideo.filter({})
         } else {
-            this.model = follow.filter({
+            this.model = followVideo.filter({
                 position: this.params.position
             })
         }
@@ -50,7 +50,7 @@ const followVideoApi = {
 
     // 获取跟拍详情
     'get+/followVideo/detail/:id': function*(next) {
-        this.model = follow.filter({
+        this.model = followVideo.filter({
             id: this.params.id
         })
 

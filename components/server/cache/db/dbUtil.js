@@ -7,6 +7,8 @@ var Hotel = require("./module/hotel.js");
 var Adv = require("./module/adv.js");
 var Pringles = require("./module/pringles.js");
 var PringlesSeason = require("./module/pringlesSeason.js");
+var RecordVideo = require("./module/recordVideo.js");
+var RecordVideoSeason = require("./module/recordVideoSeason.js");
 var Sample = require("./module/sample.js");
 var Suite = require("./module/suite.js");
 var Cases = require("./module/cases.js");
@@ -29,6 +31,8 @@ var models = {
   "Sample": Sample,
   "Pringles": Pringles,
   "PringlesSeason": PringlesSeason,
+  "RecordVideo": RecordVideo,
+  "RecordVideoSeason": RecordVideoSeason,
   "Suite": Suite,
   "Cases":Cases,
   "FollowPhoto": FollowPhoto,
@@ -49,6 +53,8 @@ var mSyncFlg = {
   "Sample": false,
   "Pringles": false,
   "PringlesSeason": false,
+  "RecordVideo": false,
+  "RecordVideoSeason": false,
   "Suite": false,
   "Cases": false,
   "FollowPhoto": false,
@@ -190,9 +196,10 @@ DBUtil.prototype.isCacheDataUsable = function(moduleName) {
 };
 
 exports.Instance = function() {
-  var tasks = ['Adv'/*, 'Hotel', 'Sample', 'Pringles', 'PringlesSeason', 'Suite', 'Cases',
+  var tasks = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason',
+    'RecordVideo', 'RecordVideoSeason', 'Suite', 'Cases',
     'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason',
-    'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host'*/];
+    'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host'];
   if (dbTool == null) {
     dbTool = new DBUtil();
     // 程序启动取一次数据

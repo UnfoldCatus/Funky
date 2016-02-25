@@ -21,6 +21,10 @@ const config = {
     PringlesPath:"/api/pringles/all",
     // 客片分季数据
     PringlesSeasonPath:"/api/pringlesSeason/all",
+    // 纪实MV
+    RecordVideoPath:"/api/recordVideoSeason/all",
+    // 纪实MV分季
+    RecordVideoSeasonPath:"/api/recordVideoSeason/all",
     // 婚纱摄影团队
     // 婚纱纪实MV
     // 套系

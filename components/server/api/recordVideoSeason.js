@@ -1,26 +1,26 @@
 /**
- * Created by chenjianjun on 16/2/24.
+ * Created by chenjianjun on 16/2/25.
  */
-import followVideoSeason from '../cache/db/module/followVideoSeason.js'
+import recordVideoSeason from '../cache/db/module/recordVideoSeason.js'
 import _ from 'lodash'
 import env from '../cache/db/config'
 let r = env.Thinky.r
 
-// 婚庆策划--婚礼跟拍分季路由
-const followVideoSeasonApi = {
+// 婚庆策划--婚礼跟拍分季路由r
+const recordVideoSeasonApi = {
 
     'get+/followVideoSeason/all': function*(next) {
-        this.model = followVideoSeason
-        this.APIKey = 'FollowVideoSeason'
+        this.model = recordVideoSeason
+        this.APIKey = 'RecordVideoSeason'
         yield next
     },
 
     // 获取分季节
     'get+/followVideoSeason/:position': function*(next) {
         if (this.params.position === 'all') {
-            this.model = followVideoSeason.filter({})
+            this.model = recordVideoSeason.filter({})
         } else {
-            this.model = followVideoSeason.filter({
+            this.model = recordVideoSeason.filter({
                 position: this.params.position
             })
         }
@@ -38,8 +38,8 @@ const followVideoSeasonApi = {
             }
         })
 
-        this.APIKey = 'FollowVideoSeason'
+        this.APIKey = 'RecordVideoSeason'
         yield next
     }
 }
-export default followVideoSeasonApi
+export default recordVideoSeasonApi
