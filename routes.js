@@ -28,6 +28,7 @@ import photographerApi from './components/server/api/f4/photographer.js'
 import cameraApi from './components/server/api/f4/camera.js'
 import dresserApi from './components/server/api/f4/dresser.js'
 import hostApi from './components/server/api/f4/host.js'
+import wdyVideoApi from './components/server/api/wdyVideo.js'
 
   /**
     api 资源路由
@@ -66,7 +67,8 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/weddingCarLevel/all': '婚车租赁-档次搜索条件',
     '/api/weddingCarBrand/all': '婚车租赁-品牌搜索条件',
     '/api/suppliesBrand/all': '婚车用品-品牌搜索条件',
-    '/api/suppliesType/all': '婚车用品-类型搜索条件'
+    '/api/suppliesType/all': '婚车用品-类型搜索条件',
+    '/api/video/all': '微电影'
   }
 })
 
@@ -90,7 +92,8 @@ const apiRouterList = [
   photographerApi,
   cameraApi,
   dresserApi,
-  hostApi
+  hostApi,
+  wdyVideoApi
 ]
 _.each(apiRouterList,(route,index)=>{
   _.each(route,(value,key)=>{

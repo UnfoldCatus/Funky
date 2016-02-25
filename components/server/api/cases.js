@@ -52,7 +52,7 @@ const casesApi = {
     // 获取案例详情
     'get+/cases/detail/:id': function*(next) {
         this.model = cases.filter({
-            id: this.params.id
+            id: parseInt(this.params.id)
         })
 
         this.APIKey = 'Cases'
