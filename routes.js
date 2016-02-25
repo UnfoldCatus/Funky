@@ -54,6 +54,7 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/suite/all':'套系',
     '/api/cases/all':'实景案例',
     '/api/case3D/all':'3D案例',
+    '/api/caseStyle/all':'婚庆定制-案例风格搜索条件',
     '/api/followPhoto/all':'婚礼跟拍',
     '/api/followPhotoSeason/all':'婚礼跟拍分季',
     '/api/followVideo/all': '婚礼视频',
