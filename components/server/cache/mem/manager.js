@@ -16,9 +16,12 @@ var myCache = cache.createCache("LFU", conf.cache_max_size);
 */
 exports.getData = function(url, path, cb)
 {
+
+
+
     var value = myCache.get(url);
     if (value) { //如果能从缓存拿， 就把数据交给回调
-        cb(200, value);
+        cb(null/*200*/, value);
     }
     else
     {
@@ -39,9 +42,10 @@ exports.getData = function(url, path, cb)
                 var json = JSON.parse(chunks);
                 if(res.statusCode == 200 && json.code == 200) {
                     // 设置缓存时间为5分钟
-                    myCache.set(url, chunks, conf.cache_timeout);
+                    myCache.set(url, json, conf.cache_timeout);
                 }
-                cb(res.statusCode, chunks);
+                // cb(res.statusCode, chunks);
+                cb(null, json);
             });
             res.on('error', function (e) {
                 var data = {
@@ -52,8 +56,9 @@ exports.getData = function(url, path, cb)
                     count:0
                 };
 
-                var str = JSON.stringify(data);
-                cb(404, str);
+                // var str = JSON.stringify(data);
+                // cb(404, str);
+                cb(null,data)
             });
         });
 
@@ -71,8 +76,9 @@ exports.getData = function(url, path, cb)
                 count:0
             };
 
-            var str = JSON.stringify(data);
-            cb(404, str);
+            // var str = JSON.stringify(data);
+            // cb(404, str);
+            cb(null,data)
 
         }).on('timeout',function(e) {
             req.res && req.res.abort();
@@ -85,8 +91,9 @@ exports.getData = function(url, path, cb)
                 count:0
             };
 
-            var str = JSON.stringify(data);
-            cb(404, str);
+            // var str = JSON.stringify(data);
+            // cb(404, str);
+            cb(null,data)
         });
 
         req.end();
