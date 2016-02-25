@@ -18,6 +18,7 @@ import recordVideoApi from './components/server/api/recordVideo.js'
 import recordVideoSeasonApi from './components/server/api/recordVideoSeason.js'
 
 import casesApi from './components/server/api/cases.js'
+import case3DApi from './components/server/api/case3D.js'
 import followPhotoSeasonApi from './components/server/api/followPhotoSeason.js'
 import followPhotoApi from './components/server/api/followPhoto.js'
 import pringlesSeasonApi from './components/server/api/pringlesSeason.js'
@@ -49,8 +50,10 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/pringles/all':'客片',
     '/api/pringlesSeason/list':'客片分季',
     '/api/hotel/all':'酒店',
+    '/api/hotelType/all':'婚宴预订-酒店类型搜索条件',
     '/api/suite/all':'套系',
     '/api/cases/all':'实景案例',
+    '/api/case3D/all':'3D案例',
     '/api/followPhoto/all':'婚礼跟拍',
     '/api/followPhotoSeason/all':'婚礼跟拍分季',
     '/api/followVideo/all': '婚礼视频',
@@ -77,6 +80,7 @@ const apiRouterList = [
   recordVideoApi,
   recordVideoSeasonApi,
   casesApi,
+  case3DApi,
   followPhotoApi,
   followVideoApi,
   followPhotoSeasonApi,
