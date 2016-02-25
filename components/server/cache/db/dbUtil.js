@@ -26,11 +26,11 @@ var F4Photographer = require("./module/f4/photographer.js");
 var F4Camera = require("./module/f4/camera.js");
 var F4Dresser = require("./module/f4/dresser.js");
 var F4Host = require("./module/f4/host.js");
-
 var FilterConditionWeddingCarModels = require("./module/filterCondition/weddingCarModels.js");
 var FilterConditionWeddingCarLevel = require("./module/filterCondition/weddingCarLevel.js");
 var FilterConditionWeddingCarBrand = require("./module/filterCondition/weddingCarBrand.js");
-
+var FilterConditionSuppliesBrand = require("./module/filterCondition/suppliesBrand.js");
+var FilterConditionSuppliesType = require("./module/filterCondition/suppliesType.js");
 
 var qs = require('querystring');
 var r = env.Thinky.r;
@@ -63,7 +63,9 @@ var models = {
   "F4Host": F4Host,
   "FilterConditionWeddingCarModels": FilterConditionWeddingCarModels,
   "FilterConditionWeddingCarLevel": FilterConditionWeddingCarLevel,
-  "FilterConditionWeddingCarBrand": FilterConditionWeddingCarBrand
+  "FilterConditionWeddingCarBrand": FilterConditionWeddingCarBrand,
+  "FilterConditionSuppliesBrand": FilterConditionSuppliesBrand,
+  "FilterConditionSuppliesType": FilterConditionSuppliesType
 
 }
 
@@ -91,7 +93,12 @@ var mSyncFlg = {
   "F4Photographer": false,
   "F4Camera": false,
   "F4Dresser": false,
-  "F4Host": false
+  "F4Host": false,
+  "FilterConditionWeddingCarModels": false,
+  "FilterConditionWeddingCarLevel": false,
+  "FilterConditionWeddingCarBrand": false,
+  "FilterConditionSuppliesBrand": false,
+  "FilterConditionSuppliesType": false
 };
 
 //查询工具类
@@ -230,7 +237,7 @@ exports.Instance = function() {
     'FilterConditionShootStyle', 'FilterConditionExterior',
     'Case3D', 'FilterConditionHotelType', 'FilterConditionHotelDistricts',
     'FilterConditionCaseStyle', 'FilterConditionWeddingCarModels', 'FilterConditionWeddingCarLevel',
-    'FilterConditionWeddingCarBrand'
+    'FilterConditionWeddingCarBrand', 'FilterConditionSuppliesBrand', 'FilterConditionSuppliesType'
   ];
   if (dbTool == null) {
     dbTool = new DBUtil();

@@ -9,6 +9,8 @@ import filterConditionHotelDistricts from '../cache/db/module/filterCondition/ho
 import filterConditionWeddingCarModels from '../cache/db/module/filterCondition/weddingCarModels.js'
 import filterConditionWeddingCarLevel from '../cache/db/module/filterCondition/weddingCarLevel.js'
 import filterConditionWeddingCarBrand from '../cache/db/module/filterCondition/weddingCarBrand.js'
+import filterConditionSuppliesBrand from '../cache/db/module/filterCondition/suppliesBrand.js'
+import filterConditionSuppliesType from '../cache/db/module/filterCondition/suppliesType.js'
 
 import _ from 'lodash'
 import env from '../cache/db/config.js'
@@ -194,6 +196,58 @@ const filterConditionApi = {
     })
 
     this.APIKey = 'FilterConditionWeddingCarBrand';
+    yield next
+  },
+
+  'get+/suppliesBrand/all':function*(next){ // 婚礼用品品牌
+    if (this.params.position === 'all') {
+      this.model = filterConditionSuppliesBrand.filter({})
+    } else {
+      this.model = filterConditionSuppliesBrand.filter({
+        position: this.params.position
+      })
+    }
+    this.model = this.model.orderBy(r.desc('weight'))
+
+    _.each(this.request.query, (v, k) => {
+      if (k.indexOf('pageSize') !== -1) {
+        let limit = 0
+        limit = Number(this.request.query['pageIndex'] || '1') - 1
+        if (limit < 0) {
+          limit = 0
+        }
+        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
+        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+      }
+    })
+
+    this.APIKey = 'FilterConditionSuppliesBrand';
+    yield next
+  },
+
+  'get+/suppliesType/all':function*(next){ // 婚礼用品类型
+    if (this.params.position === 'all') {
+      this.model = filterConditionSuppliesType.filter({})
+    } else {
+      this.model = filterConditionSuppliesType.filter({
+        position: this.params.position
+      })
+    }
+    this.model = this.model.orderBy(r.desc('weight'))
+
+    _.each(this.request.query, (v, k) => {
+      if (k.indexOf('pageSize') !== -1) {
+        let limit = 0
+        limit = Number(this.request.query['pageIndex'] || '1') - 1
+        if (limit < 0) {
+          limit = 0
+        }
+        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
+        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+      }
+    })
+
+    this.APIKey = 'FilterConditionSuppliesType';
     yield next
   }
 

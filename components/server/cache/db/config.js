@@ -62,7 +62,11 @@ const config = {
     // 婚车租赁--婚车档次搜索条件内容
     FilterConditionWeddingCarLevelPath: '/api/weddingCarLevel/all',
     // 婚车租赁--婚车品牌搜索条件内容
-    FilterConditionWeddingCarBrandPath: '/api/weddingCarBrand/all'
+    FilterConditionWeddingCarBrandPath: '/api/weddingCarBrand/all',
+    // 婚车用品--用品品牌搜索条件内容
+    FilterConditionSuppliesBrandPath: '/api/suppliesBrand/all',
+    // 婚车用品--用品类型搜索条件内容
+    FilterConditionSuppliesTypePath: '/api/suppliesType/all'
 };
 
 const Thinky = require('thinky')(config.rethink);

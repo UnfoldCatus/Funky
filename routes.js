@@ -16,7 +16,6 @@ import advApi from './components/server/api/adv'
 import suiteApi from './components/server/api/suite'
 import recordVideoApi from './components/server/api/recordVideo.js'
 import recordVideoSeasonApi from './components/server/api/recordVideoSeason.js'
-
 import casesApi from './components/server/api/cases.js'
 import case3DApi from './components/server/api/case3D.js'
 import followPhotoSeasonApi from './components/server/api/followPhotoSeason.js'
@@ -25,15 +24,10 @@ import pringlesSeasonApi from './components/server/api/pringlesSeason.js'
 import followVideoApi from './components/server/api/followVideo.js'
 import followVideoSeasonApi from './components/server/api/followVideoSeason.js'
 import filterConditionApi from './components/server/api/filter-condition.js'
-
 import photographerApi from './components/server/api/f4/photographer.js'
 import cameraApi from './components/server/api/f4/camera.js'
 import dresserApi from './components/server/api/f4/dresser.js'
 import hostApi from './components/server/api/f4/host.js'
-
-// 纪实MV
-// 纪实MV分季
-
 
   /**
     api 资源路由
@@ -70,7 +64,9 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/recordVideoSeason/all': '婚纱摄影-纪实MV分季',
     '/api/weddingCarModels/all': '婚车租赁-型号搜索条件',
     '/api/weddingCarLevel/all': '婚车租赁-档次搜索条件',
-    '/api/weddingCarBrand/all': '婚车租赁-品牌搜索条件'
+    '/api/weddingCarBrand/all': '婚车租赁-品牌搜索条件',
+    '/api/suppliesBrand/all': '婚车用品-品牌搜索条件',
+    '/api/suppliesType/all': '婚车用品-类型搜索条件'
   }
 })
 
