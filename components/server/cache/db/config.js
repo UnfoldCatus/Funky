@@ -25,10 +25,12 @@ const config = {
     RecordVideoPath:"/api/recordVideoSeason/all",
     // 纪实MV分季
     RecordVideoSeasonPath:"/api/recordVideoSeason/all",
-    // 婚纱摄影团队
-    // 婚纱纪实MV
     // 套系
     SuitePath:'/api/suite/all',
+    // 摄影风格
+    FilterConditionShootStylePath:'/api/shootStyle/all',
+    // 摄影外景地
+    FilterConditionExteriorPath:'/api/exterior/all',
     // 实景案例
     CasesPath:'/api/cases/all',
     // 婚礼跟拍
