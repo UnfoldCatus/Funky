@@ -183,7 +183,7 @@ siteRouter.get('/cases', function* index(next) {
   })
   /** 婚礼跟拍 **/
 siteRouter.get('/weddingpat', function* index(next) {
-    yield this.render('modules/default', renderOption('weddingpat', '/weddingpat', '/scheme'))
+    yield this.render('modules/default', renderOption('wedding-pat', '/weddingpat', '/scheme'))
   })
   /** 婚礼视频 **/
 siteRouter.get('/weddingvideo', function* index(next) {
