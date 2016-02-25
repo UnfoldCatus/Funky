@@ -12,7 +12,7 @@ import _ from 'lodash'
     <Banner />
     <MultiBanner />
     <Banner />
-    <SamplesMash />
+    <ShotListItem />
     <Banner />
     <Banner />
   </Shot>
@@ -67,7 +67,7 @@ const Shot = React.createClass({
     return (
       <div className="hssy-home-view">
         <div className='custom-banner custom-container-banner container'>
-          <MediaSlider />
+          <MediaSlider resourceLink='adv/shot_top' />
         </div>
         <div className='layout-center-box'>
           <div className='adv-1 shot-adv mgb30'>
@@ -77,7 +77,7 @@ const Shot = React.createClass({
           <div className="tit-img-zxmz mgb30 mgt60">
             <a className="tit-img-more" href="/sample"></a>
           </div>
-          <ShotListItem {...this.state.list} type='sample' />
+          <ShotListItem {...ShotConfig['ShotListItem']} />
           <div className="tit-img-sys mgb30 mgt60">
             <a className="tit-img-detail" style={{display:'none'}} href="#/photographers"></a>
           </div>
@@ -93,21 +93,7 @@ const Shot = React.createClass({
         </div>
       </div>
     )
-  },
-  getInitialState() {
-    return {
-      list:{
-        data:[
-          { contentName:'test' },
-          { contentName:'test' },
-          { contentName:'test' },
-          { contentName:'test' },
-          { contentName:'test' },
-          { contentName:'test' }
-        ]
-      }
-    };
-  },
+  }
 })
 
 export { Shot }

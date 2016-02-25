@@ -190,9 +190,9 @@ DBUtil.prototype.isCacheDataUsable = function(moduleName) {
 };
 
 exports.Instance = function() {
-  var tasks = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason', 'Suite', 'Cases',
+  var tasks = ['Adv'/*, 'Hotel', 'Sample', 'Pringles', 'PringlesSeason', 'Suite', 'Cases',
     'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason',
-    'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host'];
+    'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host'*/];
   if (dbTool == null) {
     dbTool = new DBUtil();
     // 程序启动取一次数据

@@ -1,11 +1,59 @@
 import React, { PropTypes } from 'react'
+import _ from 'lodash'
+import { MediaItem } from './media-item.jsx'
 
 const MediaSlider = React.createClass({
   render () {
+    let params = this.props
     return (
-      <h1>Media Slider</h1>
+      <ul className='slider'>
+        {
+          _.map(this.state.data,(v,k)=>{
+            return (
+              <li className='item transition-opacity-1' key={k} >
+                <MediaItem {...params} mediaUrl={v.coverUrlWeb} />
+              </li>
+            )
+          })
+        }
+        <div className='point-box'>
+          {
+            _.map(this.state.data,(v,k)=>{
+              return (
+                <li key={k} className='point'></li>
+              )
+            })
+          }
+        </div>
+      </ul>
     )
+  },
+  propTypes: {
+    dataUrl:React.PropTypes.string
+  },
+  getDefaultProps(){
+    return {
+      dataUrl:undefined
+    }
+  },
+  getInitialState() {
+    return {
+      data: [
+        {'coverUrlWeb':'//placehold.it/1920x450'}
+      ]
+    }
+  },
+  componentDidMount() {
+    if (this.props.dataUrl !== undefined) {
+      fetch(this.props.baseUrl + this.props.dataUrl)
+      .then(res => {return res.json()})
+      .then(j=>{
+        this.setState({ data:j.data },()=>{
+          $('#slider_top').Slider()
+        })
+      })
+    }
   }
 })
 
-export { MediaSlider } 
+export { MediaSlider }

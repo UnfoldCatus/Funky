@@ -21,7 +21,8 @@ import followPhotoApi from './components/server/api/followPhoto.js'
 import pringlesSeasonApi from './components/server/api/pringlesSeason.js'
 import followVideoApi from './components/server/api/followVideo.js'
 import followVideoSeasonApi from './components/server/api/followVideoSeason.js'
-  /**
+import filterConditionApi from './components/server/api/filter-condition.js'
+   /**
     api 资源路由
   **/
 export const apiRouter = new Router({
@@ -41,7 +42,9 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/followPhoto/all':'婚礼跟拍',
     '/api/followPhotoSeason/all':'婚礼跟拍分季',
     '/api/followVideo/all': '婚礼视频',
-    '/api/followVideoSeason/all': '婚礼视频分季'
+    '/api/followVideoSeason/all': '婚礼视频分季',
+    '/api/exterior/all':'外景搜索条件',
+    '/api/shootStyle/all':'风格搜索条件'
   }
 })
 
@@ -57,7 +60,8 @@ const apiRouterList = [
   followPhotoApi,
   followVideoApi,
   followPhotoSeasonApi,
-  followVideoSeasonApi
+  followVideoSeasonApi,
+  filterConditionApi
 ]
 _.each(apiRouterList,(route,index)=>{
   _.each(route,(value,key)=>{

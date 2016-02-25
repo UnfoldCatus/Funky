@@ -25,9 +25,9 @@ const SampleList = React.createClass({
     return (
       <div className="samples-list">
         <div className="screening-results">
-          <span className="find"><span>找到作品</span><b>{this.props.totalPage}</b><span>套</span></span>
+          <span className="find"><span>找到作品</span><b className='J_Count'>{this.props.totalPage}</b><span>套</span></span>
         </div>
-        <ShotListItem {...this.props} type='sample' />
+        <ShotListItem {...SampleConfig['ShotListItem']} />
       </div>
     )
   },
@@ -36,15 +36,7 @@ const SampleList = React.createClass({
   },
   getDefaultProps(){
     return {
-      totalPage:6,
-      data:[
-        { contentName:'test' },
-        { contentName:'test' },
-        { contentName:'test' },
-        { contentName:'test' },
-        { contentName:'test' },
-        { contentName:'test' }
-    ]
+      totalPage:6
     }
   }
 })
@@ -55,7 +47,7 @@ const Sample = React.createClass({
       <div className='samples-view ypxs-view'>
         <div className="bannar-all-box">
           <div id="slider_top" className="slider-box bannar" style={{height:'450px'}}>
-            <MediaSlider />
+            <MediaSlider {...SampleConfig['MediaSlider']} />
           </div>
         </div>
         <div className="layout-center-box">
@@ -68,7 +60,7 @@ const Sample = React.createClass({
             <ListFilter title={'风格'} name={'styleName'} klass={'ico-1-js ico-1-2-js'} valueKey={['styleId']} conditions={this.state.styles} sorterKey={['styleId']} />
             <ListFilter title={'场景'} name={'addressName'} klass={'ico-1-js ico-1-3-js'} valueKey={['addressId']} conditions={this.state.scenes} sorterKey={['addressId']} />
           </div>
-          <SampleList {...this.state.list}/>
+          <SampleList />
           <div onClick={this.loadMore} id="J_MoreButton">
             <div className="more-btn"><span>点击查看更多</span></div>
           </div>
@@ -80,17 +72,11 @@ const Sample = React.createClass({
     return (
       {
         styles:[],
-        scenes:[],
-        list:[]
+        scenes:[]
       }
     )
-  },
-
-  /*只能被客户端调用*/
-  componentDidMount() {
-    fetch('/api/').then(res => {
-      return res.json()
-    }).then(data => console.log(data))
   }
+
+
 })
 export { Sample }

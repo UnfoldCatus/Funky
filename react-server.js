@@ -138,7 +138,7 @@ ReactServer.use(dataFetchMiddleWare)
 ReactServer.use(siteRouter.routes()) // 网站路由
 
 
-
+console.log(process.env.NODE_ENV);
 
 /**服务器异常处理**/
 if (process.env.NODE_ENV === 'test') {

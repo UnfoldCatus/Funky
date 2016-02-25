@@ -8,11 +8,11 @@ const ShotListItem = React.createClass({
     return (
       <ul className="list-recommend">
           {
-            _.map(this.props.data,(v,k)=>{
+            _.map(this.state.data,(v,k)=>{
               return (
                 <li className="item-box" key={k}>
                   <a className='img-box' href='/' target='_blank'>
-                    <MediaItem  aspectRatio={'2:3'} width={380} mediaUrl={'//placehold.it/380x570'} />
+                    <MediaItem  aspectRatio={'2:3'} width={380} mediaUrl={v.coverUrlWeb} />
                     <div className="layer-box" />
                     <MediaLayer  {...v} type={type} />
                   </a>
@@ -24,12 +24,28 @@ const ShotListItem = React.createClass({
     )
   },
   propTypes: {
-    data: React.PropTypes.array
+    dataUrl:React.PropTypes.string
   },
   getDefaultProps(){
     return {
+      dataUrl:undefined
+    }
+  },
+  getInitialState() {
+    return {
       data:[]
     }
+  },
+  componentDidMount() {
+    if (this.props.dataUrl !== undefined) {
+      fetch(this.props.baseUrl + this.props.dataUrl)
+      .then(res => {return res.json()})
+      .then(j=>{
+        this.setState({ data:j.data })
+        $('.J_Count').html(j.count)
+      })
+    }
+
   }
 })
 
