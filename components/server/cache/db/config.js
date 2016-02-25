@@ -66,7 +66,9 @@ const config = {
     // 婚车用品--用品品牌搜索条件内容
     FilterConditionSuppliesBrandPath: '/api/suppliesBrand/all',
     // 婚车用品--用品类型搜索条件内容
-    FilterConditionSuppliesTypePath: '/api/suppliesType/all'
+    FilterConditionSuppliesTypePath: '/api/suppliesType/all',
+    // 微电影
+    WdyVideoPath: '/api/video/all'
 };
 
 const Thinky = require('thinky')(config.rethink);

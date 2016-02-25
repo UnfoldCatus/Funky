@@ -46,7 +46,7 @@ const cases3DApi = {
     // 获取3D案例详情
     'get+/case3D/detail/:id': function*(next) {
         this.model = case3D.filter({
-            id: this.params.id
+            id: parseInt(this.params.id)
         })
 
         this.APIKey = 'Cases3D'

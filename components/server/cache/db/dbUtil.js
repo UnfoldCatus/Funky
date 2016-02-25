@@ -32,6 +32,8 @@ var FilterConditionWeddingCarBrand = require("./module/filterCondition/weddingCa
 var FilterConditionSuppliesBrand = require("./module/filterCondition/suppliesBrand.js");
 var FilterConditionSuppliesType = require("./module/filterCondition/suppliesType.js");
 
+var WdyVideo = require("./module/wdyVideo.js");
+
 var qs = require('querystring');
 var r = env.Thinky.r;
 var _ = require('lodash')
@@ -65,7 +67,8 @@ var models = {
   "FilterConditionWeddingCarLevel": FilterConditionWeddingCarLevel,
   "FilterConditionWeddingCarBrand": FilterConditionWeddingCarBrand,
   "FilterConditionSuppliesBrand": FilterConditionSuppliesBrand,
-  "FilterConditionSuppliesType": FilterConditionSuppliesType
+  "FilterConditionSuppliesType": FilterConditionSuppliesType,
+  "WdyVideo": WdyVideo
 
 }
 
@@ -98,7 +101,8 @@ var mSyncFlg = {
   "FilterConditionWeddingCarLevel": false,
   "FilterConditionWeddingCarBrand": false,
   "FilterConditionSuppliesBrand": false,
-  "FilterConditionSuppliesType": false
+  "FilterConditionSuppliesType": false,
+  "WdyVideo": false
 };
 
 //查询工具类
@@ -237,7 +241,8 @@ exports.Instance = function() {
     'FilterConditionShootStyle', 'FilterConditionExterior',
     'Case3D', 'FilterConditionHotelType', 'FilterConditionHotelDistricts',
     'FilterConditionCaseStyle', 'FilterConditionWeddingCarModels', 'FilterConditionWeddingCarLevel',
-    'FilterConditionWeddingCarBrand', 'FilterConditionSuppliesBrand', 'FilterConditionSuppliesType'
+    'FilterConditionWeddingCarBrand', 'FilterConditionSuppliesBrand', 'FilterConditionSuppliesType',
+    'WdyVideo'
   ];
   if (dbTool == null) {
     dbTool = new DBUtil();

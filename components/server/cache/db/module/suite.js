@@ -5,7 +5,7 @@
 var env=require("../config");
 var type=env.Thinky.type;
 
-// 样片模型
+// 套系模型
 const Suite = env.Thinky.createModel('suite', {
     // Id
     id: type.number(),
