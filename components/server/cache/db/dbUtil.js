@@ -11,6 +11,8 @@ var RecordVideo = require("./module/recordVideo.js");
 var RecordVideoSeason = require("./module/recordVideoSeason.js");
 var Sample = require("./module/sample.js");
 var Suite = require("./module/suite.js");
+var FilterConditionShootStyle = require("./module/filterCondition/shootStyle.js");
+var FilterConditionExterior = require("./module/filterCondition/exterior.js");
 var Cases = require("./module/cases.js");
 var FollowPhoto = require("./module/followPhoto.js");
 var FollowPhotoSeason = require("./module/followPhotoSeason.js");
@@ -34,6 +36,8 @@ var models = {
   "RecordVideo": RecordVideo,
   "RecordVideoSeason": RecordVideoSeason,
   "Suite": Suite,
+  "FilterConditionShootStyle": FilterConditionShootStyle,
+  "FilterConditionExterior": FilterConditionExterior,
   "Cases":Cases,
   "FollowPhoto": FollowPhoto,
   "FollowPhotoSeason": FollowPhotoSeason,
@@ -56,6 +60,8 @@ var mSyncFlg = {
   "RecordVideo": false,
   "RecordVideoSeason": false,
   "Suite": false,
+  "FilterConditionShootStyle": false,
+  "FilterConditionExterior": false,
   "Cases": false,
   "FollowPhoto": false,
   "FollowPhotoSeason": false,
@@ -199,7 +205,9 @@ exports.Instance = function() {
   var tasks = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason',
     'RecordVideo', 'RecordVideoSeason', 'Suite', 'Cases',
     'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason',
-    'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host'];
+    'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host',
+    'FilterConditionShootStyle', 'FilterConditionExterior'
+  ];
   if (dbTool == null) {
     dbTool = new DBUtil();
     // 程序启动取一次数据
