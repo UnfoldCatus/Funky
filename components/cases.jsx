@@ -54,11 +54,11 @@ const Cases = React.createClass({
     return (
       <div className='sjal-view'>
         <div className='layout-center-box'>
-          <div className='slider-box bannar mgb30'>
-            <MediaSlider />
+          <div className='slider-box bannar mgb30' id="slider_top">
+            <MediaSlider {...CasesConfig['MediaSlider']} />
           </div>
           <Banner {...CasesConfig['Banner'][0]} />
-          <CasesCategory {...CasesConfig['CasesCategory']}/>
+          <CasesCategory {...CasesConfig['CasesCategory']} />
           <div className='J_FilterCtrl' >
             <ListFilter title={'风格'} name={'styleName'} klass={'ico-1-js ico-1-2-js'} valueKey={['styleId']} conditions={this.state.styles} sorterKey={['styleId']} />
             <ListFilter title={'价位'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']} conditions={this.state.prices} sorterKey={['minPrice','maxPrice']} />
