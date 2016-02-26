@@ -26,6 +26,7 @@ var F4Photographer = require("./module/f4/photographer.js");
 var F4Camera = require("./module/f4/camera.js");
 var F4Dresser = require("./module/f4/dresser.js");
 var F4Host = require("./module/f4/host.js");
+var F4Team = require("./module/f4/team.js");
 var FilterConditionCarModels = require("./module/filterCondition/carModels.js");
 var FilterConditionCarLevel = require("./module/filterCondition/carLevel.js");
 var FilterConditionCarBrand = require("./module/filterCondition/carBrand.js");
@@ -66,6 +67,7 @@ var models = {
   "F4Camera": F4Camera,
   "F4Dresser": F4Dresser,
   "F4Host": F4Host,
+  "F4Team": F4Team,
   "FilterConditionCarModels": FilterConditionCarModels,
   "FilterConditionCarLevel": FilterConditionCarLevel,
   "FilterConditionCarBrand": FilterConditionCarBrand,
@@ -103,6 +105,7 @@ var mSyncFlg = {
   "F4Camera": false,
   "F4Dresser": false,
   "F4Host": false,
+  "F4Team": false,
   "FilterConditionCarModels": false,
   "FilterConditionCarLevel": false,
   "FilterConditionCarBrand": false,
@@ -246,7 +249,7 @@ exports.Instance = function() {
   var tasks = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason',
     'RecordVideo', 'RecordVideoSeason', 'Suite', 'Cases',
     'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason',
-    'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host',
+    'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host', 'F4Team',
     'FilterConditionShootStyle', 'FilterConditionExterior',
     'Case3D', 'FilterConditionHotelType', 'FilterConditionHotelDistrict',
     'FilterConditionCaseStyle', 'FilterConditionCarModels', 'FilterConditionCarLevel',

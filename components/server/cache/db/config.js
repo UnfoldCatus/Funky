@@ -57,6 +57,8 @@ const config = {
     F4DresserPath: '/api/f4/dresser',
     // 四大金刚-主持人作品
     F4HostPath: '/api/f4/host',
+    // 四大金刚-特色项目作品
+    F4TeamPath: '/api/f4Team',
     // 婚车租赁--婚车型号搜索条件内容
     FilterConditionCarModelsPath: '/api/carModels/all',
     // 婚车租赁--婚车档次搜索条件内容c

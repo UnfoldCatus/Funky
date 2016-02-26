@@ -15,6 +15,7 @@ import f4Camera from '../cache/db/module/f4/camera.js'
 import f4Dresser from '../cache/db/module/f4/dresser.js'
 import f4Host from '../cache/db/module/f4/host.js'
 import f4Photographer from '../cache/db/module/f4/photographer.js'
+import f4Team from '../cache/db/module/f4/team.js'
 
 // 婚礼策划资源API
 const weddingApi = {
@@ -385,7 +386,37 @@ const weddingApi = {
 
         this.APIKey = 'F4Photographer'
         yield next
-    }
+    },
+
+    // 四大金刚作品——特色项目
+    'get+/api/f4Team': function*(next) {
+        this.model = f4Team.filter({
+            position: this.params.position
+        })
+
+        _.each(this.request.query, (v, k) => {
+            if (k.indexOf('pageSize') !== -1) {
+                let limit = 0
+                limit = Number(this.request.query['pageIndex'] || '1') - 1
+                if (limit < 0) {
+                    limit = 0
+                }
+                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
+                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+            } else if(k.indexOf('minPrice') !== -1) {
+                // 最低价格
+                this.model = this.model.filter(r.row('price').gt(Number(this.request.query['minPrice'])));
+            } else if(k.indexOf('maxPrice') !== -1) {
+                // 最高价格
+                this.model = this.model.filter(r.row('price').lt(Number(this.request.query['maxPrice'])));
+            }
+        })
+
+        this.model = this.model.orderBy(function (row) { return r.random(); });
+
+        this.APIKey = 'F4Team'
+        yield next
+    },
 
 }
 

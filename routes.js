@@ -49,6 +49,7 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/f4/camera': '四大金刚-摄像师作品',
     '/api/f4/dresser': '四大金刚-化妆师作品',
     '/api/f4/host': '四大金刚-主持师作品',
+    '/api/f4Team': '四大金刚-特色项目作品',
     '/api/recordVideo/all': '婚纱摄影-纪实MV',
     '/api/recordVideoSeason/all': '婚纱摄影-纪实MV分季',
     '/api/carModels/all': '婚车租赁-型号搜索条件',
