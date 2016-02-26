@@ -389,7 +389,7 @@ const weddingApi = {
     },
 
     // 四大金刚作品——特色项目
-    'get+/api/f4Team': function*(next) {
+    'get+/api/f4/team': function*(next) {
         this.model = f4Team.filter({
             position: this.params.position
         })
