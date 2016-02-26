@@ -1,27 +1,26 @@
 /**
- * Created by chenjianjun on 16/2/24.
+ * Created by chenjianjun on 16/2/26.
  */
-import followVideo from '../cache/db/module/followVideo.js'
 import _ from 'lodash'
-import env from '../cache/db/config.js'
+import env from '../cache/db/config'
 let r = env.Thinky.r
 
-// 婚庆策划--婚礼跟拍API
+import weddingClass from '../cache/db/module/weddingClass.js'
 
-const followVideoApi = {
+// 婚礼课堂API
+const weddingClassApi = {
 
-    'get+/followVideo/all': function*(next) {
-        this.model = followVideo
-        this.APIKey = 'FollowVideo'
+    // 获取婚礼课堂列表
+    'get+/weddingroom/all': function*(next) {
+        this.model = weddingClass
+        this.APIKey = 'WeddingClass'
         yield next
     },
-
-    // 获取跟拍
-    'get+/followVideo/:position': function*(next) {
+    'get+/weddingroom/:position': function*(next) {
         if (this.params.position === 'all') {
-            this.model = followVideo.filter({})
+            this.model = weddingClass.filter({})
         } else {
-            this.model = followVideo.filter({
+            this.model = weddingClass.filter({
                 position: this.params.position
             })
         }
@@ -36,27 +35,27 @@ const followVideoApi = {
                 }
                 this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
                 this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-            } else if(k.indexOf('seasonId') !== -1) {
-                // 分季ID
+            } else if(k.indexOf('moduleTypeId') !== -1) {
+                // 模块类型
                 this.model = this.model.filter({
-                    seasonId: Number(this.request.query['seasonId'])
+                    moduleType: parseInt(this.request.query["moduleTypeId"])
                 });
             }
         })
 
-        this.APIKey = 'FollowVideo'
+        this.APIKey = 'WeddingClass'
         yield next
     },
-
-    // 获取跟拍详情
-    'get+/followVideo/detail/:id': function*(next) {
-        this.model = followVideo.filter({
+    // 获取婚礼课堂详情
+    'get+/weddingroom/detail/:id': function*(next) {
+        this.model = weddingClass.filter({
             id: parseInt(this.params.id)
         })
 
-        this.APIKey = 'FollowVideo'
+        this.APIKey = 'WeddingClass'
         yield next
     }
 
 }
-export default followVideoApi
+
+export default weddingClassApi

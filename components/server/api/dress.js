@@ -1,27 +1,27 @@
 /**
- * Created by chenjianjun on 16/2/25.
+ * Created by chenjianjun on 16/2/26.
  */
-import case3D from '../cache/db/module/case3D.js'
+import dress from '../cache/db/module/car.js'
 import _ from 'lodash'
 import env from '../cache/db/config'
 let r = env.Thinky.r
 
-// 婚庆策划--3D案例API
+// 婚纱礼服
 
-const cases3DApi = {
+const dressApi = {
 
-    'get+/case3D/all': function*(next) {
-        this.model = case3D
-        this.APIKey = 'Cases3D'
+    'get+/dress/all': function*(next) {
+        this.model = car
+        this.APIKey = 'Dress'
         yield next
     },
 
-    // 获取3D案例
-    'get+/case3D/:position': function*(next) {
+    // 获取案例
+    'get+/dress/:position': function*(next) {
         if (this.params.position === 'all') {
-            this.model = case3D.filter({})
+            this.model = car.filter({})
         } else {
-            this.model = case3D.filter({
+            this.model = car.filter({
                 position: this.params.position
             })
         }
@@ -39,19 +39,19 @@ const cases3DApi = {
             }
         })
 
-        this.APIKey = 'Cases3D'
+        this.APIKey = 'Dress'
         yield next
     },
 
-    // 获取3D案例详情
-    'get+/case3D/detail/:id': function*(next) {
-        this.model = case3D.filter({
+    // 获取案例详情
+    'get+/dress/detail/:id': function*(next) {
+        this.model = car.filter({
             id: parseInt(this.params.id)
         })
 
-        this.APIKey = 'Cases3D'
+        this.APIKey = 'Dress'
         yield next
     }
 
 }
-export default cases3DApi
+export default dressApi

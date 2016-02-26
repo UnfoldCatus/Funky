@@ -22,7 +22,7 @@ var type=env.Thinky.type;
  * */
 
 // 酒店类型模型
-const FilterConditionHotelDistricts = env.Thinky.createModel('filterConditionHotelDistricts', {
+const FilterConditionHotelDistrict = env.Thinky.createModel('filterConditionHotelDistrict', {
     // 地区ID
     id: type.number(),
     // 地区名称
@@ -33,6 +33,6 @@ const FilterConditionHotelDistricts = env.Thinky.createModel('filterConditionHot
     weight: type.number()
 })
 
-FilterConditionHotelDistricts.ensureIndex('weight');
+FilterConditionHotelDistrict.ensureIndex('weight');
 
-module.exports=FilterConditionHotelDistricts;
+module.exports=FilterConditionHotelDistrict;

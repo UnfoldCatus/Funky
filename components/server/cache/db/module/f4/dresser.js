@@ -49,7 +49,6 @@ var type=env.Thinky.type;
  }
  */
 
-// 实景案例模型
 const F4Dresser = env.Thinky.createModel('f4dresser', {
     // 人员Id
     id: type.number(),

@@ -4,13 +4,17 @@
 import filterConditionShootStyle from '../cache/db/module/filterCondition/shootStyle.js'
 import filterConditionExterior from '../cache/db/module/filterCondition/exterior.js'
 import filterConditionHotelType from '../cache/db/module/filterCondition/hotelType.js'
-import filterConditionHotelDistricts from '../cache/db/module/filterCondition/hotelDistricts.js'
+import filterConditionHotelDistrict from '../cache/db/module/filterCondition/hotelDistrict.js'
 
-import filterConditionWeddingCarModels from '../cache/db/module/filterCondition/weddingCarModels.js'
-import filterConditionWeddingCarLevel from '../cache/db/module/filterCondition/weddingCarLevel.js'
-import filterConditionWeddingCarBrand from '../cache/db/module/filterCondition/weddingCarBrand.js'
+import filterConditionCarModels from '../cache/db/module/filterCondition/carModels.js'
+import filterConditionCarLevel from '../cache/db/module/filterCondition/carLevel.js'
+import filterConditionCarBrand from '../cache/db/module/filterCondition/carBrand.js'
 import filterConditionSuppliesBrand from '../cache/db/module/filterCondition/suppliesBrand.js'
 import filterConditionSuppliesType from '../cache/db/module/filterCondition/suppliesType.js'
+
+
+import filterConditionDressType from '../cache/db/module/filterCondition/dressType.js'
+import filterConditionDressBrand from '../cache/db/module/filterCondition/dressBrand.js'
 
 import _ from 'lodash'
 import env from '../cache/db/config.js'
@@ -95,11 +99,11 @@ const filterConditionApi = {
     yield next
   },
 
-  'get+/hotelDistricts/all':function*(next){ //酒店区域
+  'get+/hotelDistrict/all':function*(next){ //酒店区域
     if (this.params.position === 'all') {
-      this.model = filterConditionHotelDistricts.filter({})
+      this.model = filterConditionHotelDistrict.filter({})
     } else {
-      this.model = filterConditionHotelDistricts.filter({
+      this.model = filterConditionHotelDistrict.filter({
         position: this.params.position
       })
     }
@@ -117,15 +121,15 @@ const filterConditionApi = {
       }
     })
 
-    this.APIKey = 'FilterConditionHotelDistricts';
+    this.APIKey = 'FilterConditionHotelDistrict';
     yield next
   },
 
-  'get+/weddingCarModels/all':function*(next){ // 婚礼租车型号
+  'get+/carModels/all':function*(next){ // 婚礼租车型号
     if (this.params.position === 'all') {
-      this.model = filterConditionWeddingCarModels.filter({})
+      this.model = filterConditionCarModels.filter({})
     } else {
-      this.model = filterConditionWeddingCarModels.filter({
+      this.model = filterConditionCarModels.filter({
         position: this.params.position
       })
     }
@@ -143,15 +147,15 @@ const filterConditionApi = {
       }
     })
 
-    this.APIKey = 'FilterConditionWeddingCarModels';
+    this.APIKey = 'FilterConditionCarModels';
     yield next
   },
 
-  'get+/weddingCarLevel/all':function*(next){ // 婚礼租车档次
+  'get+/carLevel/all':function*(next){ // 婚礼租车档次
     if (this.params.position === 'all') {
-      this.model = filterConditionWeddingCarLevel.filter({})
+      this.model = filterConditionCarLevel.filter({})
     } else {
-      this.model = filterConditionWeddingCarLevel.filter({
+      this.model = filterConditionCarLevel.filter({
         position: this.params.position
       })
     }
@@ -169,15 +173,15 @@ const filterConditionApi = {
       }
     })
 
-    this.APIKey = 'FilterConditionWeddingCarLevel';
+    this.APIKey = 'FilterConditionCarLevel';
     yield next
   },
 
-  'get+/weddingCarBrand/all':function*(next){ // 婚礼租车品牌
+  'get+/carBrand/all':function*(next){ // 婚礼租车品牌
     if (this.params.position === 'all') {
-      this.model = filterConditionWeddingCarBrand.filter({})
+      this.model = filterConditionCarBrand.filter({})
     } else {
-      this.model = filterConditionWeddingCarBrand.filter({
+      this.model = filterConditionCarBrand.filter({
         position: this.params.position
       })
     }
@@ -195,7 +199,7 @@ const filterConditionApi = {
       }
     })
 
-    this.APIKey = 'FilterConditionWeddingCarBrand';
+    this.APIKey = 'FilterConditionCarBrand';
     yield next
   },
 
@@ -248,6 +252,60 @@ const filterConditionApi = {
     })
 
     this.APIKey = 'FilterConditionSuppliesType';
+    yield next
+  },
+
+  // 婚纱礼服--类型
+  'get+/dressType/all':function*(next){ // 婚礼用品类型
+    if (this.params.position === 'all') {
+      this.model = filterConditionDressType.filter({})
+    } else {
+      this.model = filterConditionDressType.filter({
+        position: this.params.position
+      })
+    }
+    this.model = this.model.orderBy(r.desc('weight'))
+
+    _.each(this.request.query, (v, k) => {
+      if (k.indexOf('pageSize') !== -1) {
+        let limit = 0
+        limit = Number(this.request.query['pageIndex'] || '1') - 1
+        if (limit < 0) {
+          limit = 0
+        }
+        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
+        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+      }
+    })
+
+    this.APIKey = 'FilterConditionDressType';
+    yield next
+  },
+
+  // 婚纱礼服--品牌
+  'get+/dressBrand/all':function*(next){ // 婚礼用品类型
+    if (this.params.position === 'all') {
+      this.model = filterConditionDressBrand.filter({})
+    } else {
+      this.model = filterConditionDressBrand.filter({
+        position: this.params.position
+      })
+    }
+    this.model = this.model.orderBy(r.desc('weight'))
+
+    _.each(this.request.query, (v, k) => {
+      if (k.indexOf('pageSize') !== -1) {
+        let limit = 0
+        limit = Number(this.request.query['pageIndex'] || '1') - 1
+        if (limit < 0) {
+          limit = 0
+        }
+        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
+        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+      }
+    })
+
+    this.APIKey = 'FilterConditionDressBrand';
     yield next
   }
 
