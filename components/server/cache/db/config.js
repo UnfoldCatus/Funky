@@ -71,6 +71,12 @@ const config = {
     FilterConditionSuppliesTypePath: '/api/suppliesType/all',
     // 微电影
     MoviePath: '/api/video/all',
+    // 婚纱礼服
+    DressPath: '/api/dress/all',
+    // 婚纱礼服--类型
+    FilterConditionDressTypePath: '/api/dressType/all',
+    // 婚纱礼服--品牌
+    FilterConditionDressBrandPath: '/api/dressBrand/all',
     // 婚车租赁
     CarPath: '/api/car/all',
     // 婚礼用品

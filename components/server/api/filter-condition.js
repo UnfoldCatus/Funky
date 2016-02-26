@@ -12,6 +12,10 @@ import filterConditionCarBrand from '../cache/db/module/filterCondition/carBrand
 import filterConditionSuppliesBrand from '../cache/db/module/filterCondition/suppliesBrand.js'
 import filterConditionSuppliesType from '../cache/db/module/filterCondition/suppliesType.js'
 
+
+import filterConditionDressType from '../cache/db/module/filterCondition/dressType.js'
+import filterConditionDressBrand from '../cache/db/module/filterCondition/dressBrand.js'
+
 import _ from 'lodash'
 import env from '../cache/db/config.js'
 let r = env.Thinky.r
@@ -248,6 +252,60 @@ const filterConditionApi = {
     })
 
     this.APIKey = 'FilterConditionSuppliesType';
+    yield next
+  },
+
+  // 婚纱礼服--类型
+  'get+/dressType/all':function*(next){ // 婚礼用品类型
+    if (this.params.position === 'all') {
+      this.model = filterConditionDressType.filter({})
+    } else {
+      this.model = filterConditionDressType.filter({
+        position: this.params.position
+      })
+    }
+    this.model = this.model.orderBy(r.desc('weight'))
+
+    _.each(this.request.query, (v, k) => {
+      if (k.indexOf('pageSize') !== -1) {
+        let limit = 0
+        limit = Number(this.request.query['pageIndex'] || '1') - 1
+        if (limit < 0) {
+          limit = 0
+        }
+        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
+        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+      }
+    })
+
+    this.APIKey = 'FilterConditionDressType';
+    yield next
+  },
+
+  // 婚纱礼服--品牌
+  'get+/dressBrand/all':function*(next){ // 婚礼用品类型
+    if (this.params.position === 'all') {
+      this.model = filterConditionDressBrand.filter({})
+    } else {
+      this.model = filterConditionDressBrand.filter({
+        position: this.params.position
+      })
+    }
+    this.model = this.model.orderBy(r.desc('weight'))
+
+    _.each(this.request.query, (v, k) => {
+      if (k.indexOf('pageSize') !== -1) {
+        let limit = 0
+        limit = Number(this.request.query['pageIndex'] || '1') - 1
+        if (limit < 0) {
+          limit = 0
+        }
+        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
+        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+      }
+    })
+
+    this.APIKey = 'FilterConditionDressBrand';
     yield next
   }
 

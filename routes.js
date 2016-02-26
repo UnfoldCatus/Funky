@@ -16,6 +16,7 @@ import weddingApi from './components/server/api/wedding'
 import movieApi from './components/server/api/movie.js'
 import carApi from './components/server/api/car.js'
 import suppliesApi from './components/server/api/supplies.js'
+import dressApi from './components/server/api/dress.js'
 import weddingClassApi from './components/server/api/weddingClass.js'
 
   /**
@@ -57,6 +58,8 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/carBrand/all': '婚车租赁-品牌搜索条件',
     '/api/suppliesBrand/all': '婚车用品-品牌搜索条件',
     '/api/suppliesType/all': '婚车用品-类型搜索条件',
+    '/api/dressType/all': '婚纱礼服-类型',
+    '/api/dressBrand/all': '婚纱礼服-品牌',
     '/api/video/all': '微电影',
     '/api/car/all': '婚车租赁',
     '/api/weddingsupplies/all': '婚车用品',
@@ -72,6 +75,7 @@ const apiRouterList = [
   photoApi,
   weddingApi,
   movieApi,
+  dressApi,
   carApi,
   suppliesApi,
   weddingClassApi

@@ -32,10 +32,13 @@ var FilterConditionCarLevel = require("./module/filterCondition/carLevel.js");
 var FilterConditionCarBrand = require("./module/filterCondition/carBrand.js");
 var FilterConditionSuppliesBrand = require("./module/filterCondition/suppliesBrand.js");
 var FilterConditionSuppliesType = require("./module/filterCondition/suppliesType.js");
+var FilterConditionDressType = require("./module/filterCondition/dressType.js");
+var FilterConditionDressBrand = require("./module/filterCondition/dressBrand.js");
 
 var Movie = require("./module/movie.js");
 var Car = require("./module/car.js");
 var Supplies = require("./module/supplies.js");
+var Dress = require("./module/dress.js");
 var WeddingClass = require("./module/weddingClass.js");
 
 var qs = require('querystring');
@@ -73,9 +76,12 @@ var models = {
   "FilterConditionCarBrand": FilterConditionCarBrand,
   "FilterConditionSuppliesBrand": FilterConditionSuppliesBrand,
   "FilterConditionSuppliesType": FilterConditionSuppliesType,
+  "FilterConditionDressType": FilterConditionDressType,
+  "FilterConditionDressBrand": FilterConditionDressBrand,
   "Movie": Movie,
   "Car": Car,
   "Supplies": Supplies,
+  "Dress": Dress,
   "WeddingClass": WeddingClass
 
 }
@@ -111,9 +117,12 @@ var mSyncFlg = {
   "FilterConditionCarBrand": false,
   "FilterConditionSuppliesBrand": false,
   "FilterConditionSuppliesType": false,
+  "FilterConditionDressType": false,
+  "FilterConditionDressBrand": false,
   "Movie": false,
   "Car": false,
   "Supplies": false,
+  "Dress": false,
   "WeddingClass": false
 };
 
@@ -254,6 +263,7 @@ exports.Instance = function() {
     'Case3D', 'FilterConditionHotelType', 'FilterConditionHotelDistrict',
     'FilterConditionCaseStyle', 'FilterConditionCarModels', 'FilterConditionCarLevel',
     'FilterConditionCarBrand', 'FilterConditionSuppliesBrand', 'FilterConditionSuppliesType',
+    'FilterConditionDressBrand', 'FilterConditionDressType', 'Dress',
     'Movie', 'Car', 'Supplies', 'WeddingClass'
   ];
   if (dbTool == null) {
