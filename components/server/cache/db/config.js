@@ -58,17 +58,21 @@ const config = {
     // 四大金刚-主持人作品
     F4HostPath: '/api/f4/host',
     // 婚车租赁--婚车型号搜索条件内容
-    FilterConditionWeddingCarModelsPath: '/api/carModels/all',
+    FilterConditionCarModelsPath: '/api/carModels/all',
     // 婚车租赁--婚车档次搜索条件内容c
-    FilterConditionWeddingCarLevelPath: '/api/carLevel/all',
+    FilterConditionCarLevelPath: '/api/carLevel/all',
     // 婚车租赁--婚车品牌搜索条件内容
-    FilterConditionWeddingCarBrandPath: '/api/carBrand/all',
+    FilterConditionCarBrandPath: '/api/carBrand/all',
     // 婚车用品--用品品牌搜索条件内容
     FilterConditionSuppliesBrandPath: '/api/suppliesBrand/all',
     // 婚车用品--用品类型搜索条件内容
     FilterConditionSuppliesTypePath: '/api/suppliesType/all',
     // 微电影
-    WdyVideoPath: '/api/video/all'
+    MoviePath: '/api/video/all',
+    // 婚车租赁
+    CarPath: '/api/car/all',
+    // 婚礼用品
+    SuppliesPath: '/api/weddingsupplies/all'
 };
 
 const Thinky = require('thinky')(config.rethink);

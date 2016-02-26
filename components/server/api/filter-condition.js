@@ -6,9 +6,9 @@ import filterConditionExterior from '../cache/db/module/filterCondition/exterior
 import filterConditionHotelType from '../cache/db/module/filterCondition/hotelType.js'
 import filterConditionHotelDistrict from '../cache/db/module/filterCondition/hotelDistrict.js'
 
-import filterConditionWeddingCarModels from '../cache/db/module/filterCondition/weddingCarModels.js'
-import filterConditionWeddingCarLevel from '../cache/db/module/filterCondition/weddingCarLevel.js'
-import filterConditionWeddingCarBrand from '../cache/db/module/filterCondition/weddingCarBrand.js'
+import filterConditionCarModels from '../cache/db/module/filterCondition/carModels.js'
+import filterConditionCarLevel from '../cache/db/module/filterCondition/carLevel.js'
+import filterConditionCarBrand from '../cache/db/module/filterCondition/carBrand.js'
 import filterConditionSuppliesBrand from '../cache/db/module/filterCondition/suppliesBrand.js'
 import filterConditionSuppliesType from '../cache/db/module/filterCondition/suppliesType.js'
 
@@ -95,7 +95,7 @@ const filterConditionApi = {
     yield next
   },
 
-  'get+/hotelDistricts/all':function*(next){ //酒店区域
+  'get+/hotelDistrict/all':function*(next){ //酒店区域
     if (this.params.position === 'all') {
       this.model = filterConditionHotelDistrict.filter({})
     } else {
@@ -123,9 +123,9 @@ const filterConditionApi = {
 
   'get+/carModels/all':function*(next){ // 婚礼租车型号
     if (this.params.position === 'all') {
-      this.model = filterConditionWeddingCarModels.filter({})
+      this.model = filterConditionCarModels.filter({})
     } else {
-      this.model = filterConditionWeddingCarModels.filter({
+      this.model = filterConditionCarModels.filter({
         position: this.params.position
       })
     }
@@ -143,15 +143,15 @@ const filterConditionApi = {
       }
     })
 
-    this.APIKey = 'FilterConditionWeddingCarModels';
+    this.APIKey = 'FilterConditionCarModels';
     yield next
   },
 
   'get+/carLevel/all':function*(next){ // 婚礼租车档次
     if (this.params.position === 'all') {
-      this.model = filterConditionWeddingCarLevel.filter({})
+      this.model = filterConditionCarLevel.filter({})
     } else {
-      this.model = filterConditionWeddingCarLevel.filter({
+      this.model = filterConditionCarLevel.filter({
         position: this.params.position
       })
     }
@@ -169,15 +169,15 @@ const filterConditionApi = {
       }
     })
 
-    this.APIKey = 'FilterConditionWeddingCarLevel';
+    this.APIKey = 'FilterConditionCarLevel';
     yield next
   },
 
   'get+/carBrand/all':function*(next){ // 婚礼租车品牌
     if (this.params.position === 'all') {
-      this.model = filterConditionWeddingCarBrand.filter({})
+      this.model = filterConditionCarBrand.filter({})
     } else {
-      this.model = filterConditionWeddingCarBrand.filter({
+      this.model = filterConditionCarBrand.filter({
         position: this.params.position
       })
     }
@@ -195,7 +195,7 @@ const filterConditionApi = {
       }
     })
 
-    this.APIKey = 'FilterConditionWeddingCarBrand';
+    this.APIKey = 'FilterConditionCarBrand';
     yield next
   },
 

@@ -4,7 +4,7 @@
 var env=require("../../config");
 var type=env.Thinky.type;
 
-// 婚礼租车--品牌
+// 婚礼租车--档次
 /*
  {
  "success": true,
@@ -26,7 +26,7 @@ var type=env.Thinky.type;
  * */
 
 // 酒店类型模型
-const FilterConditionWeddingCarBrand = env.Thinky.createModel('filterConditionWeddingCarBrand', {
+const FilterConditionCarLevel = env.Thinky.createModel('filterConditionCarLevel', {
     // Id
     id: type.number(),
     // 创建时间
@@ -45,6 +45,6 @@ const FilterConditionWeddingCarBrand = env.Thinky.createModel('filterConditionWe
     //weight: type.number()
 })
 
-//FilterConditionWeddingCarBrand.ensureIndex('weight');
+//FilterConditionCarLevel.ensureIndex('weight');
 
-module.exports=FilterConditionWeddingCarBrand;
+module.exports=FilterConditionCarLevel;

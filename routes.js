@@ -9,22 +9,14 @@ import { Navigation } from './components/navigation.jsx'
 
 /** api的路由逻辑**/
 import hotelApi from './components/server/api/hotel'
-import sampleApi from './components/server/api/sample'
-import pringlesApi from './components/server/api/pringles'
 import advApi from './components/server/api/adv'
-import suiteApi from './components/server/api/suite'
-import recordVideoApi from './components/server/api/recordVideo.js'
-import recordVideoSeasonApi from './components/server/api/recordVideoSeason.js'
-import casesApi from './components/server/api/cases.js'
-import case3DApi from './components/server/api/case3D.js'
-import followPhotoSeasonApi from './components/server/api/followPhotoSeason.js'
-import followPhotoApi from './components/server/api/followPhoto.js'
-import pringlesSeasonApi from './components/server/api/pringlesSeason.js'
-import followVideoApi from './components/server/api/followVideo.js'
-import followVideoSeasonApi from './components/server/api/followVideoSeason.js'
+import photoApi from './components/server/api/photo'
+import weddingApi from './components/server/api/wedding'
+
 import filterConditionApi from './components/server/api/filter-condition.js'
-import f4Api from './components/server/api/f4.js'
-import wdyVideoApi from './components/server/api/wdyVideo.js'
+import movieApi from './components/server/api/movie.js'
+import carApi from './components/server/api/car.js'
+import suppliesApi from './components/server/api/supplies.js'
 
   /**
     api 资源路由
@@ -42,7 +34,7 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/pringlesSeason/list':'客片分季',
     '/api/hotel/all':'酒店',
     '/api/hotelType/all':'婚宴预订-酒店类型搜索条件',
-    '/api/hotelDistricts/all': '婚宴预订-酒店区域搜索条件',
+    '/api/hotelDistrict/all': '婚宴预订-酒店区域搜索条件',
     '/api/suite/all':'套系',
     '/api/cases/all':'实景案例',
     '/api/case3D/all':'3D案例',
@@ -59,34 +51,27 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/f4/host': '四大金刚-主持师作品',
     '/api/recordVideo/all': '婚纱摄影-纪实MV',
     '/api/recordVideoSeason/all': '婚纱摄影-纪实MV分季',
-    '/api/weddingCarModels/all': '婚车租赁-型号搜索条件',
-    '/api/weddingCarLevel/all': '婚车租赁-档次搜索条件',
-    '/api/weddingCarBrand/all': '婚车租赁-品牌搜索条件',
+    '/api/carModels/all': '婚车租赁-型号搜索条件',
+    '/api/carLevel/all': '婚车租赁-档次搜索条件',
+    '/api/carBrand/all': '婚车租赁-品牌搜索条件',
     '/api/suppliesBrand/all': '婚车用品-品牌搜索条件',
     '/api/suppliesType/all': '婚车用品-类型搜索条件',
-    '/api/video/all': '微电影'
+    '/api/video/all': '微电影',
+    '/api/car/all': '婚车租赁',
+    '/api/weddingsupplies/all': '婚车用品'
   }
 })
 
 /** 把api的router在此生成 **/
 const apiRouterList = [
+  filterConditionApi,
   advApi,
   hotelApi,
-  sampleApi,
-  pringlesApi,
-  pringlesSeasonApi,
-  suiteApi,
-  recordVideoApi,
-  recordVideoSeasonApi,
-  casesApi,
-  case3DApi,
-  followPhotoApi,
-  followVideoApi,
-  followPhotoSeasonApi,
-  followVideoSeasonApi,
-  f4Api,
-  filterConditionApi,
-  wdyVideoApi
+  photoApi,
+  weddingApi,
+  movieApi,
+  carApi,
+  suppliesApi
 ]
 _.each(apiRouterList,(route,index)=>{
   _.each(route,(value,key)=>{

@@ -26,13 +26,15 @@ var F4Photographer = require("./module/f4/photographer.js");
 var F4Camera = require("./module/f4/camera.js");
 var F4Dresser = require("./module/f4/dresser.js");
 var F4Host = require("./module/f4/host.js");
-var FilterConditionWeddingCarModels = require("./module/filterCondition/weddingCarModels.js");
-var FilterConditionWeddingCarLevel = require("./module/filterCondition/weddingCarLevel.js");
-var FilterConditionWeddingCarBrand = require("./module/filterCondition/weddingCarBrand.js");
+var FilterConditionCarModels = require("./module/filterCondition/carModels.js");
+var FilterConditionCarLevel = require("./module/filterCondition/carLevel.js");
+var FilterConditionCarBrand = require("./module/filterCondition/carBrand.js");
 var FilterConditionSuppliesBrand = require("./module/filterCondition/suppliesBrand.js");
 var FilterConditionSuppliesType = require("./module/filterCondition/suppliesType.js");
 
-var WdyVideo = require("./module/wdyVideo.js");
+var Movie = require("./module/movie.js");
+var Car = require("./module/car.js");
+var Supplies = require("./module/supplies.js");
 
 var qs = require('querystring');
 var r = env.Thinky.r;
@@ -63,12 +65,14 @@ var models = {
   "F4Camera": F4Camera,
   "F4Dresser": F4Dresser,
   "F4Host": F4Host,
-  "FilterConditionWeddingCarModels": FilterConditionWeddingCarModels,
-  "FilterConditionWeddingCarLevel": FilterConditionWeddingCarLevel,
-  "FilterConditionWeddingCarBrand": FilterConditionWeddingCarBrand,
+  "FilterConditionCarModels": FilterConditionCarModels,
+  "FilterConditionCarLevel": FilterConditionCarLevel,
+  "FilterConditionCarBrand": FilterConditionCarBrand,
   "FilterConditionSuppliesBrand": FilterConditionSuppliesBrand,
   "FilterConditionSuppliesType": FilterConditionSuppliesType,
-  "WdyVideo": WdyVideo
+  "Movie": Movie,
+  "Car": Car,
+  "Supplies": Supplies
 
 }
 
@@ -97,12 +101,14 @@ var mSyncFlg = {
   "F4Camera": false,
   "F4Dresser": false,
   "F4Host": false,
-  "FilterConditionWeddingCarModels": false,
-  "FilterConditionWeddingCarLevel": false,
-  "FilterConditionWeddingCarBrand": false,
+  "FilterConditionCarModels": false,
+  "FilterConditionCarLevel": false,
+  "FilterConditionCarBrand": false,
   "FilterConditionSuppliesBrand": false,
   "FilterConditionSuppliesType": false,
-  "WdyVideo": false
+  "Movie": false,
+  "Car": false,
+  "Supplies": false
 };
 
 //查询工具类
@@ -240,9 +246,9 @@ exports.Instance = function() {
     'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host',
     'FilterConditionShootStyle', 'FilterConditionExterior',
     'Case3D', 'FilterConditionHotelType', 'FilterConditionHotelDistrict',
-    'FilterConditionCaseStyle', 'FilterConditionWeddingCarModels', 'FilterConditionWeddingCarLevel',
-    'FilterConditionWeddingCarBrand', 'FilterConditionSuppliesBrand', 'FilterConditionSuppliesType',
-    'WdyVideo'
+    'FilterConditionCaseStyle', 'FilterConditionCarModels', 'FilterConditionCarLevel',
+    'FilterConditionCarBrand', 'FilterConditionSuppliesBrand', 'FilterConditionSuppliesType',
+    'Movie', 'Car', 'Supplies'
   ];
   if (dbTool == null) {
     dbTool = new DBUtil();

@@ -2,7 +2,7 @@
  * Created by chenjianjun on 16/2/25.
  */
 
-import wdyVideo from '../cache/db/module/wdyVideo.js'
+import wdyVideo from '../cache/db/module/movie.js'
 import _ from 'lodash'
 import env from '../cache/db/config'
 let r = env.Thinky.r
