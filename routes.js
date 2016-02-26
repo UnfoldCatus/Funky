@@ -8,15 +8,15 @@ import { ComponentsIndex } from './components/config/components-index'
 import { Navigation } from './components/navigation.jsx'
 
 /** api的路由逻辑**/
-import hotelApi from './components/server/api/hotel'
+import filterConditionApi from './components/server/api/filter-condition.js'
 import advApi from './components/server/api/adv'
+import hotelApi from './components/server/api/hotel'
 import photoApi from './components/server/api/photo'
 import weddingApi from './components/server/api/wedding'
-
-import filterConditionApi from './components/server/api/filter-condition.js'
 import movieApi from './components/server/api/movie.js'
 import carApi from './components/server/api/car.js'
 import suppliesApi from './components/server/api/supplies.js'
+import weddingClassApi from './components/server/api/weddingClass.js'
 
   /**
     api 资源路由
@@ -58,7 +58,8 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/suppliesType/all': '婚车用品-类型搜索条件',
     '/api/video/all': '微电影',
     '/api/car/all': '婚车租赁',
-    '/api/weddingsupplies/all': '婚车用品'
+    '/api/weddingsupplies/all': '婚车用品',
+    '/api/weddingroom/all': '婚礼课堂'
   }
 })
 
@@ -71,7 +72,8 @@ const apiRouterList = [
   weddingApi,
   movieApi,
   carApi,
-  suppliesApi
+  suppliesApi,
+  weddingClassApi
 ]
 _.each(apiRouterList,(route,index)=>{
   _.each(route,(value,key)=>{

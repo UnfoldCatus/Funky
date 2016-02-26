@@ -27,7 +27,6 @@ const hotelApi = {
     _.each(this.request.query, (v, k) => {
       if (k.indexOf('minTable') !== -1) {
         this.model = this.model.filter(r.row('maxTableNum').gt(Number(this.request.query['minTable'])))
-
       } else if (k.indexOf('maxTable') !== -1) {
         this.model = this.model.filter(r.row('maxTableNum').lt(Number(this.request.query['maxTable'])))
       } else if (k.indexOf('pageSize') !== -1) {

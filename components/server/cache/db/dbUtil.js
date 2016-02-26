@@ -35,6 +35,7 @@ var FilterConditionSuppliesType = require("./module/filterCondition/suppliesType
 var Movie = require("./module/movie.js");
 var Car = require("./module/car.js");
 var Supplies = require("./module/supplies.js");
+var WeddingClass = require("./module/weddingClass.js");
 
 var qs = require('querystring');
 var r = env.Thinky.r;
@@ -72,7 +73,8 @@ var models = {
   "FilterConditionSuppliesType": FilterConditionSuppliesType,
   "Movie": Movie,
   "Car": Car,
-  "Supplies": Supplies
+  "Supplies": Supplies,
+  "WeddingClass": WeddingClass
 
 }
 
@@ -108,7 +110,8 @@ var mSyncFlg = {
   "FilterConditionSuppliesType": false,
   "Movie": false,
   "Car": false,
-  "Supplies": false
+  "Supplies": false,
+  "WeddingClass": false
 };
 
 //查询工具类
@@ -248,7 +251,7 @@ exports.Instance = function() {
     'Case3D', 'FilterConditionHotelType', 'FilterConditionHotelDistrict',
     'FilterConditionCaseStyle', 'FilterConditionCarModels', 'FilterConditionCarLevel',
     'FilterConditionCarBrand', 'FilterConditionSuppliesBrand', 'FilterConditionSuppliesType',
-    'Movie', 'Car', 'Supplies'
+    'Movie', 'Car', 'Supplies', 'WeddingClass'
   ];
   if (dbTool == null) {
     dbTool = new DBUtil();

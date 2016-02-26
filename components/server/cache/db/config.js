@@ -72,7 +72,9 @@ const config = {
     // 婚车租赁
     CarPath: '/api/car/all',
     // 婚礼用品
-    SuppliesPath: '/api/weddingsupplies/all'
+    SuppliesPath: '/api/weddingsupplies/all',
+    // 婚礼课堂
+    WeddingClassPath: '/api/weddingroom/all'
 };
 
 const Thinky = require('thinky')(config.rethink);
