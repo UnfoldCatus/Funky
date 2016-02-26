@@ -4,7 +4,7 @@
 import filterConditionShootStyle from '../cache/db/module/filterCondition/shootStyle.js'
 import filterConditionExterior from '../cache/db/module/filterCondition/exterior.js'
 import filterConditionHotelType from '../cache/db/module/filterCondition/hotelType.js'
-import filterConditionHotelDistricts from '../cache/db/module/filterCondition/hotelDistricts.js'
+import filterConditionHotelDistrict from '../cache/db/module/filterCondition/hotelDistrict.js'
 
 import filterConditionWeddingCarModels from '../cache/db/module/filterCondition/weddingCarModels.js'
 import filterConditionWeddingCarLevel from '../cache/db/module/filterCondition/weddingCarLevel.js'
@@ -97,9 +97,9 @@ const filterConditionApi = {
 
   'get+/hotelDistricts/all':function*(next){ //酒店区域
     if (this.params.position === 'all') {
-      this.model = filterConditionHotelDistricts.filter({})
+      this.model = filterConditionHotelDistrict.filter({})
     } else {
-      this.model = filterConditionHotelDistricts.filter({
+      this.model = filterConditionHotelDistrict.filter({
         position: this.params.position
       })
     }
@@ -117,11 +117,11 @@ const filterConditionApi = {
       }
     })
 
-    this.APIKey = 'FilterConditionHotelDistricts';
+    this.APIKey = 'FilterConditionHotelDistrict';
     yield next
   },
 
-  'get+/weddingCarModels/all':function*(next){ // 婚礼租车型号
+  'get+/carModels/all':function*(next){ // 婚礼租车型号
     if (this.params.position === 'all') {
       this.model = filterConditionWeddingCarModels.filter({})
     } else {
@@ -147,7 +147,7 @@ const filterConditionApi = {
     yield next
   },
 
-  'get+/weddingCarLevel/all':function*(next){ // 婚礼租车档次
+  'get+/carLevel/all':function*(next){ // 婚礼租车档次
     if (this.params.position === 'all') {
       this.model = filterConditionWeddingCarLevel.filter({})
     } else {
@@ -173,7 +173,7 @@ const filterConditionApi = {
     yield next
   },
 
-  'get+/weddingCarBrand/all':function*(next){ // 婚礼租车品牌
+  'get+/carBrand/all':function*(next){ // 婚礼租车品牌
     if (this.params.position === 'all') {
       this.model = filterConditionWeddingCarBrand.filter({})
     } else {

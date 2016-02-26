@@ -5,7 +5,7 @@ var http = require('http');
 var env = require("./config.js");
 var Hotel = require("./module/hotel.js");
 var FilterConditionHotelType = require("./module/filterCondition/hotelType.js");
-var FilterConditionHotelDistricts = require("./module/filterCondition/hotelDistricts.js");
+var FilterConditionHotelDistrict = require("./module/filterCondition/hotelDistrict.js");
 var Adv = require("./module/adv.js");
 var Pringles = require("./module/pringles.js");
 var PringlesSeason = require("./module/pringlesSeason.js");
@@ -43,7 +43,7 @@ var models = {
   "Adv": Adv,
   "Hotel": Hotel,
   "FilterConditionHotelType": FilterConditionHotelType,
-  "FilterConditionHotelDistricts": FilterConditionHotelDistricts,
+  "FilterConditionHotelDistrict": FilterConditionHotelDistrict,
   "Sample": Sample,
   "Pringles": Pringles,
   "PringlesSeason": PringlesSeason,
@@ -77,7 +77,7 @@ var mSyncFlg = {
   "Adv": false,
   "Hotel": false,
   "FilterConditionHotelType": false,
-  "FilterConditionHotelDistricts": false,
+  "FilterConditionHotelDistrict": false,
   "Sample": false,
   "Pringles": false,
   "PringlesSeason": false,
@@ -239,7 +239,7 @@ exports.Instance = function() {
     'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason',
     'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host',
     'FilterConditionShootStyle', 'FilterConditionExterior',
-    'Case3D', 'FilterConditionHotelType', 'FilterConditionHotelDistricts',
+    'Case3D', 'FilterConditionHotelType', 'FilterConditionHotelDistrict',
     'FilterConditionCaseStyle', 'FilterConditionWeddingCarModels', 'FilterConditionWeddingCarLevel',
     'FilterConditionWeddingCarBrand', 'FilterConditionSuppliesBrand', 'FilterConditionSuppliesType',
     'WdyVideo'

@@ -16,7 +16,7 @@ const config = {
     // 酒店类型
     FilterConditionHotelTypePath:'/api/hotelType/all',
     // 酒店区域
-    FilterConditionHotelDistrictsPath: '/api/hotelDistricts/all',
+    FilterConditionHotelDistrictPath: '/api/hotelDistrict/all',
     // 广告数据
     AdvPath:"/api/adv/all",
     // 样片数据
@@ -58,11 +58,11 @@ const config = {
     // 四大金刚-主持人作品
     F4HostPath: '/api/f4/host',
     // 婚车租赁--婚车型号搜索条件内容
-    FilterConditionWeddingCarModelsPath: '/api/weddingCarModels/all',
-    // 婚车租赁--婚车档次搜索条件内容
-    FilterConditionWeddingCarLevelPath: '/api/weddingCarLevel/all',
+    FilterConditionWeddingCarModelsPath: '/api/carModels/all',
+    // 婚车租赁--婚车档次搜索条件内容c
+    FilterConditionWeddingCarLevelPath: '/api/carLevel/all',
     // 婚车租赁--婚车品牌搜索条件内容
-    FilterConditionWeddingCarBrandPath: '/api/weddingCarBrand/all',
+    FilterConditionWeddingCarBrandPath: '/api/carBrand/all',
     // 婚车用品--用品品牌搜索条件内容
     FilterConditionSuppliesBrandPath: '/api/suppliesBrand/all',
     // 婚车用品--用品类型搜索条件内容
