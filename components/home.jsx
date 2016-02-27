@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import { MediaSlider } from './common/media-slider.jsx'
 import _ from 'lodash'
 import { Group5 } from './common/group5.jsx'
+import { Group4 } from './common/group4.jsx'
 import { Banner} from './common/banner.jsx'
 import { HomeConfig } from './config/home-config'
 
@@ -24,8 +25,13 @@ const Home = React.createClass({
         </div>
         <div className='layout-center-box'>
           <Banner {...HomeConfig['Banner'][0]} />
+          <div className='home-mash clearfix' >
+            <Group4 {...HomeConfig['Group4'][0]}/>
+            <Group4 {...HomeConfig['Group4'][1]}/>
+            <Group4 {...HomeConfig['Group4'][2]}/>
+            <Group4 {...HomeConfig['Group4'][3]}/>
+          </div>
         </div>
-
       </div>
     )
   }
