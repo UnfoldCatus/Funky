@@ -256,7 +256,7 @@ const filterConditionApi = {
   },
 
   // 婚纱礼服--类型
-  'get+/dressType/all':function*(next){ // 婚礼用品类型
+  'get+/dressType/all':function*(next){
     if (this.params.position === 'all') {
       this.model = filterConditionDressType.filter({})
     } else {
