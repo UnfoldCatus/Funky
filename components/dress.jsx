@@ -17,28 +17,23 @@ import { DressConfig } from './config/dress-config'
 
 **/
 
-
-
 const ImageHolder = React.createClass({
   render () {
     return (
       <div className="show-box J_ImageContainer">
         <div className="layer-box" />
-        <h2></h2>
-        <a href='#' target="_blank">
-          <img src='/' />
+        <h2>{this.props.data.description}</h2>
+        <a href='/dress-details' target="">
+          <img src={this.props.data.coverUrlWeb} />
         </a>
     </div>
     )
   }
 })
 
-
-
 /* 礼服分类 */
 const DressType  = React.createClass({
   render () {
-
     return (
       <div>
         <div className="title-box">
@@ -47,23 +42,23 @@ const DressType  = React.createClass({
         <div className="dress-brand">
           <div className="center-box">
             <ul className="tab-box J_ClickLogic">
-        {
-          _.map(this.state.dress, (v, k) => {
-            return (
-
-                       <li key={k} className={(k === 0)? 'item item-sel':'item'}
-                         data-cover-url={v.coverUrlWeb}
-                         data-description={v.description} >
-                         <img src={v.logoUrl} />
-                       </li>
-
-            );
-          })
-        }
-      </ul>
-      <ImageHolder />
-    </div>
-  </div>
+            {
+                _.map(this.state.dress, (v, k) => {
+                    return (
+                        <li key={k} className={(k === 0)? 'item item-sel':'item'}
+                            data-cover-url={v.coverUrlWeb}
+                            data-description={v.description} >
+                            <img src={v.logoUrl} />
+                        </li>
+                    );
+                })
+            }
+            </ul>
+              {
+                  this.state.dress.length && <ImageHolder data={this.state.dress[0]}/>
+              }
+          </div>
+        </div>
       </div>
     )
   },
@@ -79,9 +74,7 @@ const DressType  = React.createClass({
   },
 
   componentDidMount(){
-    console.log(this.props)
     //绑定事件
-
     $('.J_ClickLogic').on('click','li',function(){
       let coverUrl = $(this).attr('data-cover-url')
       let description = $(this).attr('data-description')
@@ -91,8 +84,6 @@ const DressType  = React.createClass({
       $('.J_ImageContainer h2').html(description)
       $('.J_ImageContainer img').attr('src',coverUrl)
     })
-
-
 
     fetch(DressConfig['MediaSlider']['baseUrl']+'dressBrand/all?'+'weddingDressType='+this.props.id)
         .then(res => {return res.json()})
@@ -142,6 +133,5 @@ const Dress = React.createClass({
         )
   }
 })
-
 
 export { Dress }
