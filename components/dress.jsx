@@ -17,38 +17,53 @@ import { DressConfig } from './config/dress-config'
 
 **/
 
+
+
+const ImageHolder = React.createClass({
+  render () {
+    return (
+      <div className="show-box J_ImageContainer">
+        <div className="layer-box" />
+        <h2></h2>
+        <a href='#' target="_blank">
+          <img src='/' />
+        </a>
+    </div>
+    )
+  }
+})
+
+
+
 /* 礼服分类 */
 const DressType  = React.createClass({
   render () {
+
     return (
       <div>
         <div className="title-box">
           <h1>{"WEDDING DRESS " + this.props.name}</h1>
         </div>
+        <div className="dress-brand">
+          <div className="center-box">
+            <ul className="tab-box J_ClickLogic">
         {
           _.map(this.state.dress, (v, k) => {
             return (
-               <div key={k}>
-                 <div className="dress-brand">
-                   <div className="center-box">
-                     <ul className="tab-box">
-                       <li className="item item-sel">
+
+                       <li key={k} className={(k === 0)? 'item item-sel':'item'}
+                         data-cover-url={v.coverUrlWeb}
+                         data-description={v.description} >
                          <img src={v.logoUrl} />
                        </li>
-                     </ul>
-                     <div className="show-box">
-                     <div className="layer-box" />
-                     <h2>{v.description}</h2>
-                     <a href='#' target="_blank">
-                       <img src={v.coverUrlWeb} />
-                     </a>
-                   </div>
-                   </div>
-                 </div>
-               </div>
+
             );
           })
         }
+      </ul>
+      <ImageHolder />
+    </div>
+  </div>
       </div>
     )
   },
@@ -62,8 +77,23 @@ const DressType  = React.createClass({
       dress: []
     };
   },
+
   componentDidMount(){
     console.log(this.props)
+    //绑定事件
+
+    $('.J_ClickLogic').on('click','li',function(){
+      let coverUrl = $(this).attr('data-cover-url')
+      let description = $(this).attr('data-description')
+      $(this).siblings().removeClass('item-sel')
+      $(this).addClass('item-sel')
+
+      $('.J_ImageContainer h2').html(description)
+      $('.J_ImageContainer img').attr('src',coverUrl)
+    })
+
+
+
     fetch(DressConfig['MediaSlider']['baseUrl']+'dressBrand/all?'+'weddingDressType='+this.props.id)
         .then(res => {return res.json()})
         .then(j=>{
@@ -71,18 +101,6 @@ const DressType  = React.createClass({
           console.log(j.data)
         })
   }
-  //componentWillReceiveProps: function(nextProps) {// DOM会发生变化的时候
-  //  debugger
-  //  if (this.props.id !== nextProps.id) {
-  //    fetch(DressConfig['MediaSlider']['baseUrl']+'api/dressBrand/all?'+'weddingDressType='+nextProps.id)
-  //        .then(res => {return res.json()})
-  //        .then(j=>{
-  //          this.setState({ dress:j.data })
-  //          console.log(j.data)
-  //        }
-  //        )
-  //  }
-  //}
 });
 
 const Dress = React.createClass({
