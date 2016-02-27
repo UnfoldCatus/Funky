@@ -1,3 +1,6 @@
+import { BaseConfig } from './base'
+import _ from 'lodash'
+
 const CasesConfig = {
   'Banner':[
     {'imageUrl':'//image.jsbn.com/static/sjal.jpg'}
@@ -5,12 +8,11 @@ const CasesConfig = {
   'CasesCategory':{
     'resourceUrl':''
   },
-  'MediaSlider':{
-    'baseUrl':'//cd.jsbn.com:7001/api/',
+  'MediaSlider':_.merge({
     'dataUrl':'cases/scheme_recommend',
     'aspectRatio':'120:68',
     'height':680
-  }
+  },BaseConfig)
 
 }
 export { CasesConfig }

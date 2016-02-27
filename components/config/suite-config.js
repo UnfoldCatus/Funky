@@ -1,3 +1,6 @@
+import { BaseConfig } from './base'
+import _ from 'lodash'
+
 const SuiteConfig = {
   AdvSide :[
     {
@@ -9,12 +12,11 @@ const SuiteConfig = {
 
   ],
   //顶部广告
-  'MediaSlider':{
-    'baseUrl':'//cd.jsbn.com:7001/api/',
+  'MediaSlider':_.merge({
     'dataUrl':'adv/suite_top',
     'aspectRatio':'192:45',
     'height':450
-  }
+  },BaseConfig)
 
 }
 export { SuiteConfig }
