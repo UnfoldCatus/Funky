@@ -3,6 +3,7 @@ import _ from 'lodash'
 import { ListFilter } from './common/list-filter.jsx'
 import { HotelConfig } from './config/hotel-config.js'
 import { MediaSlider } from './common/media-slider.jsx'
+import { MediaItem } from './common/media-item.jsx'
 /**
 组件结构
 <Hotel>
@@ -47,38 +48,38 @@ const ListItemFeatureLabel  = React.createClass({
 /*宴会厅列表*/
 const ListItemHallList = React.createClass({
   render () {
-    let hallListTitle = (this.props.banquetHallList.length === 0)?(
-      <dt>
-        <span>---</span>
-        <span>---</span>
-        <span>---</span>
-        <span>---</span>
-      </dt>
-    ):(
-      <dt>
-        <span>宴会厅</span>
-        <span>桌数</span>
-        <span>层高</span>
-        <span>柱数</span>
-      </dt>
-    )
     return (
       <dl>
-        <hallListTitle />
+        <dt>
+          <span>宴会厅</span>
+          <span>桌数</span>
+          <span>层高</span>
+          <span>柱数</span>
+        </dt>
         {
           _.map(this.props.banquetHallList.slice(0,2),(v,k)=>{
             return (
               <dd key={k}>
-                {/*v.banquetHallId*/}
-                <a href='#'>
-                  <span>{v.banquetHallName}</span>
-                  <span><b>{v.capacity}</b><em>桌</em></span>
+                <a href='/'>
+                  <span>{v.name}</span>
+                  <span><b>{v.maxTableNum}</b><em>桌</em></span>
                   <span>{v.height+'米'}</span>
                   <span>{parseInt(v.pillarNumber)>0?'有':'无'}</span>
                 </a>
               </dd>
             )
           })
+        }
+        {
+          this.props.banquetHallList.length === 0 &&
+          (
+            <dd>
+              <span>----</span>
+              <span>----</span>
+              <span>----</span>
+              <span>----</span>
+            </dd>
+          )
         }
       </dl>
     )
@@ -126,11 +127,13 @@ const HotelListItem = React.createClass({
       <li className='item-box clearfix'>
         <div className='info-box'>
           <div className='content-box'>
-            {/*MediaItem*/}
+            <a href='/' className='img-box'>
+              <MediaItem {...HotelConfig['HotelList']} mediaUrl={this.props.coverUrlWeb} />
+            </a>
             <div className='info'>
               <div className='title clearfix'>
                 <a href='#' target='_blank'>
-                  <h2> {this.props.hotelName} </h2>
+                  <h2>{this.props.name}</h2>
                   {!!this.props.isGift && <label className='label-pink'>礼</label> }
                   {!!this.props.isDisaccount && <label className='label-blue'>惠</label> }
                 </a>
@@ -152,16 +155,21 @@ const HotelListItem = React.createClass({
                     <b>|</b>
                     <b>{this.props.address.length>20?this.props.address.slice(0,18)+'...':this.props.address}</b>
                   </span>
-                  <span className="desk-num">可容纳<b>{this.props.capacityPerTable}</b>桌</span>
+                  <span className="desk-num">可容纳<b>{this.props.maxTableNum}</b>桌</span>
               </div>
-              <ListItemHallList />
-              <a href='#' target='_blank' className='viewing-banquet transition-bg'>查看更多宴会厅</a>
+              <ListItemHallList banquetHallList={this.props.banquetHall} />
+              {
+                this.props.banquetHall.length!==0 &&
+                (
+                  <a href='/' target='_blank' className='viewing-banquet transition-bg'>查看更多宴会厅</a>
+                )
+              }
             </div>
           </div>
         </div>
         <div className="reply-box">
             <div className="content-box">
-                <ListItemFeatureLabel features={this.props.featureLable.split(',')||[]} />
+                <ListItemFeatureLabel features={this.props.featureLabel.split(',')||[]} />
             </div>
         </div>
       </li>
@@ -171,14 +179,14 @@ const HotelListItem = React.createClass({
     hotelName: PropTypes.string,
     isGift: PropTypes.number,
     isDisaccount: PropTypes.number,
-    lowestConsumption: PropTypes.string,
-    highestConsumption: PropTypes.string,
+    lowestConsumption: PropTypes.number,
+    highestConsumption: PropTypes.number,
     typeName: PropTypes.string,
     address: PropTypes.string,
     capacityPerTable: PropTypes.string,
     banquetHallList:PropTypes.array,
-    hotelId:PropTypes.string,
-    featureLable:PropTypes.string
+    hotelId:PropTypes.number,
+    featureLabel:PropTypes.string
   },
   getDefaultProps(){
     return{
@@ -359,7 +367,16 @@ const Hotel = React.createClass({
   },
   loadMore(){},
   componentDidMount() {
-    console.log('start to load hotels');
+    let hotelListConfig = HotelConfig['HotelList']
+    if (hotelListConfig.dataUrl !== undefined) {
+      fetch(hotelListConfig.baseUrl + hotelListConfig.dataUrl)
+      .then(res => {return res.json()})
+      .then(j=>{
+        this.setState({ hotels:j.data })
+      })
+    }
+
+
     this.setState({
       hotels:[]
     })
