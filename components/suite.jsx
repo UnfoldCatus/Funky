@@ -38,18 +38,18 @@ const SuiteList = React.createClass({
       <div className='list-recommend'>
         <div className="title-box">
           <h1>婚纱摄影套系</h1>
-          <span className="find">找到 <b>{this.props.totalCount}</b> 个套系</span>
+          <span className="find">找到 <b>{this.state.totalCount}</b> 个套系</span>
         </div>
         {
-          _.map(this.props.data,(v,k)=>{
+          _.map(this.state.data,(v,k)=>{
             return (
               <li className="item-box" key={k}>
                 <a className='img-box' href='/'>
-                  <MediaItem aspectRatio={'55:32'} height={320} mediaUrl={'//placehold.it/550x320'} />
+                  <MediaItem aspectRatio={'55:32'} height={320} mediaUrl={v.coverUrlWeb} />
                 </a>
                 <div className='r-box'>
                   <div className="price">
-                    <em>¥</em><b>{parseFloat(v.price).toFixed(2)}</b>
+                    <em>¥</em><b>{parseFloat(v.salePrice).toFixed(2)}</b>
                   </div>
                   <div className='scrollbarall cur-scroll'>
                     <div className="scrollbar">
@@ -60,7 +60,7 @@ const SuiteList = React.createClass({
                       </div>
                     </div>
                     <div className='viewport'>
-                      <SuiteInfo info={v.shootAdress} />
+                      <SuiteInfo info={v.detail} />
                     </div>
                   </div>
                   <div className="func transition-border"></div>
@@ -73,18 +73,49 @@ const SuiteList = React.createClass({
     )
   },
   propTypes: {
-    data: React.PropTypes.array,
-    totalCount:React.PropTypes.number
+    dataUrl: React.PropTypes.string,
   },
   getDefaultProps(){
     return {
-      data:[],
-      totalCount:0
+      dataUrl:''
     }
   },
-  componentWillReceiveProps(nextProps) {
-      console.log('newdata!');
+  getInitialState: function() {
+    return {
+      data: [],
+      totalCount:0
+    };
+  },
+  componentDidMount() {
+    const setupScrollbar = ()=>{
+      $('.scrollbarall').length > 0 && $(".scrollbarall").each(function(index, element) {
+        var e = $(this);
+        e.tinyscrollbar();
+        e.find('.scrollbar').css({
+          opacity: 0
+        });
+
+        e.bind('mouseenter', function() {
+          $('.scrollbar', e).animate({
+            opacity: 1
+          }, 300);
+        });
+
+        e.bind('mouseleave', function() {
+          $('.scrollbar', e).animate({
+            opacity: 0
+          }, 300);
+        });
+      });
+    }
+    if (this.props.dataUrl !== undefined) {
+      fetch(this.props.baseUrl + this.props.dataUrl)
+      .then(res => {return res.json()})
+      .then(j=>{ this.setState({ data:j.data,totalCount:parseInt(j.count) },setupScrollbar) })
+    }
   }
+
+
 })
 
 
@@ -119,27 +150,13 @@ const Suite = React.createClass({
         <div className="layout-center-box">
           <div className="container clearfix">
             <div className="column-mg30-18 mgr30">
-              <SuiteList {...this.state.data}/>
+              <SuiteList {...SuiteConfig['SuiteList']}/>
             </div>
             <AdvSide adList={adList} />
            </div>
         </div>
       </div>
     )
-  },
-  getInitialState() {
-    return {
-      data:{
-        totalCount:5,
-        data:[
-          {},
-          {},
-          {},
-          {},
-          {}
-        ]
-      }
-    };
   }
 })
 
