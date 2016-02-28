@@ -172,7 +172,7 @@ siteRouter.get('/weddingpat', function* index(next) {
   })
   /** 婚礼视频 **/
 siteRouter.get('/weddingvideo', function* index(next) {
-    yield this.render('modules/default', renderOption('weddingvideo', '/weddingvideo', '/scheme'))
+    yield this.render('modules/default', renderOption('wedding-video', '/weddingvideo', '/scheme'))
   })
   /** 提交婚庆需求 **/
 siteRouter.get('/scheme-require', function* index(next) {

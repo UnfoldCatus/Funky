@@ -39,7 +39,7 @@ const ComponentsIndex = {
   'scheme': <Scheme />,
   'cases': <Cases />,
   'wedding-pat': <WeddingPat />,
-  'weddingvideo': <WeddingVideo />,
+  'wedding-video': <WeddingVideo />,
   'scheme-require': <SchemeRequire />,
   'adv': <Adv />,
   'dress': <Dress />,

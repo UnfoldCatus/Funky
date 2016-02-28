@@ -74,44 +74,10 @@ const HomeConfig = {
     { 'klassName':'item-08', 'link':'/car' }
 
   ],
-  'BotComment':{
+  'BotComment':_.merge({
     'bg':'//image.jsbn.com/static/home-04.jpg',
-    'comments':[[
-        '//image.jsbn.com/static/pingjia/1.jpg',
-        '//image.jsbn.com/static/pingjia/2.jpg',
-        '//image.jsbn.com/static/pingjia/3.jpg',
-        '//image.jsbn.com/static/pingjia/4.jpg',
-        '//image.jsbn.com/static/pingjia/5.jpg'
-      ],
-      [
-        '//image.jsbn.com/static/pingjia/6.jpg',
-        '//image.jsbn.com/static/pingjia/7.jpg',
-        '//image.jsbn.com/static/pingjia/8.jpg',
-        '//image.jsbn.com/static/pingjia/9.jpg',
-        '//image.jsbn.com/static/pingjia/10.jpg'
-      ],
-      [
-        '//image.jsbn.com/static/pingjia/11.jpg',
-        '//image.jsbn.com/static/pingjia/12.jpg',
-        '//image.jsbn.com/static/pingjia/13.jpg',
-        '//image.jsbn.com/static/pingjia/14.jpg',
-        '//image.jsbn.com/static/pingjia/15.jpg'
-      ],
-      [
-        '//image.jsbn.com/static/pingjia/16.jpg',
-        '//image.jsbn.com/static/pingjia/17.jpg',
-        '//image.jsbn.com/static/pingjia/18.jpg',
-        '//image.jsbn.com/static/pingjia/19.jpg',
-        '//image.jsbn.com/static/pingjia/20.jpg'
-      ],
-      [
-        '//image.jsbn.com/static/pingjia/21.jpg',
-        '//image.jsbn.com/static/pingjia/22.jpg',
-        '//image.jsbn.com/static/pingjia/23.jpg',
-        '//image.jsbn.com/static/pingjia/24.jpg',
-        '//image.jsbn.com/static/pingjia/25.jpg'
-      ]]
-  }
+    'dataUrl':'adv/index_comment_bot'
+  },BaseConfig)
 
 }
 export {
