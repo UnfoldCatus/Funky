@@ -81,7 +81,6 @@ const Group4 = React.createClass({
       .then(res => {return res.json()})
       .then(j=>{
         this.setState({ data:j.data })
-        $('.J_Count').html(j.count)
       })
     }
   }
