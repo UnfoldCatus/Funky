@@ -212,7 +212,7 @@ const Hotel = React.createClass({
         <div className="layout-center-box J_HotelListFilterPanel" style={{minHeight:440+'px'}}>
 
           <ListFilter title={'区域'} name={'name'} klass={'ico-18-js ico-1-1-js'} valueKey={['id']} conditions={this.state.areas} sorterKey={['cityId']} />
-          <ListFilter title={'分类'} name={'typeName'} klass={'ico-1-js ico-1-2-js'} valueKey={['hotelTypeId']} conditions={this.state.types} sorterKey={['hotelType']} />
+          <ListFilter title={'分类'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']} conditions={this.state.types} sorterKey={['hotelType']} />
           <ListFilter title={'桌数'} name={'name'} klass={'ico-18-js ico-18-2-js'} valueKey={['minTable','maxTable']} conditions={this.state.seatsCount} sorterKey={['minTable','maxTable']} />
           <ListFilter title={'价格'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']} conditions={this.state.prices}  sorterKey={['minPrice','maxPrice']}/>
 
@@ -269,117 +269,43 @@ const Hotel = React.createClass({
   getInitialState() {
     return {
       types:[],
-      prices: [{
-        'minPrice': '0',
-        'maxPrice': '2000',
-        'name': '2000元以下'
-      }, {
-        'minPrice': '2000',
-        'maxPrice': '3000',
-        'name': '2000-3000元'
-      }, {
-        'minPrice': '3000',
-        'maxPrice': '4000',
-        'name': '3000-4000元'
-      }, {
-        'minPrice': '4000',
-        'maxPrice': '99999',
-        'name': '4000元以上'
-      }],
-      seatsCount: [{
-        'maxTable': '10',
-        'minTable': '0',
-        'name': '10桌以下'
-      }, {
-        'minTable': '10',
-        'maxTable': '20',
-        'name': '10-20桌'
-      }, {
-        'minTable': '20',
-        'maxTable': '30',
-        'name': '20-30桌'
-      }, {
-        'minTable': '30',
-        'maxTable': '40',
-        'name': '30-40桌'
-      },{
-        'minTable': '40',
-        'maxTable': '50',
-        'name': '40-50桌'
-      },{
-        'minTable': '51',
-        'maxTable': '9999',
-        'name': '50桌以上'
-      }],
-      areas: [
-        {
-          "id": 99,
-          "name": "渝北区",
-          "pid": ""
-        },
-        {
-          "id": 94,
-          "name": "南岸区",
-          "pid": ""
-        },
-        {
-          "id": 90,
-          "name": "渝中区",
-          "pid": ""
-        },{
-          "id": 92,
-          "name": "江北区",
-          "pid": ""
-        }, {
-          "id": 95,
-          "name": "九龙坡区",
-          "pid": ""
-        },{
-          "id": 100,
-          "name": "巴南区",
-          "pid": ""
-        },  {
-          "id": 91,
-          "name": "大渡口区",
-          "pid": ""
-        },  {
-          "id": 101,
-          "name": "北部新区",
-          "pid": ""
-        },{
-          "id": 96,
-          "name": "北碚区",
-          "pid": ""
-        }, {
-          "id": 93,
-          "name": "沙坪坝区",
-          "pid": ""
-        },
-        {
-          "id": 114,
-          "name": "重庆近郊",
-          "pid": ""
-        }
-      ],
+      prices: HotelConfig['Prices'],
+      seatsCount: HotelConfig['SeatsCount'],
+      areas: [],
       hotels:[],
       totalPage:0
     }
   },
   loadMore(){},
   componentDidMount() {
-    let hotelListConfig = HotelConfig['HotelList']
-    if (hotelListConfig.dataUrl !== undefined) {
-      fetch(hotelListConfig.baseUrl + hotelListConfig.dataUrl)
+    const HotelListConfig = HotelConfig['HotelList'] //数据请求地址配置在config文件
+    if (HotelListConfig.dataUrl !== undefined) {
+      fetch(HotelListConfig.baseUrl + HotelListConfig.dataUrl)
       .then(res => {return res.json()})
       .then(j=>{
         this.setState({ hotels:j.data })
       })
     }
 
+    const TypeCategory = HotelConfig['TypeCategory'] //取到配置的获取类型数据的请求地址
+    if (TypeCategory.dataUrl !== undefined) {
+      fetch(TypeCategory.baseUrl + TypeCategory.dataUrl)
+      .then(res => {return res.json()})
+      .then(j=>{
+        /* 针对每个类型只取name和id字段 */
+        this.setState({ types: _.map(j.data || [],(v,k)=>{ return _.pick(v,['name','id']) }) })
+      })
+    }
 
-    this.setState({
-      hotels:[]
-    })
+    const DistrictCategory = HotelConfig['DistrictCategory'] //地区数据接口地址
+    if (DistrictCategory.dataUrl !== undefined) {
+      fetch(DistrictCategory.baseUrl + DistrictCategory.dataUrl)
+      .then(res => {return res.json()})
+      .then(j=>{
+        /* 针对每个类型只取name和id字段 */
+        this.setState({ areas: _.map(j.data || [],(v,k)=>{ return _.pick(v,['name','id']) }) })
+      })
+    }
   }
 })
 
