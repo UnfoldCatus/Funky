@@ -9,7 +9,11 @@ const WeddingPatConfig = {
     'dataUrl':'adv/weddingpat_top',
     'aspectRatio':'192:45',
     'height':450
+  },BaseConfig),
+  'CasesList':_.merge({
+    'dataUrl':'followPhoto/weddingpat_list'
   },BaseConfig)
+
 }
 
 

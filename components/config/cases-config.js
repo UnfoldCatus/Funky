@@ -12,6 +12,11 @@ const CasesConfig = {
     'dataUrl':'cases/scheme_recommend',
     'aspectRatio':'120:68',
     'height':680
+  },BaseConfig),
+  'CasesList':_.merge({
+    'dataUrl':'cases/scheme_list',
+    'aspectRatio':'3:2',
+    'width':380
   },BaseConfig)
 
 }

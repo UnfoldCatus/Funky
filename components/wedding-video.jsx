@@ -22,7 +22,7 @@ const WeddingVideo = React.createClass({
           </div>
           <div className="layout-center-box">
               <Banner {...WeddingVideoConfig['Banner'][0]} />
-              <VideoListItem {...this.state.list} />
+              <VideoListItem {...WeddingVideoConfig['VideoListItem']} />
               <div onClick={this.loadMore} id="J_MoreButton">
                   <div className="more-btn"><span>点击查看更多</span></div>
               </div>

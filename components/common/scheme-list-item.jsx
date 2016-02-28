@@ -14,7 +14,7 @@ const SchemeListItem = React.createClass({
                     <a className="layer-box" href={'/'} target='_blank'>
                       <div className="layer"/>
                       <div className="info">
-                        <h3>{v.weddingName}</h3>
+                        <h3>{v.name}</h3>
                         <div className="date">
                           <b>{v.price || ''}</b>
                           <span>({v.holdingTime })</span>
@@ -36,12 +36,15 @@ const SchemeListItem = React.createClass({
     }
   },
   componentDidMount() {
+    const updateCount = ()=>{
+      $('.J_Count').html(count)
+    }
     if (this.props.dataUrl !== undefined) {
       fetch(this.props.baseUrl + this.props.dataUrl)
-      .then(res => {return res.json()})
+      .then(res => {return res.json()},err=>{console.log('network is down:',err) })
       .then(j=>{
-        console.log('schemeList:',j);
         this.setState({ data:j.data })
+        $('.J_Count').html(_.size(j.data))
       })
     }
   }

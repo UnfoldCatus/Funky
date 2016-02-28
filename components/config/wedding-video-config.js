@@ -9,7 +9,13 @@ const WeddingVideoConfig = {
     'dataUrl':'adv/weddingvideo_top',
     'aspectRatio':'192:45',
     'height':450
+  },BaseConfig),
+  'VideoListItem':_.merge({
+    'dataUrl':'followvideo/weddingvideo_list',
+    'aspectRatio':'3:2',
+    'width':380
   },BaseConfig)
+
 }
 
 export { WeddingVideoConfig }

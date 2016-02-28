@@ -6,11 +6,14 @@ import { SuiteConfig } from './config/suite-config'
 /**
   组件结构
 
-  <Suite> <= data
+  <Suite>
     <MediaSlider />
-    <SuiteList />
+    <SuiteList>
+      <SuiteInfo />
+    </SuiteList>
     <AdSide />
   </Suite>
+
 **/
 
 const SuiteInfo = React.createClass({
@@ -30,7 +33,6 @@ const SuiteInfo = React.createClass({
     )
   }
 })
-
 
 const SuiteList = React.createClass({
   render () {
@@ -76,19 +78,18 @@ const SuiteList = React.createClass({
     dataUrl: React.PropTypes.string,
   },
   getDefaultProps(){
-    return {
-      dataUrl:''
-    }
+    return { dataUrl:'' }
   },
-  getInitialState: function() {
+  getInitialState() {
     return {
       data: [],
       totalCount:0
-    };
+    }
   },
   componentDidMount() {
     const setupScrollbar = ()=>{
-      $('.scrollbarall').length > 0 && $(".scrollbarall").each(function(index, element) {
+      $('.scrollbarall').length > 0 &&
+      $(".scrollbarall").each(function(index, element) {
         var e = $(this);
         e.tinyscrollbar();
         e.find('.scrollbar').css({
@@ -114,8 +115,6 @@ const SuiteList = React.createClass({
       .then(j=>{ this.setState({ data:j.data,totalCount:parseInt(j.count) },setupScrollbar) })
     }
   }
-
-
 })
 
 
