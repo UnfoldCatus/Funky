@@ -146,13 +146,16 @@ siteRouter.get('/pringles', function* index(next) {
 siteRouter.get('/suite', function* index(next) {
   yield this.render('modules/default', renderOption('suite', '/suite', '/shot'))
 })
-
+/* 婚礼纪实 */
+siteRouter.get('/weddingmv', function* index(next) {
+  yield this.render('modules/default', renderOption('wedding-mv', '/weddingmv', '/shot'))
+})
 
 /** 婚宴预订 **/
 // 列表
 siteRouter.get('/hotel', function* index(next) {
     yield this.render('modules/default', renderOption('hotel', '/hotel', '/hotel'))
-  })
+})
   // 提交婚宴预订需求
 siteRouter.get('/hotel-require', function* index(next) {
   yield this.render('modules/default', renderOption('hotel-require', '/hotel-require', '/hotel'))
@@ -161,19 +164,19 @@ siteRouter.get('/hotel-require', function* index(next) {
 /** 婚庆定制 **/
 siteRouter.get('/scheme', function* index(next) {
     yield this.render('modules/default', renderOption('scheme', '/scheme', '/scheme'))
-  })
+})
   /**  实景案例 **/
 siteRouter.get('/cases', function* index(next) {
     yield this.render('modules/default', renderOption('cases', '/cases', '/scheme'))
-  })
+})
   /** 婚礼跟拍 **/
 siteRouter.get('/weddingpat', function* index(next) {
     yield this.render('modules/default', renderOption('wedding-pat', '/weddingpat', '/scheme'))
-  })
+})
   /** 婚礼视频 **/
 siteRouter.get('/weddingvideo', function* index(next) {
     yield this.render('modules/default', renderOption('wedding-video', '/weddingvideo', '/scheme'))
-  })
+})
   /** 提交婚庆需求 **/
 siteRouter.get('/scheme-require', function* index(next) {
   yield this.render('modules/default', renderOption('scheme-require', '/scheme-require', '/scheme'))
@@ -186,15 +189,15 @@ siteRouter.get('/dress', function* index(next) {
 
 siteRouter.get('/dress-details', function* index(next) {
     yield this.render('modules/default', renderOption('dress-details', '/dress', '/dress'))
-  })
+})
   /** 微电影 **/
 siteRouter.get('/movie', function* index(next) {
     yield this.render('modules/default', renderOption('movie', '/movie', '/movie'))
-  })
+})
   /** 婚礼用品 **/
 siteRouter.get('/supply', function* index(next) {
     yield this.render('modules/default', renderOption('supply', '/supply', '/supply'))
-  })
+})
   /** 婚车租赁 **/
 siteRouter.get('/car', function* index(next) {
   yield this.render('modules/default', renderOption('car', '/car', '/car'))

@@ -17,6 +17,7 @@
     "build-dress": "watchify ./src/client/dress.js -o 'uglifyjs -cm > ./assets/script/modules/dress.min.js'",
     "build-wedding-pat": "watchify ./src/client/wedding-pat.js -o 'uglifyjs -cm > ./assets/script/modules/wedding-pat.min.js'",
     "build-wedding-video": "watchify ./src/client/wedding-video.js -o 'uglifyjs -cm > ./assets/script/modules/wedding-video.min.js'",
+    "build-wedding-mv": "watchify ./src/client/wedding-mv.js -o 'uglifyjs -cm > ./assets/script/modules/wedding-mv.min.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

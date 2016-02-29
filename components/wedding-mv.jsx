@@ -1,21 +1,21 @@
 import React, { PropTypes } from 'react'
+import { WeddingMVConfig } from './config/wedding-mv-config'
 import { MediaSlider } from './common/media-slider.jsx'
 import { Banner } from './common/banner.jsx'
-import { WeddingVideoConfig} from './config/wedding-video-config'
 import { VideoListItem } from './common/video-list-item.jsx'
 
-const WeddingVideo = React.createClass({
+const WeddingMV = React.createClass({
   render () {
     return (
-      <div className="hlsp-view">
+      <div className="hsjs-view">
           <div className="bannar-all-box">
             <div id="slider_top" className="slider-box bannar mgb30" style={{height:'450px'}}>
-              <MediaSlider {...WeddingVideoConfig['MediaSlider']}/>
+              <MediaSlider {...WeddingMVConfig['MediaSlider']}/>
             </div>
           </div>
           <div className="layout-center-box">
-              <Banner {...WeddingVideoConfig['Banner'][0]} />
-              <VideoListItem {...WeddingVideoConfig['VideoListItem']} />
+              <Banner {...WeddingMVConfig['Banner'][0]} />
+              <VideoListItem {...WeddingMVConfig['VideoListItem']} />
               <div id="J_MoreButton">
                   <div className="more-btn"><span>点击查看更多</span></div>
               </div>
@@ -25,4 +25,4 @@ const WeddingVideo = React.createClass({
   }
 })
 
-export { WeddingVideo }
+export { WeddingMV }

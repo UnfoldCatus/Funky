@@ -19,6 +19,7 @@ import { Scheme } from '../scheme.jsx'
 import { Cases } from '../cases.jsx'
 import { WeddingPat } from '../wedding-pat.jsx'
 import { WeddingVideo } from '../wedding-video.jsx'
+import { WeddingMV } from '../wedding-mv.jsx'
 import { SchemeRequire } from '../scheme-require.jsx'
 
 import { Adv } from '../adv.jsx'
@@ -40,6 +41,7 @@ const ComponentsIndex = {
   'cases': <Cases />,
   'wedding-pat': <WeddingPat />,
   'wedding-video': <WeddingVideo />,
+  'wedding-mv': <WeddingMV />,
   'scheme-require': <SchemeRequire />,
   'adv': <Adv />,
   'dress': <Dress />,

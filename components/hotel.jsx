@@ -268,12 +268,12 @@ const Hotel = React.createClass({
   },
   getInitialState() {
     return {
-      types:[],
-      prices: HotelConfig['Prices'],
-      seatsCount: HotelConfig['SeatsCount'],
-      areas: [],
-      hotels:[],
-      totalPage:0
+      types:[], // fetch
+      prices: HotelConfig['Prices'], // config
+      seatsCount: HotelConfig['SeatsCount'], // config
+      areas: [], // fetch
+      hotels:[], // fetch
+      totalPage:0 // calculate
     }
   },
   loadMore(){},
@@ -302,7 +302,7 @@ const Hotel = React.createClass({
       fetch(DistrictCategory.baseUrl + DistrictCategory.dataUrl)
       .then(res => {return res.json()})
       .then(j=>{
-        /* 针对每个类型只取name和id字段 */
+        /* 针对每个地区只取name和id字段 */
         this.setState({ areas: _.map(j.data || [],(v,k)=>{ return _.pick(v,['name','id']) }) })
       })
     }
