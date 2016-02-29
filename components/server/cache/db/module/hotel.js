@@ -73,6 +73,12 @@ const Hotel = env.Thinky.createModel('hotel', {
     // 套餐详细
     setMealDetail: type.string(),
     /************************************end*************************************/
+    // 网站封面图片地址
+    coverUrlWeb: type.string(),
+    // 微信封面图片地址
+    coverUrlWx: type.string(),
+    // APP封面图片地址
+    coverUrlApp: type.string(),
     // 是否有优惠
     isDiscount: type.number(),
     // 是否有礼包
@@ -82,7 +88,7 @@ const Hotel = env.Thinky.createModel('hotel', {
     // 权重
     weight: type.number(),
     // 宴会厅列表
-    banquetHallList: type.array()
+    banquetHall: type.array()
 })
 
 //Hotel.ensureIndex('highestConsumption');

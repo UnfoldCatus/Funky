@@ -4,6 +4,7 @@
 var http = require('http');
 var env = require("./config.js");
 var Hotel = require("./module/hotel.js");
+var BanquetHall = require("./module/banquetHall.js");
 var FilterConditionHotelType = require("./module/filterCondition/hotelType.js");
 var FilterConditionHotelDistrict = require("./module/filterCondition/hotelDistrict.js");
 var Adv = require("./module/adv.js");
@@ -49,6 +50,7 @@ var _ = require('lodash')
 var models = {
   "Adv": Adv,
   "Hotel": Hotel,
+  "BanquetHall": BanquetHall,
   "FilterConditionHotelType": FilterConditionHotelType,
   "FilterConditionHotelDistrict": FilterConditionHotelDistrict,
   "Sample": Sample,
@@ -123,6 +125,7 @@ var mSyncFlg = {
   "Car": false,
   "Supplies": false,
   "Dress": false,
+  "BanquetHall": false,
   "WeddingClass": false
 };
 
@@ -237,13 +240,63 @@ function Sync(type) {
       console.log('拉取数据失败.', err);
     } else {
       mSyncFlg[type] = false;
-      models[type].delete().run().then(function(rel) {
-        models[type].save(datas).then(function(result, error) {
-          if (!error) {
-            mSyncFlg[type] = true;
+
+      // 酒店需要存两张表
+      if(type === 'Hotel') {
+        // TODO::::::::::::::::::::::::::::::::::::::
+        mSyncFlg['BanquetHall'] = false;
+
+        // 获取所有的宴会厅
+        var banquetHalls = [];
+        for(let i=0;i<datas.length;i++){
+          for(let j=0;j<datas[i].banquetHall.length; j++) {
+            banquetHalls.push(datas[i].banquetHall[j]);
           }
+        }
+
+        console.log(banquetHalls.length);
+        // 分配存储宴会厅
+        models['BanquetHall'].delete().run().then(function(rel) {
+          // TODO:::这里要变成循环插入
+          models['BanquetHall'].save(banquetHalls.slice(0,50)).then(function(result, error) {
+            if (!error) {
+              mSyncFlg['BanquetHall'] = true;
+            } else {
+              console.log('##############:'+error);
+            }
+          });
         });
-      });
+        // TODO::::::::::::::::::::::::::::::::::::::
+
+
+
+
+
+
+
+
+        //
+        //
+        //
+        //models[type].delete().run().then(function(rel) {
+        //  models[type].save(datas).then(function(result, error) {
+        //    if (!error) {
+        //      mSyncFlg[type] = true;
+        //    } else {
+        //      mSyncFlg['BanquetHall'] = false;
+        //    }
+        //  });
+        //});
+
+      } else {
+        models[type].delete().run().then(function(rel) {
+          models[type].save(datas).then(function(result, error) {
+            if (!error) {
+              mSyncFlg[type] = true;
+            }
+          });
+        });
+      }
     }
 
   });

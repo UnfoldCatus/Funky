@@ -135,7 +135,7 @@ const hotelApi = {
       }
     });
 
-    this.model.pluck("banquetHallList");
+    this.model.pluck("banquetHall");
 
     this.APIKey = 'Hotel';
     yield next;
