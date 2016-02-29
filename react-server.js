@@ -93,6 +93,7 @@ let dataFetchMiddleWare = function*(next) {
       }
 
     } else {
+      console.log('memCache:', this.request.url);
       //缓存数据不可用。 去做代理数据请求
       let retData  = yield* proxyFetcher(this.request.url,this.request.url)
       this.dataSource = retData.data
