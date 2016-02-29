@@ -9,7 +9,15 @@ const SupplyConfig = {
     'dataUrl':'adv/supplies_top',
     'height':450,
     'aspectRatio':'192:45'
-  },BaseConfig)
+  },BaseConfig),
+  'CarItemList':_.merge({
+    'dataUrl':'car/car_list',
+    'width':277.5,
+    'aspectRatio':'1:1'
+  },BaseConfig),
+  'TypesCategory': _.merge({
+    'dataUrl': 'weddingsupplies/all'
+  }, BaseConfig),
 }
 
 export { SupplyConfig }
