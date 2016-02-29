@@ -283,14 +283,8 @@ const filterConditionApi = {
   },
 
   // 婚纱礼服--品牌
-  'get+/dressBrand/all':function*(next){ // 婚礼用品类型
-    if (this.params.position === 'all') {
-      this.model = filterConditionDressBrand.filter({})
-    } else {
-      this.model = filterConditionDressBrand.filter({
-        position: this.params.position
-      })
-    }
+  'get+/dressBrand/all':function*(next){
+    this.model = filterConditionDressBrand;
     this.model = this.model.orderBy(r.desc('weight'))
 
     _.each(this.request.query, (v, k) => {
@@ -302,6 +296,15 @@ const filterConditionApi = {
         }
         this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
         this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+      }
+      else if(k.indexOf('position') !== -1) {
+        this.model = this.model.filter({
+          position: this.params.position})
+      }
+      else if(k.indexOf('weddingDressType') !== -1) {
+        this.model = filterConditionDressBrand.filter({
+          type: parseInt(this.request.query["weddingDressType"])
+        })
       }
     })
 

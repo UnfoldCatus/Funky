@@ -58,6 +58,7 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/carBrand/all': '婚车租赁-品牌搜索条件',
     '/api/suppliesBrand/all': '婚车用品-品牌搜索条件',
     '/api/suppliesType/all': '婚车用品-类型搜索条件',
+    '/api/dress/list': '婚纱礼服',
     '/api/dressType/all': '婚纱礼服-类型',
     '/api/dressBrand/all': '婚纱礼服-品牌',
     '/api/video/all': '微电影',
