@@ -86,22 +86,6 @@ const Car = React.createClass({
             <em className='J_Count'>--</em>
             <span>{' 辆'}</span>
           </p>
-          {/*<ul className="list-recommend J_ItemBox">
-            {
-              _.map(self.state.data,function(value,key){
-
-                return <CarInfoItem
-                    key={key}
-                    title={value.title}
-                    coverUrl={value.coverUrl}
-                    weddingCarRentalId={value.weddingCarRentalId}
-                    baseurl={self.state.url}
-                    retailPrice={(parseFloat(value.rentalPrice) == 0)?'面议':(String.fromCharCode(165)+parseFloat(value.rentalPrice||'0').toFixed(2) + '')}
-                    marketPrice={String.fromCharCode(165)+parseFloat(value.marketRentalPrice || '0').toFixed(2) + ''}
-                    />
-              })
-            }
-          </ul>*/}
           <CarItemList {...CarConfig['CarItemList']} />
         </div>
       </div>
