@@ -14,29 +14,14 @@ const WeddingPat = React.createClass({
           </div>
           <div className="layout-center-box">
               <Banner {...WeddingPatConfig['Banner'][0]} />
-              <CasesList {...this.state.list} />
+              <CasesList {...WeddingPatConfig['CasesList']} />
               <div onClick={this.loadMore} id="J_MoreButton">
                   <div className="more-btn"><span>点击查看更多</span></div>
               </div>
           </div>
       </div>
     )
-  },
-  getInitialState() {
-    return {
-      list:{
-        totalCount:6,
-        data:[
-          {schemeName:'test',weddingDate:'2015-10-10'},
-          {schemeName:'test',weddingDate:'2015-10-10'},
-          {schemeName:'test',weddingDate:'2015-10-10'},
-          {schemeName:'test',weddingDate:'2015-10-10'},
-          {schemeName:'test',weddingDate:'2015-10-10'},
-          {schemeName:'test',weddingDate:'2015-10-10'},
-        ]
-      }
-    };
-  },
+  }
 })
 
 export { WeddingPat }

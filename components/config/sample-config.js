@@ -1,3 +1,6 @@
+import { BaseConfig } from './base'
+import _ from 'lodash'
+
 const SampleConfig  = {
   //静态banner
   'Banner':[
@@ -5,18 +8,16 @@ const SampleConfig  = {
       'imageUrl': '//image.jsbn.com/static/ypxs.jpg'
     }
   ],
-  'ShotListItem':{
+  'ShotListItem':_.merge({
     'type':'sample',
-    'baseUrl':'//cd.jsbn.com:7001/api/',
     'dataUrl':'sample/samples_list'
-  },
-  'MediaSlider':{
-    'baseUrl':'//cd.jsbn.com:7001/api/',
+  },BaseConfig),
+  
+  'MediaSlider':_.merge({
     'dataUrl':'adv/samples_top',
     'aspectRatio':'192:45',
     'height':450
-  }
+  },BaseConfig)
 }
-
 
 export { SampleConfig }

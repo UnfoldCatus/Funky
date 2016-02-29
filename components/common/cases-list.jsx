@@ -6,22 +6,18 @@ const CasesList  = React.createClass({
     return (
       <div className="case-list-view">
         <div className="screening-results">
-          <span className="find"><span>找到最佳案例</span><b>{this.props.totalPage}</b><span>套</span></span>
+          <span className="find"><span>找到最佳案例</span><b className='J_Count'>-</b><span>套</span></span>
         </div>
         <SchemeListItem {...this.props}/>
       </div>
     )
   },
   propTypes: {
-    totalPage: React.PropTypes.number,
-    data:React.PropTypes.array
+    dataUrl:React.PropTypes.string
   },
   getDefaultProps(){
     return {
-      totalPage:1,
-      data:[
-        {schemeName:'test',weddingDate:'2015-10-10'}
-      ]
+      dataUrl:''
     }
   }
 })

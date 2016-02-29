@@ -7,28 +7,17 @@ import { ComponentsIndex } from './components/config/components-index'
   /*菜单*/
 import { Navigation } from './components/navigation.jsx'
 
-
 /** api的路由逻辑**/
-import hotelApi from './components/server/api/hotel'
-import sampleApi from './components/server/api/sample'
-import pringlesApi from './components/server/api/pringles'
-import advApi from './components/server/api/adv'
-import suiteApi from './components/server/api/suite'
-import recordVideoApi from './components/server/api/recordVideo.js'
-import recordVideoSeasonApi from './components/server/api/recordVideoSeason.js'
-import casesApi from './components/server/api/cases.js'
-import case3DApi from './components/server/api/case3D.js'
-import followPhotoSeasonApi from './components/server/api/followPhotoSeason.js'
-import followPhotoApi from './components/server/api/followPhoto.js'
-import pringlesSeasonApi from './components/server/api/pringlesSeason.js'
-import followVideoApi from './components/server/api/followVideo.js'
-import followVideoSeasonApi from './components/server/api/followVideoSeason.js'
 import filterConditionApi from './components/server/api/filter-condition.js'
-import photographerApi from './components/server/api/f4/photographer.js'
-import cameraApi from './components/server/api/f4/camera.js'
-import dresserApi from './components/server/api/f4/dresser.js'
-import hostApi from './components/server/api/f4/host.js'
-import wdyVideoApi from './components/server/api/wdyVideo.js'
+import advApi from './components/server/api/adv'
+import hotelApi from './components/server/api/hotel'
+import photoApi from './components/server/api/photo'
+import weddingApi from './components/server/api/wedding'
+import movieApi from './components/server/api/movie.js'
+import carApi from './components/server/api/car.js'
+import suppliesApi from './components/server/api/supplies.js'
+import dressApi from './components/server/api/dress.js'
+import weddingClassApi from './components/server/api/weddingClass.js'
 
   /**
     api 资源路由
@@ -46,7 +35,7 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/pringlesSeason/list':'客片分季',
     '/api/hotel/all':'酒店',
     '/api/hotelType/all':'婚宴预订-酒店类型搜索条件',
-    '/api/hotelDistricts/all': '婚宴预订-酒店区域搜索条件',
+    '/api/hotelDistrict/all': '婚宴预订-酒店区域搜索条件',
     '/api/suite/all':'套系',
     '/api/cases/all':'实景案例',
     '/api/case3D/all':'3D案例',
@@ -61,39 +50,36 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/f4/camera': '四大金刚-摄像师作品',
     '/api/f4/dresser': '四大金刚-化妆师作品',
     '/api/f4/host': '四大金刚-主持师作品',
+    '/api/f4/team': '四大金刚-特色项目作品',
     '/api/recordVideo/all': '婚纱摄影-纪实MV',
     '/api/recordVideoSeason/all': '婚纱摄影-纪实MV分季',
-    '/api/weddingCarModels/all': '婚车租赁-型号搜索条件',
-    '/api/weddingCarLevel/all': '婚车租赁-档次搜索条件',
-    '/api/weddingCarBrand/all': '婚车租赁-品牌搜索条件',
+    '/api/carModels/all': '婚车租赁-型号搜索条件',
+    '/api/carLevel/all': '婚车租赁-档次搜索条件',
+    '/api/carBrand/all': '婚车租赁-品牌搜索条件',
     '/api/suppliesBrand/all': '婚车用品-品牌搜索条件',
     '/api/suppliesType/all': '婚车用品-类型搜索条件',
-    '/api/video/all': '微电影'
+    '/api/dress/list': '婚纱礼服',
+    '/api/dressType/all': '婚纱礼服-类型',
+    '/api/dressBrand/all': '婚纱礼服-品牌',
+    '/api/video/all': '微电影',
+    '/api/car/all': '婚车租赁',
+    '/api/weddingsupplies/all': '婚车用品',
+    '/api/weddingroom/all': '婚礼课堂'
   }
 })
 
 /** 把api的router在此生成 **/
 const apiRouterList = [
+  filterConditionApi,
   advApi,
   hotelApi,
-  sampleApi,
-  pringlesApi,
-  pringlesSeasonApi,
-  suiteApi,
-  recordVideoApi,
-  recordVideoSeasonApi,
-  casesApi,
-  case3DApi,
-  followPhotoApi,
-  followVideoApi,
-  followPhotoSeasonApi,
-  followVideoSeasonApi,
-  filterConditionApi,
-  photographerApi,
-  cameraApi,
-  dresserApi,
-  hostApi,
-  wdyVideoApi
+  photoApi,
+  weddingApi,
+  movieApi,
+  dressApi,
+  carApi,
+  suppliesApi,
+  weddingClassApi
 ]
 _.each(apiRouterList,(route,index)=>{
   _.each(route,(value,key)=>{
@@ -161,13 +147,16 @@ siteRouter.get('/pringles', function* index(next) {
 siteRouter.get('/suite', function* index(next) {
   yield this.render('modules/default', renderOption('suite', '/suite', '/shot'))
 })
-
+/* 婚礼纪实 */
+siteRouter.get('/weddingmv', function* index(next) {
+  yield this.render('modules/default', renderOption('wedding-mv', '/weddingmv', '/shot'))
+})
 
 /** 婚宴预订 **/
 // 列表
 siteRouter.get('/hotel', function* index(next) {
     yield this.render('modules/default', renderOption('hotel', '/hotel', '/hotel'))
-  })
+})
   // 提交婚宴预订需求
 siteRouter.get('/hotel-require', function* index(next) {
   yield this.render('modules/default', renderOption('hotel-require', '/hotel-require', '/hotel'))
@@ -176,19 +165,19 @@ siteRouter.get('/hotel-require', function* index(next) {
 /** 婚庆定制 **/
 siteRouter.get('/scheme', function* index(next) {
     yield this.render('modules/default', renderOption('scheme', '/scheme', '/scheme'))
-  })
+})
   /**  实景案例 **/
 siteRouter.get('/cases', function* index(next) {
     yield this.render('modules/default', renderOption('cases', '/cases', '/scheme'))
-  })
+})
   /** 婚礼跟拍 **/
 siteRouter.get('/weddingpat', function* index(next) {
     yield this.render('modules/default', renderOption('wedding-pat', '/weddingpat', '/scheme'))
-  })
+})
   /** 婚礼视频 **/
 siteRouter.get('/weddingvideo', function* index(next) {
-    yield this.render('modules/default', renderOption('weddingvideo', '/weddingvideo', '/scheme'))
-  })
+    yield this.render('modules/default', renderOption('wedding-video', '/weddingvideo', '/scheme'))
+})
   /** 提交婚庆需求 **/
 siteRouter.get('/scheme-require', function* index(next) {
   yield this.render('modules/default', renderOption('scheme-require', '/scheme-require', '/scheme'))
@@ -201,15 +190,15 @@ siteRouter.get('/dress', function* index(next) {
 
 siteRouter.get('/dress-details', function* index(next) {
     yield this.render('modules/default', renderOption('dress-details', '/dress', '/dress'))
-  })
+})
   /** 微电影 **/
 siteRouter.get('/movie', function* index(next) {
     yield this.render('modules/default', renderOption('movie', '/movie', '/movie'))
-  })
+})
   /** 婚礼用品 **/
 siteRouter.get('/supply', function* index(next) {
     yield this.render('modules/default', renderOption('supply', '/supply', '/supply'))
-  })
+})
   /** 婚车租赁 **/
 siteRouter.get('/car', function* index(next) {
   yield this.render('modules/default', renderOption('car', '/car', '/car'))

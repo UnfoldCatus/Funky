@@ -1,3 +1,6 @@
+import { BaseConfig } from './base'
+import _ from 'lodash'
+
 const ShotConfig = {
   //静态banner
   'Banner': [{
@@ -27,18 +30,16 @@ const ShotConfig = {
     }]
   }],
   //列表数据
-  'ShotListItem': {
+  'ShotListItem': _.merge({
     'type':'sample',
-    'baseUrl':'//cd.jsbn.com:7001/api/',
     'dataUrl': 'sample/samples_list'
-  },
+  },BaseConfig),
   //顶部广告
-  'MediaSlider':{
-    'baseUrl':'//cd.jsbn.com:7001/api/',
+  'MediaSlider':_.merge({
     'dataUrl':'adv/shot_top',
     'aspectRatio':'192:68',
     'height':680
-  }
+  },BaseConfig)
 }
 
 export { ShotConfig }

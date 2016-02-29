@@ -63,7 +63,7 @@ const Cases = React.createClass({
             <ListFilter title={'风格'} name={'styleName'} klass={'ico-1-js ico-1-2-js'} valueKey={['styleId']} conditions={this.state.styles} sorterKey={['styleId']} />
             <ListFilter title={'价位'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']} conditions={this.state.prices} sorterKey={['minPrice','maxPrice']} />
           </div>
-          <CasesList {...this.state.list} />
+          <CasesList {...CasesConfig['CasesList']} />
           <div onClick={this.loadMore} id="J_MoreButton">
             <div className="more-btn"><span>点击查看更多</span></div>
           </div>
@@ -74,8 +74,7 @@ const Cases = React.createClass({
   getInitialState(){
     return {
       'styles':[],
-      'prices':[],
-      'list':{}
+      'prices':[]
     }
   },
   loadMore(){ }

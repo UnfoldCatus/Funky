@@ -1,22 +1,22 @@
+import _ from 'lodash'
+import { BaseConfig } from './base'
+
 const SchemeConfig = {
   'Banner':[
     {
       'imageUrl':'//image.jsbn.com/static/hqdz.jpg'
     }
   ],
-  'MediaSlider':{
-    'baseUrl':'//cd.jsbn.com:7001/api/',
+  'MediaSlider':_.merge({
     'dataUrl':'adv/scheme_top',
     'aspectRatio':'192:68',
     'height':680
-  },
+  },BaseConfig),
   //列表数据
-  'SchemeListItem': {
-    'baseUrl':'//cd.jsbn.com:7001/api/',
+  'SchemeListItem': _.merge({
     'dataUrl': 'cases/scheme_recommend_list'
-  },
-  'Group5':{
-    'baseUrl':'//cd.jsbn.com:7001/api/',// 数据请求地址
+  },BaseConfig),
+  'Group5':_.merge({
     'dataUrl':'adv/scheme_hot',// 数据请求地址
     'dimension':[  //4+1 4和1的尺寸配置
       {
@@ -28,7 +28,7 @@ const SchemeConfig = {
         'width':270
       }
     ]
-  },
+  },BaseConfig),
   'PhotoGallery':[
     { 'imageUrl':'//image.jsbn.com/static/team/team-hqdz_01.jpg' },
     { 'imageUrl':'//image.jsbn.com/static/team/team-hqdz_02.jpg' },

@@ -5,7 +5,7 @@ var http = require('http');
 var env = require("./config.js");
 var Hotel = require("./module/hotel.js");
 var FilterConditionHotelType = require("./module/filterCondition/hotelType.js");
-var FilterConditionHotelDistricts = require("./module/filterCondition/hotelDistricts.js");
+var FilterConditionHotelDistrict = require("./module/filterCondition/hotelDistrict.js");
 var Adv = require("./module/adv.js");
 var Pringles = require("./module/pringles.js");
 var PringlesSeason = require("./module/pringlesSeason.js");
@@ -26,13 +26,20 @@ var F4Photographer = require("./module/f4/photographer.js");
 var F4Camera = require("./module/f4/camera.js");
 var F4Dresser = require("./module/f4/dresser.js");
 var F4Host = require("./module/f4/host.js");
-var FilterConditionWeddingCarModels = require("./module/filterCondition/weddingCarModels.js");
-var FilterConditionWeddingCarLevel = require("./module/filterCondition/weddingCarLevel.js");
-var FilterConditionWeddingCarBrand = require("./module/filterCondition/weddingCarBrand.js");
+var F4Team = require("./module/f4/team.js");
+var FilterConditionCarModels = require("./module/filterCondition/carModels.js");
+var FilterConditionCarLevel = require("./module/filterCondition/carLevel.js");
+var FilterConditionCarBrand = require("./module/filterCondition/carBrand.js");
 var FilterConditionSuppliesBrand = require("./module/filterCondition/suppliesBrand.js");
 var FilterConditionSuppliesType = require("./module/filterCondition/suppliesType.js");
+var FilterConditionDressType = require("./module/filterCondition/dressType.js");
+var FilterConditionDressBrand = require("./module/filterCondition/dressBrand.js");
 
-var WdyVideo = require("./module/wdyVideo.js");
+var Movie = require("./module/movie.js");
+var Car = require("./module/car.js");
+var Supplies = require("./module/supplies.js");
+var Dress = require("./module/dress.js");
+var WeddingClass = require("./module/weddingClass.js");
 
 var qs = require('querystring');
 var r = env.Thinky.r;
@@ -43,7 +50,7 @@ var models = {
   "Adv": Adv,
   "Hotel": Hotel,
   "FilterConditionHotelType": FilterConditionHotelType,
-  "FilterConditionHotelDistricts": FilterConditionHotelDistricts,
+  "FilterConditionHotelDistrict": FilterConditionHotelDistrict,
   "Sample": Sample,
   "Pringles": Pringles,
   "PringlesSeason": PringlesSeason,
@@ -63,12 +70,19 @@ var models = {
   "F4Camera": F4Camera,
   "F4Dresser": F4Dresser,
   "F4Host": F4Host,
-  "FilterConditionWeddingCarModels": FilterConditionWeddingCarModels,
-  "FilterConditionWeddingCarLevel": FilterConditionWeddingCarLevel,
-  "FilterConditionWeddingCarBrand": FilterConditionWeddingCarBrand,
+  "F4Team": F4Team,
+  "FilterConditionCarModels": FilterConditionCarModels,
+  "FilterConditionCarLevel": FilterConditionCarLevel,
+  "FilterConditionCarBrand": FilterConditionCarBrand,
   "FilterConditionSuppliesBrand": FilterConditionSuppliesBrand,
   "FilterConditionSuppliesType": FilterConditionSuppliesType,
-  "WdyVideo": WdyVideo
+  "FilterConditionDressType": FilterConditionDressType,
+  "FilterConditionDressBrand": FilterConditionDressBrand,
+  "Movie": Movie,
+  "Car": Car,
+  "Supplies": Supplies,
+  "Dress": Dress,
+  "WeddingClass": WeddingClass
 
 }
 
@@ -77,7 +91,7 @@ var mSyncFlg = {
   "Adv": false,
   "Hotel": false,
   "FilterConditionHotelType": false,
-  "FilterConditionHotelDistricts": false,
+  "FilterConditionHotelDistrict": false,
   "Sample": false,
   "Pringles": false,
   "PringlesSeason": false,
@@ -97,12 +111,19 @@ var mSyncFlg = {
   "F4Camera": false,
   "F4Dresser": false,
   "F4Host": false,
-  "FilterConditionWeddingCarModels": false,
-  "FilterConditionWeddingCarLevel": false,
-  "FilterConditionWeddingCarBrand": false,
+  "F4Team": false,
+  "FilterConditionCarModels": false,
+  "FilterConditionCarLevel": false,
+  "FilterConditionCarBrand": false,
   "FilterConditionSuppliesBrand": false,
   "FilterConditionSuppliesType": false,
-  "WdyVideo": false
+  "FilterConditionDressType": false,
+  "FilterConditionDressBrand": false,
+  "Movie": false,
+  "Car": false,
+  "Supplies": false,
+  "Dress": false,
+  "WeddingClass": false
 };
 
 //查询工具类
@@ -237,12 +258,13 @@ exports.Instance = function() {
   var tasks = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason',
     'RecordVideo', 'RecordVideoSeason', 'Suite', 'Cases',
     'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason',
-    'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host',
+    'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host', 'F4Team',
     'FilterConditionShootStyle', 'FilterConditionExterior',
-    'Case3D', 'FilterConditionHotelType', 'FilterConditionHotelDistricts',
-    'FilterConditionCaseStyle', 'FilterConditionWeddingCarModels', 'FilterConditionWeddingCarLevel',
-    'FilterConditionWeddingCarBrand', 'FilterConditionSuppliesBrand', 'FilterConditionSuppliesType',
-    'WdyVideo'
+    'Case3D', 'FilterConditionHotelType', 'FilterConditionHotelDistrict',
+    'FilterConditionCaseStyle', 'FilterConditionCarModels', 'FilterConditionCarLevel',
+    'FilterConditionCarBrand', 'FilterConditionSuppliesBrand', 'FilterConditionSuppliesType',
+    'FilterConditionDressBrand', 'FilterConditionDressType', 'Dress',
+    'Movie', 'Car', 'Supplies', 'WeddingClass'
   ];
   if (dbTool == null) {
     dbTool = new DBUtil();
