@@ -72,7 +72,7 @@ const config = {
     // 微电影
     MoviePath: '/api/video/all',
     // 婚纱礼服
-    DressPath: '/api/dress/all',
+    DressPath: '/api/dress/list',
     // 婚纱礼服--类型
     FilterConditionDressTypePath: '/api/dressType/all',
     // 婚纱礼服--品牌
