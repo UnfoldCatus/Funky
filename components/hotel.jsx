@@ -3,6 +3,7 @@ import _ from 'lodash'
 import { ListFilter } from './common/list-filter.jsx'
 import { HotelConfig } from './config/hotel-config.js'
 import { MediaSlider } from './common/media-slider.jsx'
+import { MediaItem } from './common/media-item.jsx'
 /**
 组件结构
 <Hotel>
@@ -47,38 +48,38 @@ const ListItemFeatureLabel  = React.createClass({
 /*宴会厅列表*/
 const ListItemHallList = React.createClass({
   render () {
-    let hallListTitle = (this.props.banquetHallList.length === 0)?(
-      <dt>
-        <span>---</span>
-        <span>---</span>
-        <span>---</span>
-        <span>---</span>
-      </dt>
-    ):(
-      <dt>
-        <span>宴会厅</span>
-        <span>桌数</span>
-        <span>层高</span>
-        <span>柱数</span>
-      </dt>
-    )
     return (
       <dl>
-        <hallListTitle />
+        <dt>
+          <span>宴会厅</span>
+          <span>桌数</span>
+          <span>层高</span>
+          <span>柱数</span>
+        </dt>
         {
           _.map(this.props.banquetHallList.slice(0,2),(v,k)=>{
             return (
               <dd key={k}>
-                {/*v.banquetHallId*/}
-                <a href='#'>
-                  <span>{v.banquetHallName}</span>
-                  <span><b>{v.capacity}</b><em>桌</em></span>
+                <a href='/'>
+                  <span>{v.name}</span>
+                  <span><b>{v.maxTableNum}</b><em>桌</em></span>
                   <span>{v.height+'米'}</span>
                   <span>{parseInt(v.pillarNumber)>0?'有':'无'}</span>
                 </a>
               </dd>
             )
           })
+        }
+        {
+          this.props.banquetHallList.length === 0 &&
+          (
+            <dd>
+              <span>----</span>
+              <span>----</span>
+              <span>----</span>
+              <span>----</span>
+            </dd>
+          )
         }
       </dl>
     )
@@ -126,11 +127,13 @@ const HotelListItem = React.createClass({
       <li className='item-box clearfix'>
         <div className='info-box'>
           <div className='content-box'>
-            {/*MediaItem*/}
+            <a href='/' className='img-box'>
+              <MediaItem {...HotelConfig['HotelList']} mediaUrl={this.props.coverUrlWeb} />
+            </a>
             <div className='info'>
               <div className='title clearfix'>
                 <a href='#' target='_blank'>
-                  <h2> {this.props.hotelName} </h2>
+                  <h2>{this.props.name}</h2>
                   {!!this.props.isGift && <label className='label-pink'>礼</label> }
                   {!!this.props.isDisaccount && <label className='label-blue'>惠</label> }
                 </a>
@@ -152,16 +155,21 @@ const HotelListItem = React.createClass({
                     <b>|</b>
                     <b>{this.props.address.length>20?this.props.address.slice(0,18)+'...':this.props.address}</b>
                   </span>
-                  <span className="desk-num">可容纳<b>{this.props.capacityPerTable}</b>桌</span>
+                  <span className="desk-num">可容纳<b>{this.props.maxTableNum}</b>桌</span>
               </div>
-              <ListItemHallList />
-              <a href='#' target='_blank' className='viewing-banquet transition-bg'>查看更多宴会厅</a>
+              <ListItemHallList banquetHallList={this.props.banquetHall} />
+              {
+                this.props.banquetHall.length!==0 &&
+                (
+                  <a href='/' target='_blank' className='viewing-banquet transition-bg'>查看更多宴会厅</a>
+                )
+              }
             </div>
           </div>
         </div>
         <div className="reply-box">
             <div className="content-box">
-                <ListItemFeatureLabel features={this.props.featureLable.split(',')||[]} />
+                <ListItemFeatureLabel features={this.props.featureLabel.split(',')||[]} />
             </div>
         </div>
       </li>
@@ -171,14 +179,14 @@ const HotelListItem = React.createClass({
     hotelName: PropTypes.string,
     isGift: PropTypes.number,
     isDisaccount: PropTypes.number,
-    lowestConsumption: PropTypes.string,
-    highestConsumption: PropTypes.string,
+    lowestConsumption: PropTypes.number,
+    highestConsumption: PropTypes.number,
     typeName: PropTypes.string,
     address: PropTypes.string,
     capacityPerTable: PropTypes.string,
     banquetHallList:PropTypes.array,
-    hotelId:PropTypes.string,
-    featureLable:PropTypes.string
+    hotelId:PropTypes.number,
+    featureLabel:PropTypes.string
   },
   getDefaultProps(){
     return{
@@ -204,7 +212,7 @@ const Hotel = React.createClass({
         <div className="layout-center-box J_HotelListFilterPanel" style={{minHeight:440+'px'}}>
 
           <ListFilter title={'区域'} name={'name'} klass={'ico-18-js ico-1-1-js'} valueKey={['id']} conditions={this.state.areas} sorterKey={['cityId']} />
-          <ListFilter title={'分类'} name={'typeName'} klass={'ico-1-js ico-1-2-js'} valueKey={['hotelTypeId']} conditions={this.state.types} sorterKey={['hotelType']} />
+          <ListFilter title={'分类'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']} conditions={this.state.types} sorterKey={['hotelType']} />
           <ListFilter title={'桌数'} name={'name'} klass={'ico-18-js ico-18-2-js'} valueKey={['minTable','maxTable']} conditions={this.state.seatsCount} sorterKey={['minTable','maxTable']} />
           <ListFilter title={'价格'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']} conditions={this.state.prices}  sorterKey={['minPrice','maxPrice']}/>
 
@@ -260,109 +268,44 @@ const Hotel = React.createClass({
   },
   getInitialState() {
     return {
-      types:[],
-      prices: [{
-        'minPrice': '0',
-        'maxPrice': '2000',
-        'name': '2000元以下'
-      }, {
-        'minPrice': '2000',
-        'maxPrice': '3000',
-        'name': '2000-3000元'
-      }, {
-        'minPrice': '3000',
-        'maxPrice': '4000',
-        'name': '3000-4000元'
-      }, {
-        'minPrice': '4000',
-        'maxPrice': '99999',
-        'name': '4000元以上'
-      }],
-      seatsCount: [{
-        'maxTable': '10',
-        'minTable': '0',
-        'name': '10桌以下'
-      }, {
-        'minTable': '10',
-        'maxTable': '20',
-        'name': '10-20桌'
-      }, {
-        'minTable': '20',
-        'maxTable': '30',
-        'name': '20-30桌'
-      }, {
-        'minTable': '30',
-        'maxTable': '40',
-        'name': '30-40桌'
-      },{
-        'minTable': '40',
-        'maxTable': '50',
-        'name': '40-50桌'
-      },{
-        'minTable': '51',
-        'maxTable': '9999',
-        'name': '50桌以上'
-      }],
-      areas: [
-        {
-          "id": 99,
-          "name": "渝北区",
-          "pid": ""
-        },
-        {
-          "id": 94,
-          "name": "南岸区",
-          "pid": ""
-        },
-        {
-          "id": 90,
-          "name": "渝中区",
-          "pid": ""
-        },{
-          "id": 92,
-          "name": "江北区",
-          "pid": ""
-        }, {
-          "id": 95,
-          "name": "九龙坡区",
-          "pid": ""
-        },{
-          "id": 100,
-          "name": "巴南区",
-          "pid": ""
-        },  {
-          "id": 91,
-          "name": "大渡口区",
-          "pid": ""
-        },  {
-          "id": 101,
-          "name": "北部新区",
-          "pid": ""
-        },{
-          "id": 96,
-          "name": "北碚区",
-          "pid": ""
-        }, {
-          "id": 93,
-          "name": "沙坪坝区",
-          "pid": ""
-        },
-        {
-          "id": 114,
-          "name": "重庆近郊",
-          "pid": ""
-        }
-      ],
-      hotels:[],
-      totalPage:0
+      types:[], // fetch
+      prices: HotelConfig['Prices'], // config
+      seatsCount: HotelConfig['SeatsCount'], // config
+      areas: [], // fetch
+      hotels:[], // fetch
+      totalPage:0 // calculate
     }
   },
   loadMore(){},
   componentDidMount() {
-    console.log('start to load hotels');
-    this.setState({
-      hotels:[]
-    })
+    const HotelListConfig = HotelConfig['HotelList'] //数据请求地址配置在config文件
+    if (HotelListConfig.dataUrl !== undefined) {
+      fetch(HotelListConfig.baseUrl + HotelListConfig.dataUrl)
+      .then(res => {return res.json()})
+      .then(j=>{
+        this.setState({ hotels:j.data })
+      })
+    }
+
+    const TypeCategory = HotelConfig['TypeCategory'] //取到配置的获取类型数据的请求地址
+    if (TypeCategory.dataUrl !== undefined) {
+      fetch(TypeCategory.baseUrl + TypeCategory.dataUrl)
+      .then(res => {return res.json()})
+      .then(j=>{
+        /* 针对每个类型只取name和id字段 */
+        this.setState({ types: _.map(j.data || [],(v,k)=>{ return _.pick(v,['name','id']) }) })
+      })
+    }
+
+    const DistrictCategory = HotelConfig['DistrictCategory'] //地区数据接口地址
+    if (DistrictCategory.dataUrl !== undefined) {
+      fetch(DistrictCategory.baseUrl + DistrictCategory.dataUrl)
+      .then(res => {return res.json()})
+      .then(j=>{
+        /* 针对每个地区只取name和id字段 */
+        this.setState({ areas: _.map(j.data || [],(v,k)=>{ return _.pick(v,['name','id']) }) })
+      })
+    }
   }
 })
 

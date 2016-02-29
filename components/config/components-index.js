@@ -19,6 +19,7 @@ import { Scheme } from '../scheme.jsx'
 import { Cases } from '../cases.jsx'
 import { WeddingPat } from '../wedding-pat.jsx'
 import { WeddingVideo } from '../wedding-video.jsx'
+import { WeddingMV } from '../wedding-mv.jsx'
 import { SchemeRequire } from '../scheme-require.jsx'
 
 import { Adv } from '../adv.jsx'
@@ -26,6 +27,7 @@ import { Dress } from '../dress.jsx'
 import { DressDetails } from '../dress-details.jsx'
 import { Movie } from '../movie.jsx'
 import { Supply } from '../supply.jsx'
+import { Car } from '../car.jsx'
 
 
 const ComponentsIndex = {
@@ -39,13 +41,15 @@ const ComponentsIndex = {
   'scheme': <Scheme />,
   'cases': <Cases />,
   'wedding-pat': <WeddingPat />,
-  'weddingvideo': <WeddingVideo />,
+  'wedding-video': <WeddingVideo />,
+  'wedding-mv': <WeddingMV />,
   'scheme-require': <SchemeRequire />,
   'adv': <Adv />,
   'dress': <Dress />,
   'dress-details': <DressDetails />,
   'movie': <Movie />,
-  'supply': <Supply />
+  'supply': <Supply />,
+  'car': <Car />
 }
 
 

@@ -1,2 +1,10 @@
 <div><%- reactMarkup %></div>
 <script src=<%= '/script/modules/'+main+'.min.js' %> charset="utf-8"></script>
+<script src="/script/vendors/lightbox2/js/lightbox.min.js" charset="utf-8"></script>
+<script>
+    lightbox.option({
+      'resizeDuration': 0,
+      'wrapAround': true,
+      'disableScrolling':true
+    })
+</script>

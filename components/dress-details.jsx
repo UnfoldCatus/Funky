@@ -41,6 +41,8 @@ const DressDetails = React.createClass({
             dressItems:[{"12":12},{"13":13}]
         }
     }
+
+    // 数据请求/dress/detail?brandId=品牌ID
 });
 
 export { DressDetails };

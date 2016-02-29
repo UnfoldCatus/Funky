@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import _ from 'lodash'
 import { MediaSlider } from './common/media-slider.jsx'
 import { Banner } from './common/banner.jsx'
-
+import { SupplyConfig } from './config/supply-config'
 let Filter = React.createClass({
   render() {
     let typeList = this.props.types || [];
@@ -81,9 +81,9 @@ const Supply = React.createClass({
   	let self = this;
     return (
       <div className='hlyp-view'>
-        <div className="bannar-all-box">
+        <div className="bannar-all-box mgb30">
           <div id="slider_top" className="slider-box bannar" style={{height:'450px'}}>
-            <MediaSlider />
+            <MediaSlider {...SupplyConfig['MediaSlider']} />
           </div>
         </div>
         <div className='layout-center-box'>

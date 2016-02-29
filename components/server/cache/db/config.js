@@ -16,7 +16,7 @@ const config = {
     // 酒店类型
     FilterConditionHotelTypePath:'/api/hotelType/all',
     // 酒店区域
-    FilterConditionHotelDistrictsPath: '/api/hotelDistricts/all',
+    FilterConditionHotelDistrictPath: '/api/hotelDistrict/all',
     // 广告数据
     AdvPath:"/api/adv/all",
     // 样片数据
@@ -57,18 +57,32 @@ const config = {
     F4DresserPath: '/api/f4/dresser',
     // 四大金刚-主持人作品
     F4HostPath: '/api/f4/host',
+    // 四大金刚-特色项目作品
+    F4TeamPath: '/api/f4/team',
     // 婚车租赁--婚车型号搜索条件内容
-    FilterConditionWeddingCarModelsPath: '/api/weddingCarModels/all',
-    // 婚车租赁--婚车档次搜索条件内容
-    FilterConditionWeddingCarLevelPath: '/api/weddingCarLevel/all',
+    FilterConditionCarModelsPath: '/api/carModels/all',
+    // 婚车租赁--婚车档次搜索条件内容c
+    FilterConditionCarLevelPath: '/api/carLevel/all',
     // 婚车租赁--婚车品牌搜索条件内容
-    FilterConditionWeddingCarBrandPath: '/api/weddingCarBrand/all',
+    FilterConditionCarBrandPath: '/api/carBrand/all',
     // 婚车用品--用品品牌搜索条件内容
     FilterConditionSuppliesBrandPath: '/api/suppliesBrand/all',
     // 婚车用品--用品类型搜索条件内容
     FilterConditionSuppliesTypePath: '/api/suppliesType/all',
     // 微电影
-    WdyVideoPath: '/api/video/all'
+    MoviePath: '/api/video/all',
+    // 婚纱礼服
+    DressPath: '/api/dress/list',
+    // 婚纱礼服--类型
+    FilterConditionDressTypePath: '/api/dressType/all',
+    // 婚纱礼服--品牌
+    FilterConditionDressBrandPath: '/api/dressBrand/all',
+    // 婚车租赁
+    CarPath: '/api/car/all',
+    // 婚礼用品
+    SuppliesPath: '/api/weddingsupplies/all',
+    // 婚礼课堂
+    WeddingClassPath: '/api/weddingroom/all'
 };
 
 const Thinky = require('thinky')(config.rethink);
