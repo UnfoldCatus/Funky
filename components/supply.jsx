@@ -1,78 +1,52 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
+import { ListFilter } from './common/list-filter.jsx'
 import { MediaSlider } from './common/media-slider.jsx'
 import { Banner } from './common/banner.jsx'
-import { SupplyConfig } from './config/supply-config'
-let Filter = React.createClass({
-  render() {
-    let typeList = this.props.types || [];
-    return (
-      <div className='J_FilterCtrl'>
-        <div className="filter-title">
-          <span className="sel">分类</span>
-        </div>
-        <div className="filter-box">
-          <span className="title"><i className="ico-1-js ico-1-2-js"></i><b>分类</b></span>
-          <div className="tab-box" id='J_CardType'>
-            <span className='tab tab-sel' data-type-id='0'>全部</span>
-            {
-              _.map(typeList,(v,k)=>{
-                return (
-                	<span key={v.id} data-type-id={v.id} className="tab">{v.name}</span>
-                )
-              })
-            }
-          </div>
-        </div>
-      </div>
-    )
-  }
-});
-
-let SupplyListItem = React.createClass({
-
-  render() {
-    return (
-        <li className='item-box'>
-          <div className='img-box'>
-            {/*ImageListItem*/}
-          </div>
-          <div className="content-box">
-            <a className="title"><p>{this.props.item.title + ' ' + this.props.item.description || ' ' + this.props.item.suppliesNumber || '0'+'个'}</p></a>
-            <div className="price-box">
-              <b className="in-price"><em>￥</em></b>
-              <b className='in-price'>{parseFloat(this.props.item.sellingPrice || '0').toFixed(2)}</b>
-              <span>￥</span>
-              <span className="tm-price">{parseFloat(this.props.item.marketPrice || '0').toFixed(2)}</span>
-            </div>
-          </div>
-        </li>
-    )
-  }
-
-});
+import { SupplyConfig } from './config/supply-config.js'
+import { MediaItem } from './common/media-item.jsx'
 
 let SupplyList = React.createClass({
 	render(){
-		let self = this;
-    let items = this.props.items && this.props.items.data || [];
-    let totalCount =this.props.items && this.props.items.totalCount || 0;
     return (
-      <div>
-        <div className="screening-results">
-          <span className="find">找到相关用品<b>{totalCount}</b> 个</span>
-        </div>
-
-        <ul className="list-recommend J_Item">
-          {
-            _.map(items,(v,k)=>{
-              return <SupplyListItem item={v} key={k} baseUrl={self.props.baseUrl}/>
-            })
-          }
-        </ul>
-      </div>
+      <ul className="list-recommend J_Item">
+        {
+          _.map(this.state.data,(v,k)=>{
+            return (
+              <li key={k} className='item-box'>
+                <div className='img-box'>
+                  <MediaItem aspectRatio={'1:1'} width={277.5} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'}/>
+                </div>
+              </li>
+            )
+          })
+        }
+      </ul>
     )
-	}
+	},
+  propTypes: {
+    'dataUrl': React.PropTypes.string
+  },
+  getDefaultProps(){
+    return {
+      'dataUrl':''
+    }
+  },
+  getInitialState(){
+    return {
+      data:[]
+    }
+  },
+  componentDidMount() {
+    if (this.props.dataUrl !== undefined) {
+      fetch(this.props.baseUrl + this.props.dataUrl)
+      .then(res => {return res.json()})
+      .then(j=>{
+        this.setState({ data:j.data })
+        $('.J_Count').html(j.count)
+      })
+    }
+  }
 });
 
 
@@ -87,17 +61,36 @@ const Supply = React.createClass({
           </div>
         </div>
         <div className='layout-center-box'>
-            <Filter types={self.state && self.state['types']} />
-            <SupplyList items={self.state && self.state['list#supplies']&& self.state['list#supplies'].payload}  baseUrl={self.state && self.state['list#supplies'] && self.state['list#supplies'].url}/>
+          <div className='J_FilterCtrl'>
+            <div className="filter-title">
+              <span className="sel">分类</span>
+            </div>
+            <ListFilter title={'分类'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']} conditions={this.state.types} sorterKey={['hotelType']} />
+          </div>
+          <div className="screening-results">
+            <span className="find">找到相关用品<b className='J_Count'></b> 个</span>
+          </div>
+          <SupplyItemList {...SupplyConfig['SupplyItemList']} />
         </div>
       </div>
     )
   },
   getInitialState: function(){
 		return {
-			types:[{id:0,name:"喜糖"},{id:1,name:"礼盒"},{id:2,name:"请柬"}]
+			types:[{id:0,name:"喜糖"},{id:1,name:"礼盒"}]
 		}
-	}
+	},
+  componentDidMount() {
+    const TypesCategory = SupplyConfig['TypesCategory'] //取到配置的获取类型数据的请求地址
+    if (TypesCategory.dataUrl !== undefined) {
+      fetch(TypesCategory.baseUrl + TypesCategory.dataUrl)
+      .then(res => {return res.json()})
+      .then(j=>{
+        /* 针对每个类型只取name和id字段 */
+        this.setState({ types: _.map(j.data || [],(v,k)=>{ return _.pick(v,['name','id']) }) })
+      })
+    }
+  }
 })
 
 export  { Supply }
