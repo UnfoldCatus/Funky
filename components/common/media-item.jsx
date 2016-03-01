@@ -42,6 +42,7 @@ import React, { PropTypes } from 'react'
 const RegForDimension = /_(\d{1,4})x(\d{1,4})\.\w+g$/i
 const ImageItem = React.createClass({
   render () {
+
     /**
     如果mediaUrl是有带widthXheight的。
     就应该把这个实际的图片尺寸提取出来。
@@ -59,14 +60,34 @@ const ImageItem = React.createClass({
     let mediaUrl = this.props.mediaUrl
     // let mediaUrl = ( process.env.NODE_ENV === 'development')? this.props.mediaUrl: (this.props.mediaUrl + imageOption)
     if (found && 3 === found.length) {
-      width = parseFloat(found[1])
-      height = parseFloat(found[2])
+      width = parseInt(found[1])
+      height = parseInt(found[2])
     }
+
+    if (this.state.errorState) {
+      return (
+        <div className='J_MediaWrapper' style={{'height':'100%'}} data-width={width} data-height={height}>
+          <img src={'//placehold.it/'+this.props.width+'x'+this.props.height}  />
+        </div>
+      )
+    }
+
     return (
+
       <div className='J_MediaWrapper' style={{'height':'100%'}} data-width={width} data-height={height}>
-        <img src={mediaUrl} />
+        <img src={mediaUrl} onError={this.imageNotLoaded}  />
       </div>
     )
+  },
+  getInitialState() {
+    return {
+      errorState:false
+    }
+  },
+  imageNotLoaded(evt){
+    this.setState({
+      errorState:true
+    })
   }
 })
 

@@ -6,7 +6,8 @@ import { Banner } from './common/banner.jsx'
 import { SupplyConfig } from './config/supply-config.js'
 import { MediaItem } from './common/media-item.jsx'
 
-let SupplyList = React.createClass({
+
+let SupplyItemList = React.createClass({
 	render(){
     return (
       <ul className="list-recommend J_Item">
@@ -15,7 +16,7 @@ let SupplyList = React.createClass({
             return (
               <li key={k} className='item-box'>
                 <div className='img-box'>
-                  <MediaItem aspectRatio={'1:1'} width={277.5} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'}/>
+                  <MediaItem {...this.props} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'}/>
                 </div>
               </li>
             )
@@ -65,7 +66,8 @@ const Supply = React.createClass({
             <div className="filter-title">
               <span className="sel">分类</span>
             </div>
-            <ListFilter title={'分类'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']} conditions={this.state.types} sorterKey={['hotelType']} />
+            <ListFilter title={'分类'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']} conditions={this.state.types} sorterKey={['typeId']} />
+            <ListFilter title={'品牌'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']} conditions={this.state.brands} sorterKey={['brandId']} />
           </div>
           <div className="screening-results">
             <span className="find">找到相关用品<b className='J_Count'></b> 个</span>
@@ -77,7 +79,8 @@ const Supply = React.createClass({
   },
   getInitialState: function(){
 		return {
-			types:[{id:0,name:"喜糖"},{id:1,name:"礼盒"}]
+			types:[],
+      brands:[]
 		}
 	},
   componentDidMount() {
@@ -88,6 +91,16 @@ const Supply = React.createClass({
       .then(j=>{
         /* 针对每个类型只取name和id字段 */
         this.setState({ types: _.map(j.data || [],(v,k)=>{ return _.pick(v,['name','id']) }) })
+      })
+    }
+
+    const BrandCategory = SupplyConfig['BrandCategory'] //取到配置的获取品牌数据的请求地址
+    if (BrandCategory.dataUrl !== undefined) {
+      fetch(BrandCategory.baseUrl + BrandCategory.dataUrl)
+      .then(res => {return res.json()})
+      .then(j=>{
+        /* 针对每个类型只取name和id字段 */
+        this.setState({ brands: _.map(j.data || [],(v,k)=>{ return _.pick(v,['name','id']) }) })
       })
     }
   }

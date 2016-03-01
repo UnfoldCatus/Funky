@@ -57,14 +57,14 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/carModels/all': '婚车租赁-型号搜索条件',
     '/api/carLevel/all': '婚车租赁-档次搜索条件',
     '/api/carBrand/all': '婚车租赁-品牌搜索条件',
-    '/api/suppliesBrand/all': '婚车用品-品牌搜索条件',
-    '/api/suppliesType/all': '婚车用品-类型搜索条件',
+    '/api/suppliesBrand/all': '婚礼用品-品牌搜索条件',
+    '/api/suppliesType/all': '婚礼用品-类型搜索条件',
     '/api/dress/detail?***': '婚纱礼服',
     '/api/dressType/all': '婚纱礼服-类型',
     '/api/dressBrand/all': '婚纱礼服-品牌',
     '/api/video/:position': '微电影',
     '/api/car/:position': '婚车租赁',
-    '/api/weddingsupplies/:position': '婚车用品',
+    '/api/weddingsupplies/:position': '婚礼用品',
     '/api/weddingroom/:type': '婚礼课堂'
   }
 })

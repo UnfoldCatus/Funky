@@ -5,7 +5,18 @@ import { MediaSlider } from './common/media-slider.jsx'
 import { MediaItem } from './common/media-item.jsx'
 import _ from 'lodash'
 
+ /**
+ 组件结构
+ <Car>
+ <MediaSlider />
+  <CarItemList>
+    <MediaItem />
+  </CarItemList>
 
+ </Car>
+
+
+ **/
 
 const CarItemList = React.createClass({
   render () {
