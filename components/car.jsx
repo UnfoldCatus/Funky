@@ -12,7 +12,6 @@ import _ from 'lodash'
   <CarItemList>
     <MediaItem />
   </CarItemList>
-
  </Car>
 
 
