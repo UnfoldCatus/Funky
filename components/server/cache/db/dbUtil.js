@@ -204,8 +204,7 @@ function GetData(path, cb) {
  * @param cb 数据回调
  * @constructor
  */
-var ic = -1;
-function SyncFun(module, sumCount, index, count, cb) {
+function SyncFun(module, sumCount, dataList, index, count, cb) {
 
   let path = env.Config[module + 'Path'] + '?' + qs.stringify({
       pageSize: count,
@@ -220,17 +219,27 @@ function SyncFun(module, sumCount, index, count, cb) {
         console.log(sumCount+':'+data.count);
         if (sumCount < data.count) {
           sumCount += data.data.length;
+
+          // TODO::踢重代码
+          //_.each(dataList, function(v) {
+          //  console.log(v.hotelId);
+          //  _.dropRightWhile(data.data, function(n) {
+          //    return n.hotelId == v.hotelId;
+          //  });
+          //});
+          //_.union(dataList, data.data);
+
           // 获取所有的宴会厅
           let banquetHalls = [];
           for(let i=0;i<data.data.length;i++){
             for(let j=0;j<data.data[i].banquetHall.length; j++) {
-              banquetHalls.push(data.data[i].banquetHall[j]);
+              // TODO:解决剔重以后打开
+              //banquetHalls.push(data.data[i].banquetHall[j]);
             }
           }
 
-          ic++;
           if(banquetHalls.length > 0) {
-            models['BanquetHall'].save(banquetHalls.slice(0,1)).then(function(result, error) {
+            models['BanquetHall'].save(banquetHalls).then(function(result, error) {
               if (error) {
                 cb(error);
               }
@@ -239,7 +248,7 @@ function SyncFun(module, sumCount, index, count, cb) {
                   if (error) {
                     cb(error);
                   } else {
-                    SyncFun(module, sumCount, index + 1, count, cb);
+                    SyncFun(module, sumCount, dataList, index + 1, count, cb);
                   }
                 });
               }
@@ -249,7 +258,7 @@ function SyncFun(module, sumCount, index, count, cb) {
               if (error) {
                 cb(error);
               } else {
-                SyncFun(module, sumCount, index + 1, count, cb);
+                SyncFun(module, sumCount, dataList, index + 1, count, cb);
               }
             });
           }
@@ -266,7 +275,7 @@ function SyncFun(module, sumCount, index, count, cb) {
             if (error) {
               cb(error);
             } else {
-              SyncFun(module, sumCount, index + 1, count, cb);
+              SyncFun(module, sumCount, dataList, index + 1, count, cb);
             }
           });
         }
@@ -276,7 +285,7 @@ function SyncFun(module, sumCount, index, count, cb) {
         }
       }
     }
-  })
+  });
 }
 
 /**
@@ -287,11 +296,12 @@ function SyncFun(module, sumCount, index, count, cb) {
 function Sync(type) {
   mSyncFlg[type] = false;
   let sumCount = 0;
+  let dataList = [];
   if(type === 'Hotel') {
     mSyncFlg['BanquetHall'] = false;
     models['BanquetHall'].delete().run().then(function(rel) {
       models[type].delete().run().then(function (rel) {
-        SyncFun(type, sumCount, 1, 10, function (err) {
+        SyncFun(type, sumCount, dataList, 1, 10, function (err) {
           if (err) {
             console.log('拉取数据失败['+type+']', err);
           } else {
@@ -303,7 +313,7 @@ function Sync(type) {
     });
   } else {
     models[type].delete().run().then(function(rel) {
-      SyncFun(type, sumCount, 1, 10, function(err) {
+      SyncFun(type, sumCount, dataList, 1, 10, function(err) {
         if (err) {
           console.log('拉取数据失败['+type+']', err);
         } else {
@@ -321,18 +331,18 @@ DBUtil.prototype.isCacheDataUsable = function(moduleName) {
 };
 
 exports.Instance = function() {
-  //var tasks = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason',
-  //  'RecordVideo', 'RecordVideoSeason', 'Suite', 'Cases',
-  //  'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason',
-  //  'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host', 'F4Team',
-  //  'FilterConditionShootStyle', 'FilterConditionExterior',
-  //  'Case3D', 'FilterConditionHotelType', 'FilterConditionHotelDistrict',
-  //  'FilterConditionCaseStyle', 'FilterConditionCarModels', 'FilterConditionCarLevel',
-  //  'FilterConditionCarBrand', 'FilterConditionSuppliesBrand', 'FilterConditionSuppliesType',
-  //  'FilterConditionDressBrand', 'FilterConditionDressType', 'Dress',
-  //  'Movie', 'Car', 'Supplies', 'WeddingClass'
-  //];
-  var tasks = ['Hotel'];
+  var tasks = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason',
+    'RecordVideo', 'RecordVideoSeason', 'Suite', 'Cases',
+    'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason',
+    'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host', 'F4Team',
+    'FilterConditionShootStyle', 'FilterConditionExterior',
+    'Case3D', 'FilterConditionHotelType', 'FilterConditionHotelDistrict',
+    'FilterConditionCaseStyle', 'FilterConditionCarModels', 'FilterConditionCarLevel',
+    'FilterConditionCarBrand', 'FilterConditionSuppliesBrand', 'FilterConditionSuppliesType',
+    'FilterConditionDressBrand', 'FilterConditionDressType', 'Dress',
+    'Movie', 'Car', 'Supplies', 'WeddingClass'
+  ];
+  //var tasks = ['Hotel'];
   if (dbTool == null) {
     dbTool = new DBUtil();
     // 程序启动取一次数据
