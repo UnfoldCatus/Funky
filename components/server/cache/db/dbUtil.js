@@ -198,34 +198,94 @@ function GetData(path, cb) {
 /**
  * 同步数据
  * @param module 模块名称
- * @param datas 拉取的数据
+ * @param sumCount 记录已拉取的条数
  * @param index 分页数
  * @param count 拉取数量
  * @param cb 数据回调
  * @constructor
  */
+function SyncFun(module, sumCount, dataList, index, count, cb) {
 
-function SyncFun(module, datas, index, count, cb) {
-  var path = env.Config[module + 'Path'] + '?' + qs.stringify({
-    pageSize: count,
-    pageIndex: index
-  });
+  let path = env.Config[module + 'Path'] + '?' + qs.stringify({
+      pageSize: count,
+      pageIndex: index
+    });
+
   GetData(path, function(err, data) {
     if (err) {
-      cb(err)
+      cb(err);
     } else {
-      for (var i = 0; i < data.data.length; ++i) {
-        datas.push(data.data[i]);
-      }
+      if(module === 'Hotel') {
+        console.log(sumCount+':'+data.count);
+        if (sumCount < data.count) {
+          sumCount += data.data.length;
 
-      if (datas.length < data.count) {
-        // 如果获取到的数据小于得到的总条数，那么继续拉数据
-        SyncFun(module, datas, index + 1, count, cb);
-      } else {
-        cb(null);
+          // TODO::踢重代码
+          //_.each(dataList, function(v) {
+          //  console.log(v.hotelId);
+          //  _.dropRightWhile(data.data, function(n) {
+          //    return n.hotelId == v.hotelId;
+          //  });
+          //});
+          //_.union(dataList, data.data);
+
+          // 获取所有的宴会厅
+          let banquetHalls = [];
+          for(let i=0;i<data.data.length;i++){
+            for(let j=0;j<data.data[i].banquetHall.length; j++) {
+              // TODO:解决剔重以后打开
+              //banquetHalls.push(data.data[i].banquetHall[j]);
+            }
+          }
+
+          if(banquetHalls.length > 0) {
+            models['BanquetHall'].save(banquetHalls).then(function(result, error) {
+              if (error) {
+                cb(error);
+              }
+              else {
+                models[module].save(data.data).then(function(result, error) {
+                  if (error) {
+                    cb(error);
+                  } else {
+                    SyncFun(module, sumCount, dataList, index + 1, count, cb);
+                  }
+                });
+              }
+            });
+          } else {
+            models[module].save(data.data).then(function(result, error) {
+              if (error) {
+                cb(error);
+              } else {
+                SyncFun(module, sumCount, dataList, index + 1, count, cb);
+              }
+            });
+          }
+        } else {
+          cb(null);
+        }
+      }
+      else {
+        // 存储数据
+        if (sumCount < data.count)
+        {
+          sumCount += data.data.length;
+          models[module].save(data.data).then(function(result, error) {
+            if (error) {
+              cb(error);
+            } else {
+              SyncFun(module, sumCount, dataList, index + 1, count, cb);
+            }
+          });
+        }
+        else
+        {
+          cb(null);
+        }
       }
     }
-  })
+  });
 }
 
 /**
@@ -234,72 +294,35 @@ function SyncFun(module, datas, index, count, cb) {
  * @constructor
  */
 function Sync(type) {
-  var datas = [];
-  SyncFun(type, datas, 1, 10, function(err) {
-    if (err) {
-      console.log('拉取数据失败.', err);
-    } else {
-      mSyncFlg[type] = false;
-
-      // 酒店需要存两张表
-      if(type === 'Hotel') {
-        // TODO::::::::::::::::::::::::::::::::::::::
-        mSyncFlg['BanquetHall'] = false;
-
-        // 获取所有的宴会厅
-        var banquetHalls = [];
-        for(let i=0;i<datas.length;i++){
-          for(let j=0;j<datas[i].banquetHall.length; j++) {
-            banquetHalls.push(datas[i].banquetHall[j]);
+  mSyncFlg[type] = false;
+  let sumCount = 0;
+  let dataList = [];
+  if(type === 'Hotel') {
+    mSyncFlg['BanquetHall'] = false;
+    models['BanquetHall'].delete().run().then(function(rel) {
+      models[type].delete().run().then(function (rel) {
+        SyncFun(type, sumCount, dataList, 1, 10, function (err) {
+          if (err) {
+            console.log('拉取数据失败['+type+']', err);
+          } else {
+            console.log('更新成功....'+type);
+            mSyncFlg[type] = true;
           }
+        });
+      });
+    });
+  } else {
+    models[type].delete().run().then(function(rel) {
+      SyncFun(type, sumCount, dataList, 1, 10, function(err) {
+        if (err) {
+          console.log('拉取数据失败['+type+']', err);
+        } else {
+          console.log('更新成功....'+type);
+          mSyncFlg[type] = true;
         }
-
-        console.log(banquetHalls.length);
-        // 分配存储宴会厅
-        models['BanquetHall'].delete().run().then(function(rel) {
-          // TODO:::这里要变成循环插入
-          models['BanquetHall'].save(banquetHalls.slice(0,50)).then(function(result, error) {
-            if (!error) {
-              mSyncFlg['BanquetHall'] = true;
-            } else {
-              console.log('##############:'+error);
-            }
-          });
-        });
-        // TODO::::::::::::::::::::::::::::::::::::::
-
-
-
-
-
-
-
-
-        //
-        //
-        //
-        //models[type].delete().run().then(function(rel) {
-        //  models[type].save(datas).then(function(result, error) {
-        //    if (!error) {
-        //      mSyncFlg[type] = true;
-        //    } else {
-        //      mSyncFlg['BanquetHall'] = false;
-        //    }
-        //  });
-        //});
-
-      } else {
-        models[type].delete().run().then(function(rel) {
-          models[type].save(datas).then(function(result, error) {
-            if (!error) {
-              mSyncFlg[type] = true;
-            }
-          });
-        });
-      }
-    }
-
-  });
+      });
+    });
+  }
 }
 
 DBUtil.prototype.isCacheDataUsable = function(moduleName) {
@@ -319,6 +342,7 @@ exports.Instance = function() {
     'FilterConditionDressBrand', 'FilterConditionDressType', 'Dress',
     'Movie', 'Car', 'Supplies', 'WeddingClass'
   ];
+  //var tasks = ['Hotel'];
   if (dbTool == null) {
     dbTool = new DBUtil();
     // 程序启动取一次数据
@@ -331,6 +355,7 @@ exports.Instance = function() {
         Sync(v)
       })
     }, env.Config.cache_time_check);
+
   }
   return dbTool;
 };
