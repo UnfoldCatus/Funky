@@ -34,18 +34,27 @@ const carApi = {
                 if (limit < 0) {
                     limit = 0
                 }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+                this.model = this.model.skip(limit * parseInt(this.request.query["pageSize"] || '10'));
+                this.model = this.model.limit(parseInt(this.request.query["pageSize"] || '10'));
             }
-            else if(k.indexOf('styleId') !== -1) {
-                // 风格 TODO:服务器返回的是字符串如"123,275,468,",这里采用"%id,%"的方式匹配
-                this.model = this.model.filter(r.row("caseStyle").match(".*?"+this.request.query['styleId']+","+".*?"));
-            } else if(k.indexOf('minPrice') !== -1) {
+            else if(k.indexOf('minPrice') !== -1) {
                 // 最低价格
-                this.model = this.model.filter(r.row('totalCost').gt(Number(this.request.query['minPrice'])));
+                this.model = this.model.filter(r.row('totalCost').gt(parseInt(this.request.query['minPrice'])));
             } else if(k.indexOf('maxPrice') !== -1) {
                 // 最高价格
-                this.model = this.model.filter(r.row('totalCost').lt(Number(this.request.query['maxPrice'])));
+                this.model = this.model.filter(r.row('totalCost').lt(parseInt(this.request.query['maxPrice'])));
+            } else if(k.indexOf('brandId') !== -1) {
+                // 用品品牌
+                this.model = this.model.filter({brandId: parseInt(this.request.query["brandId"])});
+            } else if(k.indexOf('modelsId') !== -1) {
+                // 型号ID
+                this.model = this.model.filter({modelsId: parseInt(this.request.query["modelsId"])});
+            } else if(k.indexOf('levelId') !== -1) {
+                // 档次ID
+                this.model = this.model.filter({levelId: parseInt(this.request.query["levelId"])});
+            } else if(k.indexOf('carNature') !== -1) {
+                // 单车还是车队
+                this.model = this.model.filter({carNature: parseInt(this.request.query["carNature"])});
             }
         })
 

@@ -67,7 +67,7 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/carModels/all': '婚车租赁-型号搜索条件',
     '/api/carLevel/all': '婚车租赁-档次搜索条件',
     '/api/carBrand/all': '婚车租赁-品牌搜索条件',
-    '/api/car/:position?=车型号&=品牌': '婚车',
+    '/api/car/:position?modelsId=车型号&brandId=品牌&levelId=档次&carNature=单车还是车队': '婚车',
     '/api/car/detail/:id': '婚车详情',
     '/api/suppliesBrand/all': '婚礼用品-品牌搜索条件',
     '/api/suppliesType/all': '婚礼用品-类型搜索条件',
