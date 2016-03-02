@@ -73,7 +73,7 @@ const DressType  = React.createClass({
   },
 
   componentDidMount(){
-    fetch(DressConfig['MediaSlider']['baseUrl']+'dressBrand/all'+'?weddingDressType='+this.props.id)
+    fetch(DressConfig['APIConfig']['baseUrl']+'dressBrand/all'+'?weddingDressType='+this.props.id)
       .then(res => {return res.json()})
       .then(j=>{
         this.setState({ dress:j.data, index:0});
@@ -118,7 +118,7 @@ const Dress = React.createClass({
 
   componentDidMount() {
     /** 请求婚纱类型 **/
-    fetch(DressConfig['MediaSlider']['baseUrl']+'dressType/all')
+    fetch(DressConfig['APIConfig']['baseUrl']+'dressType/all')
       .then(res => {return res.json()})
       .then(j=>{
         this.setState({ typeList:j.data })

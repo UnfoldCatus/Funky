@@ -11,22 +11,23 @@ var type=env.Thinky.type;
  "message": null,
  "data": [
      {
-     "id": 3,
-     "createTime": 1448335207000,
-     "updateTime": 1448335207000,
+     "id": 327,
+     "createTime": "2016-01-21 19:27:29",
+     "updateTime": "2016-01-26 18:22:14",
      "operater": 1,
      "isUsed": 1,
-     "name": "Monique Lhuillier",
-     "description": "Monique Lhuillier",
-     "type": 1,
-     "brand": 2,
-     "pcDetailImages": "[{\"createTime\":null,\"id\":45154,\"isUsed\":1,\"operater\":0,\"type\":1,\"updateTime\":null,\"url\":\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/followPhoto/20160127/14538798829112669_498x293.jpg\",\"weight\":2},{\"createTime\":null,\"id\":45155,\"isUsed\":1,\"operater\":0,\"type\":1,\"updateTime\":null,\"url\":\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/followPhoto/20160127/14538798829069348_475x350.jpg\",\"weight\":3}]",
-     "appDetailImages": "[{\"createTime\":null,\"id\":45158,\"isUsed\":1,\"operater\":0,\"type\":3,\"updateTime\":null,\"url\":\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/followPhoto/20160127/14538798829385778_498x293.jpg\",\"weight\":0},{\"createTime\":null,\"id\":45159,\"isUsed\":1,\"operater\":0,\"type\":3,\"updateTime\":null,\"url\":\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/followPhoto/20160127/14538798829330037_475x350.jpg\",\"weight\":1}]",
-     "wxDetailImages": "[{\"createTime\":null,\"id\":45156,\"isUsed\":1,\"operater\":0,\"type\":2,\"updateTime\":null,\"url\":\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/followPhoto/20160127/14538798829427377_498x293.jpg\",\"weight\":4},{\"createTime\":null,\"id\":45157,\"isUsed\":1,\"operater\":0,\"type\":2,\"updateTime\":null,\"url\":\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/followPhoto/20160127/14538798828847026_475x350.jpg\",\"weight\":5}]",
+     "name": "香奈儿",
+     "description": "香奈儿",
+     "number": "001",
+     "typeId": 3,
+     "brandId": 7,
+     "imageUrl": "http://img.jsbn.com/dress/20160122/14534537137646159_650x487.jpg",
+     "weight": 20,
+     "position": "dress_brand_male"
      }
  ],
  "code": 200,
- "count": 0
+ "count": 11
  }
  * */
 
@@ -45,19 +46,14 @@ const Dress = env.Thinky.createModel('dress', {
     name: type.string(),
     // 描述
     description: type.string(),
+    // 礼服编号
+    number: type.string(),
     // 礼服类型
     type: type.number(),
     // 礼服品牌
     brand: type.number(),
-    /************************************start************************************/
-    // TODO 本身是json对象，以字符串形式表现
-    // web详细图片集
-    pcDetailImages: type.string(),
-    // app详细图片集
-    appDetailImages: type.string(),
-    // 微信详细图片集
-    wxDetailImages: type.string(),
-    /************************************end*************************************/
+    // 礼服URL图片地址
+    imageUrl: type.string(),
     // 资源位置
     position: type.string(),
     // 权重
