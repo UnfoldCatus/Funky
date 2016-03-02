@@ -3,11 +3,11 @@ import _ from 'lodash'
 import env from '../cache/db/config'
 let r = env.Thinky.r
 const advApi = {
-  'get+/adv/all': function*(next) {
-    this.model = adv
-    this.APIKey = 'Adv'
-    yield next
-  },
+  //'get+/adv/all': function*(next) {
+  //  this.model = adv
+  //  this.APIKey = 'Adv'
+  //  yield next
+  //},
   'get+/adv/:position': function*(next) {
 
     if (this.params.position === 'all') {

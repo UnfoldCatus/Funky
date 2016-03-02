@@ -10,12 +10,11 @@ let r = env.Thinky.r
 
 const suppliesApi = {
 
-    'get+/weddingsupplies/all': function*(next) {
-        this.model = supplies
-        this.APIKey = 'Supplies'
-        yield next
-    },
-
+    //'get+/weddingsupplies/all': function*(next) {
+    //    this.model = supplies
+    //    this.APIKey = 'Supplies'
+    //    yield next
+    //},
     // 获取案例
     'get+/weddingsupplies/:position': function*(next) {
         if (this.params.position === 'all') {

@@ -11,12 +11,11 @@ let r = env.Thinky.r
 
 const wdyVideoApi = {
 
-    'get+/video/all': function*(next) {
-        this.model = wdyVideo
-        this.APIKey = 'WdyVideo'
-        yield next
-    },
-
+    //'get+/video/all': function*(next) {
+    //    this.model = wdyVideo
+    //    this.APIKey = 'WdyVideo'
+    //    yield next
+    //},
     // 获取案例
     'get+/video/:position': function*(next) {
         if (this.params.position === 'all') {
@@ -53,7 +52,7 @@ const wdyVideoApi = {
         yield next
     },
 
-    // 获取案例详情
+    // 微电影详情
     'get+/video/detail/:id': function*(next) {
         this.model = wdyVideo.filter({
             id: parseInt(this.params.id)

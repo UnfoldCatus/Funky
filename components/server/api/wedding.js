@@ -21,11 +21,11 @@ import f4Team from '../cache/db/module/f4/team.js'
 const weddingApi = {
 
     // 获取实景案例列表
-    'get+/cases/all': function*(next) {
-        this.model = cases
-        this.APIKey = 'Cases'
-        yield next
-    },
+    //'get+/cases/all': function*(next) {
+    //    this.model = cases
+    //    this.APIKey = 'Cases'
+    //    yield next
+    //},
     'get+/cases/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = cases.filter({})
@@ -71,11 +71,11 @@ const weddingApi = {
     },
 
     // 获取3D案例列表
-    'get+/case3D/all': function*(next) {
-        this.model = case3D
-        this.APIKey = 'Cases3D'
-        yield next
-    },
+    //'get+/case3D/all': function*(next) {
+    //    this.model = case3D
+    //    this.APIKey = 'Cases3D'
+    //    yield next
+    //},
     'get+/case3D/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = case3D.filter({})
@@ -112,11 +112,11 @@ const weddingApi = {
     },
 
     // 婚礼跟拍列表
-    'get+/followPhoto/all': function*(next) {
-        this.model = followPhoto
-        this.APIKey = 'FollowPhoto'
-        yield next
-    },
+    //'get+/followPhoto/all': function*(next) {
+    //    this.model = followPhoto
+    //    this.APIKey = 'FollowPhoto'
+    //    yield next
+    //},
     'get+/followPhoto/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = followPhoto.filter({})
@@ -158,11 +158,11 @@ const weddingApi = {
     },
 
     // 婚礼跟拍分季
-    'get+/followPhotoSeason/all': function*(next) {
-        this.model = followPhotoSeason
-        this.APIKey = 'FollowPhotoSeason'
-        yield next
-    },
+    //'get+/followPhotoSeason/all': function*(next) {
+    //    this.model = followPhotoSeason
+    //    this.APIKey = 'FollowPhotoSeason'
+    //    yield next
+    //},
     'get+/followPhotoSeason/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = followPhotoSeason.filter({})
@@ -190,11 +190,11 @@ const weddingApi = {
     },
 
     // 婚礼视频列表
-    'get+/followVideo/all': function*(next) {
-        this.model = followVideo
-        this.APIKey = 'FollowVideo'
-        yield next
-    },
+    //'get+/followVideo/all': function*(next) {
+    //    this.model = followVideo
+    //    this.APIKey = 'FollowVideo'
+    //    yield next
+    //},
     'get+/followVideo/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = followVideo.filter({})
@@ -236,11 +236,11 @@ const weddingApi = {
     },
 
     // 婚礼视频分季
-    'get+/followVideoSeason/all': function*(next) {
-        this.model = followVideoSeason
-        this.APIKey = 'FollowVideoSeason'
-        yield next
-    },
+    //'get+/followVideoSeason/all': function*(next) {
+    //    this.model = followVideoSeason
+    //    this.APIKey = 'FollowVideoSeason'
+    //    yield next
+    //},
     'get+/followVideoSeason/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = followVideoSeason.filter({})
