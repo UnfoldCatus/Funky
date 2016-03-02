@@ -237,7 +237,6 @@ function SyncFun(module, sumCount, dataList, index, count, cb) {
           for(let ii = 0; ii < data.data.length; ii++) {
             dataList[data.data[ii].hotelId] = data.data[ii].hotelId;
           }
-          console.log(dataList);
 
           if(banquetHalls.length > 0) {
             models['BanquetHall'].save(banquetHalls).then(function(result, error) {
