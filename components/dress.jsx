@@ -17,11 +17,12 @@ import { DressConfig } from './config/dress-config'
 
 const DressHolder = React.createClass({
   render () {
+    let hf = '/dress-details?position=dress_list&brandId='+this.props.data.id+'&typeId='+this.props.data.type;
     return (
       <div className="show-box">
         <div className="layer-box" />
         <h2>{this.props.data.description}</h2>
-        <a href='/dress-details' target="">
+        <a href={hf} target="">
           <img src={this.props.data.coverUrlWeb} />
         </a>
       </div>
@@ -102,7 +103,7 @@ const Dress = React.createClass({
             _.map(this.state.typeList,(v,k)=>{
               return (
                 <DressType key={k} {...v} />
-              )
+              );
             })
           }
         </div>
