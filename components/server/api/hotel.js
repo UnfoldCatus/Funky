@@ -1,19 +1,21 @@
 import hotel from '../cache/db/module/hotel.js'
+import banquetHall from '../cache/db/module/banquetHall.js'
 import _ from 'lodash'
 import env from '../cache/db/config'
 let r = env.Thinky.r
 
 const hotelApi = {
-  'get+/hotel/all': function*(next) {
-    this.model = hotel
-    this.APIKey = 'Hotel'
-    let all = yield this.model
-    this.count = all.length
-    yield next
-  },
-  'get+/hotel/:position': function*(next) {
-    this.APIKey = 'Hotel'
 
+  //'get+/hotel/all': function*(next) {
+  //  this.model = hotel
+  //  this.APIKey = 'Hotel'
+  //  let all = yield this.model
+  //  this.count = all.length
+  //  yield next
+  //},
+  'get+/hotel/:position': function*(next) {
+
+    this.APIKey = 'Hotel'
     if (this.params.position === 'all') {this.model = hotel.filter({})
     } else {
       this.model = hotel.filter({position: this.params.position})
@@ -115,10 +117,19 @@ const hotelApi = {
     yield next
   },
 
+  // 酒店详情 id是资源ID不是酒店ID
+  'get+/hotel/detail/:id': function*(next) {
+    this.model = hotel.filter({
+      id: parseInt(this.params.id)
+    })
+
+    this.APIKey = 'Hotel'
+    yield next
+  },
+
   // 获取宴会厅列表
   'get+/banquetHall/list': function*(next) {
-    this.model = hotel;
-
+    this.model = banquetHall;
     _.each(this.request.query, (v, k) => {
       if (k.indexOf('pageSize') !== -1) {
         let limit = 0
@@ -129,29 +140,26 @@ const hotelApi = {
         this.model = this.model.skip(limit * parseInt(this.request.query["pageSize"] || '10'));
         this.model = this.model.limit(parseInt(this.request.query["pageSize"] || '10'));
       }
+      // 此处的hotelId是酒店Id,不是资源ID
       else if(k.indexOf('hotelId') !== -1) {
         this.model = this.model.filter({
-          id: parseInt(this.request.query["hotelId"])})
+          hotelId: parseInt(this.request.query["hotelId"])})
       }
     });
 
-    this.model.pluck("banquetHall");
-
-    this.APIKey = 'Hotel';
+    this.APIKey = 'BanquetHall';
     yield next;
   },
 
-  // 酒店详情 id是资源ID不是酒店ID
-  'get+/hotel/detail/:id': function*(next) {
-    this.model = hotel.filter({
+  // 宴会厅详情
+  'get+/banquetHall/detail/:id': function*(next) {
+    this.model = banquetHall.filter({
       id: parseInt(this.params.id)
     })
 
-    this.APIKey = 'Hotel'
-    yield next
+    this.APIKey = 'BanquetHall';
+    yield next;
   }
-
-  // 宴会厅详情没有做,数据结构太复杂
 
 }
 export default hotelApi

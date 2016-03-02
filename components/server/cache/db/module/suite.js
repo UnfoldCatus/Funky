@@ -29,7 +29,6 @@ const Suite = env.Thinky.createModel('suite', {
     mobileUrl: type.string(),
     // 套系描述
     description: type.string(),
-
     /************************************start************************************/
     // TODO 本身是json对象，以字符串形式表现
     // 摄影师详细
@@ -43,8 +42,6 @@ const Suite = env.Thinky.createModel('suite', {
     // 微信详细图片集
     wxDetailImages: type.string(),
     /************************************end************************************/
-
-
     // 资源位置
     position: type.string(),
     // 权重

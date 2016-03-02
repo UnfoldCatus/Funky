@@ -16,13 +16,13 @@ import suite from '../cache/db/module/suite.js'
 const photoApi = {
 
     // 样片列表
-    'get+/sample/all': function*(next) {
-        this.model = sample
-        this.APIKey = 'Sample'
-        let all = yield sample.filter({})
-        this.count = all.length
-        yield next
-    },
+    //'get+/sample/all': function*(next) {
+    //    this.model = sample
+    //    this.APIKey = 'Sample'
+    //    let all = yield sample.filter({})
+    //    this.count = all.length
+    //    yield next
+    //},
     'get+/sample/:position': function*(next) {
         this.APIKey = 'Sample'
         //对position为all到情况要处理
@@ -39,21 +39,20 @@ const photoApi = {
         this.model = this.model.orderBy(r.desc('weight'))
 
         _.each(this.request.query, (v, k) => {
-            if (k.indexOf('min') !== -1 || k.indexOf('max') !== -1) {
-                console.log(v);
-            } else if (k.indexOf('pageSize') !== -1) {
+            if (k.indexOf('pageSize') !== -1) {
                 let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
+                limit = parseInt(this.request.query['pageIndex'] || '1') - 1
                 if (limit < 0) {
                     limit = 0
                 }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10')).limit(Number(this.request.query["pageSize"] || '10'))
-            } else if(k.indexOf('seasonId') !== -1) {
-                this.model = this.model.filter({
-                    seasonId:Number(this.request.query['seasonId'])
-                })
+                this.model = this.model.skip(limit * parseInt(this.request.query["pageSize"] || '10')).limit(parseInt(this.request.query["pageSize"] || '10'))
+            } else if(k.indexOf('exteriorId') !== -1) {// 外景ID
+                // 风格 TODO:服务器返回的是字符串如"123,275,468,",这里采用"%id,%"的方式匹配
+                this.model = this.model.filter(r.row("exteriorId").match(".*?"+this.request.query['exteriorId']+","+".*?"));
+            } else if(k.indexOf('shootingStyleId') !== -1) {// 风格ID
+                // 风格 TODO:服务器返回的是字符串如"123,275,468,",这里采用"%id,%"的方式匹配
+                this.model = this.model.filter(r.row("shootingStyleId").match(".*?"+this.request.query['shootingStyleId']+","+".*?"));
             }
-
         })
 
         yield next
@@ -70,13 +69,13 @@ const photoApi = {
     },
 
     // 客片列表
-    'get+/pringles/all': function*(next) {
-        this.model = pringles
-        this.APIKey = 'Pringles'
-        let all = yield pringles.filter({})
-        this.count = all.length
-        yield next
-    },
+    //'get+/pringles/all': function*(next) {
+    //    this.model = pringles
+    //    this.APIKey = 'Pringles'
+    //    let all = yield pringles.filter({})
+    //    this.count = all.length
+    //    yield next
+    //},
     'get+/pringles/:position': function*(next) {
 
         this.APIKey = 'Pringles'
@@ -95,23 +94,20 @@ const photoApi = {
         this.model = this.model.orderBy(r.desc('weight'))
 
         _.each(this.request.query, (v, k) => {
-            if (k.indexOf('min') !== -1 || k.indexOf('max') !== -1) {
-                console.log(v);
-            } else if (k.indexOf('pageSize') !== -1) {
+            if (k.indexOf('pageSize') !== -1) {
                 let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
+                limit = parseInt(this.request.query['pageIndex'] || '1') - 1
                 if (limit < 0) {
                     limit = 0
                 }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+                this.model = this.model.skip(limit * parseInt(this.request.query["pageSize"] || '10'));
+                this.model = this.model.limit(parseInt(this.request.query["pageSize"] || '10'));
             } else if (k.indexOf('seasonId') !== -1) {
                 this.model = this.model.filter({
-                    seasonId: Number(this.request.query['seasonId'])
+                    seasonId: parseInt(this.request.query['seasonId'])
                 })
             }
         })
-
 
         yield next
     },
@@ -121,17 +117,15 @@ const photoApi = {
             id: parseInt(this.params.id)
         })
         this.APIKey = 'Pringles'
-        let all = yield this.model
-        this.count = all.length
         yield next
     },
 
     // 客片分季列表
-    'get+/pringlesSeason/all': function*(next) {
-        this.model = pringlesSeason
-        this.APIKey = 'PringlesSeason'
-        yield next
-    },
+    //'get+/pringlesSeason/all': function*(next) {
+    //    this.model = pringlesSeason
+    //    this.APIKey = 'PringlesSeason'
+    //    yield next
+    //},
     'get+/pringlesSeason/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = cases.filter({})
@@ -145,12 +139,12 @@ const photoApi = {
         _.each(this.request.query, (v, k) => {
             if (k.indexOf('pageSize') !== -1) {
                 let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
+                limit = parseInt(this.request.query['pageIndex'] || '1') - 1
                 if (limit < 0) {
                     limit = 0
                 }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+                this.model = this.model.skip(limit * parseInt(this.request.query["pageSize"] || '10'));
+                this.model = this.model.limit(parseInt(this.request.query["pageSize"] || '10'));
             }
         })
 
@@ -159,13 +153,13 @@ const photoApi = {
     },
 
     // 婚纱摄影-套系列表
-    'get+/suite/all': function*(next) {
-        this.model = suite
-        this.APIKey = 'Suite'
-        let all = yield suite.filter({})
-        this.count = all.length
-        yield next
-    },
+    //'get+/suite/all': function*(next) {
+    //    this.model = suite
+    //    this.APIKey = 'Suite'
+    //    let all = yield suite.filter({})
+    //    this.count = all.length
+    //    yield next
+    //},
     'get+/suite/:position': function*(next) {
         this.APIKey = 'Suite'
         if (this.params.position === 'all') {
@@ -180,20 +174,14 @@ const photoApi = {
 
         this.model = this.model.orderBy(r.desc('weight'))
         _.each(this.request.query, (v, k) => {
-            if (k.indexOf('min') !== -1 || k.indexOf('max') !== -1) {
-                console.log(v);
-            } else if (k.indexOf('pageSize') !== -1) {
+            if (k.indexOf('pageSize') !== -1) {
                 let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
+                limit = parseInt(this.request.query['pageIndex'] || '1') - 1
                 if (limit < 0) {
                     limit = 0
                 }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-            } else if (k.indexOf('seasonId') !== -1) {
-                this.model = this.model.filter({
-                    seasonId: Number(this.request.query['seasonId'])
-                })
+                this.model = this.model.skip(limit * parseInt(this.request.query["pageSize"] || '10'));
+                this.model = this.model.limit(parseInt(this.request.query["pageSize"] || '10'));
             }
         })
         yield next
@@ -204,17 +192,15 @@ const photoApi = {
             id: parseInt(this.params.id)
         })
         this.APIKey = 'Suite'
-        let all = yield this.model
-        this.count = all.length
         yield next
     },
 
     // 婚纱摄影-纪实MV列表
-    'get+/recordVideo/all': function*(next) {
-        this.model = recordVideo
-        this.APIKey = 'RecordVideo'
-        yield next
-    },
+    //'get+/recordVideo/all': function*(next) {
+    //    this.model = recordVideo
+    //    this.APIKey = 'RecordVideo'
+    //    yield next
+    //},
     'get+/recordVideo/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = recordVideo.filter({})
@@ -223,22 +209,31 @@ const photoApi = {
                 position: this.params.position
             })
         }
-        this.model = this.model.orderBy(r.desc('weight'))
 
+        let all = yield this.model
+        this.count = all.length
+
+        //this.model = this.model.orderBy(r.desc('weight'))
         _.each(this.request.query, (v, k) => {
             if (k.indexOf('pageSize') !== -1) {
                 let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
+                limit = parseInt(this.request.query['pageIndex'] || '1') - 1
                 if (limit < 0) {
                     limit = 0
                 }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+                this.model = this.model.skip(limit * parseInt(this.request.query["pageSize"] || '10'));
+                this.model = this.model.limit(parseInt(this.request.query["pageSize"] || '10'));
             } else if(k.indexOf('seasonId') !== -1) {
                 // 分季ID
                 this.model = this.model.filter({
-                    seasonId: Number(this.request.query['seasonId'])
+                    seasonId: parseInt(this.request.query['seasonId'])
                 });
+            } else if (k.indexOf('sort') !== -1) {
+                if (this.request.query["sort"] == "date") {
+                    this.model = this.model.orderBy(r.desc('createTime'));
+                } else if (this.request.query["sort"] == "hits") {
+                    this.model = this.model.orderBy(r.desc('hitNum'));
+                }
             }
         })
 
@@ -256,11 +251,11 @@ const photoApi = {
     },
 
     // 婚纱摄影-纪实MV分级季列表
-    'get+/recordVideoSeason/all': function*(next) {
-        this.model = recordVideoSeason
-        this.APIKey = 'RecordVideoSeason'
-        yield next
-    },
+    //'get+/recordVideoSeason/all': function*(next) {
+    //    this.model = recordVideoSeason
+    //    this.APIKey = 'RecordVideoSeason'
+    //    yield next
+    //},
     'get+/recordVideoSeason/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = recordVideoSeason.filter({})
@@ -269,17 +264,17 @@ const photoApi = {
                 position: this.params.position
             })
         }
-        this.model = this.model.orderBy(r.desc('weight'))
 
+        this.model = this.model.orderBy(r.desc('weight'))
         _.each(this.request.query, (v, k) => {
             if (k.indexOf('pageSize') !== -1) {
                 let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
+                limit = parseInt(this.request.query['pageIndex'] || '1') - 1
                 if (limit < 0) {
                     limit = 0
                 }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+                this.model = this.model.skip(limit * parseInt(this.request.query["pageSize"] || '10'));
+                this.model = this.model.limit(parseInt(this.request.query["pageSize"] || '10'));
             }
         })
 

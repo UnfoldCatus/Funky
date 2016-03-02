@@ -220,23 +220,24 @@ function SyncFun(module, sumCount, dataList, index, count, cb) {
         if (sumCount < data.count) {
           sumCount += data.data.length;
 
-          // TODO::踢重代码
-          //_.each(dataList, function(v) {
-          //  console.log(v.hotelId);
-          //  _.dropRightWhile(data.data, function(n) {
-          //    return n.hotelId == v.hotelId;
-          //  });
-          //});
-          //_.union(dataList, data.data);
-
-          // 获取所有的宴会厅
+          // 1.获取所有的宴会厅
           let banquetHalls = [];
           for(let i=0;i<data.data.length;i++){
             for(let j=0;j<data.data[i].banquetHall.length; j++) {
-              // TODO:解决剔重以后打开
-              //banquetHalls.push(data.data[i].banquetHall[j]);
+              if(dataList[data.data[i].banquetHall[j].hotelId]) {
+                // 如果这个宴会厅的酒店ID在dataList这个map里面能找到,说明已经添加进去了
+              } else {
+                banquetHalls.push(data.data[i].banquetHall[j]);
+              }
             }
           }
+
+          // 2.把新拉取的酒店放到map踢重
+          // 以上1,2步顺序不能变,否则踢重失效
+          for(let ii = 0; ii < data.data.length; ii++) {
+            dataList[data.data[ii].hotelId] = data.data[ii].hotelId;
+          }
+          console.log(dataList);
 
           if(banquetHalls.length > 0) {
             models['BanquetHall'].save(banquetHalls).then(function(result, error) {
@@ -296,7 +297,7 @@ function SyncFun(module, sumCount, dataList, index, count, cb) {
 function Sync(type) {
   mSyncFlg[type] = false;
   let sumCount = 0;
-  let dataList = [];
+  let dataList = new Map();
   if(type === 'Hotel') {
     mSyncFlg['BanquetHall'] = false;
     models['BanquetHall'].delete().run().then(function(rel) {
@@ -342,7 +343,6 @@ exports.Instance = function() {
     'FilterConditionDressBrand', 'FilterConditionDressType', 'Dress',
     'Movie', 'Car', 'Supplies', 'WeddingClass'
   ];
-  //var tasks = ['Hotel'];
   if (dbTool == null) {
     dbTool = new DBUtil();
     // 程序启动取一次数据
