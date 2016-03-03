@@ -16,7 +16,7 @@ const dressApi = {
     //    yield next
     //},
     // 获取礼服详情
-    'get+/api/dress/:position': function*(next) {
+    'get+/dress/:position': function*(next) {
 
         if (this.params.position === 'all') {
             this.model = dress.filter({})
@@ -39,13 +39,15 @@ const dressApi = {
             }
             else if(k.indexOf('brandId') !== -1) {
                 this.model = this.model.filter({
-                    brand: parseInt(this.request.query["brandId"])})
+                    brandId: parseInt(this.request.query["brandId"])})
             }
             else if(k.indexOf('typeId') !== -1) {
                 this.model = this.model.filter({
-                    type: parseInt(this.request.query["typeId"])})
+                    typeId: parseInt(this.request.query["typeId"])})
             }
         })
+
+        console.log('~~~~~~~:'+this.request.url);
 
         this.APIKey = 'Dress'
         yield next

@@ -17,7 +17,7 @@ import { DressConfig } from './config/dress-config'
 
 const DressHolder = React.createClass({
   render () {
-    let hf = '/dress-details?position=dress_list&brandId='+this.props.data.id+'&typeId='+this.props.data.type;
+    let hf = '/dress-details?brandId='+this.props.data.id+'&typeId='+this.props.data.type;
     return (
       <div className="show-box">
         <div className="layer-box" />
@@ -74,7 +74,7 @@ const DressType  = React.createClass({
   },
 
   componentDidMount(){
-    fetch(DressConfig['APIConfig']['baseUrl']+'dressBrand/all'+'?weddingDressType='+this.props.id)
+    fetch(DressConfig['APIConfig']['baseUrl']+'dressBrand/all'+'?typeId='+this.props.id)
       .then(res => {return res.json()})
       .then(j=>{
         this.setState({ dress:j.data, index:0});

@@ -49,9 +49,9 @@ const Dress = env.Thinky.createModel('dress', {
     // 礼服编号
     number: type.string(),
     // 礼服类型
-    type: type.number(),
+    typeId: type.number(),
     // 礼服品牌
-    brand: type.number(),
+    brandId: type.number(),
     // 礼服URL图片地址
     imageUrl: type.string(),
     // 资源位置

@@ -14,15 +14,15 @@ const DressDetails = React.createClass({
           </div>
           <ul className="list-recommend">
             {
-              _.map(this.props.dressItems, (v,k) => {
+              _.map(this.state.dressItems, (v,k) => {
                 return (
                   <li key={k} className="item-box">
                     <a className="img-box" href="">
                       <div className="layer-box"></div>
-                      <img src="http://image.jsbn.com/WebImage/cq/jpg/20150928/77520046727262073264/20150928162340001190_945x1418.jpg@550h_90Q" />
+                      <img src={v.imageUrl+'@550h_90Q'} />
                     </a>
                     <div className="title-box">
-                      <span>护肤</span>
+                      <span>{v.number}</span>
                     </div>
                   </li>
                 );
@@ -33,23 +33,42 @@ const DressDetails = React.createClass({
       </div>
     );
   },
+
   propTypes: {
-    dressItems: PropTypes.array
-  },
-  getDefaultProps(){
-    return {
-      dressItems:[{"12":12},{"13":13}]
-    }
+    dressItems: PropTypes.array,
   },
 
-  // 数据请求/dress/all?brandld=5品牌ID&typeId=礼服类型ID
+  getInitialState: function() {
+    return {
+      dressItems:[]
+    };
+  },
+
+  // 数据请求/dress/dress_list?brandld=5品牌ID&typeId=礼服类型ID
+  /* 数据结果
+   {
+   "brandId": 5 ,
+   "createTime": Thu Jan 21 2016 11:25:45 GMT+00:00 ,
+   "description":  "" ,
+   "id": 329 ,
+   "imageUrl": http://img.jsbn.com/dress/20160121/14533755448398930_945x1418.jpg, »
+   "isUsed": 1 ,
+   "name":  "9010043" ,
+   "number":  "9010043" ,
+   "operater": 1 ,
+   "position":  "dress_list" ,
+   "typeId": 1 ,
+   "updateTime": Thu Jan 21 2016 11:25:45 GMT+00:00 ,
+   "weight": 1
+   }
+  * */
   componentDidMount() {
     /** 请求婚纱类型 **/
-    fetch(DressConfig['APIConfig']['baseUrl']+'dress/:postion')
+    fetch(DressDetailsConfig['APIConfig']['baseUrl']+'dress/dress_list'+window.location.search)
       .then(res => {return res.json()})
       .then(j=>{
-        this.setState({ typeList:j.data })
-        console.log(j)
+        this.setState({ dressItems:j.data })
+        console.log(j.data)
       })
   }
 });
