@@ -5,7 +5,8 @@
 const config = {
     api_port: "8088",
     api_host: (process.env.NODE_ENV === 'production')?'120.25.104.171':'192.168.1.5',
-    cache_time_check: 60000*3, // 缓存清理时间,30分钟
+    cache_flg: true, // DB数据库缓存开关 true开启 false关闭
+    cache_time_check: 60000*30, // 缓存清理时间,30分钟
     rethink:{
         db:'venus',
         host:'127.0.0.1',
@@ -71,12 +72,12 @@ const config = {
     FilterConditionSuppliesTypePath: '/api/suppliesType/all',
     // 微电影
     MoviePath: '/api/video/all',
-    // 婚纱礼服
-    DressPath: '/api/dress/list',
     // 婚纱礼服--类型
     FilterConditionDressTypePath: '/api/dressType/all',
     // 婚纱礼服--品牌
     FilterConditionDressBrandPath: '/api/dressBrand/all',
+    // 婚纱礼服
+    DressPath: '/api/dress/all',
     // 婚车租赁
     CarPath: '/api/car/all',
     // 婚礼用品

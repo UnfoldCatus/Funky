@@ -12,7 +12,8 @@ const DressConfig  = {
     {
       'imageUrl': '//image.jsbn.com/static/hslf.jpg'
     }
-  ]
+  ],
+  'APIConfig':_.merge({},BaseConfig)
 }
 
-export { DressConfig }
+export { DressConfig}

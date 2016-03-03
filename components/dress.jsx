@@ -17,11 +17,12 @@ import { DressConfig } from './config/dress-config'
 
 const DressHolder = React.createClass({
   render () {
+    let hf = '/dress-details?brandId='+this.props.data.id+'&typeId='+this.props.data.type + '&typeName='+this.props.typeName+'&brandName='+this.props.data.name;
     return (
       <div className="show-box">
         <div className="layer-box" />
         <h2>{this.props.data.description}</h2>
-        <a href='/dress-details' target="">
+        <a href={hf} target="">
           <img src={this.props.data.coverUrlWeb} />
         </a>
       </div>
@@ -52,7 +53,7 @@ const DressType  = React.createClass({
               }
             </ul>
             {
-              this.state.dress.length && <DressHolder data={this.state.dress[this.state.index]}/>
+              this.state.dress.length && <DressHolder typeName={this.props.name}  data={this.state.dress[this.state.index]} />
             }
           </div>
         </div>
@@ -62,18 +63,19 @@ const DressType  = React.createClass({
 
   propTypes: {
     dress: PropTypes.array,
-    index: PropTypes.number,
+    index: PropTypes.number
   },
 
   getInitialState: function() {
     return {
       dress:[],
-      index:0
+      index:0,
+      typeName:''
     };
   },
 
   componentDidMount(){
-    fetch(DressConfig['MediaSlider']['baseUrl']+'dressBrand/all'+'?weddingDressType='+this.props.id)
+    fetch(DressConfig['APIConfig']['baseUrl']+'dressBrand/all'+'?typeId='+this.props.id)
       .then(res => {return res.json()})
       .then(j=>{
         this.setState({ dress:j.data, index:0});
@@ -102,7 +104,7 @@ const Dress = React.createClass({
             _.map(this.state.typeList,(v,k)=>{
               return (
                 <DressType key={k} {...v} />
-              )
+              );
             })
           }
         </div>
@@ -118,7 +120,7 @@ const Dress = React.createClass({
 
   componentDidMount() {
     /** 请求婚纱类型 **/
-    fetch(DressConfig['MediaSlider']['baseUrl']+'dressType/all')
+    fetch(DressConfig['APIConfig']['baseUrl']+'dressType/all')
       .then(res => {return res.json()})
       .then(j=>{
         this.setState({ typeList:j.data })

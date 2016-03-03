@@ -301,9 +301,9 @@ const filterConditionApi = {
         this.model = this.model.filter({
           position: this.params.position})
       }
-      else if(k.indexOf('weddingDressType') !== -1) {
+      else if(k.indexOf('typeId') !== -1) {
         this.model = filterConditionDressBrand.filter({
-          type: parseInt(this.request.query["weddingDressType"])
+          type: parseInt(this.request.query["typeId"])
         })
       }
     })
