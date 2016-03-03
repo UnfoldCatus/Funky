@@ -66,6 +66,7 @@
     "react-dom-stream": "^0.5.0",
     "react-router": "^2.0.0-rc5",
     "rx": "^4.0.7",
+    "shortid": "^2.2.4",
     "thinky": "^2.2.4",
     "thunkify-wrap": "^1.0.4"
   },

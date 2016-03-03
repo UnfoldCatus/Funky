@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import ShortId from 'shortid'
 /**
 
   MediaItem 需要承担的功能:
@@ -40,6 +41,32 @@ import React, { PropTypes } from 'react'
 
 **/
 const RegForDimension = /_(\d{1,4})x(\d{1,4})\.\w+g$/i
+
+
+const VideoItem = React.createClass({
+  render () {
+    return (
+      <div id={this.props.genID}>
+        <h1>Loading...</h1>
+      </div>
+    )
+  },
+  getDefaultProps(){
+    return {
+      genID:ShortId.generate()
+    }
+  },
+  componentDidMount() {
+    /**
+    初始化video
+
+    如果是
+    **/
+  }
+})
+
+
+
 const ImageItem = React.createClass({
   render () {
 
@@ -112,7 +139,7 @@ const MediaItem = React.createClass({
 
     if (this.props.autoplay) {
       return (
-        <h1>Vidoe</h1>
+        <h1>Video</h1>
       )
     }else {
       return (
@@ -126,6 +153,7 @@ const MediaItem = React.createClass({
     height:React.PropTypes.number,
     aspectRatio:React.PropTypes.string,
     coverUrl:React.PropTypes.string,
+    videoUrl:React.PropTypes.string,
     mediaUrl:React.PropTypes.string,
     water:React.PropTypes.bool
   },
