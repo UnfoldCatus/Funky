@@ -344,17 +344,19 @@ exports.Instance = function() {
   ];
   if (dbTool == null) {
     dbTool = new DBUtil();
-    // 程序启动取一次数据
-    _.each(tasks, function(v) {
-        Sync(v)
-      })
-      // 定时器，根据配置时间拉取
-    setInterval(function() {
+
+    if (env.Config.cache_flg) {
+      // 程序启动取一次数据
       _.each(tasks, function(v) {
         Sync(v)
       })
-    }, env.Config.cache_time_check);
-
+      // 定时器，根据配置时间拉取
+      setInterval(function() {
+        _.each(tasks, function(v) {
+          Sync(v)
+        })
+      }, env.Config.cache_time_check);
+    }
   }
   return dbTool;
 };

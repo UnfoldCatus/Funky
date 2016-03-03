@@ -5,7 +5,8 @@
 const config = {
     api_port: "8088",
     api_host: (process.env.NODE_ENV === 'production')?'120.25.104.171':'192.168.1.5',
-    cache_time_check: 60000*3, // 缓存清理时间,30分钟
+    cache_flg: true, // DB数据库缓存开关 true开启 false关闭
+    cache_time_check: 60000*30, // 缓存清理时间,30分钟
     rethink:{
         db:'venus',
         host:'127.0.0.1',

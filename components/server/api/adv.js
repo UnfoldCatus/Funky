@@ -21,9 +21,7 @@ const advApi = {
     this.model = this.model.orderBy(r.desc('weight'))
 
     _.each(this.request.query, (v, k) => {
-      if (k.indexOf('min') !== -1 || k.indexOf('max') !== -1) {
-        console.log(v);
-      } else if (k.indexOf('pageSize') !== -1) {
+      if (k.indexOf('pageSize') !== -1) {
         let limit = 0
         limit = Number(this.request.query['pageIndex'] || '1') - 1
         if (limit < 0) {
@@ -31,14 +29,8 @@ const advApi = {
         }
         this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
         this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-      } else if(k.indexOf('seasonId') !== -1) {
-        this.model = this.model.filter({
-          seasonId:Number(this.request.query['seasonId'])
-        })
       }
     })
-
-
 
     this.APIKey = 'Adv'
     yield next

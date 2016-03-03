@@ -26,7 +26,6 @@ const dressApi = {
             })
         }
 
-        this.model = this.model.orderBy(r.desc('weight'));
         _.each(this.request.query, (v, k) => {
             if (k.indexOf('pageSize') !== -1) {
                 let limit = 0
@@ -47,7 +46,7 @@ const dressApi = {
             }
         })
 
-        console.log('~~~~~~~:'+this.request.url);
+        this.model = this.model.orderBy(r.desc('weight'));
 
         this.APIKey = 'Dress'
         yield next
