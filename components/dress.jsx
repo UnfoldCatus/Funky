@@ -17,7 +17,7 @@ import { DressConfig } from './config/dress-config'
 
 const DressHolder = React.createClass({
   render () {
-    let hf = '/dress-details?brandId='+this.props.data.id+'&typeId='+this.props.data.type;
+    let hf = '/dress-details?brandId='+this.props.data.id+'&typeId='+this.props.data.type + '&typeName='+this.props.typeName+'&brandName='+this.props.data.name;
     return (
       <div className="show-box">
         <div className="layer-box" />
@@ -53,7 +53,7 @@ const DressType  = React.createClass({
               }
             </ul>
             {
-              this.state.dress.length && <DressHolder data={this.state.dress[this.state.index]}/>
+              this.state.dress.length && <DressHolder typeName={this.props.name}  data={this.state.dress[this.state.index]} />
             }
           </div>
         </div>
@@ -63,13 +63,14 @@ const DressType  = React.createClass({
 
   propTypes: {
     dress: PropTypes.array,
-    index: PropTypes.number,
+    index: PropTypes.number
   },
 
   getInitialState: function() {
     return {
       dress:[],
-      index:0
+      index:0,
+      typeName:''
     };
   },
 

@@ -3,6 +3,31 @@ import _ from 'lodash'
 import { Banner } from './common/banner.jsx'
 import { DressDetailsConfig } from './config/dress-details-config.js'
 
+//(function(window,undefined){
+//  var ArrayForEach=Array.prototype.forEach||function(fn, sc){
+//      var a=this,l=a.length|0,i;
+//      for(i=0;i<l;i+=1)fn.call(sc, a[i], i, a);
+//    };
+//  var ObjectGetOwnPropertyNames=Object.getOwnPropertyNames||function(o) {
+//      var a=[],p;
+//      for(p in o)if(o.hasOwnProperty(p))a.push(p);
+//      return a;
+//    };
+//  var location=window.location,params={};
+//  ArrayForEach.call(location.search.substr(1).split("&"),function(slice,index){
+//    var p=slice.split("="),name=decodeURIComponent(p[0]),value=decodeURIComponent(p[1]);
+//    params.hasOwnProperty(name)?params[name].push(value):params[name]=[value];
+//  });
+//  function getParameter(name){return params.hasOwnProperty(name)?params[name][0]:null;}
+//  function getParameterValues(name){return params.hasOwnProperty(name)?params[name]:[];}
+//  function getParameterNames(){return ObjectGetOwnPropertyNames(params);}
+//  function getParameterMap(){return params;}
+//  location.getParameter=getParameter;
+//  location.getParameterValues=getParameterValues;
+//  location.getParameterNames=getParameterNames;
+//  location.getParameterMap=getParameterMap;
+//})(window);
+
 const DressDetails = React.createClass({
   render() {
     return (
@@ -10,7 +35,7 @@ const DressDetails = React.createClass({
         <div className="layout-center-box">
           <Banner {...DressDetailsConfig['Banner'][0]} />
           <div className="title-hslf-xq">
-            <h1>国际婚纱: It's My Party</h1>
+            <h1>{this.state.title}</h1>
           </div>
           <ul className="list-recommend">
             {
@@ -36,38 +61,31 @@ const DressDetails = React.createClass({
 
   propTypes: {
     dressItems: PropTypes.array,
+    title: PropTypes.string,
   },
 
   getInitialState: function() {
     return {
-      dressItems:[]
+      dressItems:[],
+      title:""
     };
   },
 
   // 数据请求/dress/dress_list?brandld=5品牌ID&typeId=礼服类型ID
-  /* 数据结果
-   {
-   "brandId": 5 ,
-   "createTime": Thu Jan 21 2016 11:25:45 GMT+00:00 ,
-   "description":  "" ,
-   "id": 329 ,
-   "imageUrl": http://img.jsbn.com/dress/20160121/14533755448398930_945x1418.jpg, »
-   "isUsed": 1 ,
-   "name":  "9010043" ,
-   "number":  "9010043" ,
-   "operater": 1 ,
-   "position":  "dress_list" ,
-   "typeId": 1 ,
-   "updateTime": Thu Jan 21 2016 11:25:45 GMT+00:00 ,
-   "weight": 1
-   }
-  * */
   componentDidMount() {
+
+    let urlPra = decodeURIComponent(window.location.search.substr(1)).split('&');// 去掉?号根据&进行拆分
+    let request = new Object();
+    for(let i = 0; i < urlPra.length; i++) {
+      request[urlPra[i].split('=')[0]]=urlPra[i].split('=')[1];
+    }
+    let fetchUrl = DressDetailsConfig['APIConfig']['baseUrl']+'dress/dress_list?'+'brandId='+request['brandId']+'&typeId='+request['typeId'];
+
     /** 请求婚纱类型 **/
-    fetch(DressDetailsConfig['APIConfig']['baseUrl']+'dress/dress_list'+window.location.search)
+    fetch(fetchUrl)
       .then(res => {return res.json()})
       .then(j=>{
-        this.setState({ dressItems:j.data })
+        this.setState({ dressItems:j.data , title:request['typeName']+':'+request['brandName']})
         console.log(j.data)
       })
   }
