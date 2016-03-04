@@ -13,7 +13,12 @@ const DressConfig  = {
       'imageUrl': '//image.jsbn.com/static/hslf.jpg'
     }
   ],
-  'APIConfig':_.merge({},BaseConfig)
+  'DressType':_.merge({
+    'dataUrl':'dressType/all'
+  },BaseConfig),
+  'DressBrand':_.merge({
+    'dataUrl':'dressBrand/all?typeId='
+  },BaseConfig)
 }
 
 export { DressConfig}
