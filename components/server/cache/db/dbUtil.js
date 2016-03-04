@@ -216,7 +216,6 @@ function SyncFun(module, sumCount, dataList, index, count, cb) {
       cb(err);
     } else {
       if(module === 'Hotel') {
-        console.log(sumCount+':'+data.count);
         if (sumCount < data.count) {
           sumCount += data.data.length;
 
@@ -305,7 +304,6 @@ function Sync(type) {
           if (err) {
             console.log('拉取数据失败['+type+']', err);
           } else {
-            console.log('更新成功....'+type);
             mSyncFlg[type] = true;
           }
         });
@@ -317,7 +315,6 @@ function Sync(type) {
         if (err) {
           console.log('拉取数据失败['+type+']', err);
         } else {
-          console.log('更新成功....'+type);
           mSyncFlg[type] = true;
         }
       });
@@ -331,31 +328,62 @@ DBUtil.prototype.isCacheDataUsable = function(moduleName) {
 };
 
 exports.Instance = function() {
-  var tasks = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason',
+  // 分三级数据拉取级别
+  // 一级资源,更新比较频繁的资源
+  var tasks1 = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason',
     'RecordVideo', 'RecordVideoSeason', 'Suite', 'Cases',
     'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason',
-    'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host', 'F4Team',
-    'FilterConditionShootStyle', 'FilterConditionExterior',
-    'Case3D', 'FilterConditionHotelType', 'FilterConditionHotelDistrict',
-    'FilterConditionCaseStyle', 'FilterConditionCarModels', 'FilterConditionCarLevel',
-    'FilterConditionCarBrand', 'FilterConditionSuppliesBrand', 'FilterConditionSuppliesType',
-    'FilterConditionDressBrand', 'FilterConditionDressType', 'Dress',
-    'Movie', 'Car', 'Supplies', 'WeddingClass'
+    'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host', 'F4Team', 'Case3D',
+     'Dress', 'Movie'
   ];
+
+  // 二级资源,更新不是很平凡的资源
+  var tasks2 = [
+    'Car', 'Supplies', 'FilterConditionCarModels', 'FilterConditionCarLevel',
+    'FilterConditionCarBrand', 'FilterConditionSuppliesBrand',
+    'FilterConditionSuppliesType', 'WeddingClass'
+  ];
+
+  // 三级资源,不经常更新的资源
+  var tasks3 = ['FilterConditionShootStyle', 'FilterConditionExterior',
+     'FilterConditionHotelType', 'FilterConditionHotelDistrict',
+    'FilterConditionCaseStyle', 'FilterConditionDressBrand',
+    'FilterConditionDressType'
+  ];
+
   if (dbTool == null) {
     dbTool = new DBUtil();
 
     if (env.Config.cache_flg) {
       // 程序启动取一次数据
-      _.each(tasks, function(v) {
+      _.each(tasks1, function(v) {
         Sync(v)
-      })
-      // 定时器，根据配置时间拉取
+      });
+      _.each(tasks2, function(v) {
+        Sync(v)
+      });
+      _.each(tasks3, function(v) {
+        Sync(v)
+      });
+
+      // 定时器，根据配置时间拉取静态资源
       setInterval(function() {
-        _.each(tasks, function(v) {
+        _.each(tasks1, function(v) {
           Sync(v)
         })
       }, env.Config.cache_time_check);
+
+      setInterval(function() {
+        _.each(tasks2, function(v) {
+          Sync(v)
+        })
+      }, env.Config.cache_time_check*2);
+
+      setInterval(function() {
+        _.each(tasks3, function(v) {
+          Sync(v)
+        })
+      }, env.Config.cache_time_check*4);
     }
   }
   return dbTool;
