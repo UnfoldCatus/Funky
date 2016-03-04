@@ -18,13 +18,16 @@ const carApi = {
     //},
     // 获取案例
     'get+/car/:position': function*(next) {
+
+        this.APIKey = 'Car'
         if (this.params.position === 'all') {
             this.model = car.filter({})
         } else {
-            this.model = car.filter({
-                position: this.params.position
-            })
+            this.model = car.filter({position: this.params.position})
         }
+        let all = yield this.model
+        this.count = all.length
+
         this.model = this.model.orderBy(r.desc('weight'))
 
         _.each(this.request.query, (v, k) => {
@@ -58,7 +61,6 @@ const carApi = {
             }
         })
 
-        this.APIKey = 'Car'
         yield next
     },
 

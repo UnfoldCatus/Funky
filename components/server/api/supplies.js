@@ -17,15 +17,17 @@ const suppliesApi = {
     //},
     // 获取案例
     'get+/weddingsupplies/:position': function*(next) {
+
+        this.APIKey = 'Supplies'
         if (this.params.position === 'all') {
             this.model = supplies.filter({})
         } else {
-            this.model = supplies.filter({
-                position: this.params.position
-            })
+            this.model = supplies.filter({position: this.params.position})
         }
-        this.model = this.model.orderBy(r.desc('weight'))
+        let all = yield this.model
+        this.count = all.length
 
+        this.model = this.model.orderBy(r.desc('weight'))
         _.each(this.request.query, (v, k) => {
             if (k.indexOf('pageSize') !== -1) {
                 let limit = 0
@@ -49,7 +51,6 @@ const suppliesApi = {
             }
         })
 
-        this.APIKey = 'Supplies'
         yield next
     },
 
