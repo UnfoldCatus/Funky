@@ -1,7 +1,7 @@
 /**
  * Created by chenjianjun on 15/12/11.
  */
-var env=require("../config");
+var env=require("../../config");
 var type=env.Thinky.type;
 
 // 酒店模型

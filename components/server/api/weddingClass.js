@@ -2,7 +2,7 @@
  * Created by chenjianjun on 16/2/26.
  */
 import _ from 'lodash'
-import env from '../cache/db/config'
+import env from '../cache/config'
 let r = env.Thinky.r
 
 import weddingClass from '../cache/db/module/weddingClass.js'

@@ -4,7 +4,7 @@
 
 import wdyVideo from '../cache/db/module/movie.js'
 import _ from 'lodash'
-import env from '../cache/db/config'
+import env from '../cache/config'
 let r = env.Thinky.r
 
 // 微电影

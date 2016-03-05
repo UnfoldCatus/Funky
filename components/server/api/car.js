@@ -4,7 +4,7 @@
 
 import car from '../cache/db/module/car.js'
 import _ from 'lodash'
-import env from '../cache/db/config'
+import env from '../cache/config'
 let r = env.Thinky.r
 
 // 婚车租赁

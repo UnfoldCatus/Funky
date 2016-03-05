@@ -1,7 +1,7 @@
 /**
  * Created by chenjianjun on 16/2/23.
  */
-var env=require("../config");
+var env=require("../../config");
 var type=env.Thinky.type;
 
 // 婚庆策划--实景案例模型

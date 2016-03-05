@@ -3,9 +3,9 @@
  */
 var http = require('http');
 var cache = require("./cache");
-var conf=require("./config");
+var Config = require("../config.js");
 
-var myCache = cache.createCache("LFU", conf.cache_max_size);
+var myCache = cache.createCache("LFU", Config.MemConfig.cache_max_size);
 /*
   获取数据 GET
   @params
@@ -16,9 +16,6 @@ var myCache = cache.createCache("LFU", conf.cache_max_size);
 */
 exports.getData = function(url, path, cb)
 {
-
-
-
     var value = myCache.get(url);
     if (value) { //如果能从缓存拿， 就把数据交给回调
         cb(null/*200*/, value);
@@ -26,8 +23,8 @@ exports.getData = function(url, path, cb)
     else
     {
         var options = {
-            host: conf.api_host,
-            port: conf.api_port,
+            host: Config.APIHost,
+            port: Config.APIPort,
             path: path,
             method: "GET"
         };
@@ -42,9 +39,9 @@ exports.getData = function(url, path, cb)
                 var json = JSON.parse(chunks);
                 if(res.statusCode == 200 && json.code == 200) {
                     // 设置缓存时间为5分钟
-                    myCache.set(url, json, conf.cache_timeout);
+                    myCache.set(url, json, Config.MemConfig.cache_timeout);
                 }
-                // cb(res.statusCode, chunks);
+
                 cb(null, json);
             });
             res.on('error', function (e) {
@@ -56,8 +53,6 @@ exports.getData = function(url, path, cb)
                     count:0
                 };
 
-                // var str = JSON.stringify(data);
-                // cb(404, str);
                 cb(null,data)
             });
         });
@@ -76,8 +71,6 @@ exports.getData = function(url, path, cb)
                 count:0
             };
 
-            // var str = JSON.stringify(data);
-            // cb(404, str);
             cb(null,data)
 
         }).on('timeout',function(e) {
@@ -91,39 +84,12 @@ exports.getData = function(url, path, cb)
                 count:0
             };
 
-            // var str = JSON.stringify(data);
-            // cb(404, str);
             cb(null,data)
         });
 
         req.end();
-
-        //console.log("请求获取.......");
-        //http.get(options, function(res)
-        //{
-        //    var chunks = "";
-        //    res.setEncoding('utf8');
-        //    res.on('data', function(chunk) {
-        //        chunks+=chunk;
-        //    });
-        //
-        //    res.on('end', function() {
-        //
-        //        var json = JSON.parse(chunks);
-        //        if(res.statusCode == 200 && json.code == 200) {
-        //            // 设置缓存时间为5分钟
-        //            myCache.set(url, chunks, conf.cache_timeout);
-        //        }
-        //
-        //        cb(res.statusCode, chunks);
-        //    });
-        //
-        //    res.on('error', function (e) {
-        //        cb(res.statusCode, JSON.stringify({msg: err.message}));
-        //    });
-        //});
     }
 }
 
-exports.create = function () {
-}
+//exports.create = function () {
+//}
