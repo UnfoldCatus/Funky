@@ -71,7 +71,7 @@ const VideoItem = React.createClass({
   loadVideo(vid){
     let elId = vid
     let poster = this.props.mediaUrl
-    return ()=>{
+    // return ()=>{ console.log(elId);
       videojs(elId,{
         'controls':false,
         'autoplay':true,
@@ -79,7 +79,7 @@ const VideoItem = React.createClass({
         'loop':true,
         'poster':poster
       })
-    }
+    // }
   },
 
   componentDidMount() {
@@ -89,7 +89,8 @@ const VideoItem = React.createClass({
     如果是
     **/
     if (this.props.autoplay) {
-      setTimeout(loadVideo(this.state.genID),200)
+      let fun = this.loadVideo(this.state.genID)
+      setTimeout(fun,0)
 
     }else {
 

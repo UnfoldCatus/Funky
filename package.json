@@ -1,10 +1,11 @@
 {
   "name": "funky",
   "version": "2.0.0",
-  "description": "Functional Reactive Structure",
+  "description": "这里写说明。首先是说明的说明: package.json 不能添加程序注释。好了，说明开始。我们会在scripts项中增加build脚本来解决从es6 => es5 的过程 以及从分散的js文件到组合的文件的过程 还有文件的压缩问题",
   "main": "react-server.js",
   "scripts": {
     "start": "NODE_ENV=development babel-node ./react-server.js",
+    "build-es5": "babel ./src/client -d ./libs",
     "build-shot": "watchify ./src/client/shot.js -o 'uglifyjs -cm > ./assets/script/modules/shot.min.js'",
     "build-sample": "watchify ./src/client/sample.js -o 'uglifyjs -cm > ./assets/script/modules/sample.min.js'",
     "build-supply": "watchify ./src/client/supply.js -o 'uglifyjs -cm > ./assets/script/modules/supply.min.js'",
