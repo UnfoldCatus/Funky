@@ -1,6 +1,6 @@
 var LRU = require("./algorithm/LRU");
 var LFU = require("./algorithm/LFU");
-var conf=require("./config");
+var Config = require("../config.js");
 
 var lastAlgo = null, lastMaxsize = null;
 
@@ -126,7 +126,7 @@ var createCache = function (alg_name, maxsize) {
                 cache[key] = null;
             }
         }
-    }, conf.cache_time_check);
+    }, Config.MemConfig.cache_time_check);
 
     return obj;
 }

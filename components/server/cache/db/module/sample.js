@@ -2,7 +2,7 @@
  * Created by chenjianjun on 15/12/15.
  * 样片数据模型
  */
-var env=require("../config");
+var env=require("../../config");
 var type=env.Thinky.type;
 
 /*

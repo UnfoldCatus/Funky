@@ -2,7 +2,7 @@
  * Created by chenjianjun on 15/12/8.
  */
 var http = require('http');
-var env = require("./config.js");
+var Config = require("../config.js");
 var Hotel = require("./module/hotel.js");
 var BanquetHall = require("./module/banquetHall.js");
 var FilterConditionHotelType = require("./module/filterCondition/hotelType.js");
@@ -43,7 +43,6 @@ var Dress = require("./module/dress.js");
 var WeddingClass = require("./module/weddingClass.js");
 
 var qs = require('querystring');
-var r = env.Thinky.r;
 var _ = require('lodash')
 
 
@@ -140,8 +139,8 @@ function DBUtil() {};
  */
 function GetData(path, cb) {
   var options = {
-    host: env.Config.api_host,
-    port: env.Config.api_port,
+    host: Config.APIHost,
+    port: Config.APIPort,
     path: path,
     method: "GET"
   };
@@ -206,7 +205,7 @@ function GetData(path, cb) {
  */
 function SyncFun(module, sumCount, dataList, index, count, cb) {
 
-  let path = env.Config[module + 'Path'] + '?' + qs.stringify({
+  let path = Config.DBConfig[module + 'Path'] + '?' + qs.stringify({
       pageSize: count,
       pageIndex: index
     });
@@ -354,7 +353,7 @@ exports.Instance = function() {
   if (dbTool == null) {
     dbTool = new DBUtil();
 
-    if (env.Config.cache_flg) {
+    if (Config.DBConfig.cache_flg) {
       // 程序启动取一次数据
       _.each(tasks1, function(v) {
         Sync(v)
@@ -371,19 +370,19 @@ exports.Instance = function() {
         _.each(tasks1, function(v) {
           Sync(v)
         })
-      }, env.Config.cache_time_check);
+      }, Config.DBConfig.cache_time_check);
 
       setInterval(function() {
         _.each(tasks2, function(v) {
           Sync(v)
         })
-      }, env.Config.cache_time_check*2);
+      }, Config.DBConfig.cache_time_check*2);
 
       setInterval(function() {
         _.each(tasks3, function(v) {
           Sync(v)
         })
-      }, env.Config.cache_time_check*4);
+      }, Config.DBConfig.cache_time_check*4);
     }
   }
   return dbTool;

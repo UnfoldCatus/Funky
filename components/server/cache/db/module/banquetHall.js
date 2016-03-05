@@ -1,7 +1,7 @@
 /**
  * Created by chenjianjun on 16/2/29.
  */
-var env=require("../config");
+var env=require("../../config");
 var type=env.Thinky.type;
 
 /*

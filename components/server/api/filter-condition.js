@@ -17,7 +17,7 @@ import filterConditionDressType from '../cache/db/module/filterCondition/dressTy
 import filterConditionDressBrand from '../cache/db/module/filterCondition/dressBrand.js'
 
 import _ from 'lodash'
-import env from '../cache/db/config.js'
+import env from '../cache/config.js'
 let r = env.Thinky.r
 
 const filterConditionApi = {

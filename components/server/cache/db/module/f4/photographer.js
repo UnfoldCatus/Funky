@@ -1,7 +1,7 @@
 /**
  * Created by chenjianjun on 16/2/24.
  */
-var env=require("../../config");
+var env=require("../../../config");
 var type=env.Thinky.type;
 
 // 婚庆策划-四大金刚-主持人作品模型

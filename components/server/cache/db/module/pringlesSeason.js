@@ -2,7 +2,7 @@
  * Created by chenjianjun on 15/12/15.
  * 客片分级
  */
-var env=require("../config");
+var env=require("../../config");
 var type=env.Thinky.type;
 
 // 客片分季模型

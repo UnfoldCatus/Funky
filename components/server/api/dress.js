@@ -3,7 +3,7 @@
  */
 import dress from '../cache/db/module/dress.js'
 import _ from 'lodash'
-import env from '../cache/db/config'
+import env from '../cache/config'
 let r = env.Thinky.r
 
 // 婚纱礼服

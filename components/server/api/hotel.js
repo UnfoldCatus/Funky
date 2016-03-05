@@ -1,7 +1,7 @@
 import hotel from '../cache/db/module/hotel.js'
 import banquetHall from '../cache/db/module/banquetHall.js'
 import _ from 'lodash'
-import env from '../cache/db/config'
+import env from '../cache/config'
 let r = env.Thinky.r
 
 const hotelApi = {
