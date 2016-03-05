@@ -83,11 +83,6 @@ const VideoItem = React.createClass({
           'poster':this.props.mediaUrl
         })
 
-      //
-      // poster={this.props.mediaUrl}
-      // height={this.props.height+''}
-      // width={this.props.width+''}
-      // data-setup='{"controls":false,"autoplay":true,"preload":"auto"}'
     }else {
 
     }
