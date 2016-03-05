@@ -68,6 +68,20 @@ const VideoItem = React.createClass({
       genID: ShortId.generate()
     }
   },
+  loadVideo(vid){
+    let elId = vid
+    let poster = this.props.mediaUrl
+    return ()=>{
+      videojs(elId,{
+        'controls':false,
+        'autoplay':true,
+        'preload':'auto',
+        'loop':true,
+        'poster':poster
+      })
+    }
+  },
+
   componentDidMount() {
     /**
     初始化video
@@ -75,13 +89,7 @@ const VideoItem = React.createClass({
     如果是
     **/
     if (this.props.autoplay) {
-      videojs(this.state.genID,{
-          'controls':false,
-          'autoplay':true,
-          'preload':'auto',
-          'loop':true,
-          'poster':this.props.mediaUrl
-        })
+      setTimeout(loadVideo(this.state.genID),200)
 
     }else {
 
