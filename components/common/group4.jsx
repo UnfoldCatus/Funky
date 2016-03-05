@@ -20,7 +20,7 @@ const FirstItem = React.createClass({
           <a href={this.props.hrefs[1]}><div className="word-02"></div></a>
         </div>
         <span className='first-img-box'>
-          <MediaItem aspectRatio='3:2' height={270} mediaUrl={this.props.coverUrlWeb}  autoplay={true}/>
+          <MediaItem aspectRatio='3:2' height={270} mediaUrl={this.props.coverUrlWeb} videoUrl={'http://api.video.taobao.com//video/embedVideo?vid=34799342&uid=2579307056&tid=1&autoplay=false&showsharebutton=false'} autoplay={false}/>
         </span>
         <a href='/'>
           <div className='title-box'>
@@ -41,7 +41,7 @@ const OtherItem = React.createClass({
     return (
       <li className="item-box">
         <div className='img-box'>
-          <MediaItem aspectRatio={'2:3'} height={570} mediaUrl={this.props.coverUrlWeb} autoplay={true}/>
+          <MediaItem aspectRatio={'2:3'} height={570} mediaUrl={this.props.coverUrlWeb} videoUrl={'http://v.theonion.com/onionstudios/video/3158/640.mp4'} autoplay={true}/>
         </div>
          <a href={'/'}>
            <div className = "title-box">

@@ -45,15 +45,27 @@ const RegForDimension = /_(\d{1,4})x(\d{1,4})\.\w+g$/i
 
 const VideoItem = React.createClass({
   render () {
+    if (this.props.autoplay) {
+      return (
+
+        <video id={this.state.genID}
+          class="video-js vjs-default-skin" style={{'width':'100%','height':this.props.height}}>
+         <source src={this.props.videoUrl} type="video/mp4" />
+        </video>
+
+      )
+    }
     return (
-      <div id={this.props.genID}>
-        <h1>Loading...</h1>
+      <div id={this.state.genID}>
+        <h1>Loading TaobaoVideoJS...</h1>
       </div>
     )
+
   },
-  getDefaultProps(){
+
+  getInitialState() {
     return {
-      genID:ShortId.generate()
+      genID: ShortId.generate()
     }
   },
   componentDidMount() {
@@ -62,6 +74,23 @@ const VideoItem = React.createClass({
 
     如果是
     **/
+    if (this.props.autoplay) {
+      videojs(this.state.genID,{
+          'controls':false,
+          'autoplay':true,
+          'preload':'auto',
+          'loop':true,
+          'poster':this.props.mediaUrl
+        })
+
+      //
+      // poster={this.props.mediaUrl}
+      // height={this.props.height+''}
+      // width={this.props.width+''}
+      // data-setup='{"controls":false,"autoplay":true,"preload":"auto"}'
+    }else {
+
+    }
   }
 })
 
@@ -137,10 +166,8 @@ const MediaItem = React.createClass({
       console.log('高度或者宽度必须指定一个啊.');
     }
 
-    if (this.props.autoplay) {
-      return (
-        <h1>Video</h1>
-      )
+    if (this.props.videoUrl) {
+      return <VideoItem {...this.props} height={height} width={width} />
     }else {
       return (
         <ImageItem  {...this.props} height={height} width={width} />
