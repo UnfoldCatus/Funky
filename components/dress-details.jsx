@@ -42,7 +42,7 @@ const DressDetails = React.createClass({
               _.map(this.state.dressItems, (v,k) => {
                 return (
                   <li key={k} className="item-box">
-                    <a className="img-box" data-uk-lightbox="{'group':'dress-img'}"  href={v.imageUrl} >
+                    <a className="img-box" data-uk-lightbox="{'group':'dress-img'}" data-lightbox-type='image' title={v.number}  href={v.imageUrl} >
                       <div className="layer-box"></div>
                       <img src={v.imageUrl+'@550h_90Q'} />
                     </a>

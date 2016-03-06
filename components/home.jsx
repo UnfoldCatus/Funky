@@ -57,7 +57,7 @@ const Board = React.createClass({
         {
           _.map(this.props.list||[],(value,key)=>{
             return (
-              <a href={value} data-uk-lightbox="{'group':'comment-robot'}" key={key}>
+              <a href={value} data-uk-lightbox="{'group':'comment-robot'}" data-lightbox-type='image' title='' key={key}>
                   <span  />
               </a>
             )
