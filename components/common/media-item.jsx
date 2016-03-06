@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react'
 import ShortId from 'shortid'
+import _ from 'lodash'
 /**
 
   MediaItem 需要承担的功能:
   作为图片容器。 根据不同的环境进行水印，尺寸的配置
   作为视频容器。
     使用taobao的嵌入视频（flash）
-    使用video.js (主要是对于需要隐藏播放调的场景以及小尺寸视频场景)
+    使用MediaElement.js (主要是对于需要隐藏播放调的场景以及小尺寸视频场景)
   和其他库结合使用（light-box）
 
   基本结构
@@ -20,7 +21,7 @@ import ShortId from 'shortid'
  如果是视频
 
   对于使用taobao视频 只支持flash格式， 并且视频播放控件无法隐藏。无法循环播放
-  对于使用支持html5的播放器：video.js/media-element.js 则支持循环播放，隐藏控件等高级配置
+  对于使用支持html5的播放器：mediaelement.js 则支持循环播放，隐藏控件等高级配置
 
   <div class='J_MediaWrapper' style='width:with;height:height' data-width='with' data-height='height'>
     <script src="http://api.video.taobao.com//video/getPlayerJS"></script>
@@ -36,27 +37,46 @@ import ShortId from 'shortid'
   aspectRatio w:h的比例 默认值是2:3
   * 正常情况下 请提供width或者height的其中一个 加上aspectRatio 这样可以达到适应响应式的目的 *
   * 如果同时提供了width和height则aspectRatio被忽略 *
-  coverUrl 封面图片资源
-  mediaUrl 视频资源/图片资源
+  videoUrl 视频资源
+  mediaUrl 封面资源/图片资源
 
 **/
 const RegForDimension = /_(\d{1,4})x(\d{1,4})\.\w+g$/i
 
+const qTJSON = (vid,width,height,querystring)=>{
+  let pairs = querystring.split('&');
+  let result = {}
+  _.each(pairs,(value,key)=>{
+      let pair = value.split('=');
+      result[pair[0]] = decodeURIComponent(pair[1] || '');
+  })
+  result['div'] = vid
+  result['width'] = width || '100%'
+  result['height'] = height || '100%'
+
+  return _.pick(result,['vid','uid','tid','div','height','width'])
+}
 
 const VideoItem = React.createClass({
   render () {
+    /**
+    如果是自动播放 加载mediaelement.js
+    否则使用淘宝视频控件
+    目前的需求是这样
+    **/
     if (this.props.autoplay) {
       return (
-
-        <video id={this.state.genID}
-          class="video-js vjs-default-skin" style={{'width':'100%','height':this.props.height}}>
-         <source src={this.props.videoUrl} type="video/mp4" />
-        </video>
-
+        <video
+          width={this.props.width}
+          height={this.props.height}
+          poster={this.props.mediaUrl}
+          id={this.state.genID}
+          src={this.props.videoUrl}
+          type="video/mp4" />
       )
     }
     return (
-      <div id={this.state.genID}>
+      <div id={this.state.genID} style={{'width':this.props.width+'px','height':this.props.height+'px'}}>
         <h1>Loading TaobaoVideoJS...</h1>
       </div>
     )
@@ -65,35 +85,45 @@ const VideoItem = React.createClass({
 
   getInitialState() {
     return {
-      genID: ShortId.generate()
+      genID: ShortId.generate() // 用来生成每个组件唯一的id便于视频初始化
     }
   },
-  loadVideo(vid){
-    let elId = vid
-    let poster = this.props.mediaUrl
-    // return ()=>{ console.log(elId);
-      videojs(elId,{
-        'controls':false,
-        'autoplay':true,
-        'preload':'auto',
-        'loop':true,
-        'poster':poster
-      })
-    // }
+  loadAutoPlayVideo(vid){
+    return ()=>{ //为了把初始化操作放到线程上去。
+      MediaElement(vid, {success: (me)=> {
+        me.muted=true
+        me.loop = true
+        me.play()
+        me.addEventListener('ended',function(){
+          me.play()
+        })
+      }})
+    }
   },
+  loadTaobaoVideo(vid,videoUrl,width,height,posterUrl){
 
+    return ()=>{
+
+      tb_player_object.embedPlayer(
+      qTJSON(vid,width,height,videoUrl),
+      {autoplay:"false",poster:posterUrl},
+      {wmode:"transparent",allowScriptAccess:"always",allowFullScreen:"true"}
+      );
+    }
+  },
   componentDidMount() {
-    /**
-    初始化video
-
-    如果是
-    **/
     if (this.props.autoplay) {
-      let fun = this.loadVideo(this.state.genID)
-      setTimeout(fun,0)
-
+      setTimeout(this.loadAutoPlayVideo(this.state.genID),0)
     }else {
-
+      (2 === this.props.videoUrl.split('?').length)
+      &&
+      setTimeout(this.loadTaobaoVideo(
+        this.state.genID,
+        this.props.videoUrl.split('?')[1],
+        this.props.width,
+        this.props.height,
+        this.props.mediaUrl
+      ),0)
     }
   }
 })
@@ -133,7 +163,6 @@ const ImageItem = React.createClass({
     }
 
     return (
-
       <div className='J_MediaWrapper' style={{'height':'100%'}} data-width={width} data-height={height}>
         <img src={mediaUrl} onError={this.imageNotLoaded}  />
       </div>
