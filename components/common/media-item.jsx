@@ -26,9 +26,8 @@ import _ from 'lodash'
     使用taobao的嵌入视频（flash）
     使用MediaElement.js (主要是对于需要隐藏播放调的场景以及小尺寸视频场景)
   和其他库结合使用（light-box）
-
+  TODO 同一页面内的多个播放控件 同一时间只播放一个
   基本结构
-
 
   如果是 普通图片
   <div class='J_MediaWrapper' data-width='width' data-height='height'>
@@ -54,7 +53,9 @@ import _ from 'lodash'
 
 **/
 const RegForDimension = /_(\d{1,4})x(\d{1,4})\.\w+g$/i
-
+/**
+从querystring里面提取参数转换为json
+**/
 const qTJSON = (vid,width,height,querystring)=>{
   let pairs = querystring.split('&');
   let result = {}

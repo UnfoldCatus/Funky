@@ -12,7 +12,7 @@ const Group5 = React.createClass({
               return (
                 <li key={k} className='big-box'>
                   <a href={v.linkUrl} className='l-item img-box' >
-                    <MediaItem {...dimension[0]} mediaUrl={v.coverUrlWeb||'//placehold.it/620x375'} />
+                    <MediaItem {...dimension[0]} mediaUrl={v.coverUrlWeb||'//placehold.it/620x375'} videoUrl={v.videoUrl || '//api.video.taobao.com//video/embedVideo?vid=34799342&uid=2579307056&tid=1&autoplay=false&showsharebutton=false'}/>
                   </a>
                 </li>
               )
@@ -20,7 +20,7 @@ const Group5 = React.createClass({
               return (
                 <li key={k} className='small-box'>
                   <a href={v.linkUrl} className='img-box'>
-                    <MediaItem {...dimension[1]} mediaUrl={v.coverUrlWeb||'//placehold.it/270x180'} videoUrl={'http://api.video.taobao.com//video/embedVideo?vid=34799342&uid=2579307056&tid=1&autoplay=false&showsharebutton=false'}/>
+                    <MediaItem {...dimension[1]} mediaUrl={v.coverUrlWeb||'//placehold.it/270x180'} videoUrl={v.videoUrl || '//api.video.taobao.com//video/embedVideo?vid=34799342&uid=2579307056&tid=1&autoplay=false&showsharebutton=false'}/>
                   </a>
                 </li>
               )
