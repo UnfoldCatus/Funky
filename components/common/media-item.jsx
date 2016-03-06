@@ -3,6 +3,23 @@ import ShortId from 'shortid'
 import _ from 'lodash'
 /**
 
+  !! 给嫌字太多不想看的观众。= 。=
+  配置方法如下：
+  1. 淘宝视频 : <MediaItem aspectRatio='38:27' height={270} mediaUrl={封面url} videoUrl={淘宝视频Url}/>
+  {{
+  Q:如果伦家要自动播放的淘宝视频呢?
+  A:需求没有，不支持！！！虽然淘宝视频在url参数里有autoplay，蛋素~ 自动播放的视频全部都用的是MediaElement.js 特点就是不带播放条
+  }}
+
+  2. 图片: <MediaItem aspectRatio='38:27' height={270} mediaUrl={图片url} />
+
+  3. 自动播放视频（隐藏播放条）:
+  <MediaItem aspectRatio='38:27' height={270} mediaUrl={封面url} videoUrl={视频Url} autoplay={true}/>
+
+====================== 淫荡帝分割线，就问你怕不怕这么长的 ==============3,
+
+
+
   MediaItem 需要承担的功能:
   作为图片容器。 根据不同的环境进行水印，尺寸的配置
   作为视频容器。
@@ -22,11 +39,6 @@ import _ from 'lodash'
 
   对于使用taobao视频 只支持flash格式， 并且视频播放控件无法隐藏。无法循环播放
   对于使用支持html5的播放器：mediaelement.js 则支持循环播放，隐藏控件等高级配置
-
-  <div class='J_MediaWrapper' style='width:with;height:height' data-width='with' data-height='height'>
-    <script src="http://api.video.taobao.com//video/getPlayerJS"></script>
-    <script src="http://api.video.taobao.com//video/embedVideo?vid=34799342&uid=2579307056&tid=1&autoplay=false&showsharebutton=false"></script>
-  </div>
 
 
 

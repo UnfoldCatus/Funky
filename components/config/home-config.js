@@ -6,12 +6,12 @@ const HomeConfig = {
     'dataUrl': 'adv/index_top',
     'aspectRatio': '192:68',
     'height': 680
-  }, BaseConfig),
+  }, BaseConfig), // 广告轮播
   'Banner': [{
     'imageUrl': '//image.jsbn.com/static/home-01.jpg'
   },{
     'imageUrl':'//image.jsbn.com/static/home-03.jpg'
-  }],
+  }], //静态banner广告
   'Group5': _.merge({
     'dataUrl': 'adv/index_hot_top', // 数据请求地址
     'dimension': [ //4+1 4和1的尺寸配置
@@ -23,8 +23,11 @@ const HomeConfig = {
         'width': 270
       }
     ]
-  }, BaseConfig),
+  }, BaseConfig), //顶部4+1
   'Group4': [
+    /**
+      首页的分栏目聚合
+    */
     _.merge({
       'dataUrl': 'adv/index_mid_01',
       'titleClassName': 'photography-img-home',
@@ -58,12 +61,12 @@ const HomeConfig = {
       ]
     }, BaseConfig)
   ],
-  'Group3':[
+  'Group3':[ // 底部三个推荐栏目
     _.merge({
       'dataUrl':'adv/index_publicity'
     },BaseConfig)
   ],
-  'BottomNav':[
+  'BottomNav':[ // 底部导航圆形按钮
     { 'klassName':'item-01', 'link':'/shot' },
     { 'klassName':'item-02', 'link':'/hotel' },
     { 'klassName':'item-03', 'link':'/scheme' },
@@ -74,7 +77,7 @@ const HomeConfig = {
     { 'klassName':'item-08', 'link':'/car' }
 
   ],
-  'BotComment':_.merge({
+  'BotComment':_.merge({ //客户评价
     'bg':'//image.jsbn.com/static/home-04.jpg',
     'dataUrl':'adv/index_comment_bot'
   },BaseConfig)

@@ -20,7 +20,7 @@ const FirstItem = React.createClass({
           <a href={this.props.hrefs[1]}><div className="word-02"></div></a>
         </div>
         <span className='first-img-box'>
-          <MediaItem aspectRatio='38:27' height={270} mediaUrl={this.props.coverUrlWeb}  autoplay={false}/>
+          <MediaItem aspectRatio='38:27' height={270} mediaUrl={this.props.coverUrlWeb}  autoplay={true}/>
         </span>
         <a href='/'>
           <div className='title-box'>

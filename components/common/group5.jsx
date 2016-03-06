@@ -20,7 +20,7 @@ const Group5 = React.createClass({
               return (
                 <li key={k} className='small-box'>
                   <a href={v.linkUrl} className='img-box'>
-                    <MediaItem {...dimension[1]} mediaUrl={v.coverUrlWeb||'//placehold.it/270x180'} />
+                    <MediaItem {...dimension[1]} mediaUrl={v.coverUrlWeb||'//placehold.it/270x180'} videoUrl={'http://api.video.taobao.com//video/embedVideo?vid=34799342&uid=2579307056&tid=1&autoplay=false&showsharebutton=false'}/>
                   </a>
                 </li>
               )
@@ -28,7 +28,7 @@ const Group5 = React.createClass({
           })
         }
         {/*列表为空，默认输出*/}
-        {(this.state.data.length === 0 )&& <h1>请添加5个资源</h1>}
+        {(this.state.data.length === 0 )&& <h1>加载中...</h1>}
       </div>
     )
   },
