@@ -16,6 +16,7 @@
     "build-home": "watchify ./src/client/home.js -o 'uglifyjs -cm > ./assets/script/modules/home.min.js'",
     "build-scheme": "watchify ./src/client/scheme.js -o 'uglifyjs -cm > ./assets/script/modules/scheme.min.js'",
     "build-movie": "watchify ./src/client/movie.js -o 'uglifyjs -cm > ./assets/script/modules/movie.min.js'",
+    "build-movie-details": "watchify ./src/client/movie-details.js -o 'uglifyjs -cm > ./assets/script/modules/movie-details.min.js'",
     "build-dress": "watchify ./src/client/dress.js -o 'uglifyjs -cm > ./assets/script/modules/dress.min.js'",
     "build-dress-details": "watchify ./src/client/dress-details.js -o 'uglifyjs -cm > ./assets/script/modules/dress-details.min.js'",
     "build-wedding-pat": "watchify ./src/client/wedding-pat.js -o 'uglifyjs -cm > ./assets/script/modules/wedding-pat.min.js'",

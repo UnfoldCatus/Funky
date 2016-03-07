@@ -91,22 +91,30 @@ let dataFetchMiddleWare = function*(next) {
         //从缓存数据库中去查询。
         if (this.model) {
           this.dataSource = yield this.model.run()
+          this.code = 200
         }
       } catch (err) {
         console.log('数据库异常memCache:', this.request.url);
         //缓存数据不可用。 去做代理数据请求
         let retData  = yield* proxyFetcher(this.request.url,this.request.url)
         this.dataSource = retData.data
+        this.code = retData.code
+
+
+
+
+
       }
     } else {
       console.log('memCache:', this.request.url);
       //缓存数据不可用。 去做代理数据请求
       let retData  = yield* proxyFetcher(this.request.url,this.request.url)
       this.dataSource = retData.data
+      this.code = retData.code
     }
     // 针对2.0的套系数据格式进行修正
     this.dataSource = _.isArray(this.dataSource) ? this.dataSource : []
-    if (this.APIKey === 'Suite' && this.dataSource[0]['pcDetailImages']) {
+    if ( this.code === 200 && this.APIKey === 'Suite' && this.dataSource[0]['pcDetailImages']) {
       let images = []
       let origin = JSON.parse(this.dataSource[0]['pcDetailImages'])
       let keys = [
@@ -125,12 +133,11 @@ let dataFetchMiddleWare = function*(next) {
       this.dataSource[0]['pcDetailImages'] = JSON.stringify(images)
     }
 
-
     let data = {
       success: true,
       message: "",
       data: this.dataSource,
-      code: 200,
+      code: this.code,
       count: this.count || this.dataSource.length
     }
     this.body = data

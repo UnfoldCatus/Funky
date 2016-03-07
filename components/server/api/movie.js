@@ -48,7 +48,7 @@ const wdyVideoApi = {
             }
         })
 
-        this.APIKey = 'WdyVideo'
+        this.APIKey = 'Movie'
         yield next
     },
 
@@ -58,7 +58,7 @@ const wdyVideoApi = {
             id: parseInt(this.params.id)
         })
 
-        this.APIKey = 'WdyVideo'
+        this.APIKey = 'Movie'
         yield next
     }
 

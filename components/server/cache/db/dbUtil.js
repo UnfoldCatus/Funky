@@ -162,10 +162,15 @@ function GetData(path, cb) {
           var err = new Error('服务器异常,拉取数据失败');
           cb(err);
         } else {
-          var json = JSON.parse(chunks);
-          if (json.code == 200) {
-            cb(null, json);
-          } else {
+          try {
+            var json = JSON.parse(chunks);
+            if (json.code == 200) {
+              cb(null, json);
+            } else {
+              var err = new Error('服务器异常');
+              cb(err);
+            }
+          } catch (e) {
             var err = new Error('服务器异常');
             cb(err);
           }

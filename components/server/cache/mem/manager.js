@@ -36,13 +36,25 @@ exports.getData = function(url, path, cb)
                 chunks+=chunk;
             });
             res.on('end', function() {
-                var json = JSON.parse(chunks);
-                if(res.statusCode == 200 && json.code == 200) {
-                    // 设置缓存时间为5分钟
-                    myCache.set(url, json, Config.MemConfig.cache_timeout);
-                }
+                try {
+                    var json = JSON.parse(chunks);
+                    if(res.statusCode == 200 && json.code == 200) {
+                        // 设置缓存时间为5分钟
+                        myCache.set(url, json, Config.MemConfig.cache_timeout);
+                    }
 
-                cb(null, json);
+                    cb(null, json);
+                } catch (e) {
+                    var data = {
+                        success:false,
+                        message:JSON.stringify({msg: e.message}),
+                        data:[],
+                        code:404,
+                        count:0
+                    };
+
+                    cb(null,data)
+                }
             });
             res.on('error', function (e) {
                 var data = {
