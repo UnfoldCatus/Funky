@@ -1,6 +1,5 @@
 @import "resources.css";
 @import "nav-all.css";
-/*@import "lightbox.css";*/
 @import "title-img.css";
 * {
   outline: none;
@@ -974,28 +973,30 @@ a:hover {
   background-color: #7B7B7B;
 }
 .adaptation-1200 #detail-modual .layer-box {
-  display: block;
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: #000;
-  opacity: 0.7;
-  filter: alpha(opacity=70);
+  opacity: 0.6;
+  filter: alpha(opacity=60);
   z-index: 10000;
   cursor: pointer;
 }
 .adaptation-1200 #detail-modual .float-window {
-  display: block;
+  display: none;
   position: fixed;
   z-index: 10001;
   background-color: #fff;
   left: 50%;
   top: 0;
   height: 900px;
-  margin-left: -420px;
-  padding: 20px 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  margin-left: -415px;
+  margin-top: 15px;
+  padding: 15px 15px 0px;
 }
 .adaptation-1200 #detail-modual .scrollbarall {
   height: 100%;
@@ -1018,7 +1019,7 @@ a:hover {
   height: 100%;
   width: 10px;
   position: absolute;
-  right: -20px;
+  right: -15px;
   z-index: 20;
 }
 .adaptation-1200 #detail-modual .scrollbarall .track {
@@ -1034,13 +1035,19 @@ a:hover {
 }
 .adaptation-1200 #detail-modual .close-ico {
   position: absolute;
-  right: -45px;
-  top: 5px;
-  width: 40px;
-  height: 40px;
-  background: url(../img/eavlee/hlyp/close.png);
+  display: block;
+  right: -12px;
+  top: -12px;
+  width: 24px;
+  height: 24px;
+  background: url(../img/float-close.png) no-repeat;
   cursor: pointer;
   z-index: 50;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 0 6px rgba(0, 0, 0, 0.3);
+}
+.adaptation-1200 #detail-modual .close-ico:hover {
+  background-position: 0 -24px;
 }
 .adaptation-1200 .screening-results {
   height: 50px;
@@ -1298,11 +1305,13 @@ a:hover {
 .adaptation-1200 .home-view .list-recommend .title-box span {
   display: block;
   color: #333;
+  white-space: nowrap;
   line-height: 24px;
   font-size: 14px;
   padding-left: 10px;
 }
 .adaptation-1200 .home-view .list-recommend .title-box .en {
+  white-space: nowrap;
   font-size: 14px;
 }
 .adaptation-1200 .home-view .list-recommend .item-box:hover .title-box {
@@ -1378,11 +1387,13 @@ a:hover {
 .adaptation-1200 .home-view .list-recommend-1 .title-box span {
   display: block;
   color: #333;
+  white-space: nowrap;
   line-height: 24px;
   font-size: 14px;
   padding-left: 10px;
 }
 .adaptation-1200 .home-view .list-recommend-1 .title-box .en {
+  white-space: nowrap;
   font-size: 14px;
 }
 .adaptation-1200 .home-view .list-recommend-1 .item-box:hover .title-box {
@@ -1465,10 +1476,12 @@ a:hover {
 .adaptation-1200 .home-view .list-recommend-2 .title-box span {
   display: block;
   color: #333;
+  white-space: nowrap;
   line-height: 24px;
   font-size: 14px;
 }
 .adaptation-1200 .home-view .list-recommend-2 .title-box .en {
+  white-space: nowrap;
   font-size: 14px;
 }
 .adaptation-1200 .home-view .list-recommend-2 .nav-title {
@@ -6476,10 +6489,12 @@ a:hover {
 .adaptation-1200 .hslf-xq-view .list-recommend .title-box span {
   display: block;
   color: #333;
+  white-space: nowrap;
   line-height: 24px;
   font-size: 14px;
 }
 .adaptation-1200 .hslf-xq-view .list-recommend .title-box .en {
+  white-space: nowrap;
   font-size: 14px;
 }
 .adaptation-1200 .hslf-xq-view .list-recommend .nav-title {

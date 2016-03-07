@@ -22,7 +22,10 @@ const SupplyConfig = {
       'dataUrl': 'weddingsupplies/supplies_list',
       'width': 276,
       'aspectRatio': '1:1'
-    }, BaseConfig)
+    }, BaseConfig),
+  'SupplyItemDetail': _.merge({
+    'dataUrl':'weddingsupplies/detail/:id'
+  },BaseConfig)
   }
 
 export { SupplyConfig }

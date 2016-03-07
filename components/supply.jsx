@@ -18,6 +18,21 @@ let SupplyItemList = React.createClass({
                 <div className='img-box'>
                   <MediaItem {...this.props} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'}/>
                 </div>
+                <div className='content-box'>
+                  <div className='title'>
+                    <p>{
+                        (v.title || '金色百年') + ' '+
+                        (v.description || ' ') + ' ' +
+                        (v.suppliesNumber || '0') + '个'
+                      }</p>
+                  </div>
+                  <div className="price-box">
+                    <b className="in-price"><em>￥</em></b>
+                    <b className='in-price'>{parseFloat(v.sellingPrice || '0').toFixed(2)}</b>
+                    <span>￥</span>
+                    <span className="tm-price">{parseFloat(v.marketPrice || '0').toFixed(2)}</span>
+                  </div>
+                </div>
               </li>
             )
           })
@@ -40,11 +55,20 @@ let SupplyItemList = React.createClass({
   },
   componentDidMount() {
     if (this.props.dataUrl !== undefined) {
+      // 在组件初始化完成后，立即绑定代理的点击事件。
+      $('.J_Item').on('click','li',(evt)=>{
+        
+        return false
+      })
+
+
+
       fetch(this.props.baseUrl + this.props.dataUrl)
       .then(res => {return res.json()})
       .then(j=>{
         this.setState({ data:j.data })
         $('.J_Count').html(j.count)
+
       })
     }
   }
