@@ -66,7 +66,7 @@ const ItemType = React.createClass({
 
   componentDidMount(){
     // 默认是显示第一个,加载最新微电影
-    fetch(this.props.listType[0])
+    fetch(this.props.type[0])
       .then(res => {return res.json()})
       .then(j => {
         // 针对每个数据,只取 id, type, coverUrlWeb, description, videoUrl, videoId, hitNum
@@ -117,9 +117,9 @@ const Movie = React.createClass({
   getInitialState: function() {
     return {
       types: [MovieConfig['NewMovie'].baseUrl+MovieConfig['NewMovie'].dataUrl,
-        MovieConfig['HotMovie'].baseUrl+MovieConfig['NewMovie'].dataUrl,
-        MovieConfig['LoveMovie'].baseUrl+MovieConfig['NewMovie'].dataUrl,
-        MovieConfig['LoveMovieMV'].baseUrl+MovieConfig['NewMovie'].dataUrl]
+        MovieConfig['HotMovie'].baseUrl+MovieConfig['HotMovie'].dataUrl,
+        MovieConfig['LoveMovie'].baseUrl+MovieConfig['LoveMovie'].dataUrl,
+        MovieConfig['LoveMovieMV'].baseUrl+MovieConfig['LoveMovieMV'].dataUrl]
     };
   }
 })
