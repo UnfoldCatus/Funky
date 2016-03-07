@@ -9,19 +9,20 @@ var type=env.Thinky.type;
  "success": true,
  "message": null,
  "data": [
- {
- "id": 5,
- "createTime": "2016-01-21 19:06:55",
- "updateTime": "2016-01-21 19:06:55",
- "operater": 1,
- "isUsed": 1,
- "name": "2016年1月第一季",
- "description": "",
- "coverUrlWeb": "http://img.jsbn.com/followPhotoSeason/20160121/14533744153469325_1920x1080.jpg",
- "coverUrlWx": "http://img.jsbn.com/followPhotoSeason/20160121/14533744154776048_1920x1080.jpg",
- "coverUrlApp": "http://img.jsbn.com/followPhotoSeason/20160121/14533744154220052_1920x1080.jpg",
- "weight": 100
- }
+     {
+     "id": 5,
+     "seasonId": 5,
+     "createTime": "2016-01-21 19:06:55",
+     "updateTime": "2016-01-21 19:06:55",
+     "operater": 1,
+     "isUsed": 1,
+     "name": "2016年1月第一季",
+     "description": "",
+     "coverUrlWeb": "http://img.jsbn.com/followPhotoSeason/20160121/14533744153469325_1920x1080.jpg",
+     "coverUrlWx": "http://img.jsbn.com/followPhotoSeason/20160121/14533744154776048_1920x1080.jpg",
+     "coverUrlApp": "http://img.jsbn.com/followPhotoSeason/20160121/14533744154220052_1920x1080.jpg",
+     "weight": 100
+     }
  ],
  "code": 200,
  "count": 0
@@ -32,6 +33,7 @@ var type=env.Thinky.type;
 const FollowPhotoSeason = env.Thinky.createModel('followPhotoSeason', {
     // Id
     id: type.number(),
+    seasonId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

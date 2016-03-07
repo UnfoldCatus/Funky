@@ -13,6 +13,7 @@ var type=env.Thinky.type;
  "data": [
      {
      "id": 3,
+     "caseId": 0,
      "createTime": "2015-11-19 19:10:59",
      "updateTime": "2015-11-20 16:00:56",
      "operater": 1,
@@ -47,8 +48,10 @@ var type=env.Thinky.type;
 
 // 3D案例模型
 const Cases3D = env.Thinky.createModel('case3D', {
-    // Id
+    // 发布Id
     id: type.number(),
+    // 案例ID
+    caseId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

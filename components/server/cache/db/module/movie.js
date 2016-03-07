@@ -11,6 +11,7 @@ var type=env.Thinky.type;
  "data": [
      {
      "id": 123,
+     "videoId": 0,
      "createTime": "2016-01-22 11:22:07",
      "updateTime": "2016-01-22 11:29:11",
      "operater": 1,
@@ -34,8 +35,10 @@ var type=env.Thinky.type;
 
 // 微电影模型
 const WdyVideo = env.Thinky.createModel('wdyVideo', {
-    // Id
+    // 发布Id
     id: type.number(),
+    // 视频ID
+    videoId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

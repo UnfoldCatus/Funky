@@ -12,6 +12,7 @@ var type=env.Thinky.type;
  "data": [
      {
      "id": 18,
+     "shootStyleId": 18,
      "createTime": "2016-02-17 15:29:02",
      "updateTime": "2016-02-17 15:29:19",
      "operater": 1,
@@ -19,16 +20,6 @@ var type=env.Thinky.type;
      "name": "妖娆风",
      "description": "妖娆风",
      "weight": 10
-     },
-     {
-     "id": 17,
-     "createTime": "2015-11-24 15:04:32",
-     "updateTime": "2015-11-24 15:04:32",
-     "operater": 0,
-     "isUsed": 1,
-     "name": "清新纪实",
-     "description": "清新纪实",
-     "weight": 5
      }
  ],
  "code": 200,
@@ -40,6 +31,7 @@ var type=env.Thinky.type;
 const FilterConditionShootStyle = env.Thinky.createModel('filterConditionShootStyle', {
     // Id
     id: type.number(),
+    shootStyleId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

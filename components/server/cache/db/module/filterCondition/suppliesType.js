@@ -10,15 +10,16 @@ var type=env.Thinky.type;
  "success": true,
  "message": null,
  "data": [
- {
- "id": 4,
- "createTime": "2015-11-24 15:12:37",
- "updateTime": "2015-11-24 15:12:37",
- "operater": 0,
- "isUsed": 1,
- "name": "222",
- "description": "222222"
- }
+     {
+     "id": 5,
+     "createTime": "2016-01-21 19:31:17",
+     "updateTime": "2016-01-21 19:31:17",
+     "operater": 1,
+     "isUsed": 1,
+     "name": "请柬",
+     "description": "",
+     "typeId": 5
+     }
  ],
  "code": 200,
  "count": 0
@@ -29,6 +30,8 @@ var type=env.Thinky.type;
 const FilterConditionSuppliesType = env.Thinky.createModel('filterConditionSuppliesType', {
     // Id
     id: type.number(),
+    // 类型ID
+    typeId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

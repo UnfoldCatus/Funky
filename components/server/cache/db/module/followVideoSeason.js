@@ -11,6 +11,7 @@ var type=env.Thinky.type;
      "data": [
          {
              "id": 1,
+             "seasonId": 1,
              "createTime": "2015-12-01 18:18:00",
              "updateTime": "2015-12-01 18:18:00",
              "operater": 1,
@@ -32,6 +33,7 @@ var type=env.Thinky.type;
 const FollowVideoSeason = env.Thinky.createModel('followVideoSeason', {
     // Id
     id: type.number(),
+    seasonId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间
