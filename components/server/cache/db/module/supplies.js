@@ -13,6 +13,7 @@ var type=env.Thinky.type;
  "data": [
      {
      "id": 294,
+     "suppliesId": 9,
      "createTime": "2016-02-20 12:10:18",
      "updateTime": "2016-02-20 12:10:18",
      "operater": 1,
@@ -47,8 +48,10 @@ var type=env.Thinky.type;
 * */
 
 const Supplies = env.Thinky.createModel('supplies', {
-    // Id
+    // 发布Id
     id: type.number(),
+    // 用品ID
+    suppliesId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

@@ -11,6 +11,7 @@ var type=env.Thinky.type;
  "data": [
      {
      "id": 227,
+     "recordVideoId": 9,
      "createTime": "2016-01-21 17:31:09",
      "updateTime": "2016-01-21 17:31:09",
      "operater": 1,
@@ -35,8 +36,10 @@ var type=env.Thinky.type;
 
 // 婚纱摄影--纪实MV模型
 const RecordVideo = env.Thinky.createModel('recordVideo', {
-    // Id
+    // 发布Id
     id: type.number(),
+    // 纪实ID
+    recordVideoId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

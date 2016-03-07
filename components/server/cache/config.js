@@ -24,7 +24,7 @@ const DBConfig = {
   // 客片分季数据
   PringlesSeasonPath:"/api/pringlesSeason/all",
   // 纪实MV
-  RecordVideoPath:"/api/recordVideoSeason/all",
+  RecordVideoPath:"/api/recordVideo/all",
   // 纪实MV分季
   RecordVideoSeasonPath:"/api/recordVideoSeason/all",
   // 套系
@@ -57,16 +57,6 @@ const DBConfig = {
   F4HostPath: '/api/f4/host',
   // 四大金刚-特色项目作品
   F4TeamPath: '/api/f4/team',
-  // 婚车租赁--婚车型号搜索条件内容
-  FilterConditionCarModelsPath: '/api/carModels/all',
-  // 婚车租赁--婚车档次搜索条件内容c
-  FilterConditionCarLevelPath: '/api/carLevel/all',
-  // 婚车租赁--婚车品牌搜索条件内容
-  FilterConditionCarBrandPath: '/api/carBrand/all',
-  // 婚车用品--用品品牌搜索条件内容
-  FilterConditionSuppliesBrandPath: '/api/suppliesBrand/all',
-  // 婚车用品--用品类型搜索条件内容
-  FilterConditionSuppliesTypePath: '/api/suppliesType/all',
   // 微电影
   MoviePath: '/api/video/all',
   // 婚纱礼服--类型
@@ -75,8 +65,18 @@ const DBConfig = {
   FilterConditionDressBrandPath: '/api/dressBrand/all',
   // 婚纱礼服
   DressPath: '/api/dress/all',
+  // 婚车租赁--婚车型号搜索条件内容
+  FilterConditionCarModelsPath: '/api/carModels/all',
+  // 婚车租赁--婚车档次搜索条件内容c
+  FilterConditionCarLevelPath: '/api/carLevel/all',
+  // 婚车租赁--婚车品牌搜索条件内容
+  FilterConditionCarBrandPath: '/api/carBrand/all',
   // 婚车租赁
   CarPath: '/api/car/all',
+  // 婚礼用品--用品品牌搜索条件内容
+  FilterConditionSuppliesBrandPath: '/api/suppliesBrand/all',
+  // 婚礼用品--用品类型搜索条件内容
+  FilterConditionSuppliesTypePath: '/api/suppliesType/all',
   // 婚礼用品
   SuppliesPath: '/api/weddingsupplies/all',
   // 婚礼课堂

@@ -12,6 +12,7 @@ var type=env.Thinky.type;
  "data": [
      {
      "id": 4,
+     "typeId": 4,
      "createTime": "2015-11-24 15:12:37",
      "updateTime": "2015-11-24 15:12:37",
      "operater": 0,
@@ -29,6 +30,7 @@ var type=env.Thinky.type;
 const FilterConditionHotelType = env.Thinky.createModel('filterConditionHotelType', {
     // Id
     id: type.number(),
+    typeId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

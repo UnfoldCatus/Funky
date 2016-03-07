@@ -25,6 +25,7 @@ var type=env.Thinky.type;
             "workList": [
                 {
                     "id": 2,
+                    "productId": 1,
                     "createTime": "2016-01-21 19:18:56",
                     "updateTime": "2016-01-28 16:41:54",
                     "operater": 1,

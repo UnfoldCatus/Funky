@@ -11,19 +11,20 @@ var type=env.Thinky.type;
  "message": null,
  "data": [
      {
-     "id": 327,
-     "createTime": "2016-01-21 19:27:29",
-     "updateTime": "2016-01-26 18:22:14",
-     "operater": 1,
+     "id": 519,
+     "createTime": "2016-03-04 15:07:30",
+     "updateTime": "2016-03-04 15:07:30",
+     "operater": 0,
      "isUsed": 1,
-     "name": "香奈儿",
-     "description": "香奈儿",
-     "number": "001",
+     "name": "9",
+     "description": null,
+     "number": "9",
      "typeId": 3,
-     "brandId": 7,
-     "imageUrl": "http://img.jsbn.com/dress/20160122/14534537137646159_650x487.jpg",
-     "weight": 20,
-     "position": "dress_brand_male"
+     "brandId": 10021,
+     "imageUrl": "http://image.jsbn.com/WebImage/null/jpg/20151214/52096961170686630867/20151214152920238050_500x750.jpg",
+     "weight": 178,
+     "position": "dress_list",
+     "dressId": 0
      }
  ],
  "code": 200,
@@ -32,8 +33,10 @@ var type=env.Thinky.type;
  * */
 
 const Dress = env.Thinky.createModel('dress', {
-    // Id
+    // 发布Id
     id: type.number(),
+    // 礼服ID
+    dressId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

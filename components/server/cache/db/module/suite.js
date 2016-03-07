@@ -7,8 +7,10 @@ var type=env.Thinky.type;
 
 // 套系模型
 const Suite = env.Thinky.createModel('suite', {
-    // Id
+    // 发布Id
     id: type.number(),
+    // 套系ID
+    suiteId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

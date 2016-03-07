@@ -9,23 +9,24 @@ var type=env.Thinky.type;
  "success": true,
  "message": null,
  "data": [
- {
- "id": 253,
- "createTime": null,
- "updateTime": null,
- "operater": null,
- "isUsed": 1,
- "name": "123123123",
- "type": 1,
- "coverUrlWeb": "http://192.168.1.3:3000/ftppub/cd/uploadResource/jpg/20151107/2015110717110001/1446887461209.jpg",
- "coverUrlWx": "http://192.168.1.3:3000/ftppub/cd/uploadResource/jpg/20151107/2015110717110001/1446887461211.jpg",
- "coverUrlApp": "http://192.168.1.3:3000/ftppub/cd/uploadResource/jpg/20151107/2015110717110001/1446887461209.jpg",
- "description": "123123123",
- "linkUrl": "http://www.jsbn.com",
- "videoUrl": "123123123",
- "position": "top",
- "weight": null
- }
+     {
+     "id": 253,
+     "advertId": 45,
+     "createTime": null,
+     "updateTime": null,
+     "operater": null,
+     "isUsed": 1,
+     "name": "123123123",
+     "type": 1,
+     "coverUrlWeb": "http://192.168.1.3:3000/ftppub/cd/uploadResource/jpg/20151107/2015110717110001/1446887461209.jpg",
+     "coverUrlWx": "http://192.168.1.3:3000/ftppub/cd/uploadResource/jpg/20151107/2015110717110001/1446887461211.jpg",
+     "coverUrlApp": "http://192.168.1.3:3000/ftppub/cd/uploadResource/jpg/20151107/2015110717110001/1446887461209.jpg",
+     "description": "123123123",
+     "linkUrl": "http://www.jsbn.com",
+     "videoUrl": "123123123",
+     "position": "top",
+     "weight": null
+     }
  ],
  "code": 200,
  "count": 1
@@ -34,8 +35,10 @@ var type=env.Thinky.type;
 
 // 广告模型
 const Adv = env.Thinky.createModel('adv', {
-    // Id
+    // 发布Id
     id: type.number(),
+    // 广告ID
+    advertId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

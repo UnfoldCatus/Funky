@@ -6,7 +6,7 @@ var type=env.Thinky.type;
 
 // 酒店模型
 const Hotel = env.Thinky.createModel('hotel', {
-    // Id
+    // 发布Id
     id: type.number(),
     // 创建时间
     createTime: type.date(),

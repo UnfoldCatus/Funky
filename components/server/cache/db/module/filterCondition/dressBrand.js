@@ -10,20 +10,21 @@ var type=env.Thinky.type;
  "success": true,
  "message": null,
  "data": [
- {
- "id": 9,
- "createTime": "2016-02-18 10:07:21",
- "updateTime": "2016-02-18 10:09:28",
- "operater": 1,
- "isUsed": 1,
- "name": "钻石之王",
- "description": "",
- "type": 1,
- "coverUrlWeb": "http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/dressBrand/20160218/14557612413353808_391x220.jpg",
- "coverUrlWx": null,
- "coverUrlApp": null,
- "logoUrl": null
- }
+     {
+     "id": 10000,
+     "createTime": "2016-03-04 15:07:30",
+     "updateTime": "2016-03-04 15:07:30",
+     "operater": 0,
+     "isUsed": 1,
+     "name": "奈特丽",
+     "description": null,
+     "type": 1,
+     "coverUrlWeb": "http://image.jsbn.com/WebImage/cq/jpg/20151230/84196235768245836536/20151230154757682217_900x601.jpg",
+     "coverUrlWx": "http://image.jsbn.com/WebImage/cq/jpg/20151230/28412301082280548126/20151230154757526357_900x601.jpg",
+     "coverUrlApp": "http://image.jsbn.com/WebImage/cq/jpg/20151230/28412301082280548126/20151230154757526357_900x601.jpg",
+     "logoUrl": "",
+     "brandId": 10000
+     }
  ],
  "code": 200,
  "count": 1
@@ -31,8 +32,10 @@ var type=env.Thinky.type;
  * */
 
 const FilterConditionDressBrand = env.Thinky.createModel('filterConditionDressBrand', {
-    // Id
+    // 发布ID
     id: type.number(),
+    // 品牌ID
+    brandId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

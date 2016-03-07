@@ -9,6 +9,7 @@ var type=env.Thinky.type;
 const PringlesSeason = env.Thinky.createModel('pringlesSeason', {
     // Id
     id: type.number(),
+    seasonId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间
