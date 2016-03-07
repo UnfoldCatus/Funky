@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
 import { Banner } from './common/banner.jsx'
+import { MediaItem } from './common/media-item.jsx'
 import { DressDetailsConfig } from './config/dress-details-config.js'
 
 //(function(window,undefined){
@@ -44,7 +45,7 @@ const DressDetails = React.createClass({
                   <li key={k} className="item-box">
                     <a className="img-box" data-uk-lightbox="{'group':'dress-img'}" data-lightbox-type='image' title={v.number}  href={v.imageUrl} >
                       <div className="layer-box"></div>
-                      <img src={v.imageUrl+'@550h_90Q'} />
+                      <MediaItem aspectRatio='2:3' height={550} mediaUrl={v.imageUrl} />
                     </a>
                     <div className="title-box">
                       <span>{v.number}</span>
