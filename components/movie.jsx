@@ -29,10 +29,11 @@ const ItemType = React.createClass({
           {
             _.map(this.state.data[this.state.index], (v,k) => {
               let key = ''+this.state.index+k;
+              let hf = '/movie-details?id='+v.id;
               return (
                 <li key={key} className="item-box">
                   <div className="animat-1-hive" />
-                  <a href="">
+                  <a href={hf} target="_blank">
                     <div className="img-box">
                       <MediaItem aspectRatio='38:25' height={250} mediaUrl={v.coverUrlWeb} />
                       <i></i>
@@ -73,7 +74,7 @@ const ItemType = React.createClass({
         let temp = this.state.data;
         let count = j.count;// 数据的实际条数,如果实际条数小于预期拉取的条数,说明数据已经取完了
         temp[0] = _.map(j.data || [],(v,k)=>{
-          return _.pick(v,['name','videoId', 'type', 'coverUrlWeb', 'description', 'videoUrl'])
+          return _.pick(v,['name','videoId', 'type', 'coverUrlWeb', 'description', 'videoUrl', 'id'])
         });
         this.setState({data:temp, index:0});
       });

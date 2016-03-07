@@ -4,31 +4,6 @@ import { Banner } from './common/banner.jsx'
 import { MediaItem } from './common/media-item.jsx'
 import { DressDetailsConfig } from './config/dress-details-config.js'
 
-//(function(window,undefined){
-//  var ArrayForEach=Array.prototype.forEach||function(fn, sc){
-//      var a=this,l=a.length|0,i;
-//      for(i=0;i<l;i+=1)fn.call(sc, a[i], i, a);
-//    };
-//  var ObjectGetOwnPropertyNames=Object.getOwnPropertyNames||function(o) {
-//      var a=[],p;
-//      for(p in o)if(o.hasOwnProperty(p))a.push(p);
-//      return a;
-//    };
-//  var location=window.location,params={};
-//  ArrayForEach.call(location.search.substr(1).split("&"),function(slice,index){
-//    var p=slice.split("="),name=decodeURIComponent(p[0]),value=decodeURIComponent(p[1]);
-//    params.hasOwnProperty(name)?params[name].push(value):params[name]=[value];
-//  });
-//  function getParameter(name){return params.hasOwnProperty(name)?params[name][0]:null;}
-//  function getParameterValues(name){return params.hasOwnProperty(name)?params[name]:[];}
-//  function getParameterNames(){return ObjectGetOwnPropertyNames(params);}
-//  function getParameterMap(){return params;}
-//  location.getParameter=getParameter;
-//  location.getParameterValues=getParameterValues;
-//  location.getParameterNames=getParameterNames;
-//  location.getParameterMap=getParameterMap;
-//})(window);
-
 const DressDetails = React.createClass({
   render() {
     return (

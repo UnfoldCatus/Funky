@@ -26,6 +26,7 @@ import { Adv } from '../adv.jsx'
 import { Dress } from '../dress.jsx'
 import { DressDetails } from '../dress-details.jsx'
 import { Movie } from '../movie.jsx'
+import { MovieDetails } from '../movie-details.jsx'
 import { Supply } from '../supply.jsx'
 import { Car } from '../car.jsx'
 
@@ -48,6 +49,7 @@ const ComponentsIndex = {
   'dress': <Dress />,
   'dress-details': <DressDetails />,
   'movie': <Movie />,
+  'movie-details': <MovieDetails />,
   'supply': <Supply />,
   'car': <Car />
 }

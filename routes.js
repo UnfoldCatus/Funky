@@ -197,24 +197,27 @@ siteRouter.get('/weddingvideo', function* index(next) {
 siteRouter.get('/scheme-require', function* index(next) {
   yield this.render('modules/default', renderOption('scheme-require', '/scheme-require', '/scheme'))
 })
-
 /** 礼服 **/
 siteRouter.get('/dress', function* index(next) {
   yield this.render('modules/default', renderOption('dress', '/dress', '/dress'))
 })
-
+/** 礼服详情 **/
 siteRouter.get('/dress-details', function* index(next) {
     yield this.render('modules/default', renderOption('dress-details', '/dress', '/dress'))
 })
-  /** 微电影 **/
+/** 微电影 **/
 siteRouter.get('/movie', function* index(next) {
     yield this.render('modules/default', renderOption('movie', '/movie', '/movie'))
 })
-  /** 婚礼用品 **/
+/** 微电影详情 **/
+siteRouter.get('/movie-details', function* index(next) {
+  yield this.render('modules/default', renderOption('movie-details', '/movie', '/movie'))
+})
+/** 婚礼用品 **/
 siteRouter.get('/supply', function* index(next) {
     yield this.render('modules/default', renderOption('supply', '/supply', '/supply'))
 })
-  /** 婚车租赁 **/
+/** 婚车租赁 **/
 siteRouter.get('/car', function* index(next) {
   yield this.render('modules/default', renderOption('car', '/car', '/car'))
 })
