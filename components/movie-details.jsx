@@ -15,7 +15,8 @@ const MovieDetails = React.createClass({
           <div className="video-box">
             <MediaItem aspectRatio='80:45' height={450}
                        mediaUrl={this.state.moveInfo.coverUrlWeb}
-                       videoUrl={this.state.moveInfo.videoUrl}/>
+                       videoUrl={this.state.moveInfo.videoUrl
+                       || '//api.video.taobao.com//video/embedVideo?vid=34799342&uid=2579307056&tid=1&autoplay=false&showsharebutton=false'}/>
             <div className="info-box">
               <h1>{this.state.moveInfo.name}</h1>
               <p>{this.state.moveInfo.description}</p>
@@ -30,11 +31,12 @@ const MovieDetails = React.createClass({
                 return (
                   <li key={k} className="item-box">
                     <div className="img-box">
-                      <MediaItem aspectRatio='15:10' height={100}
-                                 mediaUrl={v.coverUrlWeb} />
+                      <MediaItem aspectRatio='15:10' height={100} mediaUrl={v.coverUrlWeb} />
                       <a href={hf} className="layer-box"></a>
                     </div>
-                    <div className="title-box"><span>{v.name}</span></div>
+                    <div className="title-box">
+                      <span>{v.name}</span>
+                    </div>
                   </li>
                 );
               })
@@ -57,27 +59,6 @@ const MovieDetails = React.createClass({
     };
   },
 
-  // 数据请求video/detail/:id
-  /*
-   {
-   "id": 780,
-   "createTime": "2016-03-07 10:27:22",
-   "updateTime": "2016-03-07 10:27:22",
-   "operater": 0,
-   "isUsed": 1,
-   "name": "我们",
-   "type": 1,
-   "coverUrlWeb": "http://img2.jsbn.com/venus/video/20160307/1457334895282313120151028093433677489_1920x1080.jpg",
-   "coverUrlWx": "http://img2.jsbn.com/venus/video/20160307/1457334896780329520151026161726663163_1920x1080.jpg",
-   "coverUrlApp": "http://img2.jsbn.com/venus/video/20160307/1457334897687158020151026161726663163_1920x1080.jpg",
-   "description": "",
-   "videoUrl": "http://image.jsbn.com/video%2Fcq%2Fwdy%2F2.mp4",
-   "position": "movie_love_movies",
-   "hitNum": 0,
-   "weight": 1,
-   "videoId": 10020
-   }
-  * */
   componentDidMount() {
     /** 请求微电影详情 **/
     let urlPra = decodeURIComponent(window.location.search.substr(1)).split('&');// 去掉?号根据&进行拆分
@@ -89,8 +70,8 @@ const MovieDetails = React.createClass({
     fetch(fetchUrl)
       .then(res => {return res.json()})
       .then(j=>{
-        if(j.data.length > 0) {
-          this.setState({ moveInfo:j.data[0]})
+        if(j.data) {
+          this.setState({ moveInfo:j.data})
         }
       })
 
