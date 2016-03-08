@@ -29,6 +29,14 @@ exports.getData = function(url, path, cb)
             method: "GET"
         };
 
+        let data = {
+            success:false,
+            message:"",
+            data:[],
+            code:404,
+            count:0
+        };
+
         var req = http.request(options, function(res) {
             res.setEncoding('utf8');
             var chunks = "";
@@ -36,36 +44,36 @@ exports.getData = function(url, path, cb)
                 chunks+=chunk;
             });
             res.on('end', function() {
-                try {
-                    var json = JSON.parse(chunks);
-                    if(res.statusCode == 200 && json.code == 200) {
-                        // 设置缓存时间为5分钟
-                        myCache.set(url, json, Config.MemConfig.cache_timeout);
-                    }
-
-                    cb(null, json);
-                } catch (e) {
-                    var data = {
-                        success:false,
-                        message:JSON.stringify({msg: e.message}),
-                        data:[],
-                        code:404,
-                        count:0
-                    };
-
+                if (res.statusCode != 200) {
+                    data.message = '服务器应答异常';
+                    data.code = res.statusCode;
                     cb(null,data)
+                } else {
+                    if (chunks === "") {
+                        data.message = '服务器异常,拉取数据失败';
+                        data.code = res.statusCode;
+                        cb(null,data)
+                    } else {
+                        try {
+                            var json = JSON.parse(chunks);
+                            if(json.code == 200) {
+                                // 缓存并设置缓存时间
+                                myCache.set(url, json, Config.MemConfig.cache_timeout);
+                            }
+
+                            cb(null, json);
+                        } catch (e) {
+                            data.message = '数据请求异常';
+                            data.code = res.statusCode;
+                            cb(null,data);
+                        }
+                    }
                 }
             });
             res.on('error', function (e) {
-                var data = {
-                    success:false,
-                    message:JSON.stringify({msg: err.message}),
-                    data:[],
-                    code:404,
-                    count:0
-                };
-
-                cb(null,data)
+                data.message = e.message;
+                data.code = 404;
+                cb(null,data);
             });
         });
 
@@ -75,33 +83,18 @@ exports.getData = function(url, path, cb)
         req.on('error',function(e) {
             req.res && req.res.abort();
             req.abort();
-            var data = {
-                success:false,
-                message:JSON.stringify({msg: "server error"}),
-                data:[],
-                code:404,
-                count:0
-            };
-
-            cb(null,data)
+            data.message = '服务器错误';
+            data.code = 404;
+            cb(null,data);
 
         }).on('timeout',function(e) {
             req.res && req.res.abort();
             req.abort();
-            var data = {
-                success:false,
-                message:JSON.stringify({msg: "request timeout"}),
-                data:[],
-                code:404,
-                count:0
-            };
-
-            cb(null,data)
+            data.message = 'request timeout';
+            data.code = 404;
+            cb(null,data);
         });
 
         req.end();
     }
 }
-
-//exports.create = function () {
-//}

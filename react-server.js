@@ -61,7 +61,6 @@ ReactServer.use(StaticFile('./assets',{'maxage':3*60*1000})) // 其他静态资�
 /** 准备进入路由层。 先确保一切为默认 **/
 ReactServer.use(function*(next){
   this.APIKey = null
-  this.dataSource = []
   yield next
 })
 ReactServer.use(apiRouter.routes()) // api路由
@@ -83,65 +82,62 @@ ReactServer.use(apiRouter.routes()) // api路由
 let proxyFetcher = thunkify.genify(memCacheMgr.getData)
 
 let dataFetchMiddleWare = function*(next) {
+
+  let resData = {
+    success: true,
+    message: "",
+    data: {},
+    code: 200,
+    count: 0
+  }
+
   if (this.APIKey) {
-    console.log('APIKey:', this.APIKey);
     // DBUtil.isCacheDataUsable 方法 返回真表示数据缓存可用。否则表示数据正在同步。不可以从缓存拉
     if (DBUtil.isCacheDataUsable(this.APIKey)) {
+      console.log('dbCache:', this.request.url);
       try {
         //从缓存数据库中去查询。
         if (this.model) {
-          this.dataSource = yield this.model.run()
-          this.code = 200
+          resData.data = yield this.model.run()
+          resData.code = 200
+          resData.success = true
+          resData.count = this.count || resData.data.length
         }
       } catch (err) {
         console.log('数据库异常memCache:', this.request.url);
         //缓存数据不可用。 去做代理数据请求
-        let retData  = yield* proxyFetcher(this.request.url,this.request.url)
-        this.dataSource = retData.data
-        this.code = retData.code
-
-
-
-
-
+        resData  = yield* proxyFetcher(this.request.url,this.request.url)
       }
     } else {
       console.log('memCache:', this.request.url);
       //缓存数据不可用。 去做代理数据请求
-      let retData  = yield* proxyFetcher(this.request.url,this.request.url)
-      this.dataSource = retData.data
-      this.code = retData.code
+      resData  = yield* proxyFetcher(this.request.url,this.request.url)
     }
+
     // 针对2.0的套系数据格式进行修正
-    this.dataSource = _.isArray(this.dataSource) ? this.dataSource : []
-    if ( this.code === 200 && this.APIKey === 'Suite' && this.dataSource[0]['pcDetailImages']) {
-      let images = []
-      let origin = JSON.parse(this.dataSource[0]['pcDetailImages'])
-      let keys = [
-        'pc_detailImages',
-        'pc_serviceImages',
-        'pc_cosmeticImages',
-        'pc_clothShootImages',
-        'pc_baseSampleImages',
-        'pc_processImages'
-      ]
-      _.each(keys, function(v) {
-        _.each(origin[v] || [], function(v1) {
-          images.push(v1)
+    if (this.APIKey === 'Suite') {
+      resData.data = _.isArray(resData.data) ? resData.data : []
+      if ( resData.data.length > 0 && resData.data[0]['pcDetailImages']) {
+        let images = []
+        let origin = JSON.parse(resData.data[0]['pcDetailImages'])
+        let keys = [
+          'pc_detailImages',
+          'pc_serviceImages',
+          'pc_cosmeticImages',
+          'pc_clothShootImages',
+          'pc_baseSampleImages',
+          'pc_processImages'
+        ]
+        _.each(keys, function(v) {
+          _.each(origin[v] || [], function(v1) {
+            images.push(v1)
+          })
         })
-      })
-      this.dataSource[0]['pcDetailImages'] = JSON.stringify(images)
+        resData.data[0]['pcDetailImages'] = JSON.stringify(images)
+      }
     }
 
-    let data = {
-      success: true,
-      message: "",
-      data: this.dataSource,
-      code: this.code,
-      count: this.count || this.dataSource.length
-    }
-    this.body = data
-
+    this.body = resData
   }
   yield next
 }
