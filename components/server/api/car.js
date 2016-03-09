@@ -11,12 +11,7 @@ let r = env.Thinky.r
 
 const carApi = {
 
-    //'get+/car/all': function*(next) {
-    //    this.model = car
-    //    this.APIKey = 'Car'
-    //    yield next
-    //},
-    // 获取案例
+    // 获取婚车列表
     'get+/car/:position': function*(next) {
 
         this.APIKey = 'Car'
@@ -25,8 +20,13 @@ const carApi = {
         } else {
             this.model = car.filter({position: this.params.position})
         }
-        let all = yield this.model
-        this.count = all.length
+
+        try {
+            let all = yield this.model
+            this.count = all.length
+        } catch (e) {
+            this.count = 0
+        }
 
         this.model = this.model.orderBy(r.desc('weight'))
 

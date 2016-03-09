@@ -10,12 +10,7 @@ let r = env.Thinky.r
 
 const suppliesApi = {
 
-    //'get+/weddingsupplies/all': function*(next) {
-    //    this.model = supplies
-    //    this.APIKey = 'Supplies'
-    //    yield next
-    //},
-    // 获取案例
+    // 用品列表
     'get+/weddingsupplies/:position': function*(next) {
 
         this.APIKey = 'Supplies'
@@ -24,8 +19,13 @@ const suppliesApi = {
         } else {
             this.model = supplies.filter({position: this.params.position})
         }
-        let all = yield this.model
-        this.count = all.length
+
+        try {
+            let all = yield this.model
+            this.count = all.length
+        } catch (e) {
+            this.count = 0
+        }
 
         this.model = this.model.orderBy(r.desc('weight'))
         _.each(this.request.query, (v, k) => {

@@ -16,13 +16,6 @@ import suite from '../cache/db/module/suite.js'
 const photoApi = {
 
     // 样片列表
-    //'get+/sample/all': function*(next) {
-    //    this.model = sample
-    //    this.APIKey = 'Sample'
-    //    let all = yield sample.filter({})
-    //    this.count = all.length
-    //    yield next
-    //},
     'get+/sample/:position': function*(next) {
         this.APIKey = 'Sample'
         //对position为all到情况要处理
@@ -34,10 +27,15 @@ const photoApi = {
             })
 
         }
-        let all = yield this.model
-        this.count = all.length
-        this.model = this.model.orderBy(r.desc('weight'))
 
+        try {
+            let all = yield this.model
+            this.count = all.length
+        } catch (e) {
+            this.count = 0
+        }
+
+        this.model = this.model.orderBy(r.desc('weight'))
         _.each(this.request.query, (v, k) => {
             if (k.indexOf('pageSize') !== -1) {
                 let limit = 0
@@ -63,19 +61,10 @@ const photoApi = {
             id:parseInt(this.params.id)
         })
         this.APIKey = 'Sample'
-        let all = yield this.model
-        this.count = all.length
         yield next
     },
 
     // 客片列表
-    //'get+/pringles/all': function*(next) {
-    //    this.model = pringles
-    //    this.APIKey = 'Pringles'
-    //    let all = yield pringles.filter({})
-    //    this.count = all.length
-    //    yield next
-    //},
     'get+/pringles/:position': function*(next) {
 
         this.APIKey = 'Pringles'
@@ -88,11 +77,15 @@ const photoApi = {
             })
 
         }
-        let all = yield this.model
-        this.count = all.length
+
+        try {
+            let all = yield this.model
+            this.count = all.length
+        } catch (e) {
+            this.count = 0
+        }
 
         this.model = this.model.orderBy(r.desc('weight'))
-
         _.each(this.request.query, (v, k) => {
             if (k.indexOf('pageSize') !== -1) {
                 let limit = 0
@@ -121,11 +114,6 @@ const photoApi = {
     },
 
     // 客片分季列表
-    //'get+/pringlesSeason/all': function*(next) {
-    //    this.model = pringlesSeason
-    //    this.APIKey = 'PringlesSeason'
-    //    yield next
-    //},
     'get+/pringlesSeason/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = cases.filter({})
@@ -153,13 +141,6 @@ const photoApi = {
     },
 
     // 婚纱摄影-套系列表
-    //'get+/suite/all': function*(next) {
-    //    this.model = suite
-    //    this.APIKey = 'Suite'
-    //    let all = yield suite.filter({})
-    //    this.count = all.length
-    //    yield next
-    //},
     'get+/suite/:position': function*(next) {
         this.APIKey = 'Suite'
         if (this.params.position === 'all') {
@@ -169,8 +150,13 @@ const photoApi = {
                 position: this.params.position
             })
         }
-        let all = yield this.model
-        this.count = all.length
+
+        try {
+            let all = yield this.model
+            this.count = all.length
+        } catch (e) {
+            this.count = 0
+        }
 
         this.model = this.model.orderBy(r.desc('weight'))
         _.each(this.request.query, (v, k) => {
@@ -196,11 +182,6 @@ const photoApi = {
     },
 
     // 婚纱摄影-纪实MV列表
-    //'get+/recordVideo/all': function*(next) {
-    //    this.model = recordVideo
-    //    this.APIKey = 'RecordVideo'
-    //    yield next
-    //},
     'get+/recordVideo/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = recordVideo.filter({})
@@ -210,8 +191,12 @@ const photoApi = {
             })
         }
 
-        let all = yield this.model
-        this.count = all.length
+        try {
+            let all = yield this.model
+            this.count = all.length
+        } catch (e) {
+            this.count = 0
+        }
 
         //this.model = this.model.orderBy(r.desc('weight'))
         _.each(this.request.query, (v, k) => {
@@ -251,11 +236,6 @@ const photoApi = {
     },
 
     // 婚纱摄影-纪实MV分级季列表
-    //'get+/recordVideoSeason/all': function*(next) {
-    //    this.model = recordVideoSeason
-    //    this.APIKey = 'RecordVideoSeason'
-    //    yield next
-    //},
     'get+/recordVideoSeason/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = recordVideoSeason.filter({})

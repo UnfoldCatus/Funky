@@ -29,8 +29,8 @@ const filterConditionApi = {
         position: this.params.position
       })
     }
-    this.model = this.model.orderBy(r.desc('weight'))
 
+    this.model = this.model.orderBy(r.desc('weight'))
     _.each(this.request.query, (v, k) => {
       if (k.indexOf('pageSize') !== -1) {
         let limit = 0

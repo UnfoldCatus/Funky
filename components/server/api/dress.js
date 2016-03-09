@@ -10,11 +10,6 @@ let r = env.Thinky.r
 
 const dressApi = {
 
-    //'get+/dress/list': function*(next) {
-    //    this.model = dress
-    //    this.APIKey = 'Dress'
-    //    yield next
-    //},
     // 获取礼服详情
     'get+/dress/:position': function*(next) {
 

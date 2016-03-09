@@ -3,11 +3,7 @@ import _ from 'lodash'
 import env from '../cache/config'
 let r = env.Thinky.r
 const advApi = {
-  //'get+/adv/all': function*(next) {
-  //  this.model = adv
-  //  this.APIKey = 'Adv'
-  //  yield next
-  //},
+  // 广告
   'get+/adv/:position': function*(next) {
 
     if (this.params.position === 'all') {

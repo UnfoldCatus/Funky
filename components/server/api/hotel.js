@@ -6,13 +6,7 @@ let r = env.Thinky.r
 
 const hotelApi = {
 
-  //'get+/hotel/all': function*(next) {
-  //  this.model = hotel
-  //  this.APIKey = 'Hotel'
-  //  let all = yield this.model
-  //  this.count = all.length
-  //  yield next
-  //},
+  // 酒店列表
   'get+/hotel/:position': function*(next) {
 
     this.APIKey = 'Hotel'
@@ -20,8 +14,13 @@ const hotelApi = {
     } else {
       this.model = hotel.filter({position: this.params.position})
     }
-    let all = yield this.model
-    this.count = all.length
+
+    try {
+      let all = yield this.model
+      this.count = all.length
+    } catch (e) {
+      this.count = 0
+    }
 
     /* 匹配搜索条件 */
     // 是否有礼包查询

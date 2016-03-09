@@ -11,11 +11,6 @@ let r = env.Thinky.r
 
 const wdyVideoApi = {
 
-    //'get+/video/all': function*(next) {
-    //    this.model = wdyVideo
-    //    this.APIKey = 'WdyVideo'
-    //    yield next
-    //},
     // 获取案例
     'get+/video/:position': function*(next) {
         if (this.params.position === 'all') {
