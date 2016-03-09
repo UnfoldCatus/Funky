@@ -7,16 +7,18 @@ const ListFilter = React.createClass({
     let valueName = this.props.name
     return (
       <div className='filter-box'>
-        <span className='title'><i className={this.props.klass}></i>{this.props.title}</span>
+        <div className='title'><i className={this.props.klass}></i>{this.props.title}</div>
         <div className='tab-box'>
-          <span className='tab' data-key='' data-value=''>全部</span>
+          <div className='l-box'><span className='tab tab-sel' data-key='' data-value=''>全部</span></div>
+          <ul className='r-box'>
           {
             _.map(this.props.conditions,(v,k)=>{
               return (
-                <span key={k} className='tab' data-key={dataKey} data-value={_.values(_.pick(v,valueKey)).join(',')}>{v[valueName]}</span>
+                <li><span key={k} className='tab' data-key={dataKey} data-value={_.values(_.pick(v,valueKey)).join(',')}>{v[valueName]}</span></li>
               )
             })
           }
+          </ul>
         </div>
       </div>
     )

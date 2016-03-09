@@ -1133,7 +1133,7 @@ a:hover {
   padding-bottom: 0px;
 }
 .adaptation-1200 .filter-box {
-  padding-top: 25px;
+  padding-top: 14px;
   border-bottom: 1px solid #ddd;
   margin-bottom: 0px;
   padding-bottom: 10px;
@@ -1148,22 +1148,30 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .filter-box span {
-  float: left;
   color: #666;
   cursor: pointer;
-  font-size: 14px;
-  height: 26px;
-  line-height: 26px;
+  padding: 1px 3px;
+  font-size: 12px;
+  height: 18px;
+  line-height: 18px;
+}
+.adaptation-1200 .filter-box .l-box {
+  float: left;
+  height: 18px;
+  line-height: 18px;
+  width: 60px;
 }
 .adaptation-1200 .filter-box .title {
   display: inline-block;
   float: left;
   position: relative;
-  margin-right: 60px;
-  padding-left: 22px;
+  width: 75px;
+  padding-left: 26px;
+  height: 18px;
+  line-height: 18px;
 }
 .adaptation-1200 .filter-box .title b {
-  font-weight: bold;
+  color: #333;
   font-size: 14px;
 }
 .adaptation-1200 .filter-box .title i {
@@ -1171,12 +1179,12 @@ a:hover {
   vertical-align: middle;
   position: absolute;
   left: 0;
-  top: 4px;
+  bottom: 0px;
 }
 .adaptation-1200 .filter-box .tab-box {
   display: block;
   float: left;
-  width: 980px;
+  width: 1090px;
   *zoom: 1;
 }
 .adaptation-1200 .filter-box .tab-box:after {
@@ -1186,19 +1194,63 @@ a:hover {
   clear: both;
   visibility: hidden;
 }
+.adaptation-1200 .filter-box .r-box {
+  float: left;
+  width: 1030px;
+  *zoom: 1;
+}
+.adaptation-1200 .filter-box .r-box:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.adaptation-1200 .filter-box .r-box li {
+  float: left;
+  width: 90px;
+  height: 18px;
+  line-height: 18px;
+  margin-bottom: 7px;
+}
 .adaptation-1200 .filter-box .tab-sel {
-  background-color: #f578a4;
+  background-color: #ffa8bf;
   color: #fff;
 }
 .adaptation-1200 .filter-box .tab {
   display: inline-block;
-  padding: 0px 5px;
-  margin-right: 30px;
-  margin-bottom: 10px;
+  -moz-transition: all 0.2s ease 0s;
+  -webkit-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  -ms-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
 }
 .adaptation-1200 .filter-box .tab:hover {
-  background-color: #f578a4;
-  color: #fff;
+  color: #000;
+  background: #eee;
+}
+.adaptation-1200 .more-btn {
+  padding: 14px 0;
+  width: 420px;
+  margin: 30px auto;
+  border: 2px solid #f6f6f6;
+  text-align: center;
+  cursor: pointer;
+  -moz-transition: all 0.5s ease 0s;
+  -webkit-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  -ms-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+}
+.adaptation-1200 .more-btn span {
+  color: #999;
+  font-size: 20px;
+  line-height: 22px;
+  padding-right: 35px;
+  background: url(../img/arrow-1-js.png) no-repeat right;
+}
+.adaptation-1200 .more-btn:hover {
+  background-color: #f6f6f6;
 }
 .adaptation-1200 .home-view .nav-mid {
   height: 100%;
@@ -1285,6 +1337,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .home-view .list-recommend .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -1367,6 +1420,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .home-view .list-recommend-1 .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -1458,6 +1512,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .home-view .list-recommend-2 .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -1690,6 +1745,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .home-view .list-adv .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -1878,6 +1934,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .hssy-home-view .list-recommend .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -2020,7 +2077,7 @@ a:hover {
   padding-bottom: 0px;
 }
 .adaptation-1200 .ypxs-view .filter-box {
-  padding-top: 25px;
+  padding-top: 14px;
   border-bottom: 1px solid #ddd;
   margin-bottom: 0px;
   padding-bottom: 10px;
@@ -2035,22 +2092,30 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .ypxs-view .filter-box span {
-  float: left;
   color: #666;
   cursor: pointer;
-  font-size: 14px;
-  height: 26px;
-  line-height: 26px;
+  padding: 1px 3px;
+  font-size: 12px;
+  height: 18px;
+  line-height: 18px;
+}
+.adaptation-1200 .ypxs-view .filter-box .l-box {
+  float: left;
+  height: 18px;
+  line-height: 18px;
+  width: 60px;
 }
 .adaptation-1200 .ypxs-view .filter-box .title {
   display: inline-block;
   float: left;
   position: relative;
-  margin-right: 60px;
-  padding-left: 22px;
+  width: 75px;
+  padding-left: 26px;
+  height: 18px;
+  line-height: 18px;
 }
 .adaptation-1200 .ypxs-view .filter-box .title b {
-  font-weight: bold;
+  color: #333;
   font-size: 14px;
 }
 .adaptation-1200 .ypxs-view .filter-box .title i {
@@ -2058,12 +2123,12 @@ a:hover {
   vertical-align: middle;
   position: absolute;
   left: 0;
-  top: 4px;
+  bottom: 0px;
 }
 .adaptation-1200 .ypxs-view .filter-box .tab-box {
   display: block;
   float: left;
-  width: 980px;
+  width: 1090px;
   *zoom: 1;
 }
 .adaptation-1200 .ypxs-view .filter-box .tab-box:after {
@@ -2073,19 +2138,40 @@ a:hover {
   clear: both;
   visibility: hidden;
 }
+.adaptation-1200 .ypxs-view .filter-box .r-box {
+  float: left;
+  width: 1030px;
+  *zoom: 1;
+}
+.adaptation-1200 .ypxs-view .filter-box .r-box:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.adaptation-1200 .ypxs-view .filter-box .r-box li {
+  float: left;
+  width: 90px;
+  height: 18px;
+  line-height: 18px;
+  margin-bottom: 7px;
+}
 .adaptation-1200 .ypxs-view .filter-box .tab-sel {
-  background-color: #f578a4;
+  background-color: #ffa8bf;
   color: #fff;
 }
 .adaptation-1200 .ypxs-view .filter-box .tab {
   display: inline-block;
-  padding: 0px 5px;
-  margin-right: 30px;
-  margin-bottom: 10px;
+  -moz-transition: all 0.2s ease 0s;
+  -webkit-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  -ms-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
 }
 .adaptation-1200 .ypxs-view .filter-box .tab:hover {
-  background-color: #f578a4;
-  color: #fff;
+  color: #000;
+  background: #eee;
 }
 .adaptation-1200 .ypxs-view .list-recommend {
   width: 1230px;
@@ -2113,6 +2199,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .ypxs-view .list-recommend .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -2163,29 +2250,6 @@ a:hover {
 }
 .adaptation-1200 .ypxs-view .list-recommend .item-box {
   margin-bottom: 30px;
-}
-.adaptation-1200 .ypxs-view .more-btn {
-  padding: 14px 0;
-  width: 420px;
-  margin: 30px auto;
-  border: 2px solid #f6f6f6;
-  text-align: center;
-  cursor: pointer;
-  -moz-transition: all 0.5s ease 0s;
-  -webkit-transition: all 0.5s ease 0s;
-  -o-transition: all 0.5s ease 0s;
-  -ms-transition: all 0.5s ease 0s;
-  transition: all 0.5s ease 0s;
-}
-.adaptation-1200 .ypxs-view .more-btn span {
-  color: #999;
-  font-size: 20px;
-  line-height: 22px;
-  padding-right: 35px;
-  background: url(../img/arrow-1-js.png) no-repeat right;
-}
-.adaptation-1200 .ypxs-view .more-btn:hover {
-  background-color: #f6f6f6;
 }
 .adaptation-1200 .kpxs-view .filter-title {
   position: relative;
@@ -2243,7 +2307,7 @@ a:hover {
   padding-bottom: 0px;
 }
 .adaptation-1200 .kpxs-view .filter-box {
-  padding-top: 25px;
+  padding-top: 14px;
   border-bottom: 1px solid #ddd;
   margin-bottom: 0px;
   padding-bottom: 10px;
@@ -2258,22 +2322,30 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .kpxs-view .filter-box span {
-  float: left;
   color: #666;
   cursor: pointer;
-  font-size: 14px;
-  height: 26px;
-  line-height: 26px;
+  padding: 1px 3px;
+  font-size: 12px;
+  height: 18px;
+  line-height: 18px;
+}
+.adaptation-1200 .kpxs-view .filter-box .l-box {
+  float: left;
+  height: 18px;
+  line-height: 18px;
+  width: 60px;
 }
 .adaptation-1200 .kpxs-view .filter-box .title {
   display: inline-block;
   float: left;
   position: relative;
-  margin-right: 60px;
-  padding-left: 22px;
+  width: 75px;
+  padding-left: 26px;
+  height: 18px;
+  line-height: 18px;
 }
 .adaptation-1200 .kpxs-view .filter-box .title b {
-  font-weight: bold;
+  color: #333;
   font-size: 14px;
 }
 .adaptation-1200 .kpxs-view .filter-box .title i {
@@ -2281,12 +2353,12 @@ a:hover {
   vertical-align: middle;
   position: absolute;
   left: 0;
-  top: 4px;
+  bottom: 0px;
 }
 .adaptation-1200 .kpxs-view .filter-box .tab-box {
   display: block;
   float: left;
-  width: 980px;
+  width: 1090px;
   *zoom: 1;
 }
 .adaptation-1200 .kpxs-view .filter-box .tab-box:after {
@@ -2296,19 +2368,40 @@ a:hover {
   clear: both;
   visibility: hidden;
 }
+.adaptation-1200 .kpxs-view .filter-box .r-box {
+  float: left;
+  width: 1030px;
+  *zoom: 1;
+}
+.adaptation-1200 .kpxs-view .filter-box .r-box:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.adaptation-1200 .kpxs-view .filter-box .r-box li {
+  float: left;
+  width: 90px;
+  height: 18px;
+  line-height: 18px;
+  margin-bottom: 7px;
+}
 .adaptation-1200 .kpxs-view .filter-box .tab-sel {
-  background-color: #f578a4;
+  background-color: #ffa8bf;
   color: #fff;
 }
 .adaptation-1200 .kpxs-view .filter-box .tab {
   display: inline-block;
-  padding: 0px 5px;
-  margin-right: 30px;
-  margin-bottom: 10px;
+  -moz-transition: all 0.2s ease 0s;
+  -webkit-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  -ms-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
 }
 .adaptation-1200 .kpxs-view .filter-box .tab:hover {
-  background-color: #f578a4;
-  color: #fff;
+  color: #000;
+  background: #eee;
 }
 .adaptation-1200 .kpxs-view .list-recommend {
   width: 1230px;
@@ -2336,6 +2429,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .kpxs-view .list-recommend .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -2427,6 +2521,7 @@ a:hover {
 }
 .adaptation-1200 .kpxs-view .list-recommend .time {
   display: block;
+  color: #eee;
   font-size: 12px;
   margin-top: 10px;
 }
@@ -2777,6 +2872,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .hsjs-view .list-recommend .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -2900,6 +2996,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .xsys-view .list-recommend .r-box .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -2994,6 +3091,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .xsys-view .senior .r-box .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -3074,6 +3172,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .xsys-view .list-team .right-box .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -3236,7 +3335,7 @@ a:hover {
   font-weight: bold;
 }
 .adaptation-1200 .hyyd-view .filter-box {
-  padding-top: 25px;
+  padding-top: 14px;
   border-bottom: 1px solid #ddd;
   margin-bottom: 0px;
   padding-bottom: 10px;
@@ -3251,22 +3350,30 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .hyyd-view .filter-box span {
-  float: left;
   color: #666;
   cursor: pointer;
-  font-size: 14px;
-  height: 26px;
-  line-height: 26px;
+  padding: 1px 3px;
+  font-size: 12px;
+  height: 18px;
+  line-height: 18px;
+}
+.adaptation-1200 .hyyd-view .filter-box .l-box {
+  float: left;
+  height: 18px;
+  line-height: 18px;
+  width: 60px;
 }
 .adaptation-1200 .hyyd-view .filter-box .title {
   display: inline-block;
   float: left;
   position: relative;
-  margin-right: 60px;
-  padding-left: 22px;
+  width: 75px;
+  padding-left: 26px;
+  height: 18px;
+  line-height: 18px;
 }
 .adaptation-1200 .hyyd-view .filter-box .title b {
-  font-weight: bold;
+  color: #333;
   font-size: 14px;
 }
 .adaptation-1200 .hyyd-view .filter-box .title i {
@@ -3274,12 +3381,12 @@ a:hover {
   vertical-align: middle;
   position: absolute;
   left: 0;
-  top: 4px;
+  bottom: 0px;
 }
 .adaptation-1200 .hyyd-view .filter-box .tab-box {
   display: block;
   float: left;
-  width: 980px;
+  width: 1090px;
   *zoom: 1;
 }
 .adaptation-1200 .hyyd-view .filter-box .tab-box:after {
@@ -3289,19 +3396,40 @@ a:hover {
   clear: both;
   visibility: hidden;
 }
+.adaptation-1200 .hyyd-view .filter-box .r-box {
+  float: left;
+  width: 1030px;
+  *zoom: 1;
+}
+.adaptation-1200 .hyyd-view .filter-box .r-box:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.adaptation-1200 .hyyd-view .filter-box .r-box li {
+  float: left;
+  width: 90px;
+  height: 18px;
+  line-height: 18px;
+  margin-bottom: 7px;
+}
 .adaptation-1200 .hyyd-view .filter-box .tab-sel {
-  background-color: #f578a4;
+  background-color: #ffa8bf;
   color: #fff;
 }
 .adaptation-1200 .hyyd-view .filter-box .tab {
   display: inline-block;
-  padding: 0px 5px;
-  margin-right: 30px;
-  margin-bottom: 10px;
+  -moz-transition: all 0.2s ease 0s;
+  -webkit-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  -ms-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
 }
 .adaptation-1200 .hyyd-view .filter-box .tab:hover {
-  background-color: #f578a4;
-  color: #fff;
+  color: #000;
+  background: #eee;
 }
 .adaptation-1200 .hyyd-view .list-recommend {
   *zoom: 1;
@@ -3751,6 +3879,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .hyyd-detail-view .list-recommend .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -4470,6 +4599,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .hqdz-home-view .cases-list .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -4682,6 +4812,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .hlsp-view .movie-list .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -5021,6 +5152,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .xchs-view .list-recommend .r-box-photo .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -5067,6 +5199,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .xchs-view .list-recommend .r-box-movie .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -5144,6 +5277,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .tjxq-view .list-recommend .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -5247,7 +5381,7 @@ a:hover {
   padding-bottom: 0px;
 }
 .adaptation-1200 .f4-view .filter-box {
-  padding-top: 25px;
+  padding-top: 14px;
   border-bottom: 1px solid #ddd;
   margin-bottom: 0px;
   padding-bottom: 10px;
@@ -5262,22 +5396,30 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .f4-view .filter-box span {
-  float: left;
   color: #666;
   cursor: pointer;
-  font-size: 14px;
-  height: 26px;
-  line-height: 26px;
+  padding: 1px 3px;
+  font-size: 12px;
+  height: 18px;
+  line-height: 18px;
+}
+.adaptation-1200 .f4-view .filter-box .l-box {
+  float: left;
+  height: 18px;
+  line-height: 18px;
+  width: 60px;
 }
 .adaptation-1200 .f4-view .filter-box .title {
   display: inline-block;
   float: left;
   position: relative;
-  margin-right: 60px;
-  padding-left: 22px;
+  width: 75px;
+  padding-left: 26px;
+  height: 18px;
+  line-height: 18px;
 }
 .adaptation-1200 .f4-view .filter-box .title b {
-  font-weight: bold;
+  color: #333;
   font-size: 14px;
 }
 .adaptation-1200 .f4-view .filter-box .title i {
@@ -5285,12 +5427,12 @@ a:hover {
   vertical-align: middle;
   position: absolute;
   left: 0;
-  top: 4px;
+  bottom: 0px;
 }
 .adaptation-1200 .f4-view .filter-box .tab-box {
   display: block;
   float: left;
-  width: 980px;
+  width: 1090px;
   *zoom: 1;
 }
 .adaptation-1200 .f4-view .filter-box .tab-box:after {
@@ -5300,19 +5442,40 @@ a:hover {
   clear: both;
   visibility: hidden;
 }
+.adaptation-1200 .f4-view .filter-box .r-box {
+  float: left;
+  width: 1030px;
+  *zoom: 1;
+}
+.adaptation-1200 .f4-view .filter-box .r-box:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.adaptation-1200 .f4-view .filter-box .r-box li {
+  float: left;
+  width: 90px;
+  height: 18px;
+  line-height: 18px;
+  margin-bottom: 7px;
+}
 .adaptation-1200 .f4-view .filter-box .tab-sel {
-  background-color: #f578a4;
+  background-color: #ffa8bf;
   color: #fff;
 }
 .adaptation-1200 .f4-view .filter-box .tab {
   display: inline-block;
-  padding: 0px 5px;
-  margin-right: 30px;
-  margin-bottom: 10px;
+  -moz-transition: all 0.2s ease 0s;
+  -webkit-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  -ms-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
 }
 .adaptation-1200 .f4-view .filter-box .tab:hover {
-  background-color: #f578a4;
-  color: #fff;
+  color: #000;
+  background: #eee;
 }
 .adaptation-1200 .f4-view .screening-results {
   line-height: 50px;
@@ -5433,6 +5596,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .f4-view .movie-list .r-box-photo .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -5479,6 +5643,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .f4-view .movie-list .r-box-movie .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -5667,6 +5832,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .f4-view .photo-list .r-box-photo .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -5713,6 +5879,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .f4-view .photo-list .r-box-movie .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -6130,7 +6297,7 @@ a:hover {
   padding-bottom: 0px;
 }
 .adaptation-1200 .sjal-view .filter-box {
-  padding-top: 25px;
+  padding-top: 14px;
   border-bottom: 1px solid #ddd;
   margin-bottom: 0px;
   padding-bottom: 10px;
@@ -6145,22 +6312,30 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .sjal-view .filter-box span {
-  float: left;
   color: #666;
   cursor: pointer;
-  font-size: 14px;
-  height: 26px;
-  line-height: 26px;
+  padding: 1px 3px;
+  font-size: 12px;
+  height: 18px;
+  line-height: 18px;
+}
+.adaptation-1200 .sjal-view .filter-box .l-box {
+  float: left;
+  height: 18px;
+  line-height: 18px;
+  width: 60px;
 }
 .adaptation-1200 .sjal-view .filter-box .title {
   display: inline-block;
   float: left;
   position: relative;
-  margin-right: 60px;
-  padding-left: 22px;
+  width: 75px;
+  padding-left: 26px;
+  height: 18px;
+  line-height: 18px;
 }
 .adaptation-1200 .sjal-view .filter-box .title b {
-  font-weight: bold;
+  color: #333;
   font-size: 14px;
 }
 .adaptation-1200 .sjal-view .filter-box .title i {
@@ -6168,12 +6343,12 @@ a:hover {
   vertical-align: middle;
   position: absolute;
   left: 0;
-  top: 4px;
+  bottom: 0px;
 }
 .adaptation-1200 .sjal-view .filter-box .tab-box {
   display: block;
   float: left;
-  width: 980px;
+  width: 1090px;
   *zoom: 1;
 }
 .adaptation-1200 .sjal-view .filter-box .tab-box:after {
@@ -6183,19 +6358,40 @@ a:hover {
   clear: both;
   visibility: hidden;
 }
+.adaptation-1200 .sjal-view .filter-box .r-box {
+  float: left;
+  width: 1030px;
+  *zoom: 1;
+}
+.adaptation-1200 .sjal-view .filter-box .r-box:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.adaptation-1200 .sjal-view .filter-box .r-box li {
+  float: left;
+  width: 90px;
+  height: 18px;
+  line-height: 18px;
+  margin-bottom: 7px;
+}
 .adaptation-1200 .sjal-view .filter-box .tab-sel {
-  background-color: #f578a4;
+  background-color: #ffa8bf;
   color: #fff;
 }
 .adaptation-1200 .sjal-view .filter-box .tab {
   display: inline-block;
-  padding: 0px 5px;
-  margin-right: 30px;
-  margin-bottom: 10px;
+  -moz-transition: all 0.2s ease 0s;
+  -webkit-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  -ms-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
 }
 .adaptation-1200 .sjal-view .filter-box .tab:hover {
-  background-color: #f578a4;
-  color: #fff;
+  color: #000;
+  background: #eee;
 }
 .adaptation-1200 .sjal-view .screening-results {
   height: 20px;
@@ -6238,6 +6434,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .sjal-view .cases-list .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -6471,6 +6668,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .hslf-xq-view .list-recommend .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -6790,6 +6988,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .wdy-view .list-right .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -6877,6 +7076,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .hlyp-view .list-recommend .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -7147,6 +7347,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .zuche-view .list-recommend .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
@@ -7288,6 +7489,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .hlgp-view .cases-list .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
   position: relative;
   display: block;
   width: 100%;
