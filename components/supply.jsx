@@ -5,7 +5,7 @@ import { MediaSlider } from './common/media-slider.jsx'
 import { Banner } from './common/banner.jsx'
 import { SupplyConfig } from './config/supply-config.js'
 import { MediaItem } from './common/media-item.jsx'
-
+import { DetailModal } from './common/detail-modal.jsx'
 
 let SupplyItemList = React.createClass({
 	render(){
@@ -57,7 +57,10 @@ let SupplyItemList = React.createClass({
     if (this.props.dataUrl !== undefined) {
       // 在组件初始化完成后，立即绑定代理的点击事件。
       $('.J_Item').on('click','li',(evt)=>{
-        
+
+        /* 点击时渲染出弹出模块 */
+        ReactDOM.render(<DetailModal dataId={797} {...SupplyConfig['SupplyItemDetail']}/>,$('#J_DetailModalContainer')[0])
+
         return false
       })
 
