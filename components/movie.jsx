@@ -86,11 +86,13 @@ const ItemType = React.createClass({
       fetch(url)
         .then(res => {return res.json()})
         .then(j => {
-          // 针对每个数据,只取 id, type, coverUrlWeb, description, videoUrl, videoId, hitNum
-          temp[i] = _.map(j.data || [],(v,k)=>{
-            return _.pick(v,['name','videoId', 'type', 'coverUrlWeb', 'description', 'videoUrl'])
-          });
-          this.setState({data:temp, index:i});
+          if(j.success) {
+            // 针对每个数据,只取 id, type, coverUrlWeb, description, videoUrl, videoId, hitNum
+            temp[i] = _.map(j.data || [],(v,k)=>{
+              return _.pick(v,['name','videoId', 'type', 'coverUrlWeb', 'description', 'videoUrl'])
+            });
+            this.setState({data:temp, index:i});
+          }
         });
     } else {
       this.setState({index: i});
