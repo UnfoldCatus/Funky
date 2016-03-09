@@ -74,15 +74,15 @@ const ThumbItem = React.createClass({
 
 const InfoItem = React.createClass({
   render () {
-    let params = this.props.parameter.slice('|') || []
+    let params = this.props.parameter.split('|') || []
     return (
       <div className='standard-box'>
         <h1>{this.props.title}</h1>
         <p>{this.props.description}</p>
         <h2>产品参数</h2>
-        <ul className='list-l' style={{width:'210px'}}>
+        <ul className='list-l' style={params.length>4?{width:'210px'}:{}}>
           {
-            _.map(params,(v,k)=>{
+            _.map(params.slice(0,4),(v,k)=>{
               if ($.trim(v).indexOf('#') !==0) { //如果v的值不以#开头则输出li
                 return <li key={k}>{$.trim(v)}</li>
               }else {
@@ -93,7 +93,7 @@ const InfoItem = React.createClass({
         </ul>
         <ul className='list-r'>
           {
-            _.map(params,(v,k)=>{
+            _.map(params.slice(4,9),(v,k)=>{
               if ($.trim(v).indexOf('#') !==0) { //如果v的值不以#开头则输出li
                 return <li key={k} style={{width:'210px'}}>{$.trim(v)}</li>
               }else {
@@ -107,7 +107,7 @@ const InfoItem = React.createClass({
   },
   propTypes: {
     parameter: React.PropTypes.string,
-    title:React.PropTypes.string,
+    brandName:React.PropTypes.string,
     description:React.PropTypes.string
   },
   getDefaultProps(){
@@ -144,7 +144,7 @@ const DetailModal = React.createClass({
     }
     console.log('images:',images);
     return (
-      <div id='detail-modual'>
+      <div id='detail-modual' className={this.props.styleClass}>
         <div className='layer-box' id='Layer'></div>
         <div className='float-window' id='Float'>
           <div className='close-ico' id='Close'></div>
@@ -154,7 +154,7 @@ const DetailModal = React.createClass({
                 <div className='info-box overview'>
                   <div className='mgb30 clearfix'>
                     <ThumbItem data={images} />
-                    <InfoItem data={this.state.data} />
+                    <InfoItem {...this.state.data} />
                   </div>
                   <ContentItem data={this.state.data.content} />
                 </div>
@@ -227,7 +227,7 @@ const DetailModal = React.createClass({
 
       我们把个数放在J_SwitchControl 的 data-count 这样省去了每次计算。
       然后，把每次点击的index放在J_SwitchControl的 data-current-index 把dom作为一个存储器
-      
+
     **/
     const display = index =>{
       $('#J_SlideShow ul>li').eq(index).fadeIn().siblings().hide()
@@ -250,8 +250,8 @@ const DetailModal = React.createClass({
 
     $('#J_LeftHover').on('click',pre)
     $('#J_RightHover').on('click',next)
-    $('#J_DotBox li').on('mouseover',()=>{
-      let currentIndex = parseInt( $(this).index() )
+    $('#J_DotBox li').on('mouseenter',(evt)=>{
+      let currentIndex =parseInt($(evt.target).index())
       display(currentIndex)
       $('#J_SwitchControl').attr('data-current-index',currentIndex)
     })
@@ -267,13 +267,15 @@ const DetailModal = React.createClass({
     }
   },
   componentDidMount() {
-    this.setupEvent()
     if (this.props.dataUrl !== undefined) {
       let dataUrl = this.props.dataUrl.replace(':id',this.props.dataId)
       fetch(this.props.baseUrl +dataUrl)
       .then(res => {return res.json()})
       .then(j=>{
-        this.setState({ data:j.data },this.show)
+        this.setState({ data:j.data },()=>{
+          this.setupEvent()
+          this.show()
+        })
       })
     }
   }
