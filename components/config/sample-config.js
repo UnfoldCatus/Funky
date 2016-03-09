@@ -10,9 +10,10 @@ const SampleConfig  = {
   ],
   'ShotListItem':_.merge({
     'type':'sample',
+    'link':'/sample',
     'dataUrl':'sample/samples_list'
   },BaseConfig),
-  
+
   'MediaSlider':_.merge({
     'dataUrl':'adv/samples_top',
     'aspectRatio':'192:45',

@@ -10,6 +10,7 @@ const PringlesConfig  = {
   ],
   'ShotListItem':_.merge({
     'type':'pringles',
+    'link':'/pringles',
     'dataUrl':'pringles/pringles_list'
   },BaseConfig),
 

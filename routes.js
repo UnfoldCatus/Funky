@@ -157,7 +157,6 @@ siteRouter.get('/sample', function* index(next) {
 })
 /** 作品详情 **/
 siteRouter.get('/sample/:id', function* index(next) {
-  console.log(this.params);
   yield this.render('modules/default', renderOption('sample-details', '/sample', '/shot',this.params))
 })
 
@@ -166,8 +165,8 @@ siteRouter.get('/pringles', function* index(next) {
     yield this.render('modules/default', renderOption('pringles', '/pringles', '/shot'))
   })
 /** 客片详情 **/
-siteRouter.get('/pringles-details', function* index(next) {
-  yield this.render('modules/default', renderOption('pringles-details', '/pringles', '/shot'))
+siteRouter.get('/pringles/:id', function* index(next) {
+  yield this.render('modules/default', renderOption('pringles-details', '/pringles', '/shot',this.params))
 })
 
   /* 套系 */

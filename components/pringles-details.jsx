@@ -4,8 +4,7 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
 import { MediaItem } from './common/media-item.jsx'
-import { BaseConfig } from './config/base'
-
+import { PringlesDetailsConfig } from './config/pringles-details-config'
 /**
  组件结构
  <PringlesDetails> <= styles,scenes,list
@@ -18,9 +17,10 @@ const PringlesDetails = React.createClass({
       <div className="layout-center-box">
         <div className="box-img">
           {
+            /*传入aspectRatio='1:-1' -1表示以100%作为值 见代码*/
             _.map(this.state.details, (v, k) => {
               return (
-                <img key={k} src={v} />
+                <MediaItem key={k} mediaUrl={v} width={1920} aspectRatio={'1:-1'} />
               );
             })
           }
@@ -38,23 +38,35 @@ const PringlesDetails = React.createClass({
   // pcDetailImages  pringles/detail/828
   componentDidMount() {
 
-    let urlPra = decodeURIComponent(window.location.search.substr(1)).split('&');// 去掉?号根据&进行拆分
-    let request = new Object();
-    for(let i = 0; i < urlPra.length; i++) {
-      request[urlPra[i].split('=')[0]]=urlPra[i].split('=')[1];
-    }
-
-    let fetchUrl = BaseConfig['baseUrl']+'pringles/detail/'+request['id'];
-    fetch(fetchUrl)
-      .then(res => {return res.json()})
-      .then(j=>{
-        if(j.success) {
-          if(j.data !== null) {
-            // 因为后天返回的pcDetailImages是一个字符串,所以要转换成json
-            this.setState({details:JSON.parse(j.data.pcDetailImages)});
-          }
-        }
+    /*
+      客户端渲染时， 由于是外部引入脚本的方式
+      <script class='J_Matrix' data-params='{"id":124}' scr='xxx.min.js' />
+      所以，可以从data-params取得传入的参数。然后在组件被render的时候，传入给组件的dataParams字段
+    */
+    let params = this.props.dataParams // 注意: dataParams字段是外部传入的参数
+    console.log(params);
+    let paramsUrl = PringlesDetailsConfig['PringlesDetails'].dataUrl || undefined
+    if (_.size(params)>0 && paramsUrl) { //参数获取正确
+      /**
+      例如url为: /sample/:id/:typeId
+      传入的参数为: {id:123,typeId:2343}
+      **/
+      _.each(params,(v,k)=>{
+        paramsUrl = paramsUrl.replace(':'+k,v)
       })
+
+      let fetchUrl = PringlesDetailsConfig['PringlesDetails'].baseUrl + paramsUrl
+      fetch(fetchUrl)
+        .then(res => {return res.json()})
+        .then(j=>{
+          if(j.success) {
+            if(j.data !== null) {
+              // 因为后天返回的pcDetailImages是一个字符串,所以要转换成json
+              this.setState({details:JSON.parse(j.data.pcDetailImages)});
+            }
+          }
+        })
+    }
   }
 });
 

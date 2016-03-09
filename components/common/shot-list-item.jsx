@@ -5,13 +5,14 @@ import _ from 'lodash'
 const ShotListItem = React.createClass({
   render () {
     let type = this.props.type
+    let link = this.props.link || '/home'
     return (
       <ul className="list-recommend">
           {
             _.map(this.state.data,(v,k)=>{
               return (
                 <li className="item-box" key={k}>
-                  <a className='img-box' href='/' target='_blank'>
+                  <a className='img-box' href={link+'/'+v.id} target='_blank'>
                     <MediaItem  aspectRatio={'2:3'} width={380} mediaUrl={v.coverUrlWeb} />
                     <div className="layer-box" />
                     <MediaLayer  {...v} type={type} />
