@@ -61,8 +61,10 @@ const DressDetails = React.createClass({
     fetch(fetchUrl)
       .then(res => {return res.json()})
       .then(j=>{
-        this.setState({ dressItems:j.data , title:request['typeName']+':'+request['brandName']})
-        console.log(j.data)
+        if(j.success) {
+          j.data = _.isArray(j.data) ? j.data : [];
+          this.setState({ dressItems:j.data , title:request['typeName']+':'+request['brandName']})
+        }
       })
   }
 });

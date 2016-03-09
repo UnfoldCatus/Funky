@@ -153,11 +153,20 @@ siteRouter.get('/shot', function* index(next) {
 siteRouter.get('/sample', function* index(next) {
   yield this.render('modules/default', renderOption('sample', '/sample', '/shot'))
 })
+/** 作品详情 **/
+siteRouter.get('/sample-details', function* index(next) {
+  yield this.render('modules/default', renderOption('sample-details', '/sample', '/shot'))
+})
 
 /** 客片 **/
 siteRouter.get('/pringles', function* index(next) {
     yield this.render('modules/default', renderOption('pringles', '/pringles', '/shot'))
   })
+/** 客片详情 **/
+siteRouter.get('/pringles-details', function* index(next) {
+  yield this.render('modules/default', renderOption('pringles-details', '/pringles', '/shot'))
+})
+
   /* 套系 */
 siteRouter.get('/suite', function* index(next) {
   yield this.render('modules/default', renderOption('suite', '/suite', '/shot'))
