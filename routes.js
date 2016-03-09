@@ -112,11 +112,13 @@ const siteRouter = new Router()
     menuKey MenuConfig中配置的link字段
     parentKey MenuConfig中的顶层模块的key
   */
-let renderOption = (templateName, menuKey, parentKey) => {
+let renderOption = (templateName, menuKey, parentKey,params) => {
+  let p = params || {}
     return {
       'reactMarkup': renderToString(ComponentsIndex[templateName]),
       'reactNavMarkup': renderToString(<Navigation menuKey={parentKey ||'/'} currentKey={menuKey} />),
-      'main': templateName // 客户端渲染使用的脚本名称和模板名称一致
+      'main': templateName,// 客户端渲染使用的脚本名称和模板名称一致
+      'params':JSON.stringify(p)
     }
   }
   /**
@@ -154,8 +156,9 @@ siteRouter.get('/sample', function* index(next) {
   yield this.render('modules/default', renderOption('sample', '/sample', '/shot'))
 })
 /** 作品详情 **/
-siteRouter.get('/sample-details', function* index(next) {
-  yield this.render('modules/default', renderOption('sample-details', '/sample', '/shot'))
+siteRouter.get('/sample/:id', function* index(next) {
+  console.log(this.params);
+  yield this.render('modules/default', renderOption('sample-details', '/sample', '/shot',this.params))
 })
 
 /** 客片 **/

@@ -203,10 +203,18 @@ const MediaItem = React.createClass({
     let width = 1
     let height = 1
     if (this.props.width) {
-      height = parseInt(this.props.width*parseFloat(factors[1])/parseFloat(factors[0]))
+      if (factors[1] === '-1') {
+        height = '100%'
+      }else {
+        height = parseInt(this.props.width*parseFloat(factors[1])/parseFloat(factors[0]))
+      }
       width = this.props.width
     }else if(this.props.height) {
-      width = parseInt(this.props.height*parseFloat(factors[0])/parseFloat(factors[1]))
+      if (factors[0] === '-1') {
+        width='100%'
+      }else {
+        width = parseInt(this.props.height*parseFloat(factors[0])/parseFloat(factors[1]))
+      }
       height = this.props.height
     }else {
       console.log('高度或者宽度必须指定一个啊.');
