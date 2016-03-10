@@ -6,7 +6,7 @@ import env from '../cache/config'
 let r = env.Thinky.r
 
 import cases from '../cache/db/module/cases.js'
-import case3D from '../cache/db/module/case3D.js'
+import cases3D from '../cache/db/module/cases3D.js'
 import followPhoto from '../cache/db/module/followPhoto.js'
 import followPhotoSeason from '../cache/db/module/followPhotoSeason.js'
 import followVideo from '../cache/db/module/followVideo.js'
@@ -68,9 +68,9 @@ const weddingApi = {
     // 获取3D案例列表
     'get+/case3D/:position': function*(next) {
         if (this.params.position === 'all') {
-            this.model = case3D.filter({})
+            this.model = cases3D.filter({})
         } else {
-            this.model = case3D.filter({
+            this.model = cases3D.filter({
                 position: this.params.position
             })
         }
@@ -93,7 +93,7 @@ const weddingApi = {
     },
     // 获取3D案例详情
     'get+/case3D/detail/:id': function*(next) {
-        this.model = case3D.filter({
+        this.model = cases3D.filter({
             id: parseInt(this.params.id)
         })
 

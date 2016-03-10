@@ -36,7 +36,7 @@ const DBConfig = {
   // 实景案例
   CasesPath:'/api/cases/all',
   // 3D案例
-  Case3DPath:'/api/case3D/all',
+  Cases3DPath:'/api/case3D/all',
   // 案例风格
   FilterConditionCaseStylePath: '/api/caseStyle/all',
   // 婚礼跟拍

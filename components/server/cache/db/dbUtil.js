@@ -17,7 +17,7 @@ var Suite = require("./module/suite.js");
 var FilterConditionShootStyle = require("./module/filterCondition/shootStyle.js");
 var FilterConditionExterior = require("./module/filterCondition/exterior.js");
 var Cases = require("./module/cases.js");
-var Case3D = require("./module/case3D.js");
+var Cases3D = require("./module/cases3D.js");
 var FilterConditionCaseStyle = require("./module/filterCondition/caseStyle.js");
 var FollowPhoto = require("./module/followPhoto.js");
 var FollowPhotoSeason = require("./module/followPhotoSeason.js");
@@ -61,7 +61,7 @@ var models = {
   "FilterConditionShootStyle": FilterConditionShootStyle,
   "FilterConditionExterior": FilterConditionExterior,
   "Cases": Cases,
-  "Case3D": Case3D,
+  "Cases3D": Cases3D,
   "FilterConditionCaseStyle": FilterConditionCaseStyle,
   "FollowPhoto": FollowPhoto,
   "FollowPhotoSeason": FollowPhotoSeason,
@@ -102,7 +102,7 @@ var mSyncFlg = {
   "FilterConditionShootStyle": false,
   "FilterConditionExterior": false,
   "Cases": false,
-  "Case3D": false,
+  "Cases3D": false,
   "FilterConditionCaseStyle": false,
   "FollowPhoto": false,
   "FollowPhotoSeason": false,
@@ -346,7 +346,7 @@ exports.Instance = function() {
   var tasks1 = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason',
     'RecordVideo', 'RecordVideoSeason', 'Suite', 'Cases',
     'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason',
-    'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host', 'F4Team', 'Case3D',
+    'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host', 'F4Team', 'Cases3D',
      'Dress', 'Movie'
   ];
 

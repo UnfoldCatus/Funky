@@ -47,7 +47,7 @@ var type=env.Thinky.type;
  */
 
 // 3D案例模型
-const Cases3D = env.Thinky.createModel('case3D', {
+const Cases3D = env.Thinky.createModel('cases3D', {
     // 发布Id
     id: type.number(),
     // 案例ID
