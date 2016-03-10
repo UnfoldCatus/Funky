@@ -8,7 +8,7 @@ import mem from '../cache/mem/manager'
 const DBUtil = db.Instance()
 const MEMUtil = mem.Instance()
 
-// 婚礼课堂API
+// 缓存管理API
 const cacheManagerApi = {
 
   // 更新db缓存
