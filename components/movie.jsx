@@ -40,7 +40,7 @@ const ItemType = React.createClass({
                     </div>
                     <div className="item-info">
                       <h2>{v.name}</h2>
-                      <p>{v.description.length>30?v.description.slice(0,29)+'...':v.description}</p>
+                      <p>{v.description.length>41?v.description.slice(0,40)+'......':v.description}</p>
                       <span className="more"> >>更多详情</span>
                     </div>
                   </a>
