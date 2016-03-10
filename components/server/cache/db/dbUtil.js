@@ -309,6 +309,7 @@ function Sync(type) {
             console.log('拉取数据失败['+type+']', err);
           } else {
             mSyncFlg[type] = true;
+            mSyncFlg['BanquetHall'] = true;
             console.log('拉取数据成功['+type+']');
           }
         });
