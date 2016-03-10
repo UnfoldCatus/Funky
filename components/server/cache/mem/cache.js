@@ -85,7 +85,7 @@ var get = function (key) {
 
 var clear = function () {
     this.cache = {};
-    this.queue = generateQueue(lastMaxsize, lastAlgo);
+    this.queue = generateQueue(lastAlgo, lastMaxsize);
 }
 
 var print = function () {

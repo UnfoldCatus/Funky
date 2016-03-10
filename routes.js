@@ -18,6 +18,7 @@ import carApi from './components/server/api/car.js'
 import suppliesApi from './components/server/api/supplies.js'
 import dressApi from './components/server/api/dress.js'
 import weddingClassApi from './components/server/api/weddingClass.js'
+import cacheManagerApi from './components/server/api/cache-manager.js'
 
   /**
     api 资源路由
@@ -79,7 +80,16 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/video/:position?videoType=微电影类型&sort=data(按时间排序) or hits(按点击量排序)': '微电影',
     '/api/video/detail/:id': '微电影详情',
     '/api/weddingroom/:position?moduleTypeId=模块ID': '婚礼课堂',
-    '/api/weddingroom/detail/:id': '婚礼课堂详情'
+    '/api/weddingroom/detail/:id': '婚礼课堂详情',
+    'Adv': '^_^',
+    'Hotel,FilterConditionHotelType,FilterConditionHotelDistrict': '^_^',
+    'Sample,Pringles,PringlesSeason,RecordVideo,RecordVideoSeason,Suite,FilterConditionShootStyle,FilterConditionExterior': '^_^',
+    'Cases,Case3D,FollowPhoto,FollowPhotoSeason,FollowVideo,FollowVideoSeason,F4Photographer,F4Camera,F4Dresser,F4Host,F4Team,FilterConditionCaseStyle': '^_^',
+    'Dress,FilterConditionDressBrand,FilterConditionDressType': '^_^',
+    'Movie': '^_^',
+    'Car,FilterConditionCarModels,FilterConditionCarLevel,FilterConditionCarBrand': '^_^',
+    'Supplies,FilterConditionSuppliesBrand,FilterConditionSuppliesType': '^_^',
+    'WeddingClass': '^_^',
   }
 })
 
@@ -94,7 +104,8 @@ const apiRouterList = [
   dressApi,
   carApi,
   suppliesApi,
-  weddingClassApi
+  weddingClassApi,
+  cacheManagerApi
 ]
 _.each(apiRouterList,(route,index)=>{
   _.each(route,(value,key)=>{

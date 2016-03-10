@@ -6,6 +6,11 @@ var cache = require("./cache");
 var Config = require("../config.js");
 
 var myCache = cache.createCache("LFU", Config.MemConfig.cache_max_size);
+var memTool = null;
+
+//查询工具类
+function MEMUtil() {};
+
 /*
   获取数据 GET
   @params
@@ -14,7 +19,7 @@ var myCache = cache.createCache("LFU", Config.MemConfig.cache_max_size);
     cb: 回调
 
 */
-exports.getData = function(url, path, cb)
+MEMUtil.prototype.getData = function(url, path, cb)
 {
     var value = myCache.get(url);
     if (value) { //如果能从缓存拿， 就把数据交给回调
@@ -97,4 +102,16 @@ exports.getData = function(url, path, cb)
 
         req.end();
     }
+}
+
+MEMUtil.prototype.clearCache = function() {
+    console.log('updateMemCacheData1');
+    myCache.clear();
+};
+
+exports.Instance = function() {
+    if (memTool == null) {
+        memTool = new MEMUtil();
+    }
+    return memTool;
 }

@@ -309,6 +309,7 @@ function Sync(type) {
             console.log('拉取数据失败['+type+']', err);
           } else {
             mSyncFlg[type] = true;
+            console.log('拉取数据成功['+type+']');
           }
         });
       });
@@ -320,6 +321,7 @@ function Sync(type) {
           console.log('拉取数据失败['+type+']', err);
         } else {
           mSyncFlg[type] = true;
+          console.log('拉取数据成功['+type+']');
         }
       });
     });
@@ -329,6 +331,12 @@ function Sync(type) {
 DBUtil.prototype.isCacheDataUsable = function(moduleName) {
   console.log('modelName:',moduleName);
   return mSyncFlg[moduleName];
+};
+
+DBUtil.prototype.updateDBCacheData = function(moduleName) {
+  if(moduleName in mSyncFlg) {
+    Sync(moduleName);
+  }
 };
 
 exports.Instance = function() {

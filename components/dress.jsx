@@ -80,10 +80,9 @@ const DressType  = React.createClass({
       fetch(DressBrand.baseUrl + DressBrand.dataUrl + this.props.id)
         .then(res => {return res.json()})
         .then(j=>{
-          if(j.success) {
-            j.data = _.isArray(j.data) ? j.data : [];
+          if(j.success && j.data.length > 0) {
             /* 针对每个类型只取name,id,logoUrl,coverUrlWeb,description,type字段 */
-            this.setState({ brands: _.map(j.data || [],(v,k)=>{
+            this.setState({ brands: _.map(j.data,(v,k)=>{
               return _.pick(v,['name','id', 'logoUrl', 'coverUrlWeb', 'description', 'type']) }), index:0})
           }
         })
@@ -132,10 +131,9 @@ const Dress = React.createClass({
       fetch(DressType.baseUrl + DressType.dataUrl)
         .then(res => {return res.json()})
         .then(j=>{
-          if(j.success) {
-            j.data = _.isArray(j.data) ? j.data : [];
+          if(j.success && j.data.length > 0) {
             /* 针对每个类型只取name和id字段 */
-            this.setState({ types: _.map(j.data || [],(v,k)=>{ return _.pick(v,['name','id']) }) })
+            this.setState({ types: _.map(j.data, (v,k)=>{ return _.pick(v,['name','id']) }) })
           }
         })
     }

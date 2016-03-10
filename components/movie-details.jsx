@@ -70,9 +70,8 @@ const MovieDetails = React.createClass({
     fetch(fetchUrl)
       .then(res => {return res.json()})
       .then(j=>{
-        if(j.success) {
-          j.data = _.isArray(j.data) ? j.data : [];
-          this.setState({ moveInfo:j.data})
+        if(j.success && j.data.length > 0) {
+          this.setState({moveInfo:j.data[0]})
         }
       })
 
@@ -81,9 +80,8 @@ const MovieDetails = React.createClass({
     fetch(hotUrl)
       .then(res => {return res.json()})
       .then(j=>{
-        if(j.success) {
-          j.data = _.isArray(j.data) ? j.data : [];
-          this.setState({ hotList:j.data})
+        if(j.success && j.data.length > 0) {
+          this.setState({hotList:j.data})
         }
       })
   }

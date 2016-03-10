@@ -40,8 +40,8 @@ const ItemType = React.createClass({
                     </div>
                     <div className="item-info">
                       <h2>{v.name}</h2>
-                      <p>{v.description}</p>
-                      <span className="more">&gt 更多详情</span>
+                      <p>{v.description.length>30?v.description.slice(0,29)+'...':v.description}</p>
+                      <span className="more"> >>更多详情</span>
                     </div>
                   </a>
                 </li>
@@ -70,13 +70,15 @@ const ItemType = React.createClass({
     fetch(this.props.type[0])
       .then(res => {return res.json()})
       .then(j => {
-        // 针对每个数据,只取 id, type, coverUrlWeb, description, videoUrl, videoId, hitNum
-        let temp = this.state.data;
-        let count = j.count;// 数据的实际条数,如果实际条数小于预期拉取的条数,说明数据已经取完了
-        temp[0] = _.map(j.data || [],(v,k)=>{
-          return _.pick(v,['name','videoId', 'type', 'coverUrlWeb', 'description', 'videoUrl', 'id'])
-        });
-        this.setState({data:temp, index:0});
+        if(j.success) {
+          // 针对每个数据,只取 id, type, coverUrlWeb, description, videoUrl, videoId, hitNum
+          let temp = this.state.data;
+          let count = j.count;// 数据的实际条数,如果实际条数小于预期拉取的条数,说明数据已经取完了
+          temp[0] = _.map(j.data || [], (v,k)=>{
+            return _.pick(v,['name','videoId', 'type', 'coverUrlWeb', 'description', 'videoUrl', 'id'])
+          });
+          this.setState({data:temp, index:0});
+        }
       });
   },
 
@@ -88,7 +90,7 @@ const ItemType = React.createClass({
         .then(j => {
           if(j.success) {
             // 针对每个数据,只取 id, type, coverUrlWeb, description, videoUrl, videoId, hitNum
-            temp[i] = _.map(j.data || [],(v,k)=>{
+            temp[i] = _.map(j.data || [], (v,k)=>{
               return _.pick(v,['name','videoId', 'type', 'coverUrlWeb', 'description', 'videoUrl'])
             });
             this.setState({data:temp, index:i});

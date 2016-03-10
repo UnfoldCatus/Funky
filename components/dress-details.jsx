@@ -57,12 +57,11 @@ const DressDetails = React.createClass({
     }
     let fetchUrl = DressDetailsConfig['APIConfig']['baseUrl']+'dress/dress_list?'+'brandId='+request['brandId']+'&typeId='+request['typeId'];
 
-    /** 请求婚纱类型 **/
+    /** 请求礼服列表 **/
     fetch(fetchUrl)
       .then(res => {return res.json()})
       .then(j=>{
-        if(j.success) {
-          j.data = _.isArray(j.data) ? j.data : [];
+        if(j.success && j.data.length > 0) {
           this.setState({ dressItems:j.data , title:request['typeName']+':'+request['brandName']})
         }
       })

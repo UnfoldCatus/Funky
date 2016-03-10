@@ -14,6 +14,7 @@ import memCacheMgr from './components/server/cache/mem/manager'
 
 const ReactServer = Koa()
 const DBUtil = db.Instance()
+const MEMUtil = memCacheMgr.Instance()
 /**
 初始化模板引擎 使用ejs作为页面引擎
 可以在中间件中用this.render('templateName',jsonData)
@@ -79,7 +80,7 @@ ReactServer.use(apiRouter.routes()) // api路由
  // 为了能够使用yield 需要此处对函数进行偏函数化。
  // 就是将一个带callback的任意函数转换为
  // 只带callback的函数
-let proxyFetcher = thunkify.genify(memCacheMgr.getData)
+let proxyFetcher = thunkify.genify(MEMUtil.getData)
 
 let dataFetchMiddleWare = function*(next) {
 

@@ -58,11 +58,9 @@ const SampleDetails = React.createClass({
       fetch(fetchUrl)
         .then(res => {return res.json()})
         .then(j=>{
-          if(j.success) {
-            if(j.data !== null) {
-              // 因为后天返回的pcDetailImages是一个字符串,所以要转换成json
-              this.setState({details:JSON.parse(j.data.pcDetailImages)});
-            }
+          if(j.success && j.data.length > 0) {
+            // 因为后天返回的pcDetailImages是一个字符串,所以要转换成json
+            this.setState({details:JSON.parse(j.data[0].pcDetailImages)});
           }
         })
     }
