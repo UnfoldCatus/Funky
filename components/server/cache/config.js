@@ -93,7 +93,7 @@ const MemConfig = {
 
 module.exports = {
   'APIPort': "8088",
-  'APIHost': (process.env.NODE_ENV === 'production')?'120.25.104.171':'192.168.1.',
+  'APIHost': (process.env.NODE_ENV === 'production')?'120.25.104.171':'192.168.1.5',
   'DBConfig':DBConfig,
   'Thinky':Thinky,
   'MemConfig':MemConfig

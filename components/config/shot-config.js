@@ -32,6 +32,7 @@ const ShotConfig = {
   //列表数据
   'ShotListItem': _.merge({
     'type':'sample',
+    'link':'/sample',
     'dataUrl': 'sample/samples_list'
   },BaseConfig),
   //顶部广告
