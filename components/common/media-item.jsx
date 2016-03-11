@@ -87,12 +87,26 @@ const VideoItem = React.createClass({
           src={this.props.videoUrl}
           type="video/mp4" />
       )
+    } else if (-1 !== this.props.videoUrl.indexOf('api.taobao')) {
+        return (
+          <div id={this.state.genID} style={{'width':this.props.width+'px','height':this.props.height+'px'}}>
+            <h1>Loading TaobaoVideoJS...</h1>
+          </div>
+        )
+
+    }else {
+        return (
+          <video
+            width={this.props.width}
+            height={this.props.height}
+            poster={this.props.mediaUrl}
+            id={this.state.genID}
+            src={this.props.videoUrl}
+            type="video/mp4" />
+        )
+
     }
-    return (
-      <div id={this.state.genID} style={{'width':this.props.width+'px','height':this.props.height+'px'}}>
-        <h1>Loading TaobaoVideoJS...</h1>
-      </div>
-    )
+
 
   },
 
@@ -113,6 +127,11 @@ const VideoItem = React.createClass({
       }})
     }
   },
+  loadMeidaElementVideo(vid){
+    return ()=>{ //为了把初始化操作放到线程上去。
+      $('#'+vid).mediaelementplayer()
+    }
+  },
   loadTaobaoVideo(vid,videoUrl,width,height,posterUrl){
 
     return ()=>{
@@ -125,18 +144,26 @@ const VideoItem = React.createClass({
     }
   },
   componentDidMount() {
-    if (this.props.autoplay) {
+    if (this.props.autoplay) { // 自动播放的Media-element视频
       setTimeout(this.loadAutoPlayVideo(this.state.genID),0)
     }else {
-      (2 === this.props.videoUrl.split('?').length)
-      &&
-      setTimeout(this.loadTaobaoVideo(
-        this.state.genID,
-        this.props.videoUrl.split('?')[1],
-        this.props.width,
-        this.props.height,
-        this.props.mediaUrl
-      ),0)
+      if (-1 !== this.props.videoUrl.indexOf('api.taobao')) { //taobao视频
+        (2 === this.props.videoUrl.split('?').length)
+        &&
+        setTimeout(this.loadTaobaoVideo(
+          this.state.genID,
+          this.props.videoUrl.split('?')[1],
+          this.props.width,
+          this.props.height,
+          this.props.mediaUrl
+        ),0)
+      }else if (-1 !== this.props.videoUrl.indexOf('.mp4')) { // 不自动播放的MediaElement视频 此次改动在正式上线前要删除。因为数据迁移的视频地址没有改完才需要这部分代码
+        setTimeout(this.loadMeidaElementVideo(this.state.genID),0)
+      }else {
+        console.log('视频地址格式错误')
+      }
+
+
     }
   }
 })
