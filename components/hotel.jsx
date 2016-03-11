@@ -120,7 +120,21 @@ const HotelList = React.createClass({
     console.log('hotels data received');
   }
 })
-
+/* 去掉酒店星标
+ <div className="score-box clearfix">
+   <div className="star-box">
+     <i className="ico-star-2-js ico-star-2-gray-js"></i>
+     <i className="ico-star-2-js ico-star-2-pink-js" style={{width:72+'px'}}></i>
+   </div>
+   <span className="score">4.9</span>
+   <span className="hotel-type">
+     <b>{this.props.typeName}</b>
+     <b>|</b>
+     <b>{this.props.address.length>26?this.props.address.slice(0,24)+'...':this.props.address}</b>
+   </span>
+   <span className="desk-num">可容纳<b>{this.props.maxTableNum}</b>桌</span>
+ </div>
+* */
 const HotelListItem = React.createClass({
   render () {
     return (
@@ -145,15 +159,10 @@ const HotelListItem = React.createClass({
                 <span className="big">{this.props.highestConsumption}</span>
               </div>
               <div className="score-box clearfix">
-                  <div className="star-box">
-                      <i className="ico-star-2-js ico-star-2-gray-js"></i>
-                      <i className="ico-star-2-js ico-star-2-pink-js" style={{width:72+'px'}}></i>
-                  </div>
-                  <span className="score">4.9</span>
                   <span className="hotel-type">
                     <b>{this.props.typeName}</b>
                     <b>|</b>
-                    <b>{this.props.address.length>20?this.props.address.slice(0,18)+'...':this.props.address}</b>
+                    <b>{this.props.address.length>26?this.props.address.slice(0,24)+'...':this.props.address}</b>
                   </span>
                   <span className="desk-num">可容纳<b>{this.props.maxTableNum}</b>桌</span>
               </div>
