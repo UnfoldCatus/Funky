@@ -3,6 +3,7 @@ import { MediaSlider } from './common/media-slider.jsx'
 import { ShotListItem } from './common/shot-list-item.jsx'
 import { Banner } from './common/banner.jsx'
 import { PringlesConfig } from './config/pringles-config'
+import { MediaItem } from './common/media-item.jsx'
 import _ from 'lodash'
 /**
 <Pringles>
@@ -23,15 +24,15 @@ const Episode = React.createClass({
         </div>
         <div className='tab-box-fj' id='J_SliderQuarterly'>
           <div className='overflow-box slider-box'>
-            <ul className='item-box'>
+            <ul className='item-box J_ClickLoadSeasonTab'>
               {
                 _.map(this.state.data,(v,k)=>{
                   return (
-                    <li key={k} className='item'>
+                    <li key={k} className='item' data-season-id={v.seasonId}>
                       <div className='pos-box'>
                         <div className='click-box'></div>
-                        <div className='pic'><img src={v.coverUrl} /></div>
-                        <p><span>{v.weddingDate}</span><br /><span>{v.seasonName}</span></p>
+                        <div className='pic'><MediaItem {...this.props} mediaUrl={v.coverUrlWeb}  /></div>
+                        <p><span>{v.weddingDate}</span><br /><span>{v.name}</span></p>
                       </div>
                     </li>
                   )
@@ -42,23 +43,42 @@ const Episode = React.createClass({
           <div className='arrow-lef btn-prev'></div>
           <div className='arrow-rig btn-next'></div>
         </div>
-        <div className='title-fj'><h2>{'《'+this.state.quarterly_name+'》'}</h2></div>
-        <ShotListItem {...PringlesConfig['EpisodeListItem']} />
+        <div className='title-fj'><h2>{this.state.quarterly_name?'《'+this.state.quarterly_name+'》':''}</h2></div>
+        <ShotListItem {...PringlesConfig['EpisodeListItem']} dataUrl={this.state.dataUrl} params={this.state.params}  />
       </div>
     )
   },
   getInitialState: function() {
     return {
       data:[],
-      quarterly_name:'金色百年'
+      quarterly_name:null,
+      params:{},
+      dataUrl:undefined
     }
   },
+  loadSeasonsFromId(id){
+    this.setState({'params':{'seasonId':id}})
+  },
+  loadSeasons(evt){
+    this.loadSeasonsFromId($(evt.currentTarget).attr('data-season-id'))
+  },
   componentDidMount() {
+    $('.J_ClickLoadSeasonTab').on('mousedown','li',this.loadSeasons)
     if (this.props.dataUrl !== undefined) {
       fetch(this.props.baseUrl + this.props.dataUrl)
       .then(res => {return res.json()})
       .then(j=>{
-        this.setState({ data:j.data })
+        if (!j.data.length) {
+          return
+        }
+        this.setState({
+          'dataUrl':'pringles/pringles_season',
+          data:j.data,params:{'seasonId':j.data[0].id}
+        },()=>{
+          let slider = $('#J_SliderQuarterly');
+          slider.Slider({type:'Horizontal',margin:40,focusShift:false});
+
+        })
       })
     }
   }

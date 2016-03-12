@@ -37,9 +37,27 @@ const ShotListItem = React.createClass({
       data:[]
     }
   },
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.dataUrl !== undefined) {
+      let p = ''
+      if (_.size(nextProps.params)>0) {
+        p = '?'+$.param(nextProps.params)
+      }
+      fetch(nextProps.baseUrl + nextProps.dataUrl + p)
+      .then(res => {return res.json()})
+      .then(j=>{
+        this.setState({ data:j.data })
+        $('.J_Count').html(j.count)
+      })
+    }
+  },
   componentDidMount() {
     if (this.props.dataUrl !== undefined) {
-      fetch(this.props.baseUrl + this.props.dataUrl)
+      let p = ''
+      if (_.size(this.props.params)>0) {
+        p = '?'+$.param(this.props.params)
+      }
+      fetch(this.props.baseUrl + this.props.dataUrl + p)
       .then(res => {return res.json()})
       .then(j=>{
         this.setState({ data:j.data })

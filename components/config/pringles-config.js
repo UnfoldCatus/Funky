@@ -12,12 +12,15 @@ const PringlesConfig  = {
     'dataUrl':'pringles/pringles_list'
   },BaseConfig),
   'Episode':_.merge({
-    'dataUrl':'pringlesSeason/all'
+    'dataUrl':'pringlesSeason/all',
+    'aspectRatio':'3:2',
+    'height':140
   },BaseConfig),
   'EpisodeListItem':_.merge({
     'type':'pringles',
     'link':'/pringles',
-    'dataUrl':'pringles/pringles_season'
+    'params':{}
+
   },BaseConfig),
   'MediaSlider':_.merge({
     'dataUrl':'adv/pringles_top',
