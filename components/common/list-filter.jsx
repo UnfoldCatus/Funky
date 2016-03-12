@@ -14,7 +14,7 @@ const ListFilter = React.createClass({
           {
             _.map(this.props.conditions,(v,k)=>{
               return (
-                <li><span key={k} className='tab' data-key={dataKey} data-value={_.values(_.pick(v,valueKey)).join(',')}>{v[valueName]}</span></li>
+                <li key={k}><span className='tab' data-key={dataKey} data-value={_.values(_.pick(v,valueKey)).join(',')}>{v[valueName]}</span></li>
               )
             })
           }
