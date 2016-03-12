@@ -21,6 +21,7 @@ import { Hotel } from '../hotel.jsx'
 import { HotelRequire } from '../hotel-require.jsx'
 import { Scheme } from '../scheme.jsx'
 import { Cases } from '../cases.jsx'
+import { F4 } from '../f4.jsx'
 import { WeddingPat } from '../wedding-pat.jsx'
 import { WeddingVideo } from '../wedding-video.jsx'
 import { WeddingMV } from '../wedding-mv.jsx'
@@ -44,13 +45,14 @@ const ComponentsIndex = {
   'pringles-details': <PringlesDetails />,
   'suite': <Suite />,
   'suite-details': <SuiteDetails />,
+  'wedding-mv': <WeddingMV />,// 纪实MV
   'hotel': <Hotel />,
   'hotel-require': <HotelRequire />,
   'scheme': <Scheme />,
   'cases': <Cases />,
-  'wedding-pat': <WeddingPat />,
-  'wedding-video': <WeddingVideo />,
-  'wedding-mv': <WeddingMV />,
+  'wedding-pat': <WeddingPat />,// 婚礼跟拍
+  'wedding-video': <WeddingVideo />,// 婚礼视频
+  'f4': <F4 />,
   'scheme-require': <SchemeRequire />,
   'adv': <Adv />,
   'dress': <Dress />,

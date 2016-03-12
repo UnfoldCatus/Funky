@@ -207,22 +207,27 @@ siteRouter.get('/hotel-require', function* index(next) {
 siteRouter.get('/scheme', function* index(next) {
     yield this.render('modules/default', renderOption('scheme', '/scheme', '/scheme'))
 })
-  /**  实景案例 **/
+/**  实景案例 **/
 siteRouter.get('/cases', function* index(next) {
     yield this.render('modules/default', renderOption('cases', '/cases', '/scheme'))
 })
-  /** 婚礼跟拍 **/
+/** 婚礼跟拍 **/
 siteRouter.get('/weddingpat', function* index(next) {
     yield this.render('modules/default', renderOption('wedding-pat', '/weddingpat', '/scheme'))
 })
-  /** 婚礼视频 **/
+/** 婚礼视频 **/
 siteRouter.get('/weddingvideo', function* index(next) {
     yield this.render('modules/default', renderOption('wedding-video', '/weddingvideo', '/scheme'))
 })
-  /** 提交婚庆需求 **/
+/** 提交婚庆需求 **/
 siteRouter.get('/scheme-require', function* index(next) {
   yield this.render('modules/default', renderOption('scheme-require', '/scheme-require', '/scheme'))
 })
+/** 选婚礼人(四大金刚) **/
+siteRouter.get('/f4', function* index(next) {
+  yield this.render('modules/default', renderOption('f4', '/f4', '/scheme'))
+})
+
 /** 礼服 **/
 siteRouter.get('/dress', function* index(next) {
   yield this.render('modules/default', renderOption('dress', '/dress', '/dress'))
