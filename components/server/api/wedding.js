@@ -240,39 +240,14 @@ const weddingApi = {
     // 四大金刚作品
     // 获取四大金刚摄像师作品
     'get+/f4/camera': function*(next) {
-        this.model = f4Camera.filter({
-            position: this.params.position
-        })
-
-        _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
-                }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-            } else if(k.indexOf('minPrice') !== -1) {
-                // 最低价格
-                this.model = this.model.filter(r.row('price').gt(Number(this.request.query['minPrice'])));
-            } else if(k.indexOf('maxPrice') !== -1) {
-                // 最高价格
-                this.model = this.model.filter(r.row('price').lt(Number(this.request.query['maxPrice'])));
-            }
-        })
-
-        this.model = this.model.orderBy(function (row) { return r.random(); });
-
         this.APIKey = 'F4Camera'
-        yield next
-    },
-
-    // 获取四大金刚摄像师作品
-    'get+/f4/dresser': function*(next) {
-        this.model = f4Dresser.filter({
-            position: this.params.position
-        })
+        this.model = f4Camera.filter({})
+        try {
+            let all = yield this.model
+            this.count = all.length
+        } catch (e) {
+            this.count = 0
+        }
 
         _.each(this.request.query, (v, k) => {
             if (k.indexOf('pageSize') !== -1) {
@@ -294,15 +269,53 @@ const weddingApi = {
 
         this.model = this.model.orderBy(function (row) { return r.random(); });
 
+        yield next
+    },
+
+    // 获取四大金刚化妆师作品
+    'get+/f4/dresser': function*(next) {
         this.APIKey = 'F4Dresser'
+        this.model = f4Dresser.filter({})
+        try {
+            let all = yield this.model
+            this.count = all.length
+        } catch (e) {
+            this.count = 0
+        }
+
+        _.each(this.request.query, (v, k) => {
+            if (k.indexOf('pageSize') !== -1) {
+                let limit = 0
+                limit = Number(this.request.query['pageIndex'] || '1') - 1
+                if (limit < 0) {
+                    limit = 0
+                }
+                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
+                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+            } else if(k.indexOf('minPrice') !== -1) {
+                // 最低价格
+                this.model = this.model.filter(r.row('price').gt(Number(this.request.query['minPrice'])));
+            } else if(k.indexOf('maxPrice') !== -1) {
+                // 最高价格
+                this.model = this.model.filter(r.row('price').lt(Number(this.request.query['maxPrice'])));
+            }
+        })
+
+        this.model = this.model.orderBy(function (row) { return r.random(); });
+
         yield next
     },
 
-    // 获取四大金刚摄像师作品
+    // 获取四大金刚主持人作品
     'get+/f4/host': function*(next) {
-        this.model = f4Host.filter({
-            position: this.params.position
-        })
+        this.APIKey = 'F4Host'
+        this.model = f4Host.filter({})
+        try {
+            let all = yield this.model
+            this.count = all.length
+        } catch (e) {
+            this.count = 0
+        }
 
         _.each(this.request.query, (v, k) => {
             if (k.indexOf('pageSize') !== -1) {
@@ -324,15 +337,19 @@ const weddingApi = {
 
         this.model = this.model.orderBy(function (row) { return r.random(); });
 
-        this.APIKey = 'F4Host'
         yield next
     },
 
-    // 获取四大金刚摄像师作品
-    'get+/f4/dresser': function*(next) {
-        this.model = f4Photographer.filter({
-            position: this.params.position
-        })
+    // 获取四大金刚摄影师作品
+    'get+/f4/photographer': function*(next) {
+        this.APIKey = 'F4Photographer'
+        this.model = f4Photographer.filter({})
+        try {
+            let all = yield this.model
+            this.count = all.length
+        } catch (e) {
+            this.count = 0
+        }
 
         _.each(this.request.query, (v, k) => {
             if (k.indexOf('pageSize') !== -1) {
@@ -354,7 +371,6 @@ const weddingApi = {
 
         this.model = this.model.orderBy(function (row) { return r.random(); });
 
-        this.APIKey = 'F4Photographer'
         yield next
     },
 

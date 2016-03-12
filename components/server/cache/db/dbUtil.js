@@ -225,20 +225,14 @@ function SyncFun(module, sumCount, dataList, index, count, cb) {
 
           // 1.获取所有的宴会厅
           let banquetHalls = [];
-          for(let i=0;i<data.data.length;i++){
-            for(let j=0;j<data.data[i].banquetHall.length; j++) {
-              if(dataList[data.data[i].banquetHall[j].hotelId]) {
-                // 如果这个宴会厅的酒店ID在dataList这个map里面能找到,说明已经添加进去了
-              } else {
+          for(let i = 0; i < data.data.length; i++) {
+            if(dataList[data.data[i].hotelId]) {
+            } else {
+              dataList[data.data[i].hotelId] = data.data[i].hotelId;
+              for(let j=0;j<data.data[i].banquetHall.length; j++) {
                 banquetHalls.push(data.data[i].banquetHall[j]);
               }
             }
-          }
-
-          // 2.把新拉取的酒店放到map踢重
-          // 以上1,2步顺序不能变,否则踢重失效
-          for(let ii = 0; ii < data.data.length; ii++) {
-            dataList[data.data[ii].hotelId] = data.data[ii].hotelId;
           }
 
           if(banquetHalls.length > 0) {
@@ -358,8 +352,9 @@ exports.Instance = function() {
   ];
 
   // 三级资源,不经常更新的资源
-  var tasks3 = ['FilterConditionShootStyle', 'FilterConditionExterior',
-     'FilterConditionHotelType', 'FilterConditionHotelDistrict',
+  var tasks3 = [
+    'FilterConditionShootStyle', 'FilterConditionExterior',
+    'FilterConditionHotelType', 'FilterConditionHotelDistrict',
     'FilterConditionCaseStyle', 'FilterConditionDressBrand',
     'FilterConditionDressType'
   ];
