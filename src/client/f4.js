@@ -8,5 +8,5 @@ import 'fetch-detector'
 import 'fetch-ie8'
 
 /*渲染本模块的菜单*/
-ReactDOM.render(<Navigation menuKey={'/f4'} currentKey={'/f4'} />,document.getElementById('J_Nav'))
+ReactDOM.render(<Navigation menuKey={'/scheme'} currentKey={'/f4'} />,document.getElementById('J_Nav'))
 ReactDOM.render( <F4 />,document.getElementById('J_Main'))

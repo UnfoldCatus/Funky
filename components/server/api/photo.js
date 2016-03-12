@@ -116,9 +116,9 @@ const photoApi = {
     // 客片分季列表
     'get+/pringlesSeason/:position': function*(next) {
         if (this.params.position === 'all') {
-            this.model = cases.filter({})
+            this.model = pringlesSeason.filter({})
         } else {
-            this.model = cases.filter({
+            this.model = pringlesSeason.filter({
                 position: this.params.position
             })
         }

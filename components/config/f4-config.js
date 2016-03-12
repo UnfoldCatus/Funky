@@ -8,21 +8,42 @@ const F4Config  = {
   //静态banner
   'Banner':[
     {
-      'imageUrl': '//image.jsbn.com/static/kpxs.png'
+      'imageUrl': '//image.jsbn.com/static/xhlr.jpg'
     }
-  ]
-  //,
-  //'ShotListItem':_.merge({
-  //  'type':'pringles',
-  //  'link':'/pringles',
-  //  'dataUrl':'pringles/pringles_list'
-  //},BaseConfig),
-  //
-  //'MediaSlider':_.merge({
-  //  'dataUrl':'adv/pringles_top',
-  //  'aspectRatio':'192:45',
-  //  'height':450
-  //},BaseConfig)
+  ],
+  Prices: [{
+    'minPrice': '0',
+    'maxPrice': '1500',
+    'name': '1500元以下'
+  }, {
+    'minPrice': '1500',
+    'maxPrice': '2000',
+    'name': '1500-2000'
+  }, {
+    'minPrice': '2000',
+    'maxPrice': '2500',
+    'name': '2000-2500元'
+  }, {
+    'minPrice': '2500',
+    'maxPrice': '99999',
+    'name': '2500元以上'
+  }],
+
+  'HostList':_.merge({
+    'dataUrl':'f4/host'
+  },BaseConfig),
+
+  'PhotographerList':_.merge({
+    'dataUrl':'f4/photographer'
+  },BaseConfig),
+
+  'DresserList':_.merge({
+    'dataUrl':'f4/dresser'
+  },BaseConfig),
+
+  'CameraList':_.merge({
+    'dataUrl':'f4/camera'
+  },BaseConfig)
 }
 
 
