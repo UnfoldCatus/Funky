@@ -16,6 +16,7 @@ import { SampleDetails } from '../sample-details.jsx'
 import { PringlesDetails } from '../pringles-details.jsx'
 
 import { Suite } from '../suite.jsx'
+import { SuiteDetails } from '../suite-details.jsx'
 import { Hotel } from '../hotel.jsx'
 import { HotelRequire } from '../hotel-require.jsx'
 import { Scheme } from '../scheme.jsx'
@@ -42,6 +43,7 @@ const ComponentsIndex = {
   'sample-details': <SampleDetails />,
   'pringles-details': <PringlesDetails />,
   'suite': <Suite />,
+  'suite-details': <SuiteDetails />,
   'hotel': <Hotel />,
   'hotel-require': <HotelRequire />,
   'scheme': <Scheme />,

@@ -184,6 +184,10 @@ siteRouter.get('/pringles/:id', function* index(next) {
 siteRouter.get('/suite', function* index(next) {
   yield this.render('modules/default', renderOption('suite', '/suite', '/shot'))
 })
+/* 套系详情 */
+siteRouter.get('/suite/:id', function* index(next) {
+  yield this.render('modules/default', renderOption('suite-details', '/suite', '/shot',this.params))
+})
 /* 婚礼纪实 */
 siteRouter.get('/weddingmv', function* index(next) {
   yield this.render('modules/default', renderOption('wedding-mv', '/weddingmv', '/shot'))
