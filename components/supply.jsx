@@ -57,7 +57,7 @@ let SupplyItemList = React.createClass({
     if (this.props.dataUrl !== undefined) {
       // 在组件初始化完成后，立即绑定代理的点击事件。
       $('.J_Item').on('click','li',(evt)=>{
-        let id = $(evt).attr('data-id')
+        let id = $(evt.currentTarget).attr('data-id')
         /* 点击时渲染出弹出模块 需要填写用于样式控制的styleClass*/
         ReactDOM.render(<DetailModal dataId={id} styleClass={'hlyp-view'} {...SupplyConfig['SupplyItemDetail']}/>,$('#J_DetailModalContainer')[0])
 
