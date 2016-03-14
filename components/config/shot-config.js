@@ -33,7 +33,11 @@ const ShotConfig = {
   'ShotListItem': _.merge({
     'type':'sample',
     'link':'/sample',
-    'dataUrl': 'sample/samples_list'
+    'dataUrl': 'sample/samples_list',
+    'params':{ //因为是聚合页面，样片的个数固定
+      'pageSize':6,
+      'pageIndex':1
+    }
   },BaseConfig),
   //顶部广告
   'MediaSlider':_.merge({

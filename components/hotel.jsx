@@ -218,8 +218,8 @@ const Hotel = React.createClass({
             <MediaSlider {...HotelConfig['MediaSlider']}/>
           </div>
         </div>
-        <div className="layout-center-box J_HotelListFilterPanel" style={{minHeight:440+'px'}}>
-
+        <div className="layout-center-box J_HotelListFilterPanel">
+          <div className='mgb30' />
           <ListFilter title={'区域'} name={'name'} klass={'ico-18-js ico-1-1-js'} valueKey={['id']} conditions={this.state.areas} sorterKey={['cityId']} />
           <ListFilter title={'分类'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']} conditions={this.state.types} sorterKey={['hotelType']} />
           <ListFilter title={'桌数'} name={'name'} klass={'ico-18-js ico-18-2-js'} valueKey={['minTable','maxTable']} conditions={this.state.seatsCount} sorterKey={['minTable','maxTable']} />

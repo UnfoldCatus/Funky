@@ -9,7 +9,7 @@ import _ from 'lodash'
 <Pringles>
   <MediaSlider />
   <Banner />
-  <PringlesList />
+  <ShotListItem type='pringles' />
   <Episode />
 </Pringles>
 **/
@@ -73,34 +73,14 @@ const Episode = React.createClass({
         }
         this.setState({
           'dataUrl':'pringles/pringles_season',
-          data:j.data,params:{'seasonId':j.data[0].id}
+          data:j.data,
+          params:{'seasonId':j.data[0].id}
         },()=>{
           let slider = $('#J_SliderQuarterly');
           slider.Slider({type:'Horizontal',margin:40,focusShift:false});
 
         })
       })
-    }
-  }
-})
-
-const PringlesList = React.createClass({
-  render () {
-    return (
-      <div className="samples-list">
-        <div className="screening-results">
-          <span className="find"><span>找到最佳客片</span><b className='J_Count'>{this.props.totalPage}</b><span>套</span></span>
-        </div>
-        <ShotListItem {...PringlesConfig['ShotListItem']} />
-      </div>
-    )
-  },
-  propTypes: {
-    totalPage: React.PropTypes.number,
-  },
-  getDefaultProps(){
-    return {
-      totalPage:1
     }
   }
 })
@@ -118,10 +98,10 @@ const Pringles = React.createClass({
             <div className='mgt30'>
               <Banner {...PringlesConfig['Banner'][0]}/>
             </div>
-              <PringlesList />
+            <ShotListItem {...PringlesConfig['ShotListItem']} />
           </div>
-          <div onClick={this.loadMore} id="J_MoreButton">
-              <div className="more-btn"><span>点击查看更多</span></div>
+          <div id="J_MoreButton">
+              <div className="more-btn"><span>{'点击查看更多'}</span></div>
           </div>
           <div className='space-100-eav mgb30'></div>
           <div className='main-body-eav'>

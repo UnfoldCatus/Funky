@@ -9,7 +9,15 @@ const PringlesConfig  = {
   'ShotListItem':_.merge({
     'type':'pringles',
     'link':'/pringles',
-    'dataUrl':'pringles/pringles_list'
+    'countPlugin':true, // 是否需要显示列表的数据总数
+    'dataUrl':'pringles/pringles_list',
+    'displayTextPrefix':'找到最佳客片',
+    'displayTextSuffix':'套',
+    'params':{
+      'pageSize':9,
+      'pageIndex':1
+    }
+
   },BaseConfig),
   'Episode':_.merge({
     'dataUrl':'pringlesSeason/all',
