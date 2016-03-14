@@ -91,14 +91,15 @@ const MoveItemBox = React.createClass({
             return (
               <li key={k} className="item-box">
                 <div className="img-box">
-                  <MediaItem aspectRatio='3:2' height={200}
-                             mediaUrl={v.coverUrlWeb} />
+                  <MediaItem aspectRatio='3:2' height={200} mediaUrl={v.coverUrlWeb} />
                   <div className="layer"></div>
                   <div className="info">
                     <span>时间：</span><span>1231234</span><br />
                     <span>地点：</span><span>421414</span><br />
                     <span>成本：￥</span><span>12412</span><br />
-                    <a href=""><span className="play">点击观看</span></a>
+                    <a href="#my-id" data-uk-modal>
+                      <span className="play">点击观看</span>
+                    </a>
                   </div>
                 </div>
               </li>
@@ -119,7 +120,7 @@ const PhotoItemBox = React.createClass({
             let pcDetailImages = v.pcDetailImages && JSON.parse(v.pcDetailImages) || [];
             return (
               <li key={k} className="item-box">
-                <a href="" className="img-box">
+                <a className="img-box" data-uk-lightbox="{'group':'img'}" data-lightbox-type='image' title={v.number}  href={v.imageUrl} >
                   <MediaItem aspectRatio='2:3' height={300} mediaUrl={v.coverUrlWeb} />
                   <div className="layer"></div>
                 </a>
@@ -137,6 +138,7 @@ const HostList = React.createClass({
   render() {
     return (
       <ul className="movie-list">
+
         {
           _.map(this.state.personnelList, (v, k) => {
             return(
