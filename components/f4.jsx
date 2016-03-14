@@ -24,7 +24,6 @@ const Figure = React.createClass({
       let ls = this.props.priceRemark.split && this.props.priceRemark.split('|') || []
       priceInfo = (
         <div>
-          <h4>价格：</h4>
           {
             _.map(ls, (v,k) => {
               return (
@@ -61,6 +60,7 @@ const Figure = React.createClass({
             </div>
             <div className="viewport">
               <div className="overview">
+                <h4>价格：{this.props.salePrice}</h4>
                 {
                   priceInfo
                 }
@@ -91,14 +91,15 @@ const MoveItemBox = React.createClass({
             return (
               <li key={k} className="item-box">
                 <div className="img-box">
-                  <MediaItem aspectRatio='3:2' height={200}
-                             mediaUrl={v.coverUrlWeb} />
+                  <MediaItem aspectRatio='3:2' height={200} mediaUrl={v.coverUrlWeb} />
                   <div className="layer"></div>
                   <div className="info">
                     <span>时间：</span><span>1231234</span><br />
                     <span>地点：</span><span>421414</span><br />
                     <span>成本：￥</span><span>12412</span><br />
-                    <a href=""><span className="play">点击观看</span></a>
+                    <a href="#my-id" data-uk-modal>
+                      <span className="play">点击观看</span>
+                    </a>
                   </div>
                 </div>
               </li>
@@ -119,7 +120,7 @@ const PhotoItemBox = React.createClass({
             let pcDetailImages = v.pcDetailImages && JSON.parse(v.pcDetailImages) || [];
             return (
               <li key={k} className="item-box">
-                <a href="" className="img-box">
+                <a className="img-box" data-uk-lightbox="{'group':'img'}" data-lightbox-type='image' title={v.number}  href={v.imageUrl} >
                   <MediaItem aspectRatio='2:3' height={300} mediaUrl={v.coverUrlWeb} />
                   <div className="layer"></div>
                 </a>
@@ -137,6 +138,7 @@ const HostList = React.createClass({
   render() {
     return (
       <ul className="movie-list">
+
         {
           _.map(this.state.personnelList, (v, k) => {
             return(
@@ -183,6 +185,8 @@ const HostList = React.createClass({
               sumCount: j.data.length,
               moreFlg:isMoreFlg
             })
+
+            this.props.onChange(j.count);
           }
         })
     }
@@ -207,6 +211,8 @@ const HostList = React.createClass({
               pageIndex: this.state.pageIndex + 1,
               moreFlg:isMoreFlg
             })
+
+            this.props.onChange(j.count);
           }
         })
     }
@@ -264,6 +270,8 @@ const CameraList = React.createClass({
               sumCount: j.data.length,
               moreFlg:isMoreFlg
             })
+
+            this.props.onChange(j.count);
           }
         })
     }
@@ -286,6 +294,8 @@ const CameraList = React.createClass({
               pageIndex: this.state.pageIndex + 1,
               moreFlg:isMoreFlg
             })
+
+            this.props.onChange(j.count);
           }
         })
     }
@@ -343,6 +353,8 @@ const DresserList = React.createClass({
               sumCount: j.data.length,
               moreFlg:isMoreFlg
             })
+
+            this.props.onChange(j.count);
           }
         })
     }
@@ -367,6 +379,8 @@ const DresserList = React.createClass({
               pageIndex: this.state.pageIndex + 1,
               moreFlg:isMoreFlg
             })
+
+            this.props.onChange(j.count);
           }
         })
     }
@@ -425,6 +439,8 @@ const PhotographerList = React.createClass({
               moreFlg:isMoreFlg
             })
           }
+
+          this.props.onChange(j.count);
         })
     }
   },
@@ -448,6 +464,8 @@ const PhotographerList = React.createClass({
               pageIndex: this.state.pageIndex + 1,
               moreFlg:isMoreFlg
             })
+
+            this.props.onChange(j.count);
           }
         })
     }
@@ -491,26 +509,26 @@ const TitleFilter = React.createClass({
 
 const F4 = React.createClass({
   render () {
-    let list = <HostList />
+    let list = <HostList onChange={this.handleChange} />
     switch(this.state.type) {
       case 0:
       {
-        list = <HostList />
+        list = <HostList onChange={this.handleChange} />
         break;
       }
       case 1:
       {
-        list = <DresserList />
+        list = <DresserList onChange={this.handleChange} />
         break;
       }
       case 2:
       {
-        list = <PhotographerList />
+        list = <PhotographerList onChange={this.handleChange} />
         break;
       }
       case 3:
       {
-        list = <CameraList />
+        list = <CameraList onChange={this.handleChange} />
         break;
       }
     }
@@ -523,7 +541,7 @@ const F4 = React.createClass({
           <ListFilter title={'价格'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']} conditions={this.state.prices}  sorterKey={['minPrice','maxPrice']}/>
           <div className="screening-results">
             <b>* 温馨提示：如遇节假日或者黄道吉日，预订价格或有波动，请以实际线下合同为准。 </b>
-            <span className="find">找到样片 <b>67</b> 套</span>
+            <span className="find">找到作品 <b>{this.state.count}</b> 套</span>
           </div>
           {
             list
@@ -537,12 +555,17 @@ const F4 = React.createClass({
     return {
       prices: F4Config['Prices'], // config
       type:0,// 0:主持人 1:化妆师 2:摄影师 3:摄像师
+      count:0,
     };
   },
 
   handleTabSel(ty) {
     // 类型选择加载
     this.setState({type:ty});
+  },
+
+  handleChange(count) {
+    this.setState({count:count});
   }
 })
 
