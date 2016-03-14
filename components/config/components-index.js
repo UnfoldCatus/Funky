@@ -18,6 +18,7 @@ import { PringlesDetails } from '../pringles-details.jsx'
 import { Suite } from '../suite.jsx'
 import { SuiteDetails } from '../suite-details.jsx'
 import { Hotel } from '../hotel.jsx'
+import { HotelDetails } from '../hotel-details.jsx'
 import { HotelRequire } from '../hotel-require.jsx'
 import { Scheme } from '../scheme.jsx'
 import { Cases } from '../cases.jsx'
@@ -47,6 +48,7 @@ const ComponentsIndex = {
   'suite-details': <SuiteDetails />,
   'wedding-mv': <WeddingMV />,// 纪实MV
   'hotel': <Hotel />,
+  'hotel-details': <HotelDetails />,
   'hotel-require': <HotelRequire />,
   'scheme': <Scheme />,
   'cases': <Cases />,

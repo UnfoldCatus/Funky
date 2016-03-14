@@ -11,7 +11,11 @@ const CasesConfig = {
   'MediaSlider':_.merge({
     'dataUrl':'cases/scheme_recommend',
     'aspectRatio':'120:68',
-    'height':680
+    'height':680,
+    'params':{
+      'pageSize':6,
+      'pageIndex':1
+    }
   },BaseConfig),
   'CasesList':_.merge({
     'dataUrl':'cases/scheme_list',

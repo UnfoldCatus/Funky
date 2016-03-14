@@ -141,7 +141,7 @@ const HotelListItem = React.createClass({
       <li className='item-box clearfix'>
         <div className='info-box'>
           <div className='content-box'>
-            <a href='/' className='img-box'>
+            <a href={'/hotel/'+this.props.id} className='img-box'>
               <MediaItem {...HotelConfig['HotelList']} mediaUrl={this.props.coverUrlWeb} />
             </a>
             <div className='info'>
