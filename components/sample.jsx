@@ -12,34 +12,12 @@ import { SampleConfig } from './config/sample-config'
   <MediaSlider /> <= advs
   <Banner /> <-SampleConfig.Banner
   <ListFilter />
-  <SampleList>
-    <ShotListItem />
-  </SampleList>
+  <ShotListItem />
 </Sample>
 
 **/
 
-/**/
-const SampleList = React.createClass({
-  render () {
-    return (
-      <div className="samples-list">
-        <div className="screening-results">
-          <span className="find"><span>找到作品</span><b className='J_Count'>{this.props.totalPage}</b><span>套</span></span>
-        </div>
-        <ShotListItem {...SampleConfig['ShotListItem']} />
-      </div>
-    )
-  },
-  propTypes: {
-    totalPage: React.PropTypes.number,
-  },
-  getDefaultProps(){
-    return {
-      totalPage:6
-    }
-  }
-})
+
 /** main **/
 const Sample = React.createClass({
   render () {
@@ -60,8 +38,8 @@ const Sample = React.createClass({
             <ListFilter title={'风格'} name={'styleName'} klass={'ico-1-js ico-1-2-js'} valueKey={['styleId']} conditions={this.state.styles} sorterKey={['styleId']} />
             <ListFilter title={'场景'} name={'addressName'} klass={'ico-1-js ico-1-3-js'} valueKey={['addressId']} conditions={this.state.scenes} sorterKey={['addressId']} />
           </div>
-          <SampleList />
-          <div onClick={this.loadMore} id="J_MoreButton">
+          <ShotListItem {...SampleConfig['ShotListItem']} />
+          <div id="J_MoreButton">
             <div className="more-btn"><span>点击查看更多</span></div>
           </div>
         </div>

@@ -11,7 +11,15 @@ const SampleConfig  = {
   'ShotListItem':_.merge({
     'type':'sample',
     'link':'/sample',
-    'dataUrl':'sample/samples_list'
+    'countPlugin':true,
+    'dataUrl':'sample/samples_list',
+    'displayTextPrefix':'找到作品',
+    'displayTextSuffix':'套',
+    'params':{
+      'pageSize':9,
+      'pageIndex':1
+    }
+
   },BaseConfig),
 
   'MediaSlider':_.merge({
