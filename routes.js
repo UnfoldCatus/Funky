@@ -216,8 +216,8 @@ siteRouter.get('/cases', function* index(next) {
     yield this.render('modules/default', renderOption('cases', '/cases', '/scheme'))
 })
 /**  实景案例详情 **/
-siteRouter.get('/cases-details', function* index(next) {
-  yield this.render('modules/default', renderOption('cases-details', '/cases', '/scheme'))
+siteRouter.get('/case-details', function* index(next) {
+  yield this.render('modules/default', renderOption('case-details', '/cases', '/scheme'))
 })
 
 /** 婚礼跟拍 **/
