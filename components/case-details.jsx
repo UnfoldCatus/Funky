@@ -97,7 +97,7 @@ const Preview = React.createClass({
     if(this.props.data && this.props.data !== '') {
       try {
         pcDetailImages = JSON.parse(this.props.data)
-        firstImage = pcDetailImages[0].url;
+        firstImage = pcDetailImages[0];// TODO:增加交互的时候需要修改
       } catch (e) {
         pcDetailImages = [];
       }
@@ -132,12 +132,12 @@ const Preview = React.createClass({
   }
 })
 
-//          <Preview data={this.state.data.pcDetailImages} />
 const CaseDetails = React.createClass({
   render() {
     return(
       <div className="alxq-view">
         <div className="layout-center-box">
+          <Preview data={this.state.data.pcDetailImages} />
           <CaseContent data={this.state.data} />
         </div>
       </div>
