@@ -22,6 +22,7 @@ import { HotelDetails } from '../hotel-details.jsx'
 import { HotelRequire } from '../hotel-require.jsx'
 import { Scheme } from '../scheme.jsx'
 import { Cases } from '../cases.jsx'
+import { CasesDetails } from '../cases-details.jsx'
 import { F4 } from '../f4.jsx'
 import { WeddingPat } from '../wedding-pat.jsx'
 import { WeddingVideo } from '../wedding-video.jsx'
@@ -52,6 +53,7 @@ const ComponentsIndex = {
   'hotel-require': <HotelRequire />,
   'scheme': <Scheme />,
   'cases': <Cases />,
+  'cases-details': <CasesDetails />, // 实景案例详情
   'wedding-pat': <WeddingPat />,// 婚礼跟拍
   'wedding-video': <WeddingVideo />,// 婚礼视频
   'f4': <F4 />,

@@ -215,6 +215,11 @@ siteRouter.get('/scheme', function* index(next) {
 siteRouter.get('/cases', function* index(next) {
     yield this.render('modules/default', renderOption('cases', '/cases', '/scheme'))
 })
+/**  实景案例详情 **/
+siteRouter.get('/cases-details', function* index(next) {
+  yield this.render('modules/default', renderOption('cases-details', '/cases', '/scheme'))
+})
+
 /** 婚礼跟拍 **/
 siteRouter.get('/weddingpat', function* index(next) {
     yield this.render('modules/default', renderOption('wedding-pat', '/weddingpat', '/scheme'))
