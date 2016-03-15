@@ -99,6 +99,8 @@ const Cases = env.Thinky.createModel('cases', {
     personDescription: type.string(),
     // 风格
     caseStyle: type.string(),
+    // 风格名
+    caseStyleName: type.string(),
     // 酒店ID
     hotelId: type.number(),
     // 酒店名称

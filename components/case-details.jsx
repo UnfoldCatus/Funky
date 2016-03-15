@@ -55,7 +55,7 @@ const CaseContent = React.createClass({
               </div>
               <div className="type-box">
                 <span>风格:</span>
-                <p>默认风格</p>
+                <p>{this.props.data.caseStyleName}</p>
               </div>
               <div className="type-box">
                 <span>色系:</span>
@@ -157,7 +157,7 @@ const CaseDetails = React.createClass({
   // 数据请求/dress/dress_list?brandld=5品牌ID&typeId=礼服类型ID
   componentDidMount() {
     let cfg = CaseDetailsConfig['CaseDetails']
-    let fetchUrl = 'http://cd.jsbn.com:7001/api/cases/detail/313';//cfg['buildUrl'](942,cfg['dataUrl'])
+    let fetchUrl = 'http://cd.jsbn.com:7001/api/cases/detail/942';//cfg['buildUrl'](942,cfg['dataUrl'])
     /** 请求礼服列表 **/
     fetch(fetchUrl)
       .then(res => {return res.json()})
