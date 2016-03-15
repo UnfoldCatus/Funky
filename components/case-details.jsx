@@ -157,7 +157,7 @@ const CaseDetails = React.createClass({
   // 数据请求/dress/dress_list?brandld=5品牌ID&typeId=礼服类型ID
   componentDidMount() {
     let cfg = CaseDetailsConfig['CaseDetails']
-    let fetchUrl = 'http://cd.jsbn.com:7001/api/cases/detail/942';//cfg['buildUrl'](942,cfg['dataUrl'])
+    let fetchUrl = '//cq.jsbn.com/api/cases/detail/942';//cfg['buildUrl'](942,cfg['dataUrl'])
     /** 请求礼服列表 **/
     fetch(fetchUrl)
       .then(res => {return res.json()})
