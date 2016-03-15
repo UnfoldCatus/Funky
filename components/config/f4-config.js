@@ -18,7 +18,7 @@ const F4Config  = {
   }, {
     'minPrice': '1500',
     'maxPrice': '2000',
-    'name': '1500-2000'
+    'name': '1500-2000元'
   }, {
     'minPrice': '2000',
     'maxPrice': '2500',

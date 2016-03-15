@@ -11,11 +11,6 @@ import { MediaItem } from './common/media-item.jsx'
  <F4> <= styles,scenes,list
  </F4>
  **/
-// nickName:人员昵称
-// photoUrl:人员头像
-// description:人员描述
-// salePrice:销售价格
-// priceRemark:价格描述
 const Figure = React.createClass({
 
   render() {
@@ -166,12 +161,6 @@ const HostList = React.createClass({
     };
   },
 
-  // nickName:人员昵称
-  // photoUrl:人员头像
-  // description:人员描述
-  // salePrice:销售价格
-  // priceRemark:价格描述
-  // workList:作品列表
   componentDidMount() {
     const HostList = F4Config['HostList']
     if (HostList.dataUrl !== undefined) {
@@ -251,12 +240,6 @@ const CameraList = React.createClass({
     };
   },
 
-  // nickName:人员昵称
-  // photoUrl:人员头像
-  // description:人员描述
-  // salePrice:销售价格
-  // priceRemark:价格描述
-  // workList:作品列表
   componentDidMount() {
     const CameraList = F4Config['CameraList']
     if (CameraList.dataUrl !== undefined) {
@@ -334,12 +317,6 @@ const DresserList = React.createClass({
     };
   },
 
-  // nickName:人员昵称
-  // photoUrl:人员头像
-  // description:人员描述
-  // salePrice:销售价格
-  // priceRemark:价格描述
-  // workList:作品列表
   componentDidMount() {
     const DresserList = F4Config['DresserList']
     if (DresserList.dataUrl !== undefined) {
@@ -419,12 +396,6 @@ const PhotographerList = React.createClass({
     };
   },
 
-  // nickName:人员昵称
-  // photoUrl:人员头像
-  // description:人员描述
-  // salePrice:销售价格
-  // priceRemark:价格描述
-  // workList:作品列表
   componentDidMount() {
     const PhotographerList = F4Config['PhotographerList']
     if (PhotographerList.dataUrl !== undefined) {

@@ -16,6 +16,7 @@
     "build-suite": "watchify ./src/client/suite.js -o 'uglifyjs -cm > ./assets/script/modules/suite.min.js'",
     "build-suite-details": "watchify ./src/client/suite-details.js -o 'uglifyjs -cm > ./assets/script/modules/suite-details.min.js'",
     "build-cases": "watchify ./src/client/cases.js -o 'uglifyjs -cm > ./assets/script/modules/cases.min.js'",
+    "build-cases-details": "watchify ./src/client/cases-details.js -o 'uglifyjs -cm > ./assets/script/modules/cases-details.min.js'",
     "build-f4": "watchify ./src/client/f4.js -o 'uglifyjs -cm > ./assets/script/modules/f4.min.js'",
     "build-car": "watchify ./src/client/car.js -o 'uglifyjs -cm > ./assets/script/modules/car.min.js'",
     "build-home": "watchify ./src/client/home.js -o 'uglifyjs -cm > ./assets/script/modules/home.min.js'",
