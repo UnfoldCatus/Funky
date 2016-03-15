@@ -11,6 +11,15 @@ const CaseContent = React.createClass({
      <div className="theme-content">
      <p>于2015-06-27在芭菲盛宴北城国际店</p>
      </div>
+
+     // 颜色色块
+     <div className="type-box">
+       <span>色系:</span>
+       <p>{this.props.data.color}</p>
+       <i className="violet"></i>
+       <i className="golden"></i>
+     </div>
+
     * */
 
     // 设计理念
@@ -51,8 +60,6 @@ const CaseContent = React.createClass({
               <div className="type-box">
                 <span>色系:</span>
                 <p>{this.props.data.color}</p>
-                <i className="violet"></i>
-                <i className="golden"></i>
               </div>
             </div>
             {
