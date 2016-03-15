@@ -12,15 +12,15 @@ const CaseContent = React.createClass({
      <p>于2015-06-27在芭菲盛宴北城国际店</p>
      </div>
     * */
-console.log(this.props.name)
+
     // 设计理念
     let designConcept = null;
-    if(this.props.designConcept && this.props.designConcept !== '') {
+    if(this.props.data.designConcept && this.props.data.designConcept !== '') {
       designConcept = (
         <div>
           <div className="info-title"><h1>设计理念</h1></div>
           <div className="theme-content">
-            <p>{this.props.designConcept}</p>
+            <p>{this.props.data.designConcept}</p>
           </div>
         </div>
       )
@@ -29,12 +29,12 @@ console.log(this.props.name)
     return(
       <div>
         <div className="tilte-box">
-          <h1>{this.props.name}</h1>
+          <h1>{this.props.data.name}</h1>
         </div>
         <div className="case-detail-box">
           <div className="left-box">
             <div className="intr-box">
-              <p>{this.props.description}</p>
+              <p>{this.props.data.description}</p>
             </div>
           </div>
           <div className="right-box">
@@ -42,7 +42,7 @@ console.log(this.props.name)
             <div className="theme-content">
               <div className="type-box">
                 <span>主题:</span>
-                <p>{this.props.theme}</p>
+                <p>{this.props.data.theme}</p>
               </div>
               <div className="type-box">
                 <span>风格:</span>
@@ -50,7 +50,7 @@ console.log(this.props.name)
               </div>
               <div className="type-box">
                 <span>色系:</span>
-                <p>{this.props.color}</p>
+                <p>{this.props.data.color}</p>
                 <i className="violet"></i>
                 <i className="golden"></i>
               </div>
@@ -61,15 +61,15 @@ console.log(this.props.name)
             <div className="info-title"><h1>价格</h1></div>
             <div className="theme-content">
               <div className="all-price">
-                <span className="in-pirce"><span>折后价:</span><em>￥</em><b>{this.props.hdpcCost + this.props.senceCost}</b></span>
-                <span className="del-pirce"><span>原价: ￥</span><b>{this.props.totalCost}</b></span>
+                <span className="in-pirce"><span>折后价:</span><em>￥</em><b>{this.props.data.hdpcCost + this.props.data.senceCost}</b></span>
+                <span className="del-pirce"><span>原价: ￥</span><b>{this.props.data.totalCost}</b></span>
               </div>
               <div className="price-box">
                     <span className="price-detail first">
-                        <span>场景布置费用:</span><em>￥</em><b>{this.props.senceCost}</b>
+                        <span>场景布置费用:</span><em>￥</em><b>{this.props.data.senceCost}</b>
                     </span>
                     <span className="price-detail">
-                        <span>婚礼人费用:</span><em>￥</em><b>{this.props.hdpcCost}</b>
+                        <span>婚礼人费用:</span><em>￥</em><b>{this.props.data.hdpcCost}</b>
                     </span>
               </div>
             </div>
@@ -82,12 +82,15 @@ console.log(this.props.name)
 
 const Preview = React.createClass({
   render() {
+
+    console.log(this.props.data)
+
     let pcDetailImages = [];
     let firstImage = '';
     if(this.props.data && this.props.data !== '') {
       try {
         pcDetailImages = JSON.parse(this.props.data)
-        firstImage = pcDetailImages[0];
+        firstImage = pcDetailImages[0].url;
       } catch (e) {
         pcDetailImages = [];
       }
@@ -110,7 +113,7 @@ const Preview = React.createClass({
             _.map(pcDetailImages, (v,k) => {
               let kClass = "item item-current"
               return(
-                <li className={kClass}>
+                <li key={k} className={kClass}>
                   <MediaItem aspectRatio='3:2' height={100} mediaUrl={v} />
                 </li>
               );
@@ -122,13 +125,13 @@ const Preview = React.createClass({
   }
 })
 
+//          <Preview data={this.state.data.pcDetailImages} />
 const CaseDetails = React.createClass({
   render() {
     return(
       <div className="alxq-view">
         <div className="layout-center-box">
-          <Preview data={this.state.data} />
-          <CaseContent data={this.state.data.pcDetailImages} />
+          <CaseContent data={this.state.data} />
         </div>
       </div>
     );
@@ -147,7 +150,7 @@ const CaseDetails = React.createClass({
   // 数据请求/dress/dress_list?brandld=5品牌ID&typeId=礼服类型ID
   componentDidMount() {
     let cfg = CaseDetailsConfig['CaseDetails']
-    let fetchUrl = 'http://cd.jsbn.com:7001/api/cases/detail/942';//cfg['buildUrl'](942,cfg['dataUrl'])
+    let fetchUrl = 'http://cd.jsbn.com:7001/api/cases/detail/313';//cfg['buildUrl'](942,cfg['dataUrl'])
     /** 请求礼服列表 **/
     fetch(fetchUrl)
       .then(res => {return res.json()})
