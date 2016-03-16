@@ -43,15 +43,15 @@ const HotelBaseInfo = React.createClass({
   render () {
     return (
       <div className="base-info">
-          <h1 className="mgb10">{this.props.data.name}</h1>
+          <h1 className="mgb10">{this.props.name}</h1>
           <div className="p mgb30 clearfix">
-              <p>规格类型<b>{this.props.data.typeName}</b></p>
-              <p>价格<span>¥<b>{this.props.data.lowestConsumption}</b>-<b>{this.props.data.highestConsumption}</b>/桌</span></p>
-            <p>场厅数量<span><b>{(this.props.data.banquetHall && this.props.data.banquetHall.length) || 0}</b>个专用宴会厅</span></p>
-              <p>最大容客数<span><b>{this.props.data.maxTableNum}</b>桌</span></p>
+              <p>规格类型<b>{this.props.typeName}</b></p>
+              <p>价格<span>¥<b>{this.props.lowestConsumption}</b>-<b>{this.props.highestConsumption}</b>/桌</span></p>
+            <p>场厅数量<span><b>{(this.props.banquetHall && this.props.banquetHall.length) || 0}</b>个专用宴会厅</span></p>
+              <p>最大容客数<span><b>{this.props.maxTableNum}</b>桌</span></p>
               <p id="J_AddressButton" >所在地址:<span>
-                <a href={'/map?longitude='+this.props.data.longitude+'&latitude='+this.props.data.latitude}>
-                  <b>{this.props.data.address}</b>
+                <a href={'/map?longitude='+this.props.longitude+'&latitude='+this.props.latitude}>
+                  <b>{this.props.address}</b>
                 </a>
                 <i className="ico-8-js" />
                 </span>
@@ -198,8 +198,8 @@ const HotelMenu = React.createClass({
                                       <dt>{v.aliasName}</dt>
                                       {
                                           _.map(v.dishesList,function(vx,ix){
-                                              return                                             (
-                                                  <dd key={ix}>{vx}</dd>
+                                              return (
+                                                  <dd key={ix}>{vx.name}</dd>
                                               )
                                           })
                                       }
@@ -232,7 +232,7 @@ const HotelRecommend = React.createClass({
     return (
       <ul className="list-adv">
           {
-              _.map(this.props.recommends,function(v,k){
+              _.map(this.state.recommends,function(v,k){
                   return (
                       <li className="item-box" key={k}>
                           <MediaItem mediaUrl={v.coverUrlWeb} width={168} aspectRatio='3:2' />
@@ -248,11 +248,43 @@ const HotelRecommend = React.createClass({
   },
   getDefaultProps(){
     return {
+      conditions:{}
+    }
+  },
+  getInitialState() {
+    return {
       recommends:[{
         'coverUrlWeb':'//placehold.it/168x112',
         'name':'金色百年'
       }]
     }
+  },
+  componentWillReceiveProps(nextProps) {
+    let p = ''
+    if (_.size(this.props.params)>0) {
+      p = '?' + $.param(_.merge(this.props.params,nextProps.conditions))
+    }
+    fetch(this.props.baseUrl + this.props.dataUrl + p )
+    .then(res=>res.json())
+    .then(j =>{
+      this.setState({
+        recommends:j.data
+      })
+    })
+  },
+  componentDidMount() {
+    let p = ''
+    if (_.size(this.props.params)>0) {
+      p = '?' + $.param(this.props.params)
+    }
+
+    fetch(this.props.baseUrl + this.props.dataUrl + p )
+    .then(res=>res.json())
+    .then(j =>{
+      this.setState({
+        recommends:j.data
+      })
+    })
   }
 })
 
@@ -261,21 +293,25 @@ const HotelDetails = React.createClass({
   render () {
     let thumbs = JSON.parse(this.state.details.pcDetailImages||'[]')
     let menus = JSON.parse(this.state.details.setMealDetail || '[]')
+    let recommendCondition = {
+      'minPrice':
+      this.state.details.lowestConsumption || 0
+    }
     return (
       <div className='hyyd-detail-view'>
         <div className='layout-center-box'>
           <div className='hotel-detail-box'>
             <HotelThumb data={thumbs} />
-            <HotelBaseInfo data={this.state.details} />
+          <HotelBaseInfo {...this.state.details} />
           </div>
           <div className='leftInner'>
             <div className="hotel-detail-info clearfix">
               <h2 className="mgb10">酒店介绍</h2>
-              <HotelIntroduction {...this.state.details} />
+            <HotelIntroduction {...this.state.details} />
               <h2 className="mgb20">宴会厅介绍</h2>
-              <HotelHall {...this.state.details} />
+            <HotelHall {...this.state.details} />
               <h2 id='test'>婚宴套系菜单</h2>
-              <HotelMenu data={menus} />
+            <HotelMenu data={menus}/>
             </div>
           </div>
           <div className='recommend-adv-box'>
@@ -287,7 +323,7 @@ const HotelDetails = React.createClass({
               <div className="sel-card-jsbn">
                   <span className="item">同价位</span>
               </div>
-              <HotelRecommend />
+              <HotelRecommend {...HotelDetailsConfig['HotelRecommend']} conditions={recommendCondition} />
             </div>
           </div>
         </div>
@@ -296,19 +332,19 @@ const HotelDetails = React.createClass({
   },
   getInitialState() {
     return {
-      details:{ }
+      details:{ },
+      recommends:[]
     }
   },
   componentDidMount() {
+
     let cfg = HotelDetailsConfig['HotelDetails']
     let fetchUrl = cfg['buildUrl'](this.props.dataParams,cfg['dataUrl'])
     if(fetchUrl){
       fetch(fetchUrl)
-        .then(res => {return res.json()})
-        .then(j=>{
-          if(j.success && j.data.length > 0) {
-            this.setState({details:j.data[0]});
-          }
+        .then(resp => {return resp.json()})
+        .then(jsonData=>{
+          this.setState({details:jsonData.data[0]})
         })
     }
   }

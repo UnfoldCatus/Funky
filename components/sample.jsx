@@ -24,7 +24,7 @@ const Sample = React.createClass({
     return (
       <div className='samples-view ypxs-view'>
         <div className="bannar-all-box">
-          <div id="slider_top" className="slider-box bannar" style={{height:'450px'}}>
+          <div id="slider_top" className="slider-box bannar">
             <MediaSlider {...SampleConfig['MediaSlider']} />
           </div>
         </div>

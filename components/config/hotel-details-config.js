@@ -16,7 +16,15 @@ const HotelDetailsConfig  = {
   },BaseConfig),
   'HotelDetails':_.merge({
     'dataUrl':'hotel/detail/:id'
+  },BaseConfig),
+  'HotelRecommend':_.merge({
+    'dataUrl':'hotel/hotel_recommend',
+    'params':{
+      'pageSize':6,
+      'pageIndex':1
+    }
   },BaseConfig)
+
 }
 
 
