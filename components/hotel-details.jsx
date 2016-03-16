@@ -12,7 +12,7 @@ const HotelThumb = React.createClass({
             _.map(this.props.data,(v,k)=>{
               if (0===k) {
                 return (
-                  <a href={v} key={k} className='slider-hover-box'>
+                  <a href={v.url || v} key={k} className='slider-hover-box' data-uk-lightbox='{group:"hotelThumb"}' >
                     <div className='big-img-box mgb30'>
                       <MediaItem {...HotelDetailsConfig['HotelThumbMediaItem']} mediaUrl={v.url||v} />
                     </div>
@@ -23,7 +23,7 @@ const HotelThumb = React.createClass({
                 )
               }else {
                 return (
-                  <a href={v} key={k}></a>
+                  <a href={v.url || v} key={k} data-uk-lightbox='{group:"hotelThumb"}'></a>
                 )
               }
             })
