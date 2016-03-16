@@ -5,7 +5,7 @@ import _ from 'lodash'
 const Active = React.createClass({
   render() {
     return(
-      <div className="layout-center-box">
+      <div className={this.state.kClass}>
         {
           _.map(this.state.picUrls, (v,k) => {
 
@@ -33,14 +33,15 @@ const Active = React.createClass({
 
   getInitialState() {
     return {
-      picUrls:[]
+      picUrls:[],
+      kClass:'topic'
     };
   },
 
   componentDidMount() {
     let template = this.props.dataParams;
     if(ActiveConfig[template.name]) {
-      this.setState({picUrls:ActiveConfig[template.name]});
+      this.setState({picUrls:ActiveConfig[template.name].pic, kClass:ActiveConfig[template.name].kClass});
     }
   }
 })
