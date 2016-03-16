@@ -37,6 +37,7 @@ import { MovieDetails } from '../movie-details.jsx'
 import { Supply } from '../supply.jsx'
 import { Car } from '../car.jsx'
 
+import { Active } from '../common/active.jsx'
 
 const ComponentsIndex = {
   'home': <Home />,
@@ -64,7 +65,8 @@ const ComponentsIndex = {
   'movie': <Movie />,
   'movie-details': <MovieDetails />,
   'supply': <Supply />,
-  'car': <Car />
+  'car': <Car />,
+  'active': <Active />
 }
 
 
