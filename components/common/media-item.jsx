@@ -194,13 +194,14 @@ const ImageItem = React.createClass({
       height = parseInt(found[2])
     }
 
-    if (this.state.errorState) {
-      return (
-        <div className='J_MediaWrapper' style={{'height':'100%'}} data-width={width} data-height={height}>
-          <img src={'//placehold.it/'+this.props.width+'x'+this.props.height}  />
-        </div>
-      )
-    }
+
+    // if (this.state.errorState) {
+    //   return (
+    //     <div className='J_MediaWrapper' style={{'height':'100%'}} data-width={width} data-height={height}>
+    //       <img src={}  />
+    //     </div>
+    //   )
+    // }
 
     return (
       <div className='J_MediaWrapper' style={{'height':'100%'}} data-width={width} data-height={height}>
@@ -208,15 +209,14 @@ const ImageItem = React.createClass({
       </div>
     )
   },
-  getInitialState() {
-    return {
-      errorState:false
-    }
-  },
+  // getInitialState() {
+  //   return {
+  //     errorState:false
+  //   }
+  // },
   imageNotLoaded(evt){
-    this.setState({
-      errorState:true
-    })
+    let errorUrl = '//placehold.it/'+this.props.width+'x'+this.props.height
+    evt.target.src = errorUrl
   }
 })
 

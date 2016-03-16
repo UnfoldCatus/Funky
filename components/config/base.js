@@ -1,6 +1,6 @@
 import _ from 'lodash'
 const BaseConfig = {
-  baseUrl:'//cq.jsbn.com/api/',
+  baseUrl:'//cd.jsbn.com:7001/api/',
   buildUrl:function(params,urlTemplate){
       /*
         客户端渲染时， 由于是外部引入脚本的方式
