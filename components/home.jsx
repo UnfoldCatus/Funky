@@ -76,40 +76,13 @@ const BotComment = React.createClass({
         <img src={this.props.bg} />
         <ul className="comment">
           {
-            _.map(this.state.data,(value,key)=>{
+            _.map(this.props.list,(value,key)=>{
               return <Board key={key} list={value}/>
             })
           }
         </ul>
       </div>
     )
-  },
-  propTypes: {
-    dataUrl: React.PropTypes.string
-  },
-  getDefaultProps(){
-    return{ dataUrl:'' }
-  },
-  getInitialState() {
-    return { data:[] }
-  },
-  componentDidMount() {
-    if (this.props.dataUrl !== undefined) {
-      fetch(this.props.baseUrl + this.props.dataUrl)
-      .then(res => {return res.json()})
-      .then(j=>{
-        /*此次的data格式:
-
-          [
-            [1,2,3,4,5],
-            [6,7,8,9,10]
-          ].
-
-          由于接口返回的数据是一维的。 所以需要进行一次chunk操作
-        */
-        this.setState( { data: _.chunk(_.map(j.data,(v,k)=>{ return v.coverUrlWeb }),5) })
-      })
-    }
   }
 })
 

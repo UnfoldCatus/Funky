@@ -8,9 +8,9 @@ const HomeConfig = {
     'height': 680
   }, BaseConfig), // 广告轮播
   'Banner': [{
-    'imageUrl': '//image.jsbn.com/static/home-01.jpg'
+    'imageUrl': '//img2.jsbn.com/static/home-01.jpg'
   },{
-    'imageUrl':'//image.jsbn.com/static/home-03.jpg'
+    'imageUrl':'//img2.jsbn.com/static/home-03.jpg'
   }], //静态banner广告
   'Group5': _.merge({
     'dataUrl': 'adv/index_hot_top', // 数据请求地址
@@ -78,8 +78,34 @@ const HomeConfig = {
 
   ],
   'BotComment':_.merge({ //客户评价
-    'bg':'//image.jsbn.com/static/home-04.jpg',
-    'dataUrl':'adv/index_comment_bot'
+    'bg':'//img2.jsbn.com/static/home-04.jpg',
+    'list':[
+      ['//img2.jsbn.com/static/pingjia/1.jpg',
+      '//img2.jsbn.com/static/pingjia/2.jpg',
+      '//img2.jsbn.com/static/pingjia/3.jpg',
+      '//img2.jsbn.com/static/pingjia/4.jpg',
+      '//img2.jsbn.com/static/pingjia/5.jpg',
+      '//img2.jsbn.com/static/pingjia/6.jpg',],
+      ['//img2.jsbn.com/static/pingjia/7.jpg',
+      '//img2.jsbn.com/static/pingjia/8.jpg',
+      '//img2.jsbn.com/static/pingjia/9.jpg',
+      '//img2.jsbn.com/static/pingjia/10.jpg',],
+      ['//img2.jsbn.com/static/pingjia/11.jpg',
+      '//img2.jsbn.com/static/pingjia/12.jpg',
+      '//img2.jsbn.com/static/pingjia/13.jpg',
+      '//img2.jsbn.com/static/pingjia/14.jpg',
+      '//img2.jsbn.com/static/pingjia/15.jpg',],
+      ['//img2.jsbn.com/static/pingjia/16.jpg',
+      '//img2.jsbn.com/static/pingjia/17.jpg',
+      '//img2.jsbn.com/static/pingjia/18.jpg',
+      '//img2.jsbn.com/static/pingjia/19.jpg',
+      '//img2.jsbn.com/static/pingjia/20.jpg',],
+      ['//img2.jsbn.com/static/pingjia/21.jpg',
+      '//img2.jsbn.com/static/pingjia/22.jpg',
+      '//img2.jsbn.com/static/pingjia/23.jpg',
+      '//img2.jsbn.com/static/pingjia/24.jpg',
+      '//img2.jsbn.com/static/pingjia/25.jpg']
+    ]
   },BaseConfig)
 
 }
