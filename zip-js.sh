@@ -11,7 +11,7 @@ do
     watchify $file_path -o 'uglifyjs -cm > ./assets/script/modules/$filename.min.$extension' &
 done
 
-sleep 300
+sleep 3000
 
 PIDS=`ps -ef|grep watchify|grep -v grep|awk '{print $2}'`
 for pid in $PIDS
