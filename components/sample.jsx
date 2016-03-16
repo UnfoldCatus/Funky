@@ -33,6 +33,7 @@ const Sample = React.createClass({
           <div className="filter-title J_Tab">
             <span className="sel">婚纱摄影</span>
             <span className="sel sec nnn">艺术写真</span>
+            <span className="sel sec nnn">全家福</span>
           </div>
           <div className='J_FilterCtrl' onClick={this.toggleFun}>
             <ListFilter title={'风格'} name={'styleName'} klass={'ico-1-js ico-1-2-js'} valueKey={['styleId']} conditions={this.state.styles} sorterKey={['styleId']} />
