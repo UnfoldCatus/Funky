@@ -262,5 +262,9 @@ siteRouter.get('/car', function* index(next) {
   yield this.render('modules/default', renderOption('car', '/car', '/car'))
 })
 
+/** 活动详情页 **/
+siteRouter.get('/active/:name', function* index(next) {
+  yield this.render('modules/default', renderOption('active', '/active', '/active', this.params))
+})
 
 export { siteRouter }
