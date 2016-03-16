@@ -50,7 +50,7 @@ const HotelBaseInfo = React.createClass({
             <p>场厅数量<span><b>{(this.props.banquetHall && this.props.banquetHall.length) || 0}</b>个专用宴会厅</span></p>
               <p>最大容客数<span><b>{this.props.maxTableNum}</b>桌</span></p>
               <p id="J_AddressButton" >所在地址:<span>
-                <a href={'/map?longitude='+this.props.longitude+'&latitude='+this.props.latitude}>
+                <a href={'/map/'+this.props.longitude+'/'+this.props.latitude} target='_blank'>
                   <b>{this.props.address}</b>
                 </a>
                 <i className="ico-8-js" />
