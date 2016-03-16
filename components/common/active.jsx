@@ -38,10 +38,9 @@ const Active = React.createClass({
   },
 
   componentDidMount() {
-    // TODO 通过外部传入活动名称到ActiveConfig去匹配
-    let name = 'aboutUs';
-    if(ActiveConfig[name]) {
-      this.setState({picUrls:ActiveConfig[name]});
+    let template = this.props.dataParams;
+    if(ActiveConfig[template.name]) {
+      this.setState({picUrls:ActiveConfig[template.name]});
     }
   }
 })
