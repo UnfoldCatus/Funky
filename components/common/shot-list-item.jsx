@@ -62,7 +62,7 @@ const ShotListItem = React.createClass({
       if (_.size(nextProps.params)>0) {
         p = '?'+$.param(nextProps.params)
       }
-      fetch(nextProps.baseUrl + nextProps.dataUrl + p)
+      fetch(this.props.baseUrl + nextProps.dataUrl + p)
       .then(res => {return res.json()})
       .then(j=>{
         let temp = []
@@ -72,7 +72,6 @@ const ShotListItem = React.createClass({
     }
   },
   componentDidMount() {
-    let self = this;
     if (this.props.dataUrl !== undefined) {
       let p = ''
       if (_.size(this.props.params)>0) {
@@ -106,6 +105,7 @@ const ShotListItem = React.createClass({
             'pageIndex':currentIndex+1
           })
         }
+        console.log(this.props.baseUrl);
         fetch(this.props.baseUrl + this.props.dataUrl+p)
         .then(res=>{return res.json()})
         .then(j=>{

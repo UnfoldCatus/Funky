@@ -5,6 +5,7 @@
   "main": "react-server.js",
   "scripts": {
     "start": "NODE_ENV=development babel-node ./react-server.js",
+    "deplot": "NODE_ENV=production babel-node ./react-server.js",
     "build-shot": "watchify ./src/client/shot.js -o 'uglifyjs -cm > ./assets/script/modules/shot.min.js'",
     "build-sample": "watchify ./src/client/sample.js -o 'uglifyjs -cm > ./assets/script/modules/sample.min.js'",
     "build-sample-details": "watchify ./src/client/sample-details.js -o 'uglifyjs -cm > ./assets/script/modules/sample-details.min.js'",

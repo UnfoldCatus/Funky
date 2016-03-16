@@ -129,7 +129,8 @@ let renderOption = (templateName, menuKey, parentKey,params) => {
       'reactMarkup': renderToString(ComponentsIndex[templateName]),
       'reactNavMarkup': renderToString(<Navigation menuKey={parentKey ||'/'} currentKey={menuKey} />),
       'main': templateName,// 客户端渲染使用的脚本名称和模板名称一致
-      'params':JSON.stringify(p)
+      'params':JSON.stringify(p),
+      'mode':(process.env.NODE_ENV === 'production')?'production':'development'
     }
   }
   /**
