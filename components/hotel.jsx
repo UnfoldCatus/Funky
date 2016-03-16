@@ -214,7 +214,7 @@ const Hotel = React.createClass({
     return (
       <div className='hyyd-view hotel-page'>
         <div className="bannar-all-box">
-          <div id="slider_top" className="slider-box bannar" style={{height:'450px'}}>
+          <div id="slider_top" className="slider-box bannar">
             <MediaSlider {...HotelConfig['MediaSlider']}/>
           </div>
         </div>
