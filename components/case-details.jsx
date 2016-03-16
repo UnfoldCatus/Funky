@@ -157,7 +157,11 @@ const CaseDetails = React.createClass({
   // 数据请求/dress/dress_list?brandld=5品牌ID&typeId=礼服类型ID
   componentDidMount() {
     let cfg = CaseDetailsConfig['CaseDetails']
-    let fetchUrl = '//cq.jsbn.com/api/cases/detail/942';//cfg['buildUrl'](942,cfg['dataUrl'])
+
+    // TODO:测试用
+    let id = (process.env.NODE_ENV === 'production')?942:1040
+    let fetchUrl = cfg['buildUrl']({"id":id},cfg['dataUrl'])
+    console.log('------'+fetchUrl)
     /** 请求礼服列表 **/
     fetch(fetchUrl)
       .then(res => {return res.json()})
