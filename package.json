@@ -14,6 +14,7 @@
     "build-pringles-details": "watchify ./src/client/pringles-details.js -o 'uglifyjs -cm > ./assets/script/modules/pringles-details.min.js'",
     "build-hotel": "watchify ./src/client/hotel.js -o 'uglifyjs -cm > ./assets/script/modules/hotel.min.js'",
     "build-hotel-details": "watchify ./src/client/hotel-details.js -o 'uglifyjs -cm > ./assets/script/modules/hotel-details.min.js'",
+    "build-hall-details": "watchify ./src/client/hall-details.js -o 'uglifyjs -cm > ./assets/script/modules/hall-details.min.js'",
     "build-map-location": "watchify ./src/client/map-location.js -o 'uglifyjs -cm > ./assets/script/modules/map-location.min.js'",
     "build-suite": "watchify ./src/client/suite.js -o 'uglifyjs -cm > ./assets/script/modules/suite.min.js'",
     "build-suite-details": "watchify ./src/client/suite-details.js -o 'uglifyjs -cm > ./assets/script/modules/suite-details.min.js'",

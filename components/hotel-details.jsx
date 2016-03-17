@@ -154,7 +154,7 @@ const HotelHall = React.createClass({
                                 <li className="li_w2"><span>低消：</span><span><span>¥</span><span>{ parseFloat(v.lowestConsumption).toFixed(2)}</span><span>／桌</span></span></li>
                             </ul>
                               <a className="btn-js btn-grayline-pink-1-js transition-bg"
-                                  href='/'>查看详情</a>
+                                  href={'/hall/'+v.id}>查看详情</a>
                           </div>
                       </li>
                   )
@@ -235,7 +235,9 @@ const HotelRecommend = React.createClass({
               _.map(this.state.recommends,function(v,k){
                   return (
                       <li className="item-box" key={k}>
-                          <MediaItem mediaUrl={v.coverUrlWeb} width={168} aspectRatio='3:2' />
+                          <a href={'/hotel/'+v.id} className='img-box' target='_blank'>
+                            <MediaItem mediaUrl={v.coverUrlWeb} width={168} aspectRatio='3:2' />
+                          </a>
                           <div className="title-box">
                           <span>{v.name}</span>
                           </div>
@@ -302,16 +304,16 @@ const HotelDetails = React.createClass({
         <div className='layout-center-box'>
           <div className='hotel-detail-box'>
             <HotelThumb data={thumbs} />
-          <HotelBaseInfo {...this.state.details} />
+            <HotelBaseInfo {...this.state.details} />
           </div>
           <div className='leftInner'>
             <div className="hotel-detail-info clearfix">
               <h2 className="mgb10">酒店介绍</h2>
-            <HotelIntroduction {...this.state.details} />
+              <HotelIntroduction {...this.state.details} />
               <h2 className="mgb20">宴会厅介绍</h2>
-            <HotelHall {...this.state.details} />
+              <HotelHall {...this.state.details} />
               <h2 id='test'>婚宴套系菜单</h2>
-            <HotelMenu data={menus}/>
+              <HotelMenu data={menus}/>
             </div>
           </div>
           <div className='recommend-adv-box'>

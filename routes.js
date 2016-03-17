@@ -203,6 +203,11 @@ siteRouter.get('/hotel', function* index(next) {
 siteRouter.get('/hotel/:id', function* index(next) {
     yield this.render('modules/default', renderOption('hotel-details', '/hotel', '/hotel',this.params))
 })
+/** 宴会厅详情 **/
+siteRouter.get('/hall/:id', function* index(next) {
+    yield this.render('modules/default', renderOption('hall-details', '/hotel', '/hotel',this.params))
+})
+/** 酒店位置地图 **/
 siteRouter.get('/map/:latitude/:longitude', function* index(next) {
     yield this.render('modules/default', renderOption('map-location', '/hotel', '/hotel',this.params))
 })
