@@ -33,7 +33,7 @@ const ShotConfig = {
   'ShotListItem': _.merge({
     'type':'sample',
     'link':'/sample',
-    'dataUrl': 'sample/samples_list',
+    'dataUrl': 'sample/shot_new_mid',// 最新动态->最新美照版块
     'params':{ //因为是聚合页面，样片的个数固定
       'pageSize':6,
       'pageIndex':1
