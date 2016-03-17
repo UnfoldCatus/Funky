@@ -22,7 +22,7 @@ const FirstItem = React.createClass({
         <span className='first-img-box'>
           <MediaItem aspectRatio='38:27' height={270} mediaUrl={this.props.coverUrlWeb} videoUrl={this.props.videoUrl}  autoplay={true}/>
         </span>
-        <a href='/'>
+        <a href={this.props.linkUrl}>
           <div className='title-box'>
             <span>{names[0]||'金色百年'}</span>
             <span className='en'>{names[1]||'GOLDEN WEDDING'}</span>
@@ -43,7 +43,7 @@ const OtherItem = React.createClass({
         <div className='img-box'>
           <MediaItem aspectRatio={'2:3'} height={570} mediaUrl={this.props.coverUrlWeb} videoUrl={this.props.videoUrl} autoplay={true}/>
         </div>
-         <a href={'/'}>
+         <a href={this.props.linkUrl}>
            <div className = "title-box">
               <span>{names[0]||'金色百年'}</span>
               <span className = "en">{names[1]||'GOLDEN WEDDING'}</span>
