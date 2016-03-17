@@ -147,7 +147,7 @@ const VideoItem = React.createClass({
     if (this.props.autoplay) { // 自动播放的Media-element视频
       setTimeout(this.loadAutoPlayVideo(this.state.genID),0)
     }else {
-      if (-1 !== this.props.videoUrl.indexOf('api.taobao')) { //taobao视频
+      if (-1 !== this.props.videoUrl.indexOf('taobao.com')) { //taobao视频
         (2 === this.props.videoUrl.split('?').length)
         &&
         setTimeout(this.loadTaobaoVideo(

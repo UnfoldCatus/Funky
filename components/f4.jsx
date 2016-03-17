@@ -450,7 +450,7 @@ const TitleFilter = React.createClass({
         {
           _.map(this.state.typeTitle, (v,k) => {
             let handleClick = this.handleSel.bind(this, k);
-            if(this.state.type == k) {
+            if(this.props.type == k) {
               return (
                 <span key={k} className="sel" onClick={handleClick}>{v}</span>
               );
@@ -467,13 +467,11 @@ const TitleFilter = React.createClass({
 
   getInitialState() {
     return {
-      typeTitle:['主持人', '化妆师', '摄影师', '摄像师'],
-      type:0,// 0:主持人 1:化妆师 2:摄影师 3:摄像师
+      typeTitle:['主持人', '化妆师', '摄影师', '摄像师']
     };
   },
 
   handleSel(i) {
-    this.setState({type:i});
     this.props.handleSel(i);
   }
 });
@@ -508,7 +506,7 @@ const F4 = React.createClass({
       <div className="f4-view">
         <div className="layout-center-box">
           <Banner {...F4Config['Banner'][0]} />
-          <TitleFilter handleSel={this.handleTabSel} />
+          <TitleFilter type={this.state.type} handleSel={this.handleTabSel} />
           <ListFilter title={'价格'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']} conditions={this.state.prices}  sorterKey={['minPrice','maxPrice']}/>
           <div className="screening-results">
             <b>* 温馨提示：如遇节假日或者黄道吉日，预订价格或有波动，请以实际线下合同为准。 </b>
@@ -523,9 +521,39 @@ const F4 = React.createClass({
   },
 
   getInitialState: function() {
+    let urlPra = decodeURIComponent(window.location.search.substr(1)).split('&');// 去掉?号根据&进行拆分
+    let request = new Object();
+    for(let i = 0; i < urlPra.length; i++) {
+      request[urlPra[i].split('=')[0]]=urlPra[i].split('=')[1];
+    }
+
+    let ty = 0;
+    switch (request['tab']) {
+      case 'host':
+      {
+        ty = 0;
+        break;
+      }
+      case 'dresser':
+      {
+        ty = 1;
+        break;
+      }
+      case 'photographer':
+      {
+        ty = 2;
+        break;
+      }
+      case 'camera':
+      {
+        ty = 3;
+        break;
+      }
+    }
+
     return {
       prices: F4Config['Prices'], // config
-      type:0,// 0:主持人 1:化妆师 2:摄影师 3:摄像师
+      type:ty,// 0:主持人 1:化妆师 2:摄影师 3:摄像师
       count:0,
     };
   },
