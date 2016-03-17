@@ -10,7 +10,7 @@ const MovieConfig = {
   //静态banner
   'Banner':[
     {
-      'imageUrl':'//image.jsbn.com/static/wdy.jpg'
+      'imageUrl':'//img2.jsbn.com/static/wdy.jpg'
     }
   ],
   // 最新微电影

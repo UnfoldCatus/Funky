@@ -8,7 +8,7 @@ const F4Config  = {
   //静态banner
   'Banner':[
     {
-      'imageUrl': '//image.jsbn.com/static/xhlr.jpg'
+      'imageUrl': '//img2.jsbn.com/static/xhlr.jpg'
     }
   ],
   Prices: [{

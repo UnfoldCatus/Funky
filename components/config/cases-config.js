@@ -3,7 +3,7 @@ import _ from 'lodash'
 
 const CasesConfig = {
   'Banner':[
-    {'imageUrl':'//image.jsbn.com/static/sjal.jpg'}
+    {'imageUrl':'//img2.jsbn.com/static/sjal.jpg'}
   ],
   'CasesCategory':{
     'resourceUrl':''

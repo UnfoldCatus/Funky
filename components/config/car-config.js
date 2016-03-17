@@ -5,7 +5,7 @@ import _ from 'lodash'
 const CarConfig = {
   //静态banner
   'Banner': [{
-    'imageUrl': '//image.jsbn.com/static/ypxs.jpg'
+    'imageUrl': '//img2.jsbn.com/static/ypxs.jpg'
   }],
   'MediaSlider': _.merge({
     'dataUrl': 'adv/car_top',

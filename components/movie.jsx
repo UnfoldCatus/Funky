@@ -11,7 +11,7 @@ const ItemType = React.createClass({
     return (
       <div className='layout-center-box'>
         <div className="nav-box">
-          <img src="http://image.jsbn.com/static/wdy-nav.png" />
+          <img src="http://img2.jsbn.com/static/wdy-nav.png" />
           <ul className="hover-box">
             {
               _.map(this.props.type, (v,k) => {
