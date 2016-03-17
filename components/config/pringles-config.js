@@ -4,7 +4,7 @@ import _ from 'lodash'
 const PringlesConfig  = {
   //静态banner
   'Banner':[
-    { 'imageUrl': '//img2.jsbn.com/static/kpxs.png' }
+    { 'imageUrl': '//img2.jsbn.com/static/kpxs.jpg' }
   ],
   'ShotListItem':_.merge({
     'type':'pringles',
