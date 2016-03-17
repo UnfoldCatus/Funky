@@ -220,10 +220,10 @@ const Hotel = React.createClass({
         </div>
         <div className="layout-center-box J_HotelListFilterPanel">
           <div className='mgb30' />
-          <ListFilter title={'区域'} name={'name'} klass={'ico-18-js ico-1-1-js'} valueKey={['id']} conditions={this.state.areas} sorterKey={['cityId']} />
-          <ListFilter title={'分类'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']} conditions={this.state.types} sorterKey={['hotelType']} />
-          <ListFilter title={'桌数'} name={'name'} klass={'ico-18-js ico-18-2-js'} valueKey={['minTable','maxTable']} conditions={this.state.seatsCount} sorterKey={['minTable','maxTable']} />
-          <ListFilter title={'价格'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']} conditions={this.state.prices}  sorterKey={['minPrice','maxPrice']}/>
+          <ListFilter title={'区域'} name={'name'} klass={'ico-18-js ico-1-1-js'} valueKey={['id']} sorterKey={['cityId']} {...HotelConfig['DistrictConditions']} />
+          <ListFilter title={'分类'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']}  sorterKey={['hotelType']} {...HotelConfig['TypeConditions']} />
+          <ListFilter title={'桌数'} name={'name'} klass={'ico-18-js ico-18-2-js'} valueKey={['minTable','maxTable']}  sorterKey={['minTable','maxTable']} {...HotelConfig['SeatsCountConditions']}/>
+          <ListFilter title={'价格'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']} {...HotelConfig['PricesConditions']}  sorterKey={['minPrice','maxPrice']}/>
 
           <div className="screening-2-jsbn">
             <div className="line-1"></div>
@@ -275,17 +275,20 @@ const Hotel = React.createClass({
       </div>
     )
   },
-  getInitialState() {
+  getDefaultProps(){
     return {
       types:[], // fetch
       prices: HotelConfig['Prices'], // config
       seatsCount: HotelConfig['SeatsCount'], // config
       areas: [], // fetch
       hotels:[], // fetch
-      totalPage:0 // calculate
     }
   },
-  loadMore(){},
+  getInitialState() {
+    return {
+      hotels:[]
+    }
+  },
   componentDidMount() {
     const HotelListConfig = HotelConfig['HotelList'] //数据请求地址配置在config文件
     if (HotelListConfig.dataUrl !== undefined) {
@@ -296,12 +299,11 @@ const Hotel = React.createClass({
       })
     }
 
-    const TypeCategory = HotelConfig['TypeCategory'] //取到配置的获取类型数据的请求地址
+  /*  const TypeCategory = HotelConfig['TypeCategory'] //取到配置的获取类型数据的请求地址
     if (TypeCategory.dataUrl !== undefined) {
       fetch(TypeCategory.baseUrl + TypeCategory.dataUrl)
       .then(res => {return res.json()})
       .then(j=>{
-        /* 针对每个类型只取name和id字段 */
         this.setState({ types: _.map(j.data || [],(v,k)=>{ return _.pick(v,['name','id']) }) })
       })
     }
@@ -311,10 +313,9 @@ const Hotel = React.createClass({
       fetch(DistrictCategory.baseUrl + DistrictCategory.dataUrl)
       .then(res => {return res.json()})
       .then(j=>{
-        /* 针对每个地区只取name和id字段 */
         this.setState({ areas: _.map(j.data || [],(v,k)=>{ return _.pick(v,['name','id']) }) })
       })
-    }
+    }*/
   }
 })
 
