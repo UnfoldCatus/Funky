@@ -89,8 +89,8 @@ const Pringles = React.createClass({
   render () {
     return (
       <div className='kpxs-view'>
-          <div id="slider_top" className="slider-box bannar-all-box" style={{height:'450px'}}>
-            <div className="bannar" style={{height:'450px'}}>
+          <div id="slider_top" className="slider-box bannar-all-box">
+            <div className="bannar">
               <MediaSlider {...PringlesConfig['MediaSlider']}/>
             </div>
           </div>

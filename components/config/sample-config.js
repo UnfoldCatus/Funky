@@ -21,12 +21,17 @@ const SampleConfig  = {
     }
 
   },BaseConfig),
-
   'MediaSlider':_.merge({
     'dataUrl':'adv/samples_top',
     'aspectRatio':'192:45',
     'height':450
-  },BaseConfig)
+  },BaseConfig),
+  'StyleFilter':_.merge({
+    'dataUrl':'shootStyle/all'
+  },BaseConfig),
+  'ExteriorFilter':_.merge({
+    'dataUrl':'exterior/all'
+  },BaseConfig),
 }
 
 export { SampleConfig }
