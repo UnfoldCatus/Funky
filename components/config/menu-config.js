@@ -144,7 +144,7 @@ const MenuConfig = {
     {
       cn:'大礼包',
       en:'GIFT',
-      link:'/activity?type=gift'
+      link:'/active/libao'
     },
     {
       cn:'婚宴知识',

@@ -243,7 +243,7 @@ siteRouter.get('/scheme-require', function* index(next) {
 })
 /** 选婚礼人(四大金刚) **/
 siteRouter.get('/f4', function* index(next) {
-  yield this.render('modules/default', renderOption('f4', '/f4', '/scheme'))
+  yield this.render('modules/default', renderOption('f4', '/f4', '/scheme', this.request.query))
 })
 
 /** 礼服 **/
