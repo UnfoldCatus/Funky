@@ -8,7 +8,7 @@ const DressDetailsConfig  = {
     //静态banner
     'Banner':[
         {
-            'imageUrl': '//image.jsbn.com/static/hslf.jpg'
+            'imageUrl': '//img2.jsbn.com/static/hslf.jpg'
         }
     ],
     'APIConfig':_.merge({},BaseConfig)

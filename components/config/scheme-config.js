@@ -4,7 +4,7 @@ import { BaseConfig } from './base'
 const SchemeConfig = {
   'Banner':[
     {
-      'imageUrl':'//image.jsbn.com/static/hqdz.jpg'
+      'imageUrl':'//img2.jsbn.com/static/hqdz.jpg'
     }
   ],
   'MediaSlider':_.merge({
@@ -30,12 +30,12 @@ const SchemeConfig = {
     ]
   },BaseConfig),
   'PhotoGallery':[
-    { 'imageUrl':'//image.jsbn.com/static/team/team-hqdz_01.jpg' },
-    { 'imageUrl':'//image.jsbn.com/static/team/team-hqdz_02.jpg' },
-    { 'imageUrl':'//image.jsbn.com/static/team/team-hqdz_03.jpg' },
-    { 'imageUrl':'//image.jsbn.com/static/team/team-hqdz_04.jpg' },
-    { 'imageUrl':'//image.jsbn.com/static/team/team-hqdz_05.jpg' },
-    { 'imageUrl':'//image.jsbn.com/static/team/team-hqdz_06.jpg' }
+    { 'imageUrl':'//img2.jsbn.com/static/team/team-hqdz_01.jpg' },
+    { 'imageUrl':'//img2.jsbn.com/static/team/team-hqdz_02.jpg' },
+    { 'imageUrl':'//img2.jsbn.com/static/team/team-hqdz_03.jpg' },
+    { 'imageUrl':'//img2.jsbn.com/static/team/team-hqdz_04.jpg' },
+    { 'imageUrl':'//img2.jsbn.com/static/team/team-hqdz_05.jpg' },
+    { 'imageUrl':'//img2.jsbn.com/static/team/team-hqdz_06.jpg' }
   ],
   'NavGallery':[
     { 'link':'/f4?tab=dresser','klass':'hzs'},

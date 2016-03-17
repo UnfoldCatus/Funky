@@ -3,7 +3,7 @@ import _ from 'lodash'
 
 const WeddingMVConfig = {
   'Banner':[
-    {'imageUrl':'//image.jsbn.com/static/title/hsjs.jpg'}
+    {'imageUrl':'//img2.jsbn.com/static/hsjs.jpg'}
   ],
   'MediaSlider':_.merge({
     'dataUrl':'adv/weddingvideo_top',

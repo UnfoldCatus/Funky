@@ -10,7 +10,7 @@ const DressConfig  = {
   //静态banner
   'Banner':[
     {
-      'imageUrl': '//image.jsbn.com/static/hslf.jpg'
+      'imageUrl': '//img2.jsbn.com/static/hslf.jpg'
     }
   ],
   'DressType':_.merge({
