@@ -202,12 +202,22 @@ const ImageItem = React.createClass({
     //     </div>
     //   )
     // }
+    if (this.props.outerLink) {
+      return (
+        <a href={this.props.outerLink} className='img-box'>
+          <div className='J_MediaWrapper' style={{'height':'100%'}} data-width={width} data-height={height}>
+            <img src={mediaUrl} onError={this.imageNotLoaded}  />
+          </div>
+        </a>
+      )
+    }else {
+      return (
+        <div className='J_MediaWrapper' style={{'height':'100%'}} data-width={width} data-height={height}>
+          <img src={mediaUrl} onError={this.imageNotLoaded}  />
+        </div>
+      )
+    }
 
-    return (
-      <div className='J_MediaWrapper' style={{'height':'100%'}} data-width={width} data-height={height}>
-        <img src={mediaUrl} onError={this.imageNotLoaded}  />
-      </div>
-    )
   },
   // getInitialState() {
   //   return {
