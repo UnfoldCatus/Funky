@@ -67,7 +67,7 @@ const Shot = React.createClass({
     return (
       <div className="hssy-home-view">
         <div className="bannar-all-box">
-          <div id="slider_top" className="slider-box bannar" style={{height:'680px'}}>
+          <div id="slider_top" className="slider-box bannar" style={{height:ShotConfig['MediaSlider']['height']}}>
             <MediaSlider {...ShotConfig['MediaSlider']} />
           </div>
         </div>

@@ -66,6 +66,46 @@ const ActiveConfig = {
       }
     ]
   },
+  'libao':{
+    kClass:'topic',
+    pic:[
+      {
+        'url':'//img2.jsbn.com/static/libao/libao_01.jpg',
+        'href':false,
+        'hrefUrl':''
+      },
+      {
+        'url':'//img2.jsbn.com/static/libao/libao_02.jpg',
+        'href':false,
+        'hrefUrl':''
+      },
+      {
+        'url':'//img2.jsbn.com/static/libao/libao_03.jpg',
+        'href':false,
+        'hrefUrl':''
+      },
+      {
+        'url':'//img2.jsbn.com/static/libao/libao_04.jpg',
+        'href':false,
+        'hrefUrl':''
+      },
+      {
+        'url':'//img2.jsbn.com/static/libao/libao_05.jpg',
+        'href':false,
+        'hrefUrl':''
+      },
+      {
+        'url':'//img2.jsbn.com/static/libao/libao_06.jpg',
+        'href':false,
+        'hrefUrl':''
+      },
+      {
+        'url':'//img2.jsbn.com/static/libao/libao_07.jpg',
+        'href':false,
+        'hrefUrl':''
+      }
+    ]
+  },
   'tyzx':{
     kClass:'topic',
     pic:[

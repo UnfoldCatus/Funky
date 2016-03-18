@@ -84,7 +84,7 @@ const Supply = React.createClass({
     return (
       <div className='hlyp-view'>
         <div className="bannar-all-box mgb30">
-          <div id="slider_top" className="slider-box bannar" style={{height:'450px'}}>
+          <div id="slider_top" className="slider-box bannar" style={{height:SupplyConfig['MediaSlider']['height']}}>
             <MediaSlider {...SupplyConfig['MediaSlider']} />
           </div>
         </div>

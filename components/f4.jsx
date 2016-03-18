@@ -521,14 +521,17 @@ const F4 = React.createClass({
   },
 
   getInitialState: function() {
-    let urlPra = decodeURIComponent(window.location.search.substr(1)).split('&');// 去掉?号根据&进行拆分
-    let request = new Object();
-    for(let i = 0; i < urlPra.length; i++) {
-      request[urlPra[i].split('=')[0]]=urlPra[i].split('=')[1];
-    }
+    return {
+      prices: F4Config['Prices'], // config
+      type:0,// 0:主持人 1:化妆师 2:摄影师 3:摄像师
+      count:0,
+    };
+  },
 
+  componentDidMount() {
     let ty = 0;
-    switch (request['tab']) {
+    let template = this.props.dataParams;
+    switch (template['tab']) {
       case 'host':
       {
         ty = 0;
@@ -551,11 +554,7 @@ const F4 = React.createClass({
       }
     }
 
-    return {
-      prices: F4Config['Prices'], // config
-      type:ty,// 0:主持人 1:化妆师 2:摄影师 3:摄像师
-      count:0,
-    };
+    this.setState({type:ty});
   },
 
   handleTabSel(ty) {

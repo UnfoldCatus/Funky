@@ -17,7 +17,7 @@ import { DressConfig } from './config/dress-config'
 
 const DressHolder = React.createClass({
   render () {
-    let hf = '/dress-details?brandId='+this.props.data.id+'&typeId='+this.props.data.type + '&typeName='+this.props.typeName+'&brandName='+this.props.data.name;
+    let hf = '/dress-details?brandId='+this.props.data.id+'&typeId='+this.props.data.type;
     return (
       <div className="show-box">
         <div className="layer-box" />
@@ -100,7 +100,7 @@ const Dress = React.createClass({
     return (
       <div className="hslf-view">
         <div className="bannar-all-box">
-          <div id="slider_top" className="slider-box bannar" >
+          <div id="slider_top" className="slider-box bannar" style={{height:DressConfig['MediaSlider']['height']}}>
             <MediaSlider {...DressConfig['MediaSlider']}/>
           </div>
         </div>

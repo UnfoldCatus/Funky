@@ -243,7 +243,7 @@ siteRouter.get('/scheme-require', function* index(next) {
 })
 /** 选婚礼人(四大金刚) **/
 siteRouter.get('/f4', function* index(next) {
-  yield this.render('modules/default', renderOption('f4', '/f4', '/scheme'))
+  yield this.render('modules/default', renderOption('f4', '/f4', '/scheme', this.request.query))
 })
 
 /** 礼服 **/
@@ -252,7 +252,7 @@ siteRouter.get('/dress', function* index(next) {
 })
 /** 礼服详情 **/
 siteRouter.get('/dress-details', function* index(next) {
-    yield this.render('modules/default', renderOption('dress-details', '/dress', '/dress'))
+    yield this.render('modules/default', renderOption('dress-details', '/dress', '/dress', this.request.query))
 })
 /** 微电影 **/
 siteRouter.get('/movie', function* index(next) {
@@ -260,7 +260,7 @@ siteRouter.get('/movie', function* index(next) {
 })
 /** 微电影详情 **/
 siteRouter.get('/movie-details', function* index(next) {
-  yield this.render('modules/default', renderOption('movie-details', '/movie', '/movie'))
+  yield this.render('modules/default', renderOption('movie-details', '/movie', '/movie', this.request.query))
 })
 /** 婚礼用品 **/
 siteRouter.get('/supply', function* index(next) {
