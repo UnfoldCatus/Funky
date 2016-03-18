@@ -252,7 +252,7 @@ siteRouter.get('/dress', function* index(next) {
 })
 /** 礼服详情 **/
 siteRouter.get('/dress-details', function* index(next) {
-    yield this.render('modules/default', renderOption('dress-details', '/dress', '/dress'))
+    yield this.render('modules/default', renderOption('dress-details', '/dress', '/dress', this.request.query))
 })
 /** 微电影 **/
 siteRouter.get('/movie', function* index(next) {
