@@ -15,8 +15,7 @@ const MovieDetails = React.createClass({
           <div className="video-box">
             <MediaItem aspectRatio='80:45' height={450}
                        mediaUrl={this.state.moveInfo.coverUrlWeb}
-                       videoUrl={this.state.moveInfo.videoUrl
-                       || '//api.video.taobao.com//video/embedVideo?vid=34799342&uid=2579307056&tid=1&autoplay=false&showsharebutton=false'}/>
+                       videoUrl={this.state.moveInfo.videoUrl}/>
             <div className="info-box">
               <h1>{this.state.moveInfo.name}</h1>
               <p>{this.state.moveInfo.description}</p>
@@ -61,19 +60,18 @@ const MovieDetails = React.createClass({
 
   componentDidMount() {
     /** 请求微电影详情 **/
-    let urlPra = decodeURIComponent(window.location.search.substr(1)).split('&');// 去掉?号根据&进行拆分
-    let request = new Object();
-    for(let i = 0; i < urlPra.length; i++) {
-      request[urlPra[i].split('=')[0]]=urlPra[i].split('=')[1];
+    let request = this.props.dataParams;
+    console.log('------'+JSON.stringify(request))
+    if(request['id']) {
+      let fetchUrl = BaseConfig['baseUrl']+'video/detail/'+request['id'];
+      fetch(fetchUrl)
+        .then(res => {return res.json()})
+        .then(j=>{
+          if(j.success && j.data.length > 0) {
+            this.setState({moveInfo:j.data[0]})
+          }
+        })
     }
-    let fetchUrl = BaseConfig['baseUrl']+'video/detail/'+request['id'];
-    fetch(fetchUrl)
-      .then(res => {return res.json()})
-      .then(j=>{
-        if(j.success && j.data.length > 0) {
-          this.setState({moveInfo:j.data[0]})
-        }
-      })
 
     /** 请求最新微电影 最多取四个 **/
     let hotUrl = BaseConfig['baseUrl']+'video/movie_latest?pageIndex=1&pageSize=4'

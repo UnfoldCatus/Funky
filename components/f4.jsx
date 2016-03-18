@@ -531,7 +531,6 @@ const F4 = React.createClass({
   componentDidMount() {
     let ty = 0;
     let template = this.props.dataParams;
-    console.log(this.props.dataParams)
     switch (template['tab']) {
       case 'host':
       {

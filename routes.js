@@ -260,7 +260,7 @@ siteRouter.get('/movie', function* index(next) {
 })
 /** 微电影详情 **/
 siteRouter.get('/movie-details', function* index(next) {
-  yield this.render('modules/default', renderOption('movie-details', '/movie', '/movie'))
+  yield this.render('modules/default', renderOption('movie-details', '/movie', '/movie', this.request.query))
 })
 /** 婚礼用品 **/
 siteRouter.get('/supply', function* index(next) {
