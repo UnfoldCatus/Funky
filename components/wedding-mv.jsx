@@ -9,7 +9,7 @@ const WeddingMV = React.createClass({
     return (
       <div className="hsjs-view">
           <div className="bannar-all-box">
-            <div id="slider_top" className="slider-box bannar mgb30" style={{height:'450px'}}>
+            <div id="slider_top" className="slider-box bannar mgb30" style={{height:WeddingMVConfig['MediaSlider']['height']}}>
               <MediaSlider {...WeddingMVConfig['MediaSlider']}/>
             </div>
           </div>

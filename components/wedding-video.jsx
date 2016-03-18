@@ -9,7 +9,7 @@ const WeddingVideo = React.createClass({
     return (
       <div className="hlsp-view">
           <div className="bannar-all-box">
-            <div id="slider_top" className="slider-box bannar mgb30" style={{height:'450px'}}>
+            <div id="slider_top" className="slider-box bannar mgb30" style={{height:WeddingVideoConfig['MediaSlider']['height']}}>
               <MediaSlider {...WeddingVideoConfig['MediaSlider']}/>
             </div>
           </div>

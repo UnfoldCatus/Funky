@@ -77,7 +77,7 @@ const Car = React.createClass({
       <div className="zuche-view">
         <div className="bannar-all-box">
           <div className="custom-banner">
-            <div id="slider_top" className="slider-box bannar"  style={{height:'450px'}}>
+            <div id="slider_top" className="slider-box bannar"  style={{height:CarConfig['MediaSlider']['height']}}>
               <MediaSlider {...CarConfig['MediaSlider']} />
             </div>
           </div>

@@ -94,7 +94,7 @@ const Home = React.createClass({
     return (
       <div className='home-view'>
         <div className='bannar-all-box' >
-          <div className='slider-box bannar' style={{height:'680px'}} id='slider_top'>
+          <div className='slider-box bannar' style={{height:HomeConfig['MediaSlider']['height']}} id='slider_top'>
             <MediaSlider {...HomeConfig['MediaSlider']} />
           </div>
         </div>

@@ -100,7 +100,7 @@ const Dress = React.createClass({
     return (
       <div className="hslf-view">
         <div className="bannar-all-box">
-          <div id="slider_top" className="slider-box bannar" >
+          <div id="slider_top" className="slider-box bannar" style={{height:DressConfig['MediaSlider']['height']}}>
             <MediaSlider {...DressConfig['MediaSlider']}/>
           </div>
         </div>

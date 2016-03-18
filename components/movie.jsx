@@ -108,7 +108,7 @@ const Movie = React.createClass({
     return (
       <div className="wdy-view">
         <div className="bannar-all-box">
-          <div id="slider_top" className="slider-box bannar">
+          <div id="slider_top" className="slider-box bannar" style={{height:MovieConfig['MediaSlider']['height']}}>
             <MediaSlider {...MovieConfig['MediaSlider']}/>
           </div>
         </div>

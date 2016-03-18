@@ -54,7 +54,7 @@ const Cases = React.createClass({
     return (
       <div className='sjal-view'>
         <div className='layout-center-box'>
-          <div className='slider-box bannar mgb30' id="slider_top">
+          <div className='slider-box bannar mgb30' id="slider_top" style={{height:CasesConfig['MediaSlider']['height']}}>
             <MediaSlider {...CasesConfig['MediaSlider']} />
           </div>
           <Banner {...CasesConfig['Banner'][0]} />
