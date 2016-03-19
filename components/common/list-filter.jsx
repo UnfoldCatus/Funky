@@ -49,6 +49,14 @@ const ListFilter = React.createClass({
     }
   },
   componentDidMount() {
+    $('.filter-box').on('click',(evt)=>{
+      if($(evt.target).hasClass('tab')){
+         $(evt.currentTarget).find('.tab').removeClass('tab-sel')
+         $(evt.target).addClass('tab-sel')
+      }
+    })
+
+
     if (this.props.dataUrl !== undefined) {
       fetch(this.props.baseUrl + this.props.dataUrl)
       .then(res=>{return res.json()})
