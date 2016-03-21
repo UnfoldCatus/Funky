@@ -54,10 +54,17 @@ const BaseConfig = {
         if($(evt.target).hasClass('tab')){
            $(evt.currentTarget).find('.tab').removeClass('tab-sel')
            $(evt.target).addClass('tab-sel')
-           filterParams[$(evt.target).attr('data-key')] = $(evt.target).attr('data-value')
-           if ( ''===$(evt.target).attr('data-value') ) {
-             _.unset(filterParams,$(evt.target).attr('data-key'))
-           }
+
+           let keys = $(evt.target).attr('data-key').split(',')
+           let values = $(evt.target).attr('data-value').split(',')
+           _.each(keys,(v,k)=>{
+              filterParams[v] = values[k]
+              if ( ''===values[k] || undefined === values[k]) {
+                _.unset(filterParams,v)
+              }
+           })
+
+
            console.log(filterParams);
 
            component.setState({

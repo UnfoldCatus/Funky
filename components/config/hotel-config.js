@@ -10,7 +10,11 @@ const HotelConfig = {
   'HotelList':_.merge({
     'dataUrl':'hotel/hotel_list',
     'aspectRatio':'320:216',
-    'width':320
+    'width':320,
+    'params':{
+      'pageSize':20,
+      'pageIndex':1
+    }
   },BaseConfig),
   'TypeConditions':_.merge({
     'dataUrl':'hotelType/all'

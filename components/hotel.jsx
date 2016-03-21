@@ -99,7 +99,7 @@ const HotelList = React.createClass({
     return (
       <ul className='list-recommend'>
         {
-          _.map(this.props.hotels,(v,k)=>{
+          _.map(this.state.data,(v,k)=>{
             return(
               <HotelListItem key={k} {...v} />
             )
@@ -113,11 +113,44 @@ const HotelList = React.createClass({
   },
   getDefaultProps(){
     return {
-      hotels:[]
+
+    }
+  },
+  getInitialState() {
+    return {
+      data:[]
+    }
+  },
+  componentDidMount() {
+     //数据请求地址配置在config文件
+    if (this.props.dataUrl !== undefined) {
+      let p = ''
+      if (_.size(this.props.params)>0) {
+        p = '?'+$.param(this.props.params)
+      }
+      fetch(this.props.baseUrl + this.props.dataUrl+p)
+      .then(res => {return res.json()})
+      .then(j=>{
+        $('#J_TotalCount').html(j.data.length)
+        this.setState({ data:j.data })
+      })
     }
   },
   componentWillReceiveProps(nextProps) {
-    console.log('hotels data received');
+    if (nextProps.dataUrl !== undefined) {
+      let p = ''
+      if (_.size(nextProps.params)>0) {
+        p = '?'+$.param(nextProps.params)
+      }
+      fetch(this.props.baseUrl + nextProps.dataUrl + p)
+      .then(res => {return res.json()})
+      .then(j=>{
+        let temp = []
+        temp[0] = j.data
+        $('#J_TotalCount').html(temp[0].length)
+        this.setState({ data:j.data,dataStore:temp})
+      })
+    }
   }
 })
 /* 去掉酒店星标
@@ -260,12 +293,12 @@ const Hotel = React.createClass({
                </span>
             </div>
             <div className="info-box">
-              <div style={{marginTop:'0px'}} className="result" id='J_TotalCount'>
-                <span>共找到婚宴酒店</span><b>{this.state.hotels.length}</b>个
+              <div style={{marginTop:'0px'}} className="result">
+                <span>共找到婚宴酒店</span><b id='J_TotalCount'>{this.props.hotels.length}</b>个
               </div>
             </div>
           </div>
-          <HotelList hotels={this.state.hotels} />
+          <HotelList {...HotelConfig['HotelList']} params={_.merge(this.state.params,HotelConfig['HotelList'].params) } />
           <div>
             <div onClick={this.loadMore} id="J_MoreButton">
               <div className="more-btn"><span>点击查看更多</span></div>
@@ -286,18 +319,10 @@ const Hotel = React.createClass({
   },
   getInitialState() {
     return {
-      hotels:[]
+      params:{}
     }
   },
   componentDidMount() {
-    const HotelListConfig = HotelConfig['HotelList'] //数据请求地址配置在config文件
-    if (HotelListConfig.dataUrl !== undefined) {
-      fetch(HotelListConfig.baseUrl + HotelListConfig.dataUrl)
-      .then(res => {return res.json()})
-      .then(j=>{
-        this.setState({ hotels:j.data })
-      })
-    }
     HotelConfig['DistrictConditions']['setupFilterClick']('multi',this)
   }
 })
