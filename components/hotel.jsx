@@ -218,7 +218,7 @@ const Hotel = React.createClass({
             <MediaSlider {...HotelConfig['MediaSlider']}/>
           </div>
         </div>
-        <div className="layout-center-box J_HotelListFilterPanel">
+        <div className="layout-center-box J_FilterCtrl">
           <div className='mgb30' />
           <ListFilter title={'区域'} name={'name'} klass={'ico-18-js ico-1-1-js'} valueKey={['id']} sorterKey={['cityId']} {...HotelConfig['DistrictConditions']} />
           <ListFilter title={'分类'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']}  sorterKey={['hotelType']} {...HotelConfig['TypeConditions']} />
@@ -298,6 +298,7 @@ const Hotel = React.createClass({
         this.setState({ hotels:j.data })
       })
     }
+    HotelConfig['DistrictConditions']['setupFilterClick']('multi',this)
   }
 })
 
