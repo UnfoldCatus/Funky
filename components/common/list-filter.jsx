@@ -11,7 +11,7 @@ const ListFilter = React.createClass({
       <div className='filter-box'>
         <div className='title'><i className={this.props.klass}></i>{this.props.title}</div>
         <div className='tab-box'>
-          <div className='l-box'><span className='tab tab-sel' data-key='' data-value=''>全部</span></div>
+          <div className='l-box'><span className='tab tab-sel' data-key={dataKey} data-value=''>全部</span></div>
           <ul className='r-box'>
           {
             _.map(conditions,(v,k)=>{
@@ -49,19 +49,13 @@ const ListFilter = React.createClass({
     }
   },
   componentDidMount() {
-    $('.filter-box').on('click',(evt)=>{
-      if($(evt.target).hasClass('tab')){
-         $(evt.currentTarget).find('.tab').removeClass('tab-sel')
-         $(evt.target).addClass('tab-sel')
-      }
-    })
+
 
 
     if (this.props.dataUrl !== undefined) {
       fetch(this.props.baseUrl + this.props.dataUrl)
       .then(res=>{return res.json()})
       .then(j=>{
-        console.log(j.data)
         this.setState({'conditions':j.data})
       })
     }

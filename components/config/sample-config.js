@@ -32,6 +32,26 @@ const SampleConfig  = {
   'ExteriorFilter':_.merge({
     'dataUrl':'exterior/all'
   },BaseConfig),
+  'SetupTabClick':function(component){
+    const SampleType = {
+      'SHOOT':0,
+      'ART':1,
+      'FAMILY':2
+    }
+    $('.J_Tab').on('click','span.sel',(evt)=>{
+      $('.J_Tab > .sel').addClass('nnn')
+      $(evt.currentTarget).removeClass('nnn')
+      if ($(evt.currentTarget).hasClass('sec')) {
+        if ($(evt.currentTarget).hasClass('J_ArtPhoto')) {
+          component.setState({ showFilter:false,params:{sampleType:SampleType['ART']} })
+        }else {
+          component.setState({ showFilter:false,params:{sampleType:SampleType['FAMILY']} })
+        }
+      }else {
+        component.setState({ showFilter:true,params:{sampleType:SampleType['SHOOT']} })
+      }
+    })
+  }
 }
 
 export { SampleConfig }

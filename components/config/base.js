@@ -20,6 +20,52 @@ const BaseConfig = {
 
         return BaseConfig.baseUrl + paramsUrl
     }
+  },
+  /*
+  用于列表搜索条件的绑定。 传入的type参数有single 和 multi 两个值 分别对应单选和多选
+
+  */
+  setupFilterClick:function(type,component){
+    let filterParams = {}
+    if ('single' === type) {
+      filterParams = {
+        'all':{}
+      }
+      $('.J_FilterCtrl').on('click','.tab-box',(evt)=>{
+        if($(evt.target).hasClass('tab')){
+           $('.tab-box').find('.tab').removeClass('tab-sel')
+           $(evt.target).addClass('tab-sel')
+           _.unset(filterParams,'all')
+           filterParams['all'] = {}
+           filterParams['all'][$(evt.target).attr('data-key')] = $(evt.target).attr('data-value')
+           if ( ''===$(evt.target).attr('data-value') ) {
+             _.unset(filterParams,'all.'+$(evt.target).attr('data-key'))
+           }
+
+           console.log(JSON.stringify(filterParams,null,4));
+           component.setState({
+             params:_.merge(filterParams['all'],component.state.params)
+           })
+
+        }
+      })
+    }else {
+      $('.J_FilterCtrl').on('click','.tab-box',(evt)=>{
+        if($(evt.target).hasClass('tab')){
+           $(evt.currentTarget).find('.tab').removeClass('tab-sel')
+           $(evt.target).addClass('tab-sel')
+           filterParams[$(evt.target).attr('data-key')] = $(evt.target).attr('data-value')
+           if ( ''===$(evt.target).attr('data-value') ) {
+             _.unset(filterParams,$(evt.target).attr('data-key'))
+           }
+           console.log(filterParams);
+
+           component.setState({
+             params:_.merge(filterParams,component.state.params)
+           })
+        }
+      })
+    }
   }
 }
 export { BaseConfig }

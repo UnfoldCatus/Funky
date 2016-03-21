@@ -298,24 +298,6 @@ const Hotel = React.createClass({
         this.setState({ hotels:j.data })
       })
     }
-
-  /*  const TypeCategory = HotelConfig['TypeCategory'] //取到配置的获取类型数据的请求地址
-    if (TypeCategory.dataUrl !== undefined) {
-      fetch(TypeCategory.baseUrl + TypeCategory.dataUrl)
-      .then(res => {return res.json()})
-      .then(j=>{
-        this.setState({ types: _.map(j.data || [],(v,k)=>{ return _.pick(v,['name','id']) }) })
-      })
-    }
-
-    const DistrictCategory = HotelConfig['DistrictCategory'] //地区数据接口地址
-    if (DistrictCategory.dataUrl !== undefined) {
-      fetch(DistrictCategory.baseUrl + DistrictCategory.dataUrl)
-      .then(res => {return res.json()})
-      .then(j=>{
-        this.setState({ areas: _.map(j.data || [],(v,k)=>{ return _.pick(v,['name','id']) }) })
-      })
-    }*/
   }
 })
 
