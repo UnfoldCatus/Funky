@@ -46,10 +46,10 @@ const photoApi = {
                 this.model = this.model.skip(limit * parseInt(this.request.query["pageSize"] || '10')).limit(parseInt(this.request.query["pageSize"] || '10'))
             } else if(k.indexOf('exteriorId') !== -1) {// 外景ID
                 // 风格 TODO:服务器返回的是字符串如"123,275,468,",这里采用"%id,%"的方式匹配
-                this.model = this.model.filter(r.row("exteriorId").match(".*?"+this.request.query['exteriorId']+","+".*?"));
-            } else if(k.indexOf('shootingStyleId') !== -1) {// 风格ID
+                this.model = this.model.filter(r.row("exterior").match(".*?"+this.request.query['exteriorId']+","+".*?"));
+            } else if(k.indexOf('shootStyleId') !== -1) {// 风格ID
                 // 风格 TODO:服务器返回的是字符串如"123,275,468,",这里采用"%id,%"的方式匹配
-                this.model = this.model.filter(r.row("shootingStyleId").match(".*?"+this.request.query['shootingStyleId']+","+".*?"));
+                this.model = this.model.filter(r.row("shootingStyle").match(".*?"+this.request.query['shootStyleId']+","+".*?"));
             }
         })
 

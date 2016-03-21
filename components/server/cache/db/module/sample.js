@@ -58,9 +58,11 @@ const Sample = env.Thinky.createModel('sample', {
     // 样片名称
     name: type.string(),
     // 外景
-    exteriorId: type.string(),
+    exterior: type.string(),
     // 风格
-    shootingStyleId: type.string(),
+    shootingStyle: type.string(),
+    // 样片类型 0:婚纱摄影 1:艺术照 2:全家福
+    sampleType: type.number(),
     // 摄影师Id
     photographerId: type.number(),
     // 造型师Id
