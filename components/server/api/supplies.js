@@ -20,25 +20,20 @@ const suppliesApi = {
             this.model = supplies.filter({position: this.params.position})
         }
 
-        try {
-            let all = yield this.model
-            this.count = all.length
-        } catch (e) {
-            this.count = 0
-        }
-
-        this.model = this.model.orderBy(r.desc('weight'))
+        let pageIndex = 0;
+        let pageSize = 10;
         _.each(this.request.query, (v, k) => {
             if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
+                pageIndex = parseInt(this.request.query['pageIndex'] || '1') - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
                 }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-            }
-            else if(k.indexOf('weddingSuppliesTypeId') !== -1) {
+            } else if(k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize'] || '1')
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
+            } else if(k.indexOf('weddingSuppliesTypeId') !== -1) {
                 // 用品类型
                 this.model = this.model.filter({
                     suppliesType: parseInt(this.request.query["weddingSuppliesTypeId"])
@@ -50,6 +45,17 @@ const suppliesApi = {
                 });
             }
         })
+
+        try {
+            let all = yield this.model
+            this.count = all.length || 0
+        } catch (e) {
+            this.count = 0
+        }
+
+        this.model = this.model.skip(pageIndex * pageSize);
+        this.model = this.model.limit(pageSize);
+        this.model = this.model.orderBy(r.desc('weight'))
 
         yield next
     },
