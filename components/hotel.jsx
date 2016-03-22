@@ -97,7 +97,7 @@ const ListItemHallList = React.createClass({
 const HotelList = React.createClass({
   render () {
     return (
-      <div>
+      <div className='J_EventHooker'>
         <div className="screening-2-jsbn">
           <div className="line-1"></div>
           <span className="item">默认排序</span>
@@ -230,7 +230,7 @@ const HotelListItem = React.createClass({
                 <a href={'/hotel/'+this.props.id} target='_blank'>
                   <h2>{this.props.name}</h2>
                   {!!this.props.isGift && <label className='label-pink'>礼</label> }
-                  {!!this.props.isDisaccount && <label className='label-blue'>惠</label> }
+                  {!!this.props.isDiscount && <label className='label-blue'>惠</label> }
                 </a>
               </div>
               <div className='price-box'>
@@ -332,6 +332,7 @@ const Hotel = React.createClass({
   },
   componentDidMount() {
     HotelConfig['DistrictConditions']['setupFilterClick']('multi',this)
+    HotelConfig['SorterAndSearch'](this)
   }
 })
 

@@ -68,7 +68,32 @@ const HotelConfig = {
         'maxTable': '9999',
         'name': '50桌以上'
       }]
-    },BaseConfig)
+    },BaseConfig),
+    SorterAndSearch:function(component){ //
+      let p = {}
+      $('.J_EventHooker').on('click',(evt)=>{
+        if ($(evt.target).hasClass('J_SorterButton')) { //排序按钮
+          let $icon = $(evt.target).find('.arrow-box')
+          if ($icon.hasClass('ascending')) {
+            $icon.removeClass('ascending')
+            $icon.addClass('descending')
+          }else {
+            $icon.removeClass('descending')
+            $icon.addClass('ascending')
+          }
+        }
+        if ($(evt.target).hasClass('J_ExtraFilter')) { // 优惠、礼品按钮
+          if ($(evt.target).is(':checked')) {
+            p[$(evt.target).attr('data-filter')] = 1
+          }else {
+            p[$(evt.target).attr('data-filter')] = 0
+          }
+        }
+        component.setState({
+          'params':_.merge(p,component.state.params)
+        })
+      })
+    }
 }
 
 export { HotelConfig }
