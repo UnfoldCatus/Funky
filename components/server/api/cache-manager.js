@@ -14,20 +14,20 @@ const cacheManagerApi = {
   // 更新db缓存
   'get+/dbUpdateCache/:moduleName': function*(next) {
     DBUtil.updateDBCacheData(this.params.moduleName);
-    yield next
+    this.body = 'ok'
   },
 
   // 更新内存缓存
   'get+/memUpdateCache': function*(next) {
     MEMUtil.clearCache();
-    yield next
+    this.body = 'ok'
   },
 
   // 更新缓存
   'get+/updateCache/:moduleName': function*(next) {
     DBUtil.updateDBCacheData(this.params.moduleName);
     MEMUtil.clearCache();
-    yield next
+    this.body = 'ok'
   }
 }
 
