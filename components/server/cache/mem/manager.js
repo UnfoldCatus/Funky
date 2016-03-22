@@ -105,7 +105,6 @@ MEMUtil.prototype.getData = function(url, path, cb)
 }
 
 MEMUtil.prototype.clearCache = function() {
-    console.log('updateMemCacheData1');
     myCache.clear();
 };
 
