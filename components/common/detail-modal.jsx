@@ -32,7 +32,7 @@ const ThumbItem = React.createClass({
             _.map(this.props.data,(v,k)=>{
               return (
                 <li style={(0===k)?{display:'block'}:{display:'none'}} key={k}>
-                  <MediaItem aspectRatio='1:1' height={330} mediaUrl={v.url} />
+                  <MediaItem aspectRatio='1:1' height={330} mediaUrl={v.url || v} />
                 </li>
               )
             })
@@ -128,6 +128,27 @@ const ContentItem = React.createClass({
   propTypes: {
     data: React.PropTypes.string
   },
+  componentWillReceiveProps(nextProps) {
+    // window.setTimeout(()=>{
+
+    // if (nextProps.data !== '详情数据加载中...' ) {
+    //
+    // }
+
+
+    // },1000)
+  },
+  componentDidMount() {
+    $('.J_DetailText img').load(()=>{
+      // _.times(3,()=>{
+      //   window.setTimeout(
+      //       ()=>{
+              console.log(11);
+      //       },300
+      //     )
+      // })
+    })
+  },
   getDefaultProps(){
     return {
       data:'详情数据加载中...'
@@ -174,14 +195,14 @@ const DetailModal = React.createClass({
     }
   },
   show(){
+
     $("#Layer").fadeIn(100,()=>{ // 显示detail-modal
       $("#Float").css("height",$(window).height() - 40 + "px")
       $("#Float").fadeIn(400)
       $("body").css({overflow:"hidden"})
-
-      window.setTimeout(()=>{
-        $(".scrollbarall").tinyscrollbar()
-      },1000)
+      $('#Float img').load(()=>{ // 内部图片加载完成后再update滚动条
+        $('.scrollbarall').data('plugin_tinyscrollbar').update()
+      })
     })
   },
   setupEvent(){
@@ -211,7 +232,8 @@ const DetailModal = React.createClass({
     const closeFun = ()=> {// 绑定关闭按钮
       $("#Float").fadeOut(400,()=>{
         $("#Layer").fadeOut(100);
-        $("body").css({overflow:"visible"});
+        $("body").css({overflow:"visible"})
+        $('.scrollbarall').data('plugin_tinyscrollbar').update()
       })
     }
     $("#Close").bind("click", closeFun)
@@ -262,17 +284,18 @@ const DetailModal = React.createClass({
       fetch(this.props.baseUrl +dataUrl)
       .then(res => {return res.json()})
       .then(j=>{
-        this.setState({ data:j.data },this.show)
+        this.setState({ data:j.data[0] },this.show)
       })
     }
   },
   componentDidMount() {
     if (this.props.dataUrl !== undefined) {
+      $(".scrollbarall").tinyscrollbar() //初始化滚动条组件
       let dataUrl = this.props.dataUrl.replace(':id',this.props.dataId)
       fetch(this.props.baseUrl +dataUrl)
       .then(res => {return res.json()})
       .then(j=>{
-        this.setState({ data:j.data },()=>{
+        this.setState({ data:j.data[0] },()=>{
           this.setupEvent()
           this.show()
         })
