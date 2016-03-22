@@ -74,13 +74,19 @@ const HotelConfig = {
       $('.J_EventHooker').on('click',(evt)=>{
         if ($(evt.target).hasClass('J_SorterButton')) { //排序按钮
           let $icon = $(evt.target).find('.arrow-box')
+          p['sort'] = $icon.attr('data-filter')
           if ($icon.hasClass('ascending')) {
             $icon.removeClass('ascending')
             $icon.addClass('descending')
+            p['order'] = 'desc'
           }else {
             $icon.removeClass('descending')
             $icon.addClass('ascending')
+            p['order'] = 'asc'
           }
+          component.setState({
+            'params':_.merge(component.state.params,p)
+          })
         }
         if ($(evt.target).hasClass('J_ExtraFilter')) { // 优惠、礼品按钮
           if ($(evt.target).is(':checked')) {
@@ -88,10 +94,21 @@ const HotelConfig = {
           }else {
             p[$(evt.target).attr('data-filter')] = 0
           }
+          component.setState({
+            'params':_.merge(component.state.params,p)
+          })
         }
-        component.setState({
-          'params':_.merge(p,component.state.params)
-        })
+
+      })
+      $('.J_FindByName').on('click',(evt)=>{
+        let searchKey =$.trim($('.J_SearchName').val())
+        if ('' !== searchKey) {
+          searchKey = decodeURIComponent(searchKey)
+          p['hotelName'] = searchKey
+          component.setState({
+            'params':_.merge(component.state.params,p)
+          })
+        }
       })
     }
 }
