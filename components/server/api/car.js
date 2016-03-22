@@ -13,7 +13,6 @@ const carApi = {
 
     // 获取婚车列表
     'get+/car/:position': function*(next) {
-
         this.APIKey = 'Car'
         if (this.params.position === 'all') {
             this.model = car.filter({})
@@ -21,31 +20,25 @@ const carApi = {
             this.model = car.filter({position: this.params.position})
         }
 
-        try {
-            let all = yield this.model
-            this.count = all.length
-        } catch (e) {
-            this.count = 0
-        }
-
-        this.model = this.model.orderBy(r.desc('weight'))
-
+        let pageIndex = 0;
+        let pageSize = 10;
         _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex'] || '1') - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
                 }
-                this.model = this.model.skip(limit * parseInt(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(parseInt(this.request.query["pageSize"] || '10'));
-            }
-            else if(k.indexOf('minPrice') !== -1) {
+            } else if(k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize'] || '1')
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
+            } else if(k.indexOf('minPrice') !== -1) {
                 // 最低价格
-                this.model = this.model.filter(r.row('totalCost').gt(parseInt(this.request.query['minPrice'])));
+                this.model = this.model.filter(r.row('rentalPrice').gt(parseInt(this.request.query['minPrice'])));
             } else if(k.indexOf('maxPrice') !== -1) {
                 // 最高价格
-                this.model = this.model.filter(r.row('totalCost').lt(parseInt(this.request.query['maxPrice'])));
+                this.model = this.model.filter(r.row('rentalPrice').lt(parseInt(this.request.query['maxPrice'])));
             } else if(k.indexOf('brandId') !== -1) {
                 // 用品品牌
                 this.model = this.model.filter({brandId: parseInt(this.request.query["brandId"])});
@@ -60,6 +53,17 @@ const carApi = {
                 this.model = this.model.filter({carNature: parseInt(this.request.query["carNature"])});
             }
         })
+
+        try {
+            let all = yield this.model
+            this.count = all.length || 0
+        } catch (e) {
+            this.count = 0
+        }
+
+        this.model = this.model.skip(pageIndex * pageSize);
+        this.model = this.model.limit(pageSize);
+        this.model = this.model.orderBy(r.desc('weight'))
 
         yield next
     },

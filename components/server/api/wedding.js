@@ -242,32 +242,39 @@ const weddingApi = {
     'get+/f4/camera': function*(next) {
         this.APIKey = 'F4Camera'
         this.model = f4Camera.filter({})
+
+        let pageIndex = 0;
+        let pageSize = 10;
+        _.each(this.request.query, (v, k) => {
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex']) - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
+                }
+            } else if(k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize']) - 1
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
+            } else if(k.indexOf('minPrice') !== -1) {
+                // 最低价格
+                this.model = this.model.filter(r.row('salePrice').gt(parseInt(this.request.query['minPrice'])));
+            } else if(k.indexOf('maxPrice') !== -1) {
+                // 最高价格
+                this.model = this.model.filter(r.row('salePrice').lt(parseInt(this.request.query['maxPrice'])));
+            }
+        })
+
         try {
             let all = yield this.model
-            this.count = all.length
+            this.count = all.length || 0
         } catch (e) {
             this.count = 0
         }
 
-        _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
-                }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-            } else if(k.indexOf('minPrice') !== -1) {
-                // 最低价格
-                this.model = this.model.filter(r.row('price').gt(Number(this.request.query['minPrice'])));
-            } else if(k.indexOf('maxPrice') !== -1) {
-                // 最高价格
-                this.model = this.model.filter(r.row('price').lt(Number(this.request.query['maxPrice'])));
-            }
-        })
-
-        this.model = this.model.orderBy(function (row) { return r.random(); });
+        this.model = this.model.skip(pageIndex * pageSize);
+        this.model = this.model.limit(pageSize);
+        //this.model = this.model.orderBy(function (row) { return r.random(); });
 
         yield next
     },
@@ -276,32 +283,39 @@ const weddingApi = {
     'get+/f4/dresser': function*(next) {
         this.APIKey = 'F4Dresser'
         this.model = f4Dresser.filter({})
+
+        let pageIndex = 0;
+        let pageSize = 10;
+        _.each(this.request.query, (v, k) => {
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex']) - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
+                }
+            } else if(k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize']) - 1
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
+            } else if(k.indexOf('minPrice') !== -1) {
+                // 最低价格
+                this.model = this.model.filter(r.row('salePrice').gt(parseInt(this.request.query['minPrice'])));
+            } else if(k.indexOf('maxPrice') !== -1) {
+                // 最高价格
+                this.model = this.model.filter(r.row('salePrice').lt(parseInt(this.request.query['maxPrice'])));
+            }
+        })
+
         try {
             let all = yield this.model
-            this.count = all.length
+            this.count = all.length || 0
         } catch (e) {
             this.count = 0
         }
 
-        _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
-                }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-            } else if(k.indexOf('minPrice') !== -1) {
-                // 最低价格
-                this.model = this.model.filter(r.row('price').gt(Number(this.request.query['minPrice'])));
-            } else if(k.indexOf('maxPrice') !== -1) {
-                // 最高价格
-                this.model = this.model.filter(r.row('price').lt(Number(this.request.query['maxPrice'])));
-            }
-        })
-
-        this.model = this.model.orderBy(function (row) { return r.random(); });
+        this.model = this.model.skip(pageIndex * pageSize);
+        this.model = this.model.limit(pageSize);
+        //this.model = this.model.orderBy(function (row) { return r.random(); });
 
         yield next
     },
@@ -310,32 +324,39 @@ const weddingApi = {
     'get+/f4/host': function*(next) {
         this.APIKey = 'F4Host'
         this.model = f4Host.filter({})
+
+        let pageIndex = 0;
+        let pageSize = 10;
+        _.each(this.request.query, (v, k) => {
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex']) - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
+                }
+            } else if(k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize']) - 1
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
+            } else if(k.indexOf('minPrice') !== -1) {
+                // 最低价格
+                this.model = this.model.filter(r.row('salePrice').gt(parseInt(this.request.query['minPrice'])));
+            } else if(k.indexOf('maxPrice') !== -1) {
+                // 最高价格
+                this.model = this.model.filter(r.row('salePrice').lt(parseInt(this.request.query['maxPrice'])));
+            }
+        })
+
         try {
             let all = yield this.model
-            this.count = all.length
+            this.count = all.length || 0
         } catch (e) {
             this.count = 0
         }
 
-        _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
-                }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-            } else if(k.indexOf('minPrice') !== -1) {
-                // 最低价格
-                this.model = this.model.filter(r.row('price').gt(Number(this.request.query['minPrice'])));
-            } else if(k.indexOf('maxPrice') !== -1) {
-                // 最高价格
-                this.model = this.model.filter(r.row('price').lt(Number(this.request.query['maxPrice'])));
-            }
-        })
-
-        this.model = this.model.orderBy(function (row) { return r.random(); });
+        this.model = this.model.skip(pageIndex * pageSize);
+        this.model = this.model.limit(pageSize);
+        //this.model = this.model.orderBy(function (row) { return r.random(); });
 
         yield next
     },
@@ -344,63 +365,81 @@ const weddingApi = {
     'get+/f4/photographer': function*(next) {
         this.APIKey = 'F4Photographer'
         this.model = f4Photographer.filter({})
+
+        let pageIndex = 0;
+        let pageSize = 10;
+        _.each(this.request.query, (v, k) => {
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex']) - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
+                }
+            } else if(k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize']) - 1
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
+            } else if(k.indexOf('minPrice') !== -1) {
+                // 最低价格
+                this.model = this.model.filter(r.row('salePrice').gt(parseInt(this.request.query['minPrice'])));
+            } else if(k.indexOf('maxPrice') !== -1) {
+                // 最高价格
+                this.model = this.model.filter(r.row('salePrice').lt(parseInt(this.request.query['maxPrice'])));
+            }
+        })
+
         try {
             let all = yield this.model
-            this.count = all.length
+            this.count = all.length || 0
         } catch (e) {
             this.count = 0
         }
 
-        _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
-                }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-            } else if(k.indexOf('minPrice') !== -1) {
-                // 最低价格
-                this.model = this.model.filter(r.row('price').gt(Number(this.request.query['minPrice'])));
-            } else if(k.indexOf('maxPrice') !== -1) {
-                // 最高价格
-                this.model = this.model.filter(r.row('price').lt(Number(this.request.query['maxPrice'])));
-            }
-        })
-
-        this.model = this.model.orderBy(function (row) { return r.random(); });
+        this.model = this.model.skip(pageIndex * pageSize);
+        this.model = this.model.limit(pageSize);
+        //this.model = this.model.orderBy(function (row) { return r.random(); });
 
         yield next
     },
 
     // 四大金刚作品——特色项目
     'get+/api/f4/team': function*(next) {
-        this.model = f4Team.filter({
-            position: this.params.position
-        })
+        this.APIKey = 'F4Team'
+        this.model = f4Team.filter({})
 
+        let pageIndex = 0;
+        let pageSize = 10;
         _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex']) - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
                 }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+            } else if(k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize']) - 1
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
             } else if(k.indexOf('minPrice') !== -1) {
                 // 最低价格
-                this.model = this.model.filter(r.row('price').gt(Number(this.request.query['minPrice'])));
+                this.model = this.model.filter(r.row('salePrice').gt(parseInt(this.request.query['minPrice'])));
             } else if(k.indexOf('maxPrice') !== -1) {
                 // 最高价格
-                this.model = this.model.filter(r.row('price').lt(Number(this.request.query['maxPrice'])));
+                this.model = this.model.filter(r.row('salePrice').lt(parseInt(this.request.query['maxPrice'])));
             }
         })
 
-        this.model = this.model.orderBy(function (row) { return r.random(); });
+        try {
+            let all = yield this.model
+            this.count = all.length || 0
+        } catch (e) {
+            this.count = 0
+        }
 
-        this.APIKey = 'F4Team'
+        this.model = this.model.skip(pageIndex * pageSize);
+        this.model = this.model.limit(pageSize);
+        //this.model = this.model.orderBy(function (row) { return r.random(); });
+
         yield next
     },
 

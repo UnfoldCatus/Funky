@@ -337,11 +337,9 @@ DBUtil.prototype.updateDBCacheData = function(moduleName) {
 exports.Instance = function() {
   // 分三级数据拉取级别
   // 一级资源,更新比较频繁的资源
-  var tasks1 = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason',
-    'RecordVideo', 'RecordVideoSeason', 'Suite', 'Cases',
-    'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason',
-    'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host', 'F4Team', 'Cases3D',
-     'Dress', 'Movie'
+  var tasks1 = ['Adv', 'Hotel','Sample', 'Pringles', 'PringlesSeason','RecordVideo', 'RecordVideoSeason', 'Suite',
+    'Cases', 'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason', 'F4Photographer', 'F4Camera',
+    'F4Dresser', 'F4Host', 'F4Team', 'Cases3D', 'Dress', 'Movie'
   ];
 
   // 二级资源,更新不是很平凡的资源

@@ -15,13 +15,6 @@ const hotelApi = {
       this.model = hotel.filter({position: this.params.position})
     }
 
-    try {
-      let all = yield this.model
-      this.count = all.length
-    } catch (e) {
-      this.count = 0
-    }
-
     /* 匹配搜索条件 */
     // 是否有礼包查询
     if(this.request.query["isGift"]) {
@@ -74,6 +67,14 @@ const hotelApi = {
       this.model = this.model.filter(r.row("highestConsumption").lt(maxPrice));
     }
 
+    // 获取一下总数
+    try {
+      let all = yield this.model
+      this.count = all.length || 0
+    } catch (e) {
+      this.count = 0
+    }
+
     // 排序
     if(this.request.query["sort"]) {
       var sortFiled;
@@ -97,8 +98,6 @@ const hotelApi = {
     } else {
       this.model = this.model.orderBy("highestConsumption");
     }
-    let result = yield this.model
-    this.count = result.length || 0
     
     // 当前页数 每页条数
     let limit = 0;

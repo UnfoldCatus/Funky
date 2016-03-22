@@ -28,22 +28,20 @@ const photoApi = {
 
         }
 
-        try {
-            let all = yield this.model
-            this.count = all.length
-        } catch (e) {
-            this.count = 0
-        }
-
+        let pageIndex = 0;
+        let pageSize = 10;
         this.model = this.model.orderBy(r.desc('weight'))
         _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = parseInt(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex'] || '1') - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
                 }
-                this.model = this.model.skip(limit * parseInt(this.request.query["pageSize"] || '10')).limit(parseInt(this.request.query["pageSize"] || '10'))
+            } else if (k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize'] || '1') - 1
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
             } else if(k.indexOf('exteriorId') !== -1) {// 外景ID
                 // 风格 TODO:服务器返回的是字符串如"123,275,468,",这里采用"%id,%"的方式匹配
                 this.model = this.model.filter(r.row("exterior").match(".*?"+this.request.query['exteriorId']+","+".*?"));
@@ -52,6 +50,15 @@ const photoApi = {
                 this.model = this.model.filter(r.row("shootingStyle").match(".*?"+this.request.query['shootStyleId']+","+".*?"));
             }
         })
+
+        try {
+            let all = yield this.model
+            this.count = all.length || 0
+        } catch (e) {
+            this.count = 0
+        }
+
+        this.model = this.model.skip(pageIndex * pageSize).limit(pageSize)
 
         yield next
     },
