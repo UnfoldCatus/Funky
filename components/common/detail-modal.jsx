@@ -163,7 +163,6 @@ const DetailModal = React.createClass({
     if (typeof s === 'string') {
       images = JSON.parse(s)
     }
-    console.log('images:',images);
     return (
       <div id='detail-modual' className={this.props.styleClass}>
         <div className='layer-box' id='Layer'></div>

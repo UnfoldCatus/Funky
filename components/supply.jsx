@@ -18,7 +18,7 @@ let SupplyItemList = React.createClass({
           {
             _.map(this.state.data,(v,k)=>{
               return (
-                <li key={k} className='item-box' data-id={v.id}>
+                <li key={k} className='item-box' data-id={v.id} style={{cursor:'pointer'}}>
                   <div className='img-box'>
                     <MediaItem {...this.props} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'}/>
                   </div>
@@ -51,7 +51,7 @@ let SupplyItemList = React.createClass({
   },
   getDefaultProps(){
     return {
-      'dataUrl':''
+      'dataUrl':undefined
     }
   },
   getInitialState(){
@@ -75,20 +75,10 @@ let SupplyItemList = React.createClass({
 
         return false
       })
-
-
-
-      // fetch(this.props.baseUrl + this.props.dataUrl)
-      // .then(res => {return res.json()})
-      // .then(j=>{
-      //   this.setState({ data:j.data })
-      //   $('.J_Count').html(j.count)
-      //
-      // })
     }
     SupplyConfig['SupplyItemList']['fetchFunc'](this,null)(this)
   }
-});
+})
 
 
 const Supply = React.createClass({
