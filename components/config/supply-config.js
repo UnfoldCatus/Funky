@@ -21,7 +21,11 @@ const SupplyConfig = {
   'SupplyItemList': _.merge({
       'dataUrl': 'weddingsupplies/supplies_list',
       'width': 276,
-      'aspectRatio': '1:1'
+      'aspectRatio': '1:1',
+      'params':{
+        'pageIndex':1,
+        'pageSize':9
+      }
     }, BaseConfig),
   'SupplyItemDetail': _.merge({
     'dataUrl':'weddingsupplies/detail/:id'

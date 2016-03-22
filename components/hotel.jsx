@@ -110,7 +110,7 @@ const HotelList = React.createClass({
           </span>
           <span className="item J_SorterButton">
             <em>桌数</em>
-            <span className="arrow-box descending J_SorterArrow" data-filter='table'>
+            <span className="arrow-box ascending J_SorterArrow" data-filter='table'>
               <i className="arrow-up"></i>
               <i className="arrow-down"></i>
             </span>
@@ -120,7 +120,7 @@ const HotelList = React.createClass({
             <em>礼包</em>
           </label>
           <label className="item">
-            <input type="checkbox" className='J_ExtraFilter' data-filter='isDisaccount' />
+            <input type="checkbox" className='J_ExtraFilter' data-filter='isDiscount' />
             <em>优惠</em>
           </label>
           <div className="search-box">

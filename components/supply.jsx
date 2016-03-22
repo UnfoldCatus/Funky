@@ -10,34 +10,40 @@ import { DetailModal } from './common/detail-modal.jsx'
 let SupplyItemList = React.createClass({
 	render(){
     return (
-      <ul className="list-recommend J_Item">
-        {
-          _.map(this.state.data,(v,k)=>{
-            return (
-              <li key={k} className='item-box' data-id={v.id}>
-                <div className='img-box'>
-                  <MediaItem {...this.props} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'}/>
-                </div>
-                <div className='content-box'>
-                  <div className='title'>
-                    <p>{
-                        (v.title || '金色百年') + ' '+
-                        (v.description || ' ') + ' ' +
-                        (v.suppliesNumber || '0') + '个'
-                      }</p>
+      <div>
+        <div className="screening-results">
+          <span className="find">找到相关用品<b className='J_Count'>{this.state.count}</b> 个</span>
+        </div>
+        <ul className="list-recommend J_Item">
+          {
+            _.map(this.state.data,(v,k)=>{
+              return (
+                <li key={k} className='item-box' data-id={v.id}>
+                  <div className='img-box'>
+                    <MediaItem {...this.props} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'}/>
                   </div>
-                  <div className="price-box">
-                    <b className="in-price"><em>￥</em></b>
-                    <b className='in-price'>{parseFloat(v.sellingPrice || '0').toFixed(2)}</b>
-                    <span>￥</span>
-                    <span className="tm-price">{parseFloat(v.marketPrice || '0').toFixed(2)}</span>
+                  <div className='content-box'>
+                    <div className='title'>
+                      <p>{
+                          (v.title || '金色百年') + ' '+
+                          (v.description || ' ') + ' ' +
+                          (v.suppliesNumber || '0') + '个'
+                        }</p>
+                    </div>
+                    <div className="price-box">
+                      <b className="in-price"><em>￥</em></b>
+                      <b className='in-price'>{parseFloat(v.sellingPrice || '0').toFixed(2)}</b>
+                      <span>￥</span>
+                      <span className="tm-price">{parseFloat(v.marketPrice || '0').toFixed(2)}</span>
+                    </div>
                   </div>
-                </div>
-              </li>
-            )
-          })
-        }
-      </ul>
+                </li>
+              )
+            })
+          }
+        </ul>
+      </div>
+
     )
 	},
   propTypes: {
@@ -50,8 +56,14 @@ let SupplyItemList = React.createClass({
   },
   getInitialState(){
     return {
-      data:[]
+      data:[],
+      dataStore:[],
+      count:0,
+      currentIndex:0
     }
+  },
+  componentWillReceiveProps(nextProps) {
+    SupplyConfig['SupplyItemList']['fetchFunc'](this,nextProps)(this,nextProps)
   },
   componentDidMount() {
     if (this.props.dataUrl !== undefined) {
@@ -66,14 +78,15 @@ let SupplyItemList = React.createClass({
 
 
 
-      fetch(this.props.baseUrl + this.props.dataUrl)
-      .then(res => {return res.json()})
-      .then(j=>{
-        this.setState({ data:j.data })
-        $('.J_Count').html(j.count)
-
-      })
+      // fetch(this.props.baseUrl + this.props.dataUrl)
+      // .then(res => {return res.json()})
+      // .then(j=>{
+      //   this.setState({ data:j.data })
+      //   $('.J_Count').html(j.count)
+      //
+      // })
     }
+    SupplyConfig['SupplyItemList']['fetchFunc'](this,null)(this)
   }
 });
 
@@ -93,43 +106,25 @@ const Supply = React.createClass({
             <div className="filter-title">
               <span className="sel">分类</span>
             </div>
-            <ListFilter title={'分类'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']} conditions={this.state.types} sorterKey={['typeId']} />
-            <ListFilter title={'品牌'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']} conditions={this.state.brands} sorterKey={['brandId']} />
+            <ListFilter title={'分类'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']}  sorterKey={['weddingSuppliesTypeId']} {...SupplyConfig['TypesCategory']} />
+            <ListFilter title={'品牌'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']} sorterKey={['brandId']} {...SupplyConfig['BrandCategory']} />
           </div>
-          <div className="screening-results">
-            <span className="find">找到相关用品<b className='J_Count'></b> 个</span>
+
+          <SupplyItemList {...SupplyConfig['SupplyItemList']} params={_.merge(this.state.params,SupplyConfig['SupplyItemList'].params)} />
+          <div id="J_MoreButton">
+            <div className="more-btn"><span>点击查看更多</span></div>
           </div>
-          <SupplyItemList {...SupplyConfig['SupplyItemList']} />
         </div>
       </div>
     )
   },
   getInitialState: function(){
 		return {
-			types:[],
-      brands:[]
+      params:{}
 		}
 	},
   componentDidMount() {
-    const TypesCategory = SupplyConfig['TypesCategory'] //取到配置的获取类型数据的请求地址
-    if (TypesCategory.dataUrl !== undefined) {
-      fetch(TypesCategory.baseUrl + TypesCategory.dataUrl)
-      .then(res => {return res.json()})
-      .then(j=>{
-        /* 针对每个类型只取name和id字段 */
-        this.setState({ types: _.map(j.data || [],(v,k)=>{ return _.pick(v,['name','id']) }) })
-      })
-    }
-
-    const BrandCategory = SupplyConfig['BrandCategory'] //取到配置的获取品牌数据的请求地址
-    if (BrandCategory.dataUrl !== undefined) {
-      fetch(BrandCategory.baseUrl + BrandCategory.dataUrl)
-      .then(res => {return res.json()})
-      .then(j=>{
-        /* 针对每个类型只取name和id字段 */
-        this.setState({ brands: _.map(j.data || [],(v,k)=>{ return _.pick(v,['name','id']) }) })
-      })
-    }
+    SupplyConfig['SupplyItemList']['setupFilterClick']('multi',this)
   }
 })
 
