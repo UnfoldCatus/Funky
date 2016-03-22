@@ -12,7 +12,7 @@ const HotelConfig = {
     'aspectRatio':'320:216',
     'width':320,
     'params':{
-      'pageSize':20,
+      'pageSize':12,
       'pageIndex':1
     }
   },BaseConfig),

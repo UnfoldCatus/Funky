@@ -60,7 +60,7 @@ const ListItemHallList = React.createClass({
           _.map(this.props.banquetHallList.slice(0,2),(v,k)=>{
             return (
               <dd key={k}>
-                <a href='/'>
+                <a href={'/hall/'+v.id}>
                   <span>{v.name}</span>
                   <span><b>{v.maxTableNum}</b><em>桌</em></span>
                   <span>{v.height+'米'}</span>
@@ -113,44 +113,49 @@ const HotelList = React.createClass({
   },
   getDefaultProps(){
     return {
-
+      params:{}
     }
   },
   getInitialState() {
     return {
-      data:[]
+      data:[],
+      dataStore:[],
+      count:0,
+      currentIndex:0
     }
   },
   componentDidMount() {
+    HotelConfig['HotelList']['fetchFunc'](this,null)(this)
      //数据请求地址配置在config文件
-    if (this.props.dataUrl !== undefined) {
-      let p = ''
-      if (_.size(this.props.params)>0) {
-        p = '?'+$.param(this.props.params)
-      }
-      fetch(this.props.baseUrl + this.props.dataUrl+p)
-      .then(res => {return res.json()})
-      .then(j=>{
-        $('#J_TotalCount').html(j.data.length)
-        this.setState({ data:j.data })
-      })
-    }
+    // if (this.props.dataUrl !== undefined) {
+    //   let p = ''
+    //   if (_.size(this.props.params)>0) {
+    //     p = '?'+$.param(this.props.params)
+    //   }
+    //   fetch(this.props.baseUrl + this.props.dataUrl+p)
+    //   .then(res => {return res.json()})
+    //   .then(j=>{
+    //     $('#J_TotalCount').html(j.data.length)
+    //     this.setState({ data:j.data })
+    //   })
+    // }
   },
   componentWillReceiveProps(nextProps) {
-    if (nextProps.dataUrl !== undefined) {
-      let p = ''
-      if (_.size(nextProps.params)>0) {
-        p = '?'+$.param(nextProps.params)
-      }
-      fetch(this.props.baseUrl + nextProps.dataUrl + p)
-      .then(res => {return res.json()})
-      .then(j=>{
-        let temp = []
-        temp[0] = j.data
-        $('#J_TotalCount').html(temp[0].length)
-        this.setState({ data:j.data,dataStore:temp})
-      })
-    }
+    HotelConfig['HotelList']['fetchFunc'](this,nextProps)(this,nextProps)
+    // if (nextProps.dataUrl !== undefined) {
+    //   let p = ''
+    //   if (_.size(nextProps.params)>0) {
+    //     p = '?'+$.param(nextProps.params)
+    //   }
+    //   fetch(this.props.baseUrl + nextProps.dataUrl + p)
+    //   .then(res => {return res.json()})
+    //   .then(j=>{
+    //     let temp = []
+    //     temp[0] = j.data
+    //     $('#J_TotalCount').html(temp[0].length)
+    //     this.setState({ data:j.data,dataStore:temp})
+    //   })
+    // }
   }
 })
 /* 去掉酒店星标
@@ -179,7 +184,7 @@ const HotelListItem = React.createClass({
             </a>
             <div className='info'>
               <div className='title clearfix'>
-                <a href='#' target='_blank'>
+                <a href={'/hotel/'+this.props.id} target='_blank'>
                   <h2>{this.props.name}</h2>
                   {!!this.props.isGift && <label className='label-pink'>礼</label> }
                   {!!this.props.isDisaccount && <label className='label-blue'>惠</label> }
@@ -203,7 +208,7 @@ const HotelListItem = React.createClass({
               {
                 this.props.banquetHall.length!==0 &&
                 (
-                  <a href='/' target='_blank' className='viewing-banquet transition-bg'>查看更多宴会厅</a>
+                  <a href={'/hotel/'+this.props.id} target='_blank' className='viewing-banquet transition-bg'>查看更多宴会厅</a>
                 )
               }
             </div>
@@ -294,13 +299,13 @@ const Hotel = React.createClass({
             </div>
             <div className="info-box">
               <div style={{marginTop:'0px'}} className="result">
-                <span>共找到婚宴酒店</span><b id='J_TotalCount'>{this.props.hotels.length}</b>个
+                <span>共找到婚宴酒店</span><b id='J_TotalCount'>0</b>个
               </div>
             </div>
           </div>
           <HotelList {...HotelConfig['HotelList']} params={_.merge(this.state.params,HotelConfig['HotelList'].params) } />
           <div>
-            <div onClick={this.loadMore} id="J_MoreButton">
+            <div id="J_MoreButton">
               <div className="more-btn"><span>点击查看更多</span></div>
             </div>
           </div>
@@ -313,8 +318,7 @@ const Hotel = React.createClass({
       types:[], // fetch
       prices: HotelConfig['Prices'], // config
       seatsCount: HotelConfig['SeatsCount'], // config
-      areas: [], // fetch
-      hotels:[], // fetch
+      areas: [] // fetch
     }
   },
   getInitialState() {
