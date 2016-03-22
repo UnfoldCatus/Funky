@@ -10,8 +10,8 @@ const MapLocation = React.createClass({
   },
   componentDidMount() {
     var map = new BMap.Map("container");
-    var longitude =parseFloat( this.props.longitude);
-    var latitude = parseFloat(this.props.latitude);
+    var longitude =parseFloat( this.props.dataParams.longitude);
+    var latitude = parseFloat(this.props.dataParams.latitude);
     var point = new BMap.Point(longitude, latitude);
     map.centerAndZoom(point, 15);
 

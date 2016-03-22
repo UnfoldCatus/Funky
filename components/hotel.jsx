@@ -97,15 +97,58 @@ const ListItemHallList = React.createClass({
 const HotelList = React.createClass({
   render () {
     return (
-      <ul className='list-recommend'>
-        {
-          _.map(this.state.data,(v,k)=>{
-            return(
-              <HotelListItem key={k} {...v} />
-            )
-          })
-        }
-      </ul>
+      <div>
+        <div className="screening-2-jsbn">
+          <div className="line-1"></div>
+          <span className="item">默认排序</span>
+          <span className="item J_SorterButton">
+            <em>价格</em>
+            <span className="arrow-box ascending J_SorterArrow" data-filter='price'>
+              <i className="arrow-up"></i>
+              <i className="arrow-down"></i>
+            </span>
+          </span>
+          <span className="item J_SorterButton">
+            <em>桌数</em>
+            <span className="arrow-box descending J_SorterArrow" data-filter='table'>
+              <i className="arrow-up"></i>
+              <i className="arrow-down"></i>
+            </span>
+          </span>
+          <label className="item">
+            <input type="checkbox" className='J_ExtraFilter' data-filter='isGift'/>
+            <em>礼包</em>
+          </label>
+          <label className="item">
+            <input type="checkbox" className='J_ExtraFilter' data-filter='isDisaccount' />
+            <em>优惠</em>
+          </label>
+          <div className="search-box">
+            <div className="search">
+              <i className="ico-6-js"></i>
+              <input type="text" className="txt J_SearchName" placeholder="请输入酒店名称" />
+            </div>
+             <span className="sub-1-js">
+                 <button type="submit" className="subt J_FindByName">查找酒店</button>
+             </span>
+          </div>
+          <div className="info-box">
+            <div style={{marginTop:'0px'}} className="result">
+              <span>共找到婚宴酒店</span><b id='J_TotalCount'>{this.state.count}</b>个
+            </div>
+          </div>
+        </div>
+        <ul className='list-recommend'>
+          {
+            _.map(this.state.data,(v,k)=>{
+              return(
+                <HotelListItem key={k} {...v} />
+              )
+            })
+          }
+        </ul>
+      </div>
+
     )
   },
   propTypes: {
@@ -263,46 +306,7 @@ const Hotel = React.createClass({
           <ListFilter title={'桌数'} name={'name'} klass={'ico-18-js ico-18-2-js'} valueKey={['minTable','maxTable']}  sorterKey={['minTable','maxTable']} {...HotelConfig['SeatsCountConditions']}/>
           <ListFilter title={'价格'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']} {...HotelConfig['PricesConditions']}  sorterKey={['minPrice','maxPrice']}/>
 
-          <div className="screening-2-jsbn">
-            <div className="line-1"></div>
-            <span className="item">默认排序</span>
-            <span className="item J_SorterButton">
-              <em>价格</em>
-              <span className="arrow-box ascending J_SorterArrow" data-filter='price'>
-                <i className="arrow-up"></i>
-                <i className="arrow-down"></i>
-              </span>
-            </span>
-            <span className="item J_SorterButton">
-              <em>桌数</em>
-              <span className="arrow-box descending J_SorterArrow" data-filter='table'>
-                <i className="arrow-up"></i>
-                <i className="arrow-down"></i>
-              </span>
-            </span>
-            <label className="item">
-              <input type="checkbox" className='J_ExtraFilter' data-filter='isGift'/>
-              <em>礼包</em>
-            </label>
-            <label className="item">
-              <input type="checkbox" className='J_ExtraFilter' data-filter='isDisaccount' />
-              <em>优惠</em>
-            </label>
-            <div className="search-box">
-              <div className="search">
-                <i className="ico-6-js"></i>
-                <input type="text" className="txt J_SearchName" placeholder="请输入酒店名称" />
-              </div>
-               <span className="sub-1-js">
-                   <button type="submit" className="subt J_FindByName">查找酒店</button>
-               </span>
-            </div>
-            <div className="info-box">
-              <div style={{marginTop:'0px'}} className="result">
-                <span>共找到婚宴酒店</span><b id='J_TotalCount'>0</b>个
-              </div>
-            </div>
-          </div>
+
           <HotelList {...HotelConfig['HotelList']} params={_.merge(this.state.params,HotelConfig['HotelList'].params) } />
           <div>
             <div id="J_MoreButton">

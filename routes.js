@@ -208,7 +208,7 @@ siteRouter.get('/hall/:id', function* index(next) {
     yield this.render('modules/default', renderOption('hall-details', '/hotel', '/hotel',this.params))
 })
 /** 酒店位置地图 **/
-siteRouter.get('/map/:latitude/:longitude', function* index(next) {
+siteRouter.get('/map/:longitude/:latitude', function* index(next) {
     yield this.render('modules/default', renderOption('map-location', '/hotel', '/hotel',this.params))
 })
   // 提交婚宴预订需求
