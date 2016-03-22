@@ -89,24 +89,24 @@ const Pringles = React.createClass({
   render () {
     return (
       <div className='kpxs-view'>
+        <div className='bannar-all-box'>
           <div id="slider_top" className="slider-box bannar-all-box" style={{height:PringlesConfig['MediaSlider']['height']}}>
-            <div className="bannar">
-              <MediaSlider {...PringlesConfig['MediaSlider']}/>
-            </div>
+            <MediaSlider {...PringlesConfig['MediaSlider']}/>
           </div>
-          <div className="layout-center-box">
-            <div className='mgt30'>
-              <Banner {...PringlesConfig['Banner'][0]}/>
-            </div>
-            <ShotListItem {...PringlesConfig['ShotListItem']} />
+        </div>
+        <div className="layout-center-box">
+          <div className='mgt30'>
+            <Banner {...PringlesConfig['Banner'][0]}/>
           </div>
-          <div id="J_MoreButton">
-              <div className="more-btn"><span>{'点击查看更多'}</span></div>
-          </div>
-          <div className='space-100-eav mgb30'></div>
-          <div className='main-body-eav'>
-              <Episode {...PringlesConfig['Episode']}/>
-          </div>
+          <ShotListItem {...PringlesConfig['ShotListItem']} />
+        </div>
+        <div id="J_MoreButton">
+            <div className="more-btn"><span>{'点击查看更多'}</span></div>
+        </div>
+        <div className='space-100-eav mgb30'></div>
+        <div className='main-body-eav'>
+            <Episode {...PringlesConfig['Episode']}/>
+        </div>
       </div>
     )
   }
