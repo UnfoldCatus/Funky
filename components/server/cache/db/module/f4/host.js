@@ -38,7 +38,10 @@ var type=env.Thinky.type;
                      "canmeramanId": 40,
                      "hosterId": 38,
                      "videoUrl": "http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/photoDressPro/20160128/14539702967150975.mp4",
-                     "weight": 100
+                     "weight": 100,
+                     "shootingTime": "2015-11-02 00:00:00",
+                     "shootingAdress": "酒店",
+                     "costPrice": 0
                  }
              ]
          }
