@@ -21,8 +21,8 @@ const hotelApi = {
       this.model = this.model.filter({isGift: parseInt(this.request.query['isGift'])})
     }
     // 是否有优惠查询
-    if(this.request.query["isDisaccount"]) {
-      this.model = this.model.filter({isGift:parseInt(this.request.query["isDisaccount"])})
+    if(this.request.query["isDiscount"]) {
+      this.model = this.model.filter({isDiscount:parseInt(this.request.query["isDiscount"])})
     }
     // 市区ID
     if(this.request.query["cityId"]) {
