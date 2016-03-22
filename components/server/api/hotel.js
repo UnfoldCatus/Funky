@@ -97,7 +97,9 @@ const hotelApi = {
     } else {
       this.model = this.model.orderBy("highestConsumption");
     }
-
+    let result = yield this.model
+    this.count = result.length || 0
+    
     // 当前页数 每页条数
     let limit = 0;
     if(this.request.query["pageIndex"]) {
@@ -112,7 +114,6 @@ const hotelApi = {
     } else {
       this.model = this.model.limit(10);
     }
-
     yield next
   },
 
