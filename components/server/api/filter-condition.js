@@ -11,6 +11,7 @@ import filterConditionCarLevel from '../cache/db/module/filterCondition/carLevel
 import filterConditionCarBrand from '../cache/db/module/filterCondition/carBrand.js'
 import filterConditionSuppliesBrand from '../cache/db/module/filterCondition/suppliesBrand.js'
 import filterConditionSuppliesType from '../cache/db/module/filterCondition/suppliesType.js'
+import filterConditionCaseStyle from '../cache/db/module/filterCondition/caseStyle.js'
 
 
 import filterConditionDressType from '../cache/db/module/filterCondition/dressType.js'
@@ -96,6 +97,32 @@ const filterConditionApi = {
     })
 
     this.APIKey = 'FilterConditionHotelType';
+    yield next
+  },
+
+  'get+/caseStyle/all':function*(next){ //案例风格
+    if (this.params.position === 'all') {
+      this.model = filterConditionCaseStyle.filter({})
+    } else {
+      this.model = filterConditionCaseStyle.filter({
+        position: this.params.position
+      })
+    }
+    this.model = this.model.orderBy(r.desc('weight'))
+
+    _.each(this.request.query, (v, k) => {
+      if (k.indexOf('pageSize') !== -1) {
+        let limit = 0
+        limit = Number(this.request.query['pageIndex'] || '1') - 1
+        if (limit < 0) {
+          limit = 0
+        }
+        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
+        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+      }
+    })
+
+    this.APIKey = 'FilterConditionCaseStyle';
     yield next
   },
 
