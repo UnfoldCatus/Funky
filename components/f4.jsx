@@ -19,13 +19,16 @@ const Figure = React.createClass({
       let ls = this.props.priceRemark.split && this.props.priceRemark.split('|') || []
       priceInfo = (
         <div>
-          {
-            _.map(ls, (v,k) => {
-              return (
-                <span key={k}>{v}</span>
-              );
-            })
-          }
+          <h4>价格描述:</h4>
+          <p>
+            {
+              _.map(ls, (v,k) => {
+                return (
+                  <span key={k}>{v}</span>
+                );
+              })
+            }
+          </p>
         </div>
       )
     }
@@ -46,6 +49,7 @@ const Figure = React.createClass({
           <img src={this.props.photoUrl+'@120h_1e_1c_0i_1o_90q_1x'} />
         </div>
         <h2><span>{this.props.typeName}</span><b>{this.props.nickName}</b></h2>
+        <h2><span>{'￥'+this.props.salePrice}</span></h2>
         <div className="item-info">
           <div className="scrollbarall">
             <div className="scrollbar">
@@ -55,7 +59,6 @@ const Figure = React.createClass({
             </div>
             <div className="viewport">
               <div className="overview">
-                <h4>价格：{this.props.salePrice}</h4>
                 {
                   priceInfo
                 }
@@ -89,9 +92,9 @@ const MoveItemBox = React.createClass({
                   <MediaItem aspectRatio='3:2' height={200} mediaUrl={v.coverUrlWeb} />
                   <div className="layer"></div>
                   <div className="info">
-                    <span>时间：</span><span>1231234</span><br />
-                    <span>地点：</span><span>421414</span><br />
-                    <span>成本：￥</span><span>12412</span><br />
+                    <span>时间：</span><span>{v.shootingTime.slice(0,10)}</span><br />
+                    <span>地点：</span><span>{v.shootingAdress}</span><br />
+                    <span>成本：￥</span><span>{v.costPrice}</span><br />
                     <a href="#my-id" data-uk-modal>
                       <span className="play">点击观看</span>
                     </a>
