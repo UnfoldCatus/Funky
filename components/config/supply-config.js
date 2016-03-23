@@ -24,7 +24,7 @@ const SupplyConfig = {
       'aspectRatio': '1:1',
       'params':{
         'pageIndex':1,
-        'pageSize':9
+        'pageSize':8
       }
     }, BaseConfig),
   'SupplyItemDetail': _.merge({

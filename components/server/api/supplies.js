@@ -23,7 +23,7 @@ const suppliesApi = {
         let pageIndex = 0;
         let pageSize = 10;
         _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
+            if (k.indexOf('pageIndex') !== -1) {
                 pageIndex = parseInt(this.request.query['pageIndex'] || '1') - 1
                 if (pageIndex < 0) {
                     pageIndex = 0
