@@ -4,7 +4,7 @@ import { Banner } from './common/banner.jsx'
 import { CasesConfig } from './config/cases-config'
 import { ListFilter } from './common/list-filter.jsx'
 import _ from 'lodash'
-import { CasesList } from './common/cases-list.jsx'
+import { SchemeListItem } from './common/scheme-list-item.jsx'
 const CasesCategory  = React.createClass({
   render () {
     return (
@@ -60,24 +60,28 @@ const Cases = React.createClass({
           <Banner {...CasesConfig['Banner'][0]} />
           <CasesCategory {...CasesConfig['CasesCategory']} />
           <div className='J_FilterCtrl' >
-            <ListFilter title={'风格'} name={'styleName'} klass={'ico-1-js ico-1-2-js'} valueKey={['styleId']} conditions={this.state.styles} sorterKey={['styleId']} />
-            <ListFilter title={'价位'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']} conditions={this.state.prices} sorterKey={['minPrice','maxPrice']} />
+            <ListFilter title={'风格'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['styleId']}  sorterKey={['id']} {...CasesConfig['StyleFilter']} />
+            <ListFilter title={'价位'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']}  sorterKey={['minPrice','maxPrice']}
+              {...CasesConfig['PriceFilter']} />
           </div>
-          <CasesList {...CasesConfig['CasesList']} />
-          <div onClick={this.loadMore} id="J_MoreButton">
+          <SchemeListItem {...CasesConfig['SchemeListItem']} params={_.merge(this.state.params,CasesConfig['SchemeListItem'].params)}/>
+          <div  id="J_MoreButton">
             <div className="more-btn"><span>点击查看更多</span></div>
           </div>
         </div>
       </div>
     )
   },
-  getInitialState(){
+  getInitialState() {
     return {
-      'styles':[],
-      'prices':[]
+      params:{}
     }
   },
-  loadMore(){ }
+  componentDidMount() {
+    CasesConfig['StyleFilter']['setupFilterClick']('multi',this)
+  }
+
+
 })
 
 export { Cases }

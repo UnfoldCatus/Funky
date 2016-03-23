@@ -17,10 +17,57 @@ const CasesConfig = {
       'pageIndex':1
     }
   },BaseConfig),
-  'CasesList':_.merge({
+  'SchemeListItem':_.merge({
+    'countPlugin':true,
     'dataUrl':'cases/scheme_list',
-    'aspectRatio':'3:2',
-    'width':380
+    'displayTextPrefix':'找到最佳案例',
+    'displayTextSuffix':'套',
+    'params':{
+      'pageSize':9,
+      'pageIndex':1
+    }
+  },BaseConfig),
+  'StyleFilter':_.merge({
+    'dataUrl':'caseStyle/all'
+  },BaseConfig),
+  'PriceFilter':_.merge({
+    'conditions':[{
+					name: '5000-10,000',
+					minPrice: 5000,
+					maxPrice: 10000
+
+				}, {
+					name: '10,000-15,000',
+					minPrice: 10000,
+					maxPrice: 15000
+
+				}, {
+					name: '15,000-20,000',
+					minPrice: 15000,
+					maxPrice: 20000
+
+				}, {
+					name: '20,000-30,000',
+					minPrice: 20000,
+					maxPrice: 30000
+
+				}, {
+					name: '30,000-50,000',
+					minPrice: 30000,
+					maxPrice: 50000
+
+				}, {
+					name: '50,000-100,000',
+					minPrice: 50000,
+					maxPrice: 100000
+
+				}, {
+					name: '100,000以上',
+					minPrice: 100000,
+					maxPrice: 9999999
+
+				}]
+
   },BaseConfig)
 
 }
