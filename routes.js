@@ -276,7 +276,7 @@ siteRouter.get('/car', function* index(next) {
 
 /** 活动详情页 **/
 siteRouter.get('/active/:name', function* index(next) {
-  yield this.render('modules/default', renderOption('active', '/active', '/active', this.params))
+  yield this.render('modules/default', renderOption('active', '/active', '/', this.params))
 })
 
 export { siteRouter }
