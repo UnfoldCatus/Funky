@@ -4,24 +4,42 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible” content=”IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="script/vendors/lightbox2/css/lightbox.min.css">
-    <link rel="stylesheet" href="styles/app.css">
-
+    <link rel="stylesheet" href="/script/vendors/uikit/css/uikit.min.css">
+    <link rel="stylesheet" href="/script/vendors/uikit/css/uikit.gradient.min.css">
+    <link rel="stylesheet" href="/script/vendors/uikit/css/components/slidenav.min.css">
+    <link rel="stylesheet" href="/script/vendors/uikit/css/components/slidenav.gradient.min.css">
+    <link rel="stylesheet" href="/script/vendors/mediaelement/mediaelementplayer.min.css">
+    <link rel="stylesheet" href="/styles/app.css?t=3">
     <!--[if gte IE 9]><!-->
-    <script src="script/jquery-2.2.0.min.js"></script>
+    <script src="/script/jquery-2.2.0.min.js"></script>
+    <script src="/script/vendors/uikit/js/uikit.min.js" charset="utf-8"></script>
     <!--<![endif]-->
     <!--[if lt IE 9]>
-    <script src="script/jquery-1.12.0.min.js" charset="utf-8"></script>
-    <script src="script/es5-shim.min.js" charset="utf-8"></script>
-    <script src="script/es5-sham.min.js" charset="utf-8"></script>
-    <script src="script/console-polyfill.js" charset="utf-8"></script>
+    <script src="/script/jquery-1.12.1.min.js" charset="utf-8"></script>
+    <script src="/script/html5shiv.min.js" charset="utf-8"></script>
+    <script src="/script/es5-shim.min.js" charset="utf-8"></script>
+    <script src="/script/es5-sham.min.js" charset="utf-8"></script>
+    <script src="/script/console-polyfill.js" charset="utf-8"></script>
+    <script src="/script/vendors/uikit/js/uikit-ie8.min.js" charset="utf-8"></script>
     <![endif]-->
-    <script src="script/react.min.js" charset="utf-8"></script>
-    <script src="script/react-dom.min.js" charset="utf-8"></script>
-    <script src="script/adaptation.min.js" charset="utf-8"></script>
-    <script src="script/vendors/slider.js" charset="utf-8"></script>
-    <script src="script/vendors/jquery.tinyscrollbar.js" charset="utf-8"></script>
+    <script src="/script/react.js" charset="utf-8"></script>
+    <script src="/script/react-dom.js" charset="utf-8"></script>
+    <script src="/script/adaptation.min.js" charset="utf-8"></script>
+    <script src="/script/vendors/slider.js" charset="utf-8"></script>
+    <script src="/script/vendors/jquery.tinyscrollbar.js" charset="utf-8"></script>
+  	<script src="/script/vendors/mediaelement/mediaelement-and-player.js"></script>
     <script src="//api.video.taobao.com//video/getPlayerJS"></script>
+    <script>
+        /*百度统计*/
+        // var _hmt = _hmt || [];
+        // (function() {
+        //   var hm = document.createElement("script");
+        //   hm.src = "//hm.baidu.com/hm.js?c9a00f6f9f733dcf913aabd48759361a";
+        //   var s = document.getElementsByTagName("script")[0];
+        //   s.parentNode.insertBefore(hm, s);
+        // })()
+    </script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=pANA02VPcarYYYHHY5Ddux2Z"></script>
     <title>金色百年</title>
   </head>
   <body>
@@ -30,10 +48,11 @@
       <div id="J_Main">
       <%- body %>
       </div>
+      <div id='J_DetailModalContainer' ></div>
       <% include modules/footer.html %>
     </div>
 
-    <div id="tb_player"></div>
+    <!-- <div id="tb_player"></div> -->
     <!-- <script src="//api.video.taobao.com/video/getPlayerJS"></script>
     <script type="text/javascript">
     tb_player_object.embedPlayer(
@@ -47,6 +66,5 @@
 <script src="http://api.video.taobao.com//video/embedVideo?vid=34799342&uid=2579307056&tid=1&autoplay=false&showsharebutton=false"></script>
 
 </div> -->
-
   </body>
 </html>

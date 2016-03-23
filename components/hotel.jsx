@@ -60,7 +60,7 @@ const ListItemHallList = React.createClass({
           _.map(this.props.banquetHallList.slice(0,2),(v,k)=>{
             return (
               <dd key={k}>
-                <a href='/'>
+                <a href={'/hall/'+v.id}>
                   <span>{v.name}</span>
                   <span><b>{v.maxTableNum}</b><em>桌</em></span>
                   <span>{v.height+'米'}</span>
@@ -97,15 +97,58 @@ const ListItemHallList = React.createClass({
 const HotelList = React.createClass({
   render () {
     return (
-      <ul className='list-recommend'>
-        {
-          _.map(this.props.hotels,(v,k)=>{
-            return(
-              <HotelListItem key={k} {...v} />
-            )
-          })
-        }
-      </ul>
+      <div className='J_EventHooker'>
+        <div className="screening-2-jsbn">
+          <div className="line-1"></div>
+          <span className="item">默认排序</span>
+          <span className="item J_SorterButton">
+            <em>价格</em>
+            <span className="arrow-box ascending J_SorterArrow" data-filter='price'>
+              <i className="arrow-up"></i>
+              <i className="arrow-down"></i>
+            </span>
+          </span>
+          <span className="item J_SorterButton">
+            <em>桌数</em>
+            <span className="arrow-box ascending J_SorterArrow" data-filter='table'>
+              <i className="arrow-up"></i>
+              <i className="arrow-down"></i>
+            </span>
+          </span>
+          <label className="item">
+            <input type="checkbox" className='J_ExtraFilter' data-filter='isGift'/>
+            <em>礼包</em>
+          </label>
+          <label className="item">
+            <input type="checkbox" className='J_ExtraFilter' data-filter='isDiscount' />
+            <em>优惠</em>
+          </label>
+          <div className="search-box">
+            <div className="search">
+              <i className="ico-6-js"></i>
+              <input type="text" className="txt J_SearchName" placeholder="请输入酒店名称" />
+            </div>
+             <span className="sub-1-js">
+                 <button type="submit" className="subt J_FindByName">查找酒店</button>
+             </span>
+          </div>
+          <div className="info-box">
+            <div style={{marginTop:'0px'}} className="result">
+              <span>共找到婚宴酒店</span><b id='J_TotalCount'>{this.state.count}</b>个
+            </div>
+          </div>
+        </div>
+        <ul className='list-recommend'>
+          {
+            _.map(this.state.data,(v,k)=>{
+              return(
+                <HotelListItem key={k} {...v} />
+              )
+            })
+          }
+        </ul>
+      </div>
+
     )
   },
   propTypes: {
@@ -113,29 +156,81 @@ const HotelList = React.createClass({
   },
   getDefaultProps(){
     return {
-      hotels:[]
+      params:{}
     }
   },
+  getInitialState() {
+    return {
+      data:[],
+      dataStore:[],
+      count:0,
+      currentIndex:0
+    }
+  },
+  componentDidMount() {
+    HotelConfig['HotelList']['fetchFunc'](this,null)(this)
+     //数据请求地址配置在config文件
+    // if (this.props.dataUrl !== undefined) {
+    //   let p = ''
+    //   if (_.size(this.props.params)>0) {
+    //     p = '?'+$.param(this.props.params)
+    //   }
+    //   fetch(this.props.baseUrl + this.props.dataUrl+p)
+    //   .then(res => {return res.json()})
+    //   .then(j=>{
+    //     $('#J_TotalCount').html(j.data.length)
+    //     this.setState({ data:j.data })
+    //   })
+    // }
+  },
   componentWillReceiveProps(nextProps) {
-    console.log('hotels data received');
+    HotelConfig['HotelList']['fetchFunc'](this,nextProps)(this,nextProps)
+    // if (nextProps.dataUrl !== undefined) {
+    //   let p = ''
+    //   if (_.size(nextProps.params)>0) {
+    //     p = '?'+$.param(nextProps.params)
+    //   }
+    //   fetch(this.props.baseUrl + nextProps.dataUrl + p)
+    //   .then(res => {return res.json()})
+    //   .then(j=>{
+    //     let temp = []
+    //     temp[0] = j.data
+    //     $('#J_TotalCount').html(temp[0].length)
+    //     this.setState({ data:j.data,dataStore:temp})
+    //   })
+    // }
   }
 })
-
+/* 去掉酒店星标
+ <div className="score-box clearfix">
+   <div className="star-box">
+     <i className="ico-star-2-js ico-star-2-gray-js"></i>
+     <i className="ico-star-2-js ico-star-2-pink-js" style={{width:72+'px'}}></i>
+   </div>
+   <span className="score">4.9</span>
+   <span className="hotel-type">
+     <b>{this.props.typeName}</b>
+     <b>|</b>
+     <b>{this.props.address.length>26?this.props.address.slice(0,24)+'...':this.props.address}</b>
+   </span>
+   <span className="desk-num">可容纳<b>{this.props.maxTableNum}</b>桌</span>
+ </div>
+* */
 const HotelListItem = React.createClass({
   render () {
     return (
       <li className='item-box clearfix'>
         <div className='info-box'>
           <div className='content-box'>
-            <a href='/' className='img-box'>
+            <a href={'/hotel/'+this.props.id} className='img-box'>
               <MediaItem {...HotelConfig['HotelList']} mediaUrl={this.props.coverUrlWeb} />
             </a>
             <div className='info'>
               <div className='title clearfix'>
-                <a href='#' target='_blank'>
+                <a href={'/hotel/'+this.props.id} target='_blank'>
                   <h2>{this.props.name}</h2>
                   {!!this.props.isGift && <label className='label-pink'>礼</label> }
-                  {!!this.props.isDisaccount && <label className='label-blue'>惠</label> }
+                  {!!this.props.isDiscount && <label className='label-blue'>惠</label> }
                 </a>
               </div>
               <div className='price-box'>
@@ -145,15 +240,10 @@ const HotelListItem = React.createClass({
                 <span className="big">{this.props.highestConsumption}</span>
               </div>
               <div className="score-box clearfix">
-                  <div className="star-box">
-                      <i className="ico-star-2-js ico-star-2-gray-js"></i>
-                      <i className="ico-star-2-js ico-star-2-pink-js" style={{width:72+'px'}}></i>
-                  </div>
-                  <span className="score">4.9</span>
                   <span className="hotel-type">
                     <b>{this.props.typeName}</b>
                     <b>|</b>
-                    <b>{this.props.address.length>20?this.props.address.slice(0,18)+'...':this.props.address}</b>
+                    <b>{this.props.address.length>26?this.props.address.slice(0,24)+'...':this.props.address}</b>
                   </span>
                   <span className="desk-num">可容纳<b>{this.props.maxTableNum}</b>桌</span>
               </div>
@@ -161,7 +251,7 @@ const HotelListItem = React.createClass({
               {
                 this.props.banquetHall.length!==0 &&
                 (
-                  <a href='/' target='_blank' className='viewing-banquet transition-bg'>查看更多宴会厅</a>
+                  <a href={'/hotel/'+this.props.id} target='_blank' className='viewing-banquet transition-bg'>查看更多宴会厅</a>
                 )
               }
             </div>
@@ -205,60 +295,21 @@ const Hotel = React.createClass({
     return (
       <div className='hyyd-view hotel-page'>
         <div className="bannar-all-box">
-          <div id="slider_top" className="slider-box bannar" style={{height:'450px'}}>
+          <div id="slider_top" className="slider-box bannar" style={{height:HotelConfig['MediaSlider']['height']}}>
             <MediaSlider {...HotelConfig['MediaSlider']}/>
           </div>
         </div>
-        <div className="layout-center-box J_HotelListFilterPanel" style={{minHeight:440+'px'}}>
+        <div className="layout-center-box J_FilterCtrl">
+          <div className='mgb30' />
+          <ListFilter title={'区域'} name={'name'} klass={'ico-18-js ico-1-1-js'} valueKey={['id']} sorterKey={['cityId']} {...HotelConfig['DistrictConditions']} />
+          <ListFilter title={'分类'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']}  sorterKey={['hotelType']} {...HotelConfig['TypeConditions']} />
+          <ListFilter title={'桌数'} name={'name'} klass={'ico-18-js ico-18-2-js'} valueKey={['minTable','maxTable']}  sorterKey={['minTable','maxTable']} {...HotelConfig['SeatsCountConditions']}/>
+          <ListFilter title={'价格'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']} {...HotelConfig['PricesConditions']}  sorterKey={['minPrice','maxPrice']}/>
 
-          <ListFilter title={'区域'} name={'name'} klass={'ico-18-js ico-1-1-js'} valueKey={['id']} conditions={this.state.areas} sorterKey={['cityId']} />
-          <ListFilter title={'分类'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']} conditions={this.state.types} sorterKey={['hotelType']} />
-          <ListFilter title={'桌数'} name={'name'} klass={'ico-18-js ico-18-2-js'} valueKey={['minTable','maxTable']} conditions={this.state.seatsCount} sorterKey={['minTable','maxTable']} />
-          <ListFilter title={'价格'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']} conditions={this.state.prices}  sorterKey={['minPrice','maxPrice']}/>
 
-          <div className="screening-2-jsbn">
-            <div className="line-1"></div>
-            <span className="item">默认排序</span>
-            <span className="item J_SorterButton">
-              <em>价格</em>
-              <span className="arrow-box ascending J_SorterArrow" data-filter='price'>
-                <i className="arrow-up"></i>
-                <i className="arrow-down"></i>
-              </span>
-            </span>
-            <span className="item J_SorterButton">
-              <em>桌数</em>
-              <span className="arrow-box descending J_SorterArrow" data-filter='table'>
-                <i className="arrow-up"></i>
-                <i className="arrow-down"></i>
-              </span>
-            </span>
-            <label className="item">
-              <input type="checkbox" className='J_ExtraFilter' data-filter='isGift'/>
-              <em>礼包</em>
-            </label>
-            <label className="item">
-              <input type="checkbox" className='J_ExtraFilter' data-filter='isDisaccount' />
-              <em>优惠</em>
-            </label>
-            <div className="search-box">
-              <div className="search">
-                <i className="ico-6-js"></i>
-                <input type="text" className="txt J_SearchName" placeholder="请输入酒店名称" />
-              </div>
-               <span className="sub-1-js">
-                   <button type="submit" className="subt J_FindByName">查找酒店</button>
-               </span>
-            </div>
-            <div className="info-box">
-              <div style={{marginTop:'0px'}} className="result" id='J_TotalCount'>
-                <span>共找到婚宴酒店</span><b>{this.state.hotels.length}</b>个
-              </div>
-            </div>
-          </div>
-          <HotelList hotels={this.state.hotels} />
+          <HotelList {...HotelConfig['HotelList']} params={_.merge(this.state.params,HotelConfig['HotelList'].params) } />
           <div>
-            <div onClick={this.loadMore} id="J_MoreButton">
+            <div id="J_MoreButton">
               <div className="more-btn"><span>点击查看更多</span></div>
             </div>
           </div>
@@ -266,46 +317,22 @@ const Hotel = React.createClass({
       </div>
     )
   },
-  getInitialState() {
+  getDefaultProps(){
     return {
       types:[], // fetch
       prices: HotelConfig['Prices'], // config
       seatsCount: HotelConfig['SeatsCount'], // config
-      areas: [], // fetch
-      hotels:[], // fetch
-      totalPage:0 // calculate
+      areas: [] // fetch
     }
   },
-  loadMore(){},
+  getInitialState() {
+    return {
+      params:{}
+    }
+  },
   componentDidMount() {
-    const HotelListConfig = HotelConfig['HotelList'] //数据请求地址配置在config文件
-    if (HotelListConfig.dataUrl !== undefined) {
-      fetch(HotelListConfig.baseUrl + HotelListConfig.dataUrl)
-      .then(res => {return res.json()})
-      .then(j=>{
-        this.setState({ hotels:j.data })
-      })
-    }
-
-    const TypeCategory = HotelConfig['TypeCategory'] //取到配置的获取类型数据的请求地址
-    if (TypeCategory.dataUrl !== undefined) {
-      fetch(TypeCategory.baseUrl + TypeCategory.dataUrl)
-      .then(res => {return res.json()})
-      .then(j=>{
-        /* 针对每个类型只取name和id字段 */
-        this.setState({ types: _.map(j.data || [],(v,k)=>{ return _.pick(v,['name','id']) }) })
-      })
-    }
-
-    const DistrictCategory = HotelConfig['DistrictCategory'] //地区数据接口地址
-    if (DistrictCategory.dataUrl !== undefined) {
-      fetch(DistrictCategory.baseUrl + DistrictCategory.dataUrl)
-      .then(res => {return res.json()})
-      .then(j=>{
-        /* 针对每个地区只取name和id字段 */
-        this.setState({ areas: _.map(j.data || [],(v,k)=>{ return _.pick(v,['name','id']) }) })
-      })
-    }
+    HotelConfig['DistrictConditions']['setupFilterClick']('multi',this)
+    HotelConfig['SorterAndSearch'](this)
   }
 })
 

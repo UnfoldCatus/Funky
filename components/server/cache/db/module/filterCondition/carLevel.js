@@ -1,7 +1,7 @@
 /**
  * Created by chenjianjun on 16/2/25.
  */
-var env=require("../../config");
+var env=require("../../../config");
 var type=env.Thinky.type;
 
 // 婚礼租车--档次
@@ -10,15 +10,16 @@ var type=env.Thinky.type;
  "success": true,
  "message": null,
  "data": [
- {
- "id": 4,
- "createTime": "2015-11-24 15:12:37",
- "updateTime": "2015-11-24 15:12:37",
- "operater": 0,
- "isUsed": 1,
- "name": "222",
- "description": "222222"
- }
+     {
+     "id": 8,
+     "createTime": "2015-11-20 17:33:54",
+     "updateTime": "2015-11-20 17:33:54",
+     "operater": 0,
+     "isUsed": 1,
+     "name": "低档",
+     "description": "低档",
+     "levelId": 8
+     }
  ],
  "code": 200,
  "count": 0
@@ -29,6 +30,8 @@ var type=env.Thinky.type;
 const FilterConditionCarLevel = env.Thinky.createModel('filterConditionCarLevel', {
     // Id
     id: type.number(),
+    // 档次ID
+    levelId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

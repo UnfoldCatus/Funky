@@ -4,18 +4,12 @@
 
 import wdyVideo from '../cache/db/module/movie.js'
 import _ from 'lodash'
-import env from '../cache/db/config'
+import env from '../cache/config'
 let r = env.Thinky.r
 
 // 微电影
 
 const wdyVideoApi = {
-
-    'get+/video/all': function*(next) {
-        this.model = wdyVideo
-        this.APIKey = 'WdyVideo'
-        yield next
-    },
 
     // 获取案例
     'get+/video/:position': function*(next) {
@@ -49,17 +43,17 @@ const wdyVideoApi = {
             }
         })
 
-        this.APIKey = 'WdyVideo'
+        this.APIKey = 'Movie'
         yield next
     },
 
-    // 获取案例详情
+    // 微电影详情
     'get+/video/detail/:id': function*(next) {
         this.model = wdyVideo.filter({
             id: parseInt(this.params.id)
         })
 
-        this.APIKey = 'WdyVideo'
+        this.APIKey = 'Movie'
         yield next
     }
 

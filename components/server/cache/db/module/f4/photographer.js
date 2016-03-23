@@ -1,7 +1,7 @@
 /**
  * Created by chenjianjun on 16/2/24.
  */
-var env=require("../../config");
+var env=require("../../../config");
 var type=env.Thinky.type;
 
 // 婚庆策划-四大金刚-主持人作品模型
@@ -25,6 +25,7 @@ var type=env.Thinky.type;
              "workList": [
                  {
                      "id": 2,
+                     "productId": 1,
                      "createTime": "2016-01-21 19:18:56",
                      "updateTime": "2016-01-28 16:41:54",
                      "operater": 1,

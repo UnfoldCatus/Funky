@@ -3,9 +3,14 @@
  */
 var http = require('http');
 var cache = require("./cache");
-var conf=require("./config");
+var Config = require("../config.js");
 
-var myCache = cache.createCache("LFU", conf.cache_max_size);
+var myCache = cache.createCache("LFU", Config.MemConfig.cache_max_size);
+var memTool = null;
+
+//查询工具类
+function MEMUtil() {};
+
 /*
   获取数据 GET
   @params
@@ -14,11 +19,8 @@ var myCache = cache.createCache("LFU", conf.cache_max_size);
     cb: 回调
 
 */
-exports.getData = function(url, path, cb)
+MEMUtil.prototype.getData = function(url, path, cb)
 {
-
-
-
     var value = myCache.get(url);
     if (value) { //如果能从缓存拿， 就把数据交给回调
         cb(null/*200*/, value);
@@ -26,10 +28,18 @@ exports.getData = function(url, path, cb)
     else
     {
         var options = {
-            host: conf.api_host,
-            port: conf.api_port,
+            host: Config.APIHost,
+            port: Config.APIPort,
             path: path,
             method: "GET"
+        };
+
+        let data = {
+            success:false,
+            message:"",
+            data:[],
+            code:404,
+            count:0
         };
 
         var req = http.request(options, function(res) {
@@ -39,26 +49,36 @@ exports.getData = function(url, path, cb)
                 chunks+=chunk;
             });
             res.on('end', function() {
-                var json = JSON.parse(chunks);
-                if(res.statusCode == 200 && json.code == 200) {
-                    // 设置缓存时间为5分钟
-                    myCache.set(url, json, conf.cache_timeout);
+                if (res.statusCode != 200) {
+                    data.message = '服务器应答异常';
+                    data.code = res.statusCode;
+                    cb(null,data)
+                } else {
+                    if (chunks === "") {
+                        data.message = '服务器异常,拉取数据失败';
+                        data.code = res.statusCode;
+                        cb(null,data)
+                    } else {
+                        try {
+                            var json = JSON.parse(chunks);
+                            if(json.code == 200) {
+                                // 缓存并设置缓存时间
+                                myCache.set(url, json, Config.MemConfig.cache_timeout);
+                            }
+
+                            cb(null, json);
+                        } catch (e) {
+                            data.message = '数据请求异常';
+                            data.code = res.statusCode;
+                            cb(null,data);
+                        }
+                    }
                 }
-                // cb(res.statusCode, chunks);
-                cb(null, json);
             });
             res.on('error', function (e) {
-                var data = {
-                    success:false,
-                    message:JSON.stringify({msg: err.message}),
-                    data:[],
-                    code:404,
-                    count:0
-                };
-
-                // var str = JSON.stringify(data);
-                // cb(404, str);
-                cb(null,data)
+                data.message = e.message;
+                data.code = 404;
+                cb(null,data);
             });
         });
 
@@ -68,62 +88,29 @@ exports.getData = function(url, path, cb)
         req.on('error',function(e) {
             req.res && req.res.abort();
             req.abort();
-            var data = {
-                success:false,
-                message:JSON.stringify({msg: "server error"}),
-                data:[],
-                code:404,
-                count:0
-            };
-
-            // var str = JSON.stringify(data);
-            // cb(404, str);
-            cb(null,data)
+            data.message = '服务器错误';
+            data.code = 404;
+            cb(null,data);
 
         }).on('timeout',function(e) {
             req.res && req.res.abort();
             req.abort();
-            var data = {
-                success:false,
-                message:JSON.stringify({msg: "request timeout"}),
-                data:[],
-                code:404,
-                count:0
-            };
-
-            // var str = JSON.stringify(data);
-            // cb(404, str);
-            cb(null,data)
+            data.message = 'request timeout';
+            data.code = 404;
+            cb(null,data);
         });
 
         req.end();
-
-        //console.log("请求获取.......");
-        //http.get(options, function(res)
-        //{
-        //    var chunks = "";
-        //    res.setEncoding('utf8');
-        //    res.on('data', function(chunk) {
-        //        chunks+=chunk;
-        //    });
-        //
-        //    res.on('end', function() {
-        //
-        //        var json = JSON.parse(chunks);
-        //        if(res.statusCode == 200 && json.code == 200) {
-        //            // 设置缓存时间为5分钟
-        //            myCache.set(url, chunks, conf.cache_timeout);
-        //        }
-        //
-        //        cb(res.statusCode, chunks);
-        //    });
-        //
-        //    res.on('error', function (e) {
-        //        cb(res.statusCode, JSON.stringify({msg: err.message}));
-        //    });
-        //});
     }
 }
 
-exports.create = function () {
+MEMUtil.prototype.clearCache = function() {
+    myCache.clear();
+};
+
+exports.Instance = function() {
+    if (memTool == null) {
+        memTool = new MEMUtil();
+    }
+    return memTool;
 }

@@ -3,23 +3,24 @@
  */
 import dress from '../cache/db/module/dress.js'
 import _ from 'lodash'
-import env from '../cache/db/config'
+import env from '../cache/config'
 let r = env.Thinky.r
 
 // 婚纱礼服
 
 const dressApi = {
 
-    'get+/dress/list': function*(next) {
-        this.model = dress
-        this.APIKey = 'Dress'
-        yield next
-    },
-
     // 获取礼服详情
-    'get+/dress/detail': function*(next) {
-        this.model = dress;
-        this.model = this.model.orderBy(r.desc('weight'));
+    'get+/dress/:position': function*(next) {
+
+        if (this.params.position === 'all') {
+            this.model = dress.filter({})
+        } else {
+            this.model = dress.filter({
+                position: this.params.position
+            })
+        }
+
         _.each(this.request.query, (v, k) => {
             if (k.indexOf('pageSize') !== -1) {
                 let limit = 0
@@ -30,19 +31,17 @@ const dressApi = {
                 this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
                 this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
             }
-            else if(k.indexOf('position') !== -1) {
-                this.model = this.model.filter({
-                    position: this.params.position})
-            }
             else if(k.indexOf('brandId') !== -1) {
                 this.model = this.model.filter({
-                    brand: parseInt(this.request.query["brandId"])})
+                    brandId: parseInt(this.request.query["brandId"])})
             }
             else if(k.indexOf('typeId') !== -1) {
                 this.model = this.model.filter({
-                    type: parseInt(this.request.query["typeId"])})
+                    typeId: parseInt(this.request.query["typeId"])})
             }
         })
+
+        this.model = this.model.orderBy(r.desc('weight'));
 
         this.APIKey = 'Dress'
         yield next

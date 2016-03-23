@@ -18,6 +18,7 @@ import carApi from './components/server/api/car.js'
 import suppliesApi from './components/server/api/supplies.js'
 import dressApi from './components/server/api/dress.js'
 import weddingClassApi from './components/server/api/weddingClass.js'
+import cacheManagerApi from './components/server/api/cache-manager.js'
 
   /**
     api 资源路由
@@ -29,42 +30,66 @@ apiRouter.get('/', function* apiRoot(next) {
   yield next
   // 列出所有资源到列表
   this.body = {
-    '/api/adv/all':'广告',
-    '/api/sample/all':'作品',
-    '/api/pringles/all':'客片',
-    '/api/pringlesSeason/list':'客片分季',
-    '/api/hotel/all':'酒店',
+    '/api/adv/:position':'广告',
+    '/api/hotel/:position?minTable=最小容客桌数&maxTable=最大容客桌数&minPrice=最小价格&maxPrice=最大价格&isGift=是否有礼包1有0没有&isDisaccount=是否有优惠1有0没有&sort=按什么排序price:按价格排序table:按桌数排序&order=排序方式asc正序desc倒序&hotelName=酒店名称模糊匹配&cityId=所在市区&hotelType=根据酒店类型筛选的Id进行传值':'酒店列表',
+    '/api/hotel/detail/:id':'酒店详情,此处的ID不是hotelID是数据里面的发布id',
+    '/api/banquetHall/list?hotelId=酒店ID':'获取宴会厅列表',
+    '/api/banquetHall/detail/:id':'宴会厅详情',
     '/api/hotelType/all':'婚宴预订-酒店类型搜索条件',
     '/api/hotelDistrict/all': '婚宴预订-酒店区域搜索条件',
-    '/api/suite/all':'套系',
-    '/api/cases/all':'实景案例',
-    '/api/case3D/all':'3D案例',
+    '/api/sample/:position?exteriorId=外景ID&shootingStyleId=风格Id':'作品',
+    '/api/sample/detail/:id':'作品详情',
+    '/api/pringles/:position?seasonId=分季ID':'客片',
+    '/api/pringles/detail/:id':'客片详情',
+    '/api/pringlesSeason/all':'客片分季',
+    '/api/suite/:position':'套系列表',
+    '/api/suite/detail/:id': '套系详情',
+    '/api/recordVideo/:position?seasonId=分级ID&sort=data(按时间排序) or hits(按点击量排序)': '婚纱摄影-纪实MV',
+    '/api/recordVideo/detail/:id': '婚纱摄影-纪实MV详情',
+    '/api/recordVideoSeason/all': '婚纱摄影-纪实MV分季',
+    '/api/cases/:position?styleId=风格ID&minPrice=最低价格&maxPrice=最高价格':'实景案例',
+    '/api/cases/detail/:id': '实景案例详情',
+    '/api/case3D/:position?':'3D案例',
+    '/api/api/case3D/detail/:id':'3D案例详情',
     '/api/caseStyle/all':'婚庆定制-案例风格搜索条件',
-    '/api/followPhoto/all':'婚礼跟拍',
+    '/api/followPhoto/:position?seasonId=分季ID':'婚礼跟拍',
+    '/api/followPhoto/detail/:id':'婚礼跟拍详情',
     '/api/followPhotoSeason/all':'婚礼跟拍分季',
-    '/api/followVideo/all': '婚礼视频',
+    '/api/followVideo/:position': '婚礼视频',
+    '/api/followVideo/detail/:id': '婚礼视频详情',
     '/api/followVideoSeason/all': '婚礼视频分季',
     '/api/exterior/all':'婚纱摄影-外景地搜索条件',
     '/api/shootStyle/all':'婚纱摄影-风格搜索条件',
-    '/api/f4/photographer': '四大金刚-摄影师作品',
-    '/api/f4/camera': '四大金刚-摄像师作品',
-    '/api/f4/dresser': '四大金刚-化妆师作品',
-    '/api/f4/host': '四大金刚-主持师作品',
-    '/api/f4/team': '四大金刚-特色项目作品',
-    '/api/recordVideo/all': '婚纱摄影-纪实MV',
-    '/api/recordVideoSeason/all': '婚纱摄影-纪实MV分季',
+    '/api/f4/photographer?minPrice=最小价格&maxPrice=最大价格': '四大金刚-摄影师作品',
+    '/api/f4/camera?minPrice=最小价格&maxPrice=最大价格': '四大金刚-摄像师作品',
+    '/api/f4/dresser?minPrice=最小价格&maxPrice=最大价格': '四大金刚-化妆师作品',
+    '/api/f4/host?minPrice=最小价格&maxPrice=最大价格': '四大金刚-主持师作品',
+    '/api/f4/team?minPrice=最小价格&maxPrice=最大价格': '四大金刚-特色项目作品',
     '/api/carModels/all': '婚车租赁-型号搜索条件',
     '/api/carLevel/all': '婚车租赁-档次搜索条件',
     '/api/carBrand/all': '婚车租赁-品牌搜索条件',
-    '/api/suppliesBrand/all': '婚车用品-品牌搜索条件',
-    '/api/suppliesType/all': '婚车用品-类型搜索条件',
-    '/api/dress/list': '婚纱礼服',
+    '/api/car/:position?modelsId=车型号&brandId=品牌&levelId=档次&carNature=单车还是车队': '婚车',
+    '/api/car/detail/:id': '婚车详情',
+    '/api/suppliesBrand/all': '婚礼用品-品牌搜索条件',
+    '/api/suppliesType/all': '婚礼用品-类型搜索条件',
+    '/api/weddingsupplies/:position?weddingSuppliesTypeId=用品类型ID&brandId=用品品牌ID': '婚礼用品',
+    '/api/weddingsupplies/detail/:id': '婚礼用品详情',
+    '/api/dress/:position?brandId=品牌ID&typeId=礼服类型': '婚纱礼服',
     '/api/dressType/all': '婚纱礼服-类型',
-    '/api/dressBrand/all': '婚纱礼服-品牌',
-    '/api/video/all': '微电影',
-    '/api/car/all': '婚车租赁',
-    '/api/weddingsupplies/all': '婚车用品',
-    '/api/weddingroom/all': '婚礼课堂'
+    '/api/dressBrand/all?typeId=礼服类型': '婚纱礼服-品牌',
+    '/api/video/:position?videoType=微电影类型&sort=data(按时间排序) or hits(按点击量排序)': '微电影',
+    '/api/video/detail/:id': '微电影详情',
+    '/api/weddingroom/:position?moduleTypeId=模块ID': '婚礼课堂',
+    '/api/weddingroom/detail/:id': '婚礼课堂详情',
+    'Adv': '^_^',
+    'Hotel,FilterConditionHotelType,FilterConditionHotelDistrict': '^_^',
+    'Sample,Pringles,PringlesSeason,RecordVideo,RecordVideoSeason,Suite,FilterConditionShootStyle,FilterConditionExterior': '^_^',
+    'Cases,Case3D,FollowPhoto,FollowPhotoSeason,FollowVideo,FollowVideoSeason,F4Photographer,F4Camera,F4Dresser,F4Host,F4Team,FilterConditionCaseStyle': '^_^',
+    'Dress,FilterConditionDressBrand,FilterConditionDressType': '^_^',
+    'Movie': '^_^',
+    'Car,FilterConditionCarModels,FilterConditionCarLevel,FilterConditionCarBrand': '^_^',
+    'Supplies,FilterConditionSuppliesBrand,FilterConditionSuppliesType': '^_^',
+    'WeddingClass': '^_^',
   }
 })
 
@@ -79,7 +104,8 @@ const apiRouterList = [
   dressApi,
   carApi,
   suppliesApi,
-  weddingClassApi
+  weddingClassApi,
+  cacheManagerApi
 ]
 _.each(apiRouterList,(route,index)=>{
   _.each(route,(value,key)=>{
@@ -97,11 +123,14 @@ const siteRouter = new Router()
     menuKey MenuConfig中配置的link字段
     parentKey MenuConfig中的顶层模块的key
   */
-let renderOption = (templateName, menuKey, parentKey) => {
+let renderOption = (templateName, menuKey, parentKey,params) => {
+  let p = params || {}
     return {
       'reactMarkup': renderToString(ComponentsIndex[templateName]),
       'reactNavMarkup': renderToString(<Navigation menuKey={parentKey ||'/'} currentKey={menuKey} />),
-      'main': templateName // 客户端渲染使用的脚本名称和模板名称一致
+      'main': templateName,// 客户端渲染使用的脚本名称和模板名称一致
+      'params':JSON.stringify(p),
+      'mode':(process.env.NODE_ENV === 'production')?'production':'development'
     }
   }
   /**
@@ -138,14 +167,27 @@ siteRouter.get('/shot', function* index(next) {
 siteRouter.get('/sample', function* index(next) {
   yield this.render('modules/default', renderOption('sample', '/sample', '/shot'))
 })
+/** 作品详情 **/
+siteRouter.get('/sample/:id', function* index(next) {
+  yield this.render('modules/default', renderOption('sample-details', '/sample', '/shot',this.params))
+})
 
 /** 客片 **/
 siteRouter.get('/pringles', function* index(next) {
     yield this.render('modules/default', renderOption('pringles', '/pringles', '/shot'))
   })
+/** 客片详情 **/
+siteRouter.get('/pringles/:id', function* index(next) {
+  yield this.render('modules/default', renderOption('pringles-details', '/pringles', '/shot',this.params))
+})
+
   /* 套系 */
 siteRouter.get('/suite', function* index(next) {
   yield this.render('modules/default', renderOption('suite', '/suite', '/shot'))
+})
+/* 套系详情 */
+siteRouter.get('/suite/:id', function* index(next) {
+  yield this.render('modules/default', renderOption('suite-details', '/suite', '/shot',this.params))
 })
 /* 婚礼纪实 */
 siteRouter.get('/weddingmv', function* index(next) {
@@ -157,6 +199,18 @@ siteRouter.get('/weddingmv', function* index(next) {
 siteRouter.get('/hotel', function* index(next) {
     yield this.render('modules/default', renderOption('hotel', '/hotel', '/hotel'))
 })
+/** 婚宴酒店详情页 **/
+siteRouter.get('/hotel/:id', function* index(next) {
+    yield this.render('modules/default', renderOption('hotel-details', '/hotel', '/hotel',this.params))
+})
+/** 宴会厅详情 **/
+siteRouter.get('/hall/:id', function* index(next) {
+    yield this.render('modules/default', renderOption('hall-details', '/hotel', '/hotel',this.params))
+})
+/** 酒店位置地图 **/
+siteRouter.get('/map/:longitude/:latitude', function* index(next) {
+    yield this.render('modules/default', renderOption('map-location', '/hotel', '/hotel',this.params))
+})
   // 提交婚宴预订需求
 siteRouter.get('/hotel-require', function* index(next) {
   yield this.render('modules/default', renderOption('hotel-require', '/hotel-require', '/hotel'))
@@ -166,43 +220,60 @@ siteRouter.get('/hotel-require', function* index(next) {
 siteRouter.get('/scheme', function* index(next) {
     yield this.render('modules/default', renderOption('scheme', '/scheme', '/scheme'))
 })
-  /**  实景案例 **/
+/**  实景案例 **/
 siteRouter.get('/cases', function* index(next) {
     yield this.render('modules/default', renderOption('cases', '/cases', '/scheme'))
 })
-  /** 婚礼跟拍 **/
+/**  实景案例详情 **/
+siteRouter.get('/case-details', function* index(next) {
+  yield this.render('modules/default', renderOption('case-details', '/cases', '/scheme'))
+})
+
+/** 婚礼跟拍 **/
 siteRouter.get('/weddingpat', function* index(next) {
     yield this.render('modules/default', renderOption('wedding-pat', '/weddingpat', '/scheme'))
 })
-  /** 婚礼视频 **/
+/** 婚礼视频 **/
 siteRouter.get('/weddingvideo', function* index(next) {
     yield this.render('modules/default', renderOption('wedding-video', '/weddingvideo', '/scheme'))
 })
-  /** 提交婚庆需求 **/
+/** 提交婚庆需求 **/
 siteRouter.get('/scheme-require', function* index(next) {
   yield this.render('modules/default', renderOption('scheme-require', '/scheme-require', '/scheme'))
+})
+/** 选婚礼人(四大金刚) **/
+siteRouter.get('/f4', function* index(next) {
+  yield this.render('modules/default', renderOption('f4', '/f4', '/scheme', this.request.query))
 })
 
 /** 礼服 **/
 siteRouter.get('/dress', function* index(next) {
   yield this.render('modules/default', renderOption('dress', '/dress', '/dress'))
 })
-
+/** 礼服详情 **/
 siteRouter.get('/dress-details', function* index(next) {
-    yield this.render('modules/default', renderOption('dress-details', '/dress', '/dress'))
+    yield this.render('modules/default', renderOption('dress-details', '/dress', '/dress', this.request.query))
 })
-  /** 微电影 **/
+/** 微电影 **/
 siteRouter.get('/movie', function* index(next) {
     yield this.render('modules/default', renderOption('movie', '/movie', '/movie'))
 })
-  /** 婚礼用品 **/
+/** 微电影详情 **/
+siteRouter.get('/movie-details', function* index(next) {
+  yield this.render('modules/default', renderOption('movie-details', '/movie', '/movie', this.request.query))
+})
+/** 婚礼用品 **/
 siteRouter.get('/supply', function* index(next) {
     yield this.render('modules/default', renderOption('supply', '/supply', '/supply'))
 })
-  /** 婚车租赁 **/
+/** 婚车租赁 **/
 siteRouter.get('/car', function* index(next) {
   yield this.render('modules/default', renderOption('car', '/car', '/car'))
 })
 
+/** 活动详情页 **/
+siteRouter.get('/active/:name', function* index(next) {
+  yield this.render('modules/default', renderOption('active', '/active', '/active', this.params))
+})
 
 export { siteRouter }

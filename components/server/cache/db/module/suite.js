@@ -2,13 +2,15 @@
  * Created by chenjianjun on 15/12/16.
  * 套系模型
  */
-var env=require("../config");
+var env=require("../../config");
 var type=env.Thinky.type;
 
 // 套系模型
 const Suite = env.Thinky.createModel('suite', {
-    // Id
+    // 发布Id
     id: type.number(),
+    // 套系ID
+    suiteId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间
@@ -29,7 +31,6 @@ const Suite = env.Thinky.createModel('suite', {
     mobileUrl: type.string(),
     // 套系描述
     description: type.string(),
-
     /************************************start************************************/
     // TODO 本身是json对象，以字符串形式表现
     // 摄影师详细
@@ -43,8 +44,6 @@ const Suite = env.Thinky.createModel('suite', {
     // 微信详细图片集
     wxDetailImages: type.string(),
     /************************************end************************************/
-
-
     // 资源位置
     position: type.string(),
     // 权重

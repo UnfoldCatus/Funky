@@ -1,7 +1,7 @@
 /**
  * Created by chenjianjun on 16/2/26.
  */
-var env=require("../../config");
+var env=require("../../../config");
 var type=env.Thinky.type;
 
 // 婚纱礼服--礼服类型
@@ -10,16 +10,17 @@ var type=env.Thinky.type;
  "success": true,
  "message": null,
  "data": [
- {
- "id": 1,
- "createTime": "2016-02-26 14:45:27",
- "updateTime": "2016-02-26 14:48:31",
- "operater": 1,
- "isUsed": 1,
- "name": "国际婚纱",
- "description": "国际婚纱",
- "weight": 4
- }
+     {
+     "id": 1,
+     "createTime": "2016-02-26 14:45:27",
+     "updateTime": "2016-03-03 14:46:05",
+     "operater": 1,
+     "isUsed": 1,
+     "name": "国际婚纱",
+     "description": "国际婚纱",
+     "weight": 5,
+     "typeId": 1
+     }
  ],
  "code": 200,
  "count": 1
@@ -27,8 +28,10 @@ var type=env.Thinky.type;
  * */
 
 const FilterConditionDressType = env.Thinky.createModel('filterConditionDressType', {
-    // Id
+    // 发布Id
     id: type.number(),
+    // 资源ID
+    typeId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

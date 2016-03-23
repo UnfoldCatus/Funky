@@ -1,7 +1,7 @@
 /**
  * Created by chenjianjun on 16/2/26.
  */
-var env=require("../config");
+var env=require("../../config");
 var type=env.Thinky.type;
 
 // 婚礼租车
@@ -13,6 +13,7 @@ var type=env.Thinky.type;
  "data": [
      {
      "id": 232,
+     "carId": 7,
      "createTime": "2016-01-21 19:46:13",
      "updateTime": "2016-01-28 16:57:50",
      "operater": 1,
@@ -44,8 +45,10 @@ var type=env.Thinky.type;
 * */
 
 const Car = env.Thinky.createModel('car', {
-    // Id
+    // 发布Id
     id: type.number(),
+    // 汽车ID
+    carId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

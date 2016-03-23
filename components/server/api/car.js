@@ -4,53 +4,67 @@
 
 import car from '../cache/db/module/car.js'
 import _ from 'lodash'
-import env from '../cache/db/config'
+import env from '../cache/config'
 let r = env.Thinky.r
 
 // 婚车租赁
 
 const carApi = {
 
-    'get+/car/all': function*(next) {
-        this.model = car
-        this.APIKey = 'Car'
-        yield next
-    },
-
-    // 获取案例
+    // 获取婚车列表
     'get+/car/:position': function*(next) {
+        this.APIKey = 'Car'
         if (this.params.position === 'all') {
             this.model = car.filter({})
         } else {
-            this.model = car.filter({
-                position: this.params.position
-            })
+            this.model = car.filter({position: this.params.position})
         }
-        this.model = this.model.orderBy(r.desc('weight'))
 
+        let pageIndex = 0;
+        let pageSize = 10;
         _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex'] || '1') - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
                 }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+            } else if(k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize'] || '1')
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
+            } else if(k.indexOf('minPrice') !== -1) {
+                // 最低价格
+                this.model = this.model.filter(r.row('rentalPrice').gt(parseInt(this.request.query['minPrice'])));
+            } else if(k.indexOf('maxPrice') !== -1) {
+                // 最高价格
+                this.model = this.model.filter(r.row('rentalPrice').lt(parseInt(this.request.query['maxPrice'])));
+            } else if(k.indexOf('brandId') !== -1) {
+                // 用品品牌
+                this.model = this.model.filter({brandId: parseInt(this.request.query["brandId"])});
+            } else if(k.indexOf('modelsId') !== -1) {
+                // 型号ID
+                this.model = this.model.filter({modelsId: parseInt(this.request.query["modelsId"])});
+            } else if(k.indexOf('levelId') !== -1) {
+                // 档次ID
+                this.model = this.model.filter({levelId: parseInt(this.request.query["levelId"])});
+            } else if(k.indexOf('carNature') !== -1) {
+                // 单车还是车队
+                this.model = this.model.filter({carNature: parseInt(this.request.query["carNature"])});
             }
-            //else if(k.indexOf('styleId') !== -1) {
-            //    // 风格 TODO:服务器返回的是字符串如"123,275,468,",这里采用"%id,%"的方式匹配
-            //    this.model = this.model.filter(r.row("caseStyle").match(".*?"+this.request.query['styleId']+","+".*?"));
-            //} else if(k.indexOf('minPrice') !== -1) {
-            //    // 最低价格
-            //    this.model = this.model.filter(r.row('totalCost').gt(Number(this.request.query['minPrice'])));
-            //} else if(k.indexOf('maxPrice') !== -1) {
-            //    // 最高价格
-            //    this.model = this.model.filter(r.row('totalCost').lt(Number(this.request.query['maxPrice'])));
-            //}
         })
 
-        this.APIKey = 'Car'
+        try {
+            let all = yield this.model
+            this.count = all.length || 0
+        } catch (e) {
+            this.count = 0
+        }
+
+        this.model = this.model.skip(pageIndex * pageSize);
+        this.model = this.model.limit(pageSize);
+        this.model = this.model.orderBy(r.desc('weight'))
+
         yield next
     },
 

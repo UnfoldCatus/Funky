@@ -2,8 +2,9 @@
  * Created by chenjianjun on 15/12/8.
  */
 var http = require('http');
-var env = require("./config.js");
+var Config = require("../config.js");
 var Hotel = require("./module/hotel.js");
+var BanquetHall = require("./module/banquetHall.js");
 var FilterConditionHotelType = require("./module/filterCondition/hotelType.js");
 var FilterConditionHotelDistrict = require("./module/filterCondition/hotelDistrict.js");
 var Adv = require("./module/adv.js");
@@ -16,7 +17,7 @@ var Suite = require("./module/suite.js");
 var FilterConditionShootStyle = require("./module/filterCondition/shootStyle.js");
 var FilterConditionExterior = require("./module/filterCondition/exterior.js");
 var Cases = require("./module/cases.js");
-var Case3D = require("./module/case3D.js");
+var Cases3D = require("./module/cases3D.js");
 var FilterConditionCaseStyle = require("./module/filterCondition/caseStyle.js");
 var FollowPhoto = require("./module/followPhoto.js");
 var FollowPhotoSeason = require("./module/followPhotoSeason.js");
@@ -42,13 +43,13 @@ var Dress = require("./module/dress.js");
 var WeddingClass = require("./module/weddingClass.js");
 
 var qs = require('querystring');
-var r = env.Thinky.r;
 var _ = require('lodash')
 
 
 var models = {
   "Adv": Adv,
   "Hotel": Hotel,
+  "BanquetHall": BanquetHall,
   "FilterConditionHotelType": FilterConditionHotelType,
   "FilterConditionHotelDistrict": FilterConditionHotelDistrict,
   "Sample": Sample,
@@ -60,7 +61,7 @@ var models = {
   "FilterConditionShootStyle": FilterConditionShootStyle,
   "FilterConditionExterior": FilterConditionExterior,
   "Cases": Cases,
-  "Case3D": Case3D,
+  "Cases3D": Cases3D,
   "FilterConditionCaseStyle": FilterConditionCaseStyle,
   "FollowPhoto": FollowPhoto,
   "FollowPhotoSeason": FollowPhotoSeason,
@@ -101,7 +102,7 @@ var mSyncFlg = {
   "FilterConditionShootStyle": false,
   "FilterConditionExterior": false,
   "Cases": false,
-  "Case3D": false,
+  "Cases3D": false,
   "FilterConditionCaseStyle": false,
   "FollowPhoto": false,
   "FollowPhotoSeason": false,
@@ -123,6 +124,7 @@ var mSyncFlg = {
   "Car": false,
   "Supplies": false,
   "Dress": false,
+  "BanquetHall": false,
   "WeddingClass": false
 };
 
@@ -137,8 +139,8 @@ function DBUtil() {};
  */
 function GetData(path, cb) {
   var options = {
-    host: env.Config.api_host,
-    port: env.Config.api_port,
+    host: Config.APIHost,
+    port: Config.APIPort,
     path: path,
     method: "GET"
   };
@@ -160,10 +162,15 @@ function GetData(path, cb) {
           var err = new Error('服务器异常,拉取数据失败');
           cb(err);
         } else {
-          var json = JSON.parse(chunks);
-          if (json.code == 200) {
-            cb(null, json);
-          } else {
+          try {
+            var json = JSON.parse(chunks);
+            if (json.code == 200) {
+              cb(null, json);
+            } else {
+              var err = new Error('服务器异常');
+              cb(err);
+            }
+          } catch (e) {
             var err = new Error('服务器异常');
             cb(err);
           }
@@ -195,34 +202,87 @@ function GetData(path, cb) {
 /**
  * 同步数据
  * @param module 模块名称
- * @param datas 拉取的数据
+ * @param sumCount 记录已拉取的条数
  * @param index 分页数
  * @param count 拉取数量
  * @param cb 数据回调
  * @constructor
  */
+function SyncFun(module, sumCount, dataList, index, count, cb) {
 
-function SyncFun(module, datas, index, count, cb) {
-  var path = env.Config[module + 'Path'] + '?' + qs.stringify({
-    pageSize: count,
-    pageIndex: index
-  });
+  let path = Config.DBConfig[module + 'Path'] + '?' + qs.stringify({
+      pageSize: count,
+      pageIndex: index
+    });
+
   GetData(path, function(err, data) {
     if (err) {
-      cb(err)
+      cb(err);
     } else {
-      for (var i = 0; i < data.data.length; ++i) {
-        datas.push(data.data[i]);
-      }
+      if(module === 'Hotel') {
+        if (sumCount < data.count) {
+          sumCount += data.data.length;
 
-      if (datas.length < data.count) {
-        // 如果获取到的数据小于得到的总条数，那么继续拉数据
-        SyncFun(module, datas, index + 1, count, cb);
-      } else {
-        cb(null);
+          // 1.获取所有的宴会厅
+          let banquetHalls = [];
+          for(let i = 0; i < data.data.length; i++) {
+            if(dataList[data.data[i].hotelId]) {
+            } else {
+              dataList[data.data[i].hotelId] = data.data[i].hotelId;
+              for(let j=0;j<data.data[i].banquetHall.length; j++) {
+                banquetHalls.push(data.data[i].banquetHall[j]);
+              }
+            }
+          }
+
+          if(banquetHalls.length > 0) {
+            models['BanquetHall'].save(banquetHalls).then(function(result, error) {
+              if (error) {
+                cb(error);
+              }
+              else {
+                models[module].save(data.data).then(function(result, error) {
+                  if (error) {
+                    cb(error);
+                  } else {
+                    SyncFun(module, sumCount, dataList, index + 1, count, cb);
+                  }
+                });
+              }
+            });
+          } else {
+            models[module].save(data.data).then(function(result, error) {
+              if (error) {
+                cb(error);
+              } else {
+                SyncFun(module, sumCount, dataList, index + 1, count, cb);
+              }
+            });
+          }
+        } else {
+          cb(null);
+        }
+      }
+      else {
+        // 存储数据
+        if (sumCount < data.count)
+        {
+          sumCount += data.data.length;
+          models[module].save(data.data).then(function(result, error) {
+            if (error) {
+              cb(error);
+            } else {
+              SyncFun(module, sumCount, dataList, index + 1, count, cb);
+            }
+          });
+        }
+        else
+        {
+          cb(null);
+        }
       }
     }
-  })
+  });
 }
 
 /**
@@ -231,22 +291,36 @@ function SyncFun(module, datas, index, count, cb) {
  * @constructor
  */
 function Sync(type) {
-  var datas = [];
-  SyncFun(type, datas, 1, 10, function(err) {
-    if (err) {
-      console.log('拉取数据失败.', err);
-    } else {
-      mSyncFlg[type] = false;
-      models[type].delete().run().then(function(rel) {
-        models[type].save(datas).then(function(result, error) {
-          if (!error) {
+  mSyncFlg[type] = false;
+  let sumCount = 0;
+  let dataList = new Map();
+  if(type === 'Hotel') {
+    mSyncFlg['BanquetHall'] = false;
+    models['BanquetHall'].delete().run().then(function(rel) {
+      models[type].delete().run().then(function (rel) {
+        SyncFun(type, sumCount, dataList, 1, 10, function (err) {
+          if (err) {
+            console.log('拉取数据失败['+type+']', err);
+          } else {
             mSyncFlg[type] = true;
+            mSyncFlg['BanquetHall'] = true;
+            console.log('拉取数据成功['+type+']');
           }
         });
       });
-    }
-
-  });
+    });
+  } else {
+    models[type].delete().run().then(function(rel) {
+      SyncFun(type, sumCount, dataList, 1, 10, function(err) {
+        if (err) {
+          console.log('拉取数据失败['+type+']', err);
+        } else {
+          mSyncFlg[type] = true;
+          console.log('拉取数据成功['+type+']');
+        }
+      });
+    });
+  }
 }
 
 DBUtil.prototype.isCacheDataUsable = function(moduleName) {
@@ -254,30 +328,69 @@ DBUtil.prototype.isCacheDataUsable = function(moduleName) {
   return mSyncFlg[moduleName];
 };
 
+DBUtil.prototype.updateDBCacheData = function(moduleName) {
+  if(moduleName in mSyncFlg) {
+    Sync(moduleName);
+  }
+};
+
 exports.Instance = function() {
-  var tasks = ['Adv', 'Hotel', 'Sample', 'Pringles', 'PringlesSeason',
-    'RecordVideo', 'RecordVideoSeason', 'Suite', 'Cases',
-    'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason',
-    'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host', 'F4Team',
-    'FilterConditionShootStyle', 'FilterConditionExterior',
-    'Case3D', 'FilterConditionHotelType', 'FilterConditionHotelDistrict',
-    'FilterConditionCaseStyle', 'FilterConditionCarModels', 'FilterConditionCarLevel',
-    'FilterConditionCarBrand', 'FilterConditionSuppliesBrand', 'FilterConditionSuppliesType',
-    'FilterConditionDressBrand', 'FilterConditionDressType', 'Dress',
-    'Movie', 'Car', 'Supplies', 'WeddingClass'
+  // 分三级数据拉取级别
+  // 一级资源,更新比较频繁的资源
+  var tasks1 = ['Adv', 'Hotel','Sample', 'Pringles', 'PringlesSeason','RecordVideo', 'RecordVideoSeason', 'Suite',
+    'Cases', 'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason', 'F4Photographer', 'F4Camera',
+    'F4Dresser', 'F4Host', 'F4Team', 'Cases3D', 'Dress', 'Movie'
   ];
+
+  // 二级资源,更新不是很平凡的资源
+  var tasks2 = [
+    'Car', 'Supplies', 'FilterConditionCarModels', 'FilterConditionCarLevel',
+    'FilterConditionCarBrand', 'FilterConditionSuppliesBrand',
+    'FilterConditionSuppliesType', 'WeddingClass'
+  ];
+
+  // 三级资源,不经常更新的资源
+  var tasks3 = [
+    'FilterConditionShootStyle', 'FilterConditionExterior',
+    'FilterConditionHotelType', 'FilterConditionHotelDistrict',
+    'FilterConditionCaseStyle', 'FilterConditionDressBrand',
+    'FilterConditionDressType'
+  ];
+
   if (dbTool == null) {
     dbTool = new DBUtil();
-    // 程序启动取一次数据
-    _.each(tasks, function(v) {
+
+    if (Config.DBConfig.cache_flg) {
+      // 程序启动取一次数据
+      _.each(tasks1, function(v) {
         Sync(v)
-      })
-      // 定时器，根据配置时间拉取
-    setInterval(function() {
-      _.each(tasks, function(v) {
+      });
+      _.each(tasks2, function(v) {
         Sync(v)
-      })
-    }, env.Config.cache_time_check);
+      });
+      _.each(tasks3, function(v) {
+        Sync(v)
+      });
+
+      // 定时器，根据配置时间拉取静态资源
+      setInterval(function() {
+        _.each(tasks1, function(v) {
+          Sync(v)
+        })
+      }, Config.DBConfig.cache_time_check);
+
+      setInterval(function() {
+        _.each(tasks2, function(v) {
+          Sync(v)
+        })
+      }, Config.DBConfig.cache_time_check*2);
+
+      setInterval(function() {
+        _.each(tasks3, function(v) {
+          Sync(v)
+        })
+      }, Config.DBConfig.cache_time_check*4);
+    }
   }
   return dbTool;
 };

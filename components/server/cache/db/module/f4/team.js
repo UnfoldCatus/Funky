@@ -1,7 +1,7 @@
 /**
  * Created by chenjianjun on 16/2/26.
  */
-var env=require("../../config");
+var env=require("../../../config");
 var type=env.Thinky.type;
 
 // 四大金刚特色项目
@@ -25,6 +25,7 @@ var type=env.Thinky.type;
          "workList": [
           {
              "id": 30,
+             "productId": 1,
              "createTime": "2016-01-22 15:25:58",
              "updateTime": "2016-01-22 15:25:58",
              "operater": 1,

@@ -10,27 +10,27 @@
 .tit-img-sys{display:block; position: relative; height:61px; background:url(../img/title/sys.jpg) left no-repeat; padding-bottom: 20px;border-bottom: 1px solid #ccc;}
 .tit-img-zxmz{display:block; position: relative; height:61px; background:url(../img/title/zxmz.jpg) left no-repeat; padding-bottom: 20px;border-bottom: 1px solid #ccc;}
 .tit-img-zxs{display:block; position: relative; height:61px; background:url(../img/title/zxs.jpg) left no-repeat; padding-bottom: 20px;border-bottom: 1px solid #ccc;}
-.tit-img-gjhs{display:block; position: relative; height:25px; background:url('//image.jsbn.com/static/tit-dress.jpg') center 0 no-repeat; margin-bottom: 30px;}
-.tit-img-xnlf{display:block; position: relative; height:25px; background:url('//image.jsbn.com/static/tit-dress.jpg') center -25px no-repeat; margin-bottom: 30px;}
-.tit-img-nslf{display:block; position: relative; height:25px; background:url('//image.jsbn.com/static/tit-dress.jpg') center -50px no-repeat; margin-bottom: 30px;}
+.tit-img-gjhs{display:block; position: relative; height:25px; background:url('//img2.jsbn.com/static/tit-dress.jpg') center center 0 no-repeat; margin-bottom: 30px;}
+.tit-img-xnlf{display:block; position: relative; height:25px; background:url('//img2.jsbn.com/static/tit-dress.jpg') center center -25px no-repeat; margin-bottom: 30px;}
+.tit-img-nslf{display:block; position: relative; height:25px; background:url('//img2.jsbn.com/static/tit-dress.jpg') center center -50px no-repeat; margin-bottom: 30px;}
 
 /* 婚纱纪实*/
-.tit-img-hsjs{display:block; position: relative; height:73px; background:url("//image.jsbn.com/static/title/hsjs.jpg") left no-repeat; padding-bottom: 10px;}
+.tit-img-hsjs{display:block; position: relative; height:73px; background:url("//img2.jsbn.com/static/title/hsjs.jpg") left no-repeat; padding-bottom: 10px;} 
 
 /* 微电影作品欣赏 */
-.tit-img-zpxs{display:block; position: relative; height:39px; background:url("//image.jsbn.com/static/title/zpxs.png") left no-repeat; padding-bottom: 20px;}
+.tit-img-zpxs{display:block; position: relative; height:39px; background:url("//img2.jsbn.com/static/title/zpxs.png") left no-repeat; padding-bottom: 20px;} 
 
 /*爱情微电影*/
-.tit-img-aqwdy{display:block; position: relative; height:39px; background:url("//image.jsbn.com/static/title/aqwdy.jpg") left no-repeat; padding-bottom: 20px;}
+.tit-img-aqwdy{display:block; position: relative; height:39px; background:url("//img2.jsbn.com/static/title/aqwdy.jpg") left no-repeat; padding-bottom: 20px;} 
 
 /* 爱情mv */
-.tit-img-aqmv{display:block; position: relative; height:38px; background:url("//image.jsbn.com/static/title/aqmv.jpg") left no-repeat; padding-bottom: 20px;}
+.tit-img-aqmv{display:block; position: relative; height:38px; background:url("//img2.jsbn.com/static/title/aqmv.jpg") left no-repeat; padding-bottom: 20px;} 
 
 /*  总监摄影团队 */
-.tit-img-zjsys{display:block; position: relative; height:60px; background:url("//image.jsbn.com/static/title/zjsystd.png") left no-repeat;}
+.tit-img-zjsys{display:block; position: relative; height:60px; background:url("//img2.jsbn.com/static/title/zjsystd.png") left no-repeat;} 
 
 /* 资深摄影团队 */
-.tit-img-zssys{display:block; position: relative; height:60px; background:url("//image.jsbn.com/static/title/zssystd.png") left bottom no-repeat; padding-top: 50px;border-top: 1px solid #ccc;}
+.tit-img-zssys{display:block; position: relative; height:60px; background:url("//img2.jsbn.com/static/title/zssystd.png") left bottom no-repeat; padding-top: 50px;border-top: 1px solid #ccc;} 
 
 /* 服务团队 */
-.tit.img-team{display:block; position: relative; height:58px; background:url("//image.jsbn.com/static/title/team-hqdz.png") left no-repeat; padding-bottom: 20px;border-bottom: 1px solid #ccc;}
+.tit.img-team{display:block; position: relative; height:58px; background:url("//img2.jsbn.com/static/title/team-hqdz.png") left no-repeat; padding-bottom: 20px;border-bottom: 1px solid #ccc;}

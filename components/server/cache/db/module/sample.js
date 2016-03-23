@@ -2,7 +2,7 @@
  * Created by chenjianjun on 15/12/15.
  * 样片数据模型
  */
-var env=require("../config");
+var env=require("../../config");
 var type=env.Thinky.type;
 
 /*
@@ -10,72 +10,31 @@ var type=env.Thinky.type;
  "success": true,
  "message": null,
  "data": [
- {
- "id": 249,
- "createTime": "2015-12-07 00:42:56",
- "updateTime": "2015-12-07 00:42:56",
- "operater": 1,
- "isUsed": 1,
- "name": "粉红色的回忆",
- "exterior": "[2, 5, 7, 8, 9]",
- "shootingStyle": "[13, 14, 15]",
- "photographerId": 15,
- "photographerDetail": "{\"personName\":\"艾比01\",\"photoUrl\":\"www.qq.com\",\"description\":\"测试\",\"personId\":15}",
- "stylistId": 16,
- "stylistDetail": "{\"personName\":\"卓玛01\",\"photoUrl\":\"www.qq.com\",\"description\":\"测试\",\"personId\":16}",
- "coverUrl": "http://image.jsbn.com/sample/20151207/14494201454671743.jpg",
- "wechatUrl": "http://image.jsbn.com/sample/20151207/14494201454676007.jpg",
- "mobileUrl": "http://image.jsbn.com/sample/20151207/14494201454677800.jpg",
- "description": "22222",
- "pcDetailImages": null,
- "appDetailImages": null,
- "wxDetailImages": null,
- "position": "1191"
- },
- {
- "id": 248,
- "createTime": "2015-12-07 00:27:44",
- "updateTime": "2015-12-07 00:27:44",
- "operater": 1,
- "isUsed": 1,
- "name": "天使之恋",
- "exterior": "[8, 9]",
- "shootingStyle": "[13, 14]",
- "photographerId": 15,
- "photographerDetail": "{\"personName\":\"艾比01\",\"photoUrl\":\"www.qq.com\",\"description\":\"测试\",\"personId\":15}",
- "stylistId": 16,
- "stylistDetail": "{\"personName\":\"卓玛01\",\"photoUrl\":\"www.qq.com\",\"description\":\"测试\",\"personId\":16}",
- "coverUrl": "http://image.jsbn.com/sample/20151206/14493989814190310.jpg",
- "wechatUrl": "http://image.jsbn.com/sample/20151206/14493989814192518.jpg",
- "mobileUrl": "http://image.jsbn.com/sample/20151206/14493989814197596.jpg",
- "description": "XXX和XXX拍摄的天使之恋效果图的描述",
- "pcDetailImages": null,
- "appDetailImages": null,
- "wxDetailImages": null,
- "position": "1191"
- },
- {
- "id": 247,
- "createTime": "2015-12-07 00:02:06",
- "updateTime": "2015-12-07 00:02:06",
- "operater": 1,
- "isUsed": 1,
- "name": "天使之恋",
- "exterior": "[8, 9]",
- "shootingStyle": "[13, 14]",
- "photographerId": 15,
- "photographerDetail": "{\"personName\":\"艾比01\",\"photoUrl\":\"www.qq.com\",\"description\":\"测试\",\"personId\":15}",
- "stylistId": 16,
- "stylistDetail": "{\"personName\":\"卓玛01\",\"photoUrl\":\"www.qq.com\",\"description\":\"测试\",\"personId\":16}",
- "coverUrl": "http://image.jsbn.com/sample/20151206/14493989814190310.jpg",
- "wechatUrl": "http://image.jsbn.com/sample/20151206/14493989814192518.jpg",
- "mobileUrl": "http://image.jsbn.com/sample/20151206/14493989814197596.jpg",
- "description": "XXX和XXX拍摄的天使之恋效果图的描述",
- "pcDetailImages": null,
- "appDetailImages": null,
- "wxDetailImages": null,
- "position": "1191"
- }
+     {
+     "id": 255,
+     "sampleId": 65,
+     "createTime": "2016-02-20 10:17:50",
+     "updateTime": "2016-02-20 10:17:50",
+     "operater": 1,
+     "isUsed": 1,
+     "name": "鎏金时代",
+     "exterior": "10,11,",
+     "shootingStyle": "15,16,",
+     "photographerId": 36,
+     "photographerDetail": "{\"description\":\"\",\"personId\":36,\"photoUrl\":\"http://img.jsbn.com/person/20160121/14533654321170989_417x417.jpg\",\"personName\":\"秋黑\"}",
+     "stylistId": 37,
+     "stylistDetail": "{\"description\":\"\",\"personId\":37,\"photoUrl\":\"http://img.jsbn.com/person/20160121/14533656710794482_200x200.jpg\",\"personName\":\"果果\"}",
+     "coverUrlWeb": "http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639168470415_400x600.jpg",
+     "coverUrlWx": "http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639169381215_1920x1080.jpg",
+     "coverUrlApp": "http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639168933183_1920x1080.jpg",
+     "description": "这是描述",
+     "sampleType": 0,
+     "pcDetailImages": "[\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639608002744_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639611741800_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639606606894_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639611136246_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639612523624_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639609377828_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639613365734_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639610754786_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639613804609_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639611477947_1920x859.jpg\"]",
+     "appDetailImages": "[\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639608002744_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639611741800_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639606606894_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639611136246_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639612523624_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639609377828_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639613365734_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639610754786_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639613804609_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639611477947_1920x859.jpg\"]",
+     "wxDetailImages": "[\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639608002744_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639611741800_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639606606894_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639611136246_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639612523624_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639609377828_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639613365734_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639610754786_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639613804609_1920x859.jpg\",\"http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringles/20160128/14539639611477947_1920x859.jpg\"]",
+     "position": "samples_list",
+     "weight": 6
+     }
  ],
  "code": 200,
  "count": 3
@@ -84,8 +43,10 @@ var type=env.Thinky.type;
 
 // 样片模型
 const Sample = env.Thinky.createModel('sample', {
-    // Id
+    // 发布Id
     id: type.number(),
+    // 资源ID
+    sampleId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间
@@ -100,6 +61,8 @@ const Sample = env.Thinky.createModel('sample', {
     exterior: type.string(),
     // 风格
     shootingStyle: type.string(),
+    // 样片类型 0:婚纱摄影 1:艺术照 2:全家福
+    sampleType: type.number(),
     // 摄影师Id
     photographerId: type.number(),
     // 造型师Id

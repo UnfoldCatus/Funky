@@ -1,7 +1,7 @@
 /**
  * Created by chenjianjun on 16/2/25.
  */
-var env=require("../../config");
+var env=require("../../../config");
 var type=env.Thinky.type;
 
 // 婚宴预订--酒店区域模型

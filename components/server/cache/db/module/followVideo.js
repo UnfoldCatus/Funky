@@ -1,7 +1,7 @@
 /**
  * Created by chenjianjun on 16/2/24.
  */
-var env=require("../config");
+var env=require("../../config");
 var type=env.Thinky.type;
 
 /*
@@ -9,26 +9,27 @@ var type=env.Thinky.type;
  "success": true,
  "message": null,
  "data": [
- {
- "id": 205,
- "createTime": "2016-01-21 19:17:12",
- "updateTime": "2016-01-21 19:17:12",
- "operater": 1,
- "isUsed": 1,
- "name": "夜空中最亮的星",
- "description": "",
- "hitNum": 500,
- "remark": "",
- "videoUrl": "http://bfjs.oss-cn-shenzhen.aliyuncs.com/video%2Fjsbn%2Fanlie%2F%E9%87%91%E8%89%B2%E7%99%BE%E5%B9%B412.31%E5%8F%8C%E6%9C%BA%E8%8A%B1%E7%B5%AE_0.mp4",
- "coverUrlWeb": "http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringlesSeason/20160128/14539767434036829_1200x800.jpg",
- "coverUrlWx": "http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringlesSeason/20160128/14539767434534752_1200x800.jpg",
- "coverUrlApp": "http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringlesSeason/20160128/14539767434281829_1200x800.jpg",
- "weddingId": 8,
- "weddingName": "惜•缘",
- "seasonId": 228,
- "position": "weddingvideo_list",
- "weight": 100
- }
+     {
+     "id": 205,
+     "followVideoId": 12,
+     "createTime": "2016-01-21 19:17:12",
+     "updateTime": "2016-01-21 19:17:12",
+     "operater": 1,
+     "isUsed": 1,
+     "name": "夜空中最亮的星",
+     "description": "",
+     "hitNum": 500,
+     "remark": "",
+     "videoUrl": "http://bfjs.oss-cn-shenzhen.aliyuncs.com/video%2Fjsbn%2Fanlie%2F%E9%87%91%E8%89%B2%E7%99%BE%E5%B9%B412.31%E5%8F%8C%E6%9C%BA%E8%8A%B1%E7%B5%AE_0.mp4",
+     "coverUrlWeb": "http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringlesSeason/20160128/14539767434036829_1200x800.jpg",
+     "coverUrlWx": "http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringlesSeason/20160128/14539767434534752_1200x800.jpg",
+     "coverUrlApp": "http://test-jsbn.oss-cn-shenzhen.aliyuncs.com/pringlesSeason/20160128/14539767434281829_1200x800.jpg",
+     "weddingId": 8,
+     "weddingName": "惜•缘",
+     "seasonId": 228,
+     "position": "weddingvideo_list",
+     "weight": 100
+     }
  ],
  "code": 200,
  "count": 1
@@ -37,8 +38,10 @@ var type=env.Thinky.type;
 
 // 婚庆策划--婚礼视频模型
 const FollowVideo = env.Thinky.createModel('followVideo', {
-    // Id
+    // 发布Id
     id: type.number(),
+    // 资源
+    followVideoId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

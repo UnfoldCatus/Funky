@@ -1,7 +1,7 @@
 /**
  * Created by chenjianjun on 15/12/15.
  */
-var env=require("../config");
+var env=require("../../config");
 var type=env.Thinky.type;
 
 /*
@@ -9,54 +9,31 @@ var type=env.Thinky.type;
  "success": true,
  "message": null,
  "data": [
- {
- "id": 288,
- "createTime": "2015-11-12 12:58:15",
- "updateTime": "2015-11-12 12:58:15",
- "operater": null,
- "isUsed": 1,
- "name": "123123123",
- "photographerId": 1,
- "photographerDetail": "{\"personName\":\"松松\",\"photoUrl\":\"1\",\"description\":\"1\",\"personId\":1}",
- "stylistId": 2,
- "stylistDetail": "{\"personName\":\"松松1\",\"photoUrl\":\"2\",\"description\":\"2\",\"personId\":2}",
- "coverUrl": "http://192.168.1.3:3000/ftppub/cd/uploadResource/jpg/20151107/2015110717110001/1446887461209.jpg",
- "wechatUrl": "http://192.168.1.3:3000/ftppub/cd/uploadResource/jpg/20151107/2015110717110001/1446887461211.jpg",
- "mobileUrl": "http://192.168.1.3:3000/ftppub/cd/uploadResource/jpg/20151107/2015110717110001/1446887461209.jpg",
- "actorFemaleName": "fasdf",
- "actorMaleName": "a11112312",
- "description": "1",
- "pcDetailImages": "[]",
- "appDetailImages": "[]",
- "wxDetailImages": "[]",
- "seasonId": null,
- "position": "0",
- "weight": 323
- },
- {
- "id": 287,
- "createTime": "2015-11-12 12:58:15",
- "updateTime": "2015-11-12 12:58:15",
- "operater": null,
- "isUsed": 1,
- "name": "testname1",
- "photographerId": 1,
- "photographerDetail": "{\"personName\":\"松松\",\"photoUrl\":\"1\",\"description\":\"1\",\"personId\":1}",
- "stylistId": 2,
- "stylistDetail": "{\"personName\":\"松松1\",\"photoUrl\":\"2\",\"description\":\"2\",\"personId\":2}",
- "coverUrl": "http://192.168.1.3:3000/ftppub/cd/uploadResource/jpg/20151109/2015110910090037/1447034977580.jpg",
- "wechatUrl": "http://192.168.1.3:3000/ftppub/cd/uploadResource/jpg/20151109/2015110910090037/1447034977580.jpg",
- "mobileUrl": "http://192.168.1.3:3000/ftppub/cd/uploadResource/jpg/20151109/2015110910090037/1447034977580.jpg",
- "actorFemaleName": null,
- "actorMaleName": null,
- "description": "1",
- "pcDetailImages": "[]",
- "appDetailImages": "[]",
- "wxDetailImages": "[]",
- "seasonId": null,
- "position": "0",
- "weight": 100
- }
+     {
+     "id": 288,
+     "pringlesId": 12,
+     "createTime": "2015-11-12 12:58:15",
+     "updateTime": "2015-11-12 12:58:15",
+     "operater": null,
+     "isUsed": 1,
+     "name": "123123123",
+     "photographerId": 1,
+     "photographerDetail": "{\"personName\":\"松松\",\"photoUrl\":\"1\",\"description\":\"1\",\"personId\":1}",
+     "stylistId": 2,
+     "stylistDetail": "{\"personName\":\"松松1\",\"photoUrl\":\"2\",\"description\":\"2\",\"personId\":2}",
+     "coverUrl": "http://192.168.1.3:3000/ftppub/cd/uploadResource/jpg/20151107/2015110717110001/1446887461209.jpg",
+     "wechatUrl": "http://192.168.1.3:3000/ftppub/cd/uploadResource/jpg/20151107/2015110717110001/1446887461211.jpg",
+     "mobileUrl": "http://192.168.1.3:3000/ftppub/cd/uploadResource/jpg/20151107/2015110717110001/1446887461209.jpg",
+     "actorFemaleName": "fasdf",
+     "actorMaleName": "a11112312",
+     "description": "1",
+     "pcDetailImages": "[]",
+     "appDetailImages": "[]",
+     "wxDetailImages": "[]",
+     "seasonId": null,
+     "position": "0",
+     "weight": 323
+     }
  ],
  "code": 200,
  "count": 2
@@ -65,8 +42,10 @@ var type=env.Thinky.type;
 
 // 客片模型
 const Pringles = env.Thinky.createModel('pringles', {
-    // Id
+    // 发布Id
     id: type.number(),
+    // 客片ID
+    pringlesId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

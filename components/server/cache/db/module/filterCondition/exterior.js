@@ -1,7 +1,7 @@
 /**
  * Created by chenjianjun on 16/2/25.
  */
-var env=require("../../config");
+var env=require("../../../config");
 var type=env.Thinky.type;
 
 // 婚纱摄影--外景地模型
@@ -12,6 +12,7 @@ var type=env.Thinky.type;
  "data": [
      {
      "id": 20,
+     "exteriorId": 20,
      "createTime": "2015-10-28 11:13:04",
      "updateTime": "2015-10-28 11:13:04",
      "operater": 0,
@@ -19,16 +20,6 @@ var type=env.Thinky.type;
      "name": "花木世界",
      "description": "花木世界",
      "weight": 14
-     },
-     {
-     "id": 19,
-     "createTime": "2015-10-28 11:13:04",
-     "updateTime": "2015-10-28 11:13:04",
-     "operater": 0,
-     "isUsed": 1,
-     "name": "梦幻城堡",
-     "description": "梦幻城堡",
-     "weight": 13
      }
  ],
  "code": 200,
@@ -40,6 +31,7 @@ var type=env.Thinky.type;
 const FilterConditionExterior = env.Thinky.createModel('filterConditionExterior', {
     // Id
     id: type.number(),
+    exteriorId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

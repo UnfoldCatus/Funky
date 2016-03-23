@@ -17,7 +17,7 @@ import filterConditionDressType from '../cache/db/module/filterCondition/dressTy
 import filterConditionDressBrand from '../cache/db/module/filterCondition/dressBrand.js'
 
 import _ from 'lodash'
-import env from '../cache/db/config.js'
+import env from '../cache/config.js'
 let r = env.Thinky.r
 
 const filterConditionApi = {
@@ -29,8 +29,8 @@ const filterConditionApi = {
         position: this.params.position
       })
     }
-    this.model = this.model.orderBy(r.desc('weight'))
 
+    this.model = this.model.orderBy(r.desc('weight'))
     _.each(this.request.query, (v, k) => {
       if (k.indexOf('pageSize') !== -1) {
         let limit = 0
@@ -301,9 +301,9 @@ const filterConditionApi = {
         this.model = this.model.filter({
           position: this.params.position})
       }
-      else if(k.indexOf('weddingDressType') !== -1) {
+      else if(k.indexOf('typeId') !== -1) {
         this.model = filterConditionDressBrand.filter({
-          type: parseInt(this.request.query["weddingDressType"])
+          type: parseInt(this.request.query["typeId"])
         })
       }
     })

@@ -3,8 +3,8 @@ import _ from 'lodash'
 
 const SuiteConfig = {
   AdvSide :[
-    { 'imageUrl':'http://image.jsbn.com/static/dior.jpg' },
-    { 'imageUrl':'http://image.jsbn.com/static/la_sposa2.jpg' }
+    { 'imageUrl':'//img2.jsbn.com/static/dior.jpg' },
+    { 'imageUrl':'//img2.jsbn.com/static/la_sposa.jpg' }
   ],
   //顶部广告
   'MediaSlider':_.merge({

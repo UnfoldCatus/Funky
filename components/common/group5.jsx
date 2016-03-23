@@ -12,7 +12,7 @@ const Group5 = React.createClass({
               return (
                 <li key={k} className='big-box'>
                   <a href={v.linkUrl} className='l-item img-box' >
-                    <MediaItem {...dimension[0]} mediaUrl={v.coverUrlWeb||'//placehold.it/620x375'} />
+                    <MediaItem {...dimension[0]} mediaUrl={v.coverUrlWeb||'//placehold.it/620x375'} videoUrl={v.videoUrl}/>
                   </a>
                 </li>
               )
@@ -20,7 +20,7 @@ const Group5 = React.createClass({
               return (
                 <li key={k} className='small-box'>
                   <a href={v.linkUrl} className='img-box'>
-                    <MediaItem {...dimension[1]} mediaUrl={v.coverUrlWeb||'//placehold.it/270x180'} />
+                    <MediaItem {...dimension[1]} mediaUrl={v.coverUrlWeb||'//placehold.it/270x180'} videoUrl={v.videoUrl}/>
                   </a>
                 </li>
               )
@@ -28,7 +28,7 @@ const Group5 = React.createClass({
           })
         }
         {/*列表为空，默认输出*/}
-        {(this.state.data.length === 0 )&& <h1>请添加5个资源</h1>}
+        {(this.state.data.length === 0 )&& <h1>加载中...</h1>}
       </div>
     )
   },

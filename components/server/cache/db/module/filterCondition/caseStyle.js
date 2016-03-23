@@ -1,7 +1,7 @@
 /**
  * Created by chenjianjun on 16/2/25.
  */
-var env=require("../../config");
+var env=require("../../../config");
 var type=env.Thinky.type;
 
 // 婚庆策划--案例风格模型
@@ -12,6 +12,7 @@ var type=env.Thinky.type;
  "data": [
      {
      "id": 1,
+     "caseStyleId": 1,
      "createTime": "2015-11-20 11:42:00",
      "updateTime": "2015-11-20 11:47:19",
      "operater": 1,
@@ -30,6 +31,7 @@ var type=env.Thinky.type;
 const FilterConditionCaseStyle = env.Thinky.createModel('filterConditionCaseStyle', {
     // Id
     id: type.number(),
+    caseStyleId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

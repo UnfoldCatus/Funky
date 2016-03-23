@@ -1,7 +1,7 @@
 /**
  * Created by chenjianjun on 16/2/25.
  */
-var env=require("../../config");
+var env=require("../../../config");
 var type=env.Thinky.type;
 
 // 婚礼用品--品牌
@@ -10,15 +10,16 @@ var type=env.Thinky.type;
  "success": true,
  "message": null,
  "data": [
- {
- "id": 4,
- "createTime": "2015-11-24 15:12:37",
- "updateTime": "2015-11-24 15:12:37",
- "operater": 0,
- "isUsed": 1,
- "name": "222",
- "description": "222222"
- }
+     {
+     "id": 5,
+     "createTime": "2016-01-21 19:32:35",
+     "updateTime": "2016-01-21 19:32:35",
+     "operater": 1,
+     "isUsed": 1,
+     "name": "费列罗",
+     "description": "",
+     "brandId": 5
+     }
  ],
  "code": 200,
  "count": 0
@@ -29,6 +30,8 @@ var type=env.Thinky.type;
 const FilterConditionSuppliesBrand = env.Thinky.createModel('filterConditionSuppliesBrand', {
     // Id
     id: type.number(),
+    // 品牌ID
+    brandId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

@@ -17,11 +17,12 @@ import { DressConfig } from './config/dress-config'
 
 const DressHolder = React.createClass({
   render () {
+    let hf = '/dress-details?brandId='+this.props.data.id+'&typeId='+this.props.data.type;
     return (
       <div className="show-box">
         <div className="layer-box" />
         <h2>{this.props.data.description}</h2>
-        <a href='/dress-details' target="">
+        <a href={hf} target="">
           <img src={this.props.data.coverUrlWeb} />
         </a>
       </div>
@@ -41,10 +42,10 @@ const DressType  = React.createClass({
           <div className="center-box">
             <ul className="tab-box">
               {
-                _.map(this.state.dress, (v, k) => {
+                _.map(this.state.brands, (v, k) => {
                   var boundClick = this.handleClick.bind(this, k);
                   return (
-                    <li key={k} className={(k === this.state.index)? 'item item-sel':'item'} onClick={boundClick}>
+                    <li key={k} onClick={boundClick} className={(k === this.state.index)? 'item item-sel':'item'} >
                       <img src={v.logoUrl} />
                     </li>
                   );
@@ -52,7 +53,7 @@ const DressType  = React.createClass({
               }
             </ul>
             {
-              this.state.dress.length && <DressHolder data={this.state.dress[this.state.index]}/>
+              this.state.index>=0 && <DressHolder typeName={this.props.name}  data={this.state.brands[this.state.index]} />
             }
           </div>
         </div>
@@ -61,24 +62,31 @@ const DressType  = React.createClass({
   },
 
   propTypes: {
-    dress: PropTypes.array,
-    index: PropTypes.number,
+    brands: PropTypes.array,
+    index: PropTypes.number
   },
 
   getInitialState: function() {
     return {
-      dress:[],
-      index:0
+      brands:[],
+      index:-1,
     };
   },
 
   componentDidMount(){
-    fetch(DressConfig['MediaSlider']['baseUrl']+'dressBrand/all'+'?weddingDressType='+this.props.id)
-      .then(res => {return res.json()})
-      .then(j=>{
-        this.setState({ dress:j.data, index:0});
-        console.log(j)
-      })
+    // 取到配置的获取婚纱品牌数据的请求地址
+    const DressBrand = DressConfig['DressBrand']
+    if (DressBrand.dataUrl !== undefined) {
+      fetch(DressBrand.baseUrl + DressBrand.dataUrl + this.props.id)
+        .then(res => {return res.json()})
+        .then(j=>{
+          if(j.success && j.data.length > 0) {
+            /* 针对每个类型只取name,id,logoUrl,coverUrlWeb,description,type字段 */
+            this.setState({ brands: _.map(j.data,(v,k)=>{
+              return _.pick(v,['name','id', 'logoUrl', 'coverUrlWeb', 'description', 'type']) }), index:0})
+          }
+        })
+    }
   },
 
   handleClick(k) {
@@ -92,17 +100,17 @@ const Dress = React.createClass({
     return (
       <div className="hslf-view">
         <div className="bannar-all-box">
-          <div id="slider_top" className="slider-box bannar" >
+          <div id="slider_top" className="slider-box bannar" style={{height:DressConfig['MediaSlider']['height']}}>
             <MediaSlider {...DressConfig['MediaSlider']}/>
           </div>
         </div>
         <div className="layout-center-box">
           <Banner {...DressConfig['Banner'][0]} />
           {
-            _.map(this.state.typeList,(v,k)=>{
+            _.map(this.state.types,(v,k)=>{
               return (
                 <DressType key={k} {...v} />
-              )
+              );
             })
           }
         </div>
@@ -112,18 +120,23 @@ const Dress = React.createClass({
 
   getInitialState: function() {
     return {
-      typeList: []
+      types: []
     };
   },
 
   componentDidMount() {
-    /** 请求婚纱类型 **/
-    fetch(DressConfig['MediaSlider']['baseUrl']+'dressType/all')
-      .then(res => {return res.json()})
-      .then(j=>{
-        this.setState({ typeList:j.data })
-        console.log(j)
-      })
+    // 取到配置的获取婚纱类型数据的请求地址
+    const DressType = DressConfig['DressType']
+    if (DressType.dataUrl !== undefined) {
+      fetch(DressType.baseUrl + DressType.dataUrl)
+        .then(res => {return res.json()})
+        .then(j=>{
+          if(j.success && j.data.length > 0) {
+            /* 针对每个类型只取name和id字段 */
+            this.setState({ types: _.map(j.data, (v,k)=>{ return _.pick(v,['name','id']) }) })
+          }
+        })
+    }
   }
 })
 

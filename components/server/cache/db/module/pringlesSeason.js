@@ -2,13 +2,14 @@
  * Created by chenjianjun on 15/12/15.
  * 客片分级
  */
-var env=require("../config");
+var env=require("../../config");
 var type=env.Thinky.type;
 
 // 客片分季模型
 const PringlesSeason = env.Thinky.createModel('pringlesSeason', {
     // Id
     id: type.number(),
+    seasonId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

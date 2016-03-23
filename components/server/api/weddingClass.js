@@ -2,7 +2,7 @@
  * Created by chenjianjun on 16/2/26.
  */
 import _ from 'lodash'
-import env from '../cache/db/config'
+import env from '../cache/config'
 let r = env.Thinky.r
 
 import weddingClass from '../cache/db/module/weddingClass.js'
@@ -11,11 +11,6 @@ import weddingClass from '../cache/db/module/weddingClass.js'
 const weddingClassApi = {
 
     // 获取婚礼课堂列表
-    'get+/weddingroom/all': function*(next) {
-        this.model = weddingClass
-        this.APIKey = 'WeddingClass'
-        yield next
-    },
     'get+/weddingroom/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = weddingClass.filter({})

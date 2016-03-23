@@ -2,7 +2,12 @@ import React, { PropTypes } from 'react'
 import _ from 'lodash'
 import { MediaItem } from './media-item.jsx'
 
-
+/**
+  对于包含视频的展示组件。 我们目前只能是直接在组件级别写死其是否自动播放。
+  比如在这个例子里面。 作为四合一的组件。 在使用场景中只有首页会用到，而且一旦是视频展示就是自动播放
+  所以我们最直接的反应就是:
+  如果元素提供了videoUrl 我们则认为其是一个视频元素 而因为是在Group4中的视频元素 所以是自动播放的视频元素
+**/
 const FirstItem = React.createClass({
   render () {
     let names = this.props.name.split('#')
@@ -15,9 +20,9 @@ const FirstItem = React.createClass({
           <a href={this.props.hrefs[1]}><div className="word-02"></div></a>
         </div>
         <span className='first-img-box'>
-          <MediaItem aspectRatio='3:2' height={270} mediaUrl={this.props.coverUrlWeb}/>
+          <MediaItem aspectRatio='38:27' height={270} mediaUrl={this.props.coverUrlWeb} videoUrl={this.props.videoUrl}  autoplay={true}/>
         </span>
-        <a href='/'>
+        <a href={this.props.linkUrl}>
           <div className='title-box'>
             <span>{names[0]||'金色百年'}</span>
             <span className='en'>{names[1]||'GOLDEN WEDDING'}</span>
@@ -36,9 +41,9 @@ const OtherItem = React.createClass({
     return (
       <li className="item-box">
         <div className='img-box'>
-          <MediaItem aspectRatio={'2:3'} height={570} mediaUrl={this.props.coverUrlWeb} />
+          <MediaItem aspectRatio={'2:3'} height={570} mediaUrl={this.props.coverUrlWeb} videoUrl={this.props.videoUrl} autoplay={true}/>
         </div>
-         <a href={'/'}>
+         <a href={this.props.linkUrl}>
            <div className = "title-box">
               <span>{names[0]||'金色百年'}</span>
               <span className = "en">{names[1]||'GOLDEN WEDDING'}</span>

@@ -1,7 +1,7 @@
 /**
  * Created by chenjianjun on 16/2/25.
  */
-var env=require("../config");
+var env=require("../../config");
 var type=env.Thinky.type;
 
 /*
@@ -11,6 +11,7 @@ var type=env.Thinky.type;
  "data": [
      {
      "id": 9,
+     "seasonId": 9,
      "createTime": "2016-01-21 17:28:43",
      "updateTime": "2016-01-21 17:28:43",
      "operater": 1,
@@ -32,6 +33,7 @@ var type=env.Thinky.type;
 const RecordVideoSeason = env.Thinky.createModel('recordVideoSeason', {
     // Id
     id: type.number(),
+    seasonId: type.number(),
     // 创建时间
     createTime: type.date(),
     // 修改时间

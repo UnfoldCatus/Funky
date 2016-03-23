@@ -2,11 +2,11 @@
  * Created by chenjianjun on 16/2/26.
  */
 import _ from 'lodash'
-import env from '../cache/db/config'
+import env from '../cache/config'
 let r = env.Thinky.r
 
 import cases from '../cache/db/module/cases.js'
-import case3D from '../cache/db/module/case3D.js'
+import cases3D from '../cache/db/module/cases3D.js'
 import followPhoto from '../cache/db/module/followPhoto.js'
 import followPhotoSeason from '../cache/db/module/followPhotoSeason.js'
 import followVideo from '../cache/db/module/followVideo.js'
@@ -21,11 +21,6 @@ import f4Team from '../cache/db/module/f4/team.js'
 const weddingApi = {
 
     // 获取实景案例列表
-    'get+/cases/all': function*(next) {
-        this.model = cases
-        this.APIKey = 'Cases'
-        yield next
-    },
     'get+/cases/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = cases.filter({})
@@ -71,16 +66,11 @@ const weddingApi = {
     },
 
     // 获取3D案例列表
-    'get+/case3D/all': function*(next) {
-        this.model = case3D
-        this.APIKey = 'Cases3D'
-        yield next
-    },
     'get+/case3D/:position': function*(next) {
         if (this.params.position === 'all') {
-            this.model = case3D.filter({})
+            this.model = cases3D.filter({})
         } else {
-            this.model = case3D.filter({
+            this.model = cases3D.filter({
                 position: this.params.position
             })
         }
@@ -103,7 +93,7 @@ const weddingApi = {
     },
     // 获取3D案例详情
     'get+/case3D/detail/:id': function*(next) {
-        this.model = case3D.filter({
+        this.model = cases3D.filter({
             id: parseInt(this.params.id)
         })
 
@@ -112,11 +102,6 @@ const weddingApi = {
     },
 
     // 婚礼跟拍列表
-    'get+/followPhoto/all': function*(next) {
-        this.model = followPhoto
-        this.APIKey = 'FollowPhoto'
-        yield next
-    },
     'get+/followPhoto/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = followPhoto.filter({})
@@ -158,11 +143,6 @@ const weddingApi = {
     },
 
     // 婚礼跟拍分季
-    'get+/followPhotoSeason/all': function*(next) {
-        this.model = followPhotoSeason
-        this.APIKey = 'FollowPhotoSeason'
-        yield next
-    },
     'get+/followPhotoSeason/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = followPhotoSeason.filter({})
@@ -190,11 +170,6 @@ const weddingApi = {
     },
 
     // 婚礼视频列表
-    'get+/followVideo/all': function*(next) {
-        this.model = followVideo
-        this.APIKey = 'FollowVideo'
-        yield next
-    },
     'get+/followVideo/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = followVideo.filter({})
@@ -236,11 +211,6 @@ const weddingApi = {
     },
 
     // 婚礼视频分季
-    'get+/followVideoSeason/all': function*(next) {
-        this.model = followVideoSeason
-        this.APIKey = 'FollowVideoSeason'
-        yield next
-    },
     'get+/followVideoSeason/:position': function*(next) {
         if (this.params.position === 'all') {
             this.model = followVideoSeason.filter({})
@@ -270,151 +240,206 @@ const weddingApi = {
     // 四大金刚作品
     // 获取四大金刚摄像师作品
     'get+/f4/camera': function*(next) {
-        this.model = f4Camera.filter({
-            position: this.params.position
-        })
-
-        _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
-                }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-            } else if(k.indexOf('minPrice') !== -1) {
-                // 最低价格
-                this.model = this.model.filter(r.row('price').gt(Number(this.request.query['minPrice'])));
-            } else if(k.indexOf('maxPrice') !== -1) {
-                // 最高价格
-                this.model = this.model.filter(r.row('price').lt(Number(this.request.query['maxPrice'])));
-            }
-        })
-
-        this.model = this.model.orderBy(function (row) { return r.random(); });
-
         this.APIKey = 'F4Camera'
-        yield next
-    },
+        this.model = f4Camera.filter({})
 
-    // 获取四大金刚摄像师作品
-    'get+/f4/dresser': function*(next) {
-        this.model = f4Dresser.filter({
-            position: this.params.position
-        })
-
+        let pageIndex = 0;
+        let pageSize = 10;
         _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex']) - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
                 }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+            } else if(k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize']) - 1
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
             } else if(k.indexOf('minPrice') !== -1) {
                 // 最低价格
-                this.model = this.model.filter(r.row('price').gt(Number(this.request.query['minPrice'])));
+                this.model = this.model.filter(r.row('salePrice').gt(parseInt(this.request.query['minPrice'])));
             } else if(k.indexOf('maxPrice') !== -1) {
                 // 最高价格
-                this.model = this.model.filter(r.row('price').lt(Number(this.request.query['maxPrice'])));
+                this.model = this.model.filter(r.row('salePrice').lt(parseInt(this.request.query['maxPrice'])));
             }
         })
 
-        this.model = this.model.orderBy(function (row) { return r.random(); });
+        try {
+            let all = yield this.model
+            this.count = all.length || 0
+        } catch (e) {
+            this.count = 0
+        }
 
+        this.model = this.model.skip(pageIndex * pageSize);
+        this.model = this.model.limit(pageSize);
+        //this.model = this.model.orderBy(function (row) { return r.random(); });
+
+        yield next
+    },
+
+    // 获取四大金刚化妆师作品
+    'get+/f4/dresser': function*(next) {
         this.APIKey = 'F4Dresser'
+        this.model = f4Dresser.filter({})
+
+        let pageIndex = 0;
+        let pageSize = 10;
+        _.each(this.request.query, (v, k) => {
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex']) - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
+                }
+            } else if(k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize']) - 1
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
+            } else if(k.indexOf('minPrice') !== -1) {
+                // 最低价格
+                this.model = this.model.filter(r.row('salePrice').gt(parseInt(this.request.query['minPrice'])));
+            } else if(k.indexOf('maxPrice') !== -1) {
+                // 最高价格
+                this.model = this.model.filter(r.row('salePrice').lt(parseInt(this.request.query['maxPrice'])));
+            }
+        })
+
+        try {
+            let all = yield this.model
+            this.count = all.length || 0
+        } catch (e) {
+            this.count = 0
+        }
+
+        this.model = this.model.skip(pageIndex * pageSize);
+        this.model = this.model.limit(pageSize);
+        //this.model = this.model.orderBy(function (row) { return r.random(); });
+
         yield next
     },
 
-    // 获取四大金刚摄像师作品
+    // 获取四大金刚主持人作品
     'get+/f4/host': function*(next) {
-        this.model = f4Host.filter({
-            position: this.params.position
-        })
+        this.APIKey = 'F4Host'
+        this.model = f4Host.filter({})
 
+        let pageIndex = 0;
+        let pageSize = 10;
         _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex']) - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
                 }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+            } else if(k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize']) - 1
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
             } else if(k.indexOf('minPrice') !== -1) {
                 // 最低价格
-                this.model = this.model.filter(r.row('price').gt(Number(this.request.query['minPrice'])));
+                this.model = this.model.filter(r.row('salePrice').gt(parseInt(this.request.query['minPrice'])));
             } else if(k.indexOf('maxPrice') !== -1) {
                 // 最高价格
-                this.model = this.model.filter(r.row('price').lt(Number(this.request.query['maxPrice'])));
+                this.model = this.model.filter(r.row('salePrice').lt(parseInt(this.request.query['maxPrice'])));
             }
         })
 
-        this.model = this.model.orderBy(function (row) { return r.random(); });
+        try {
+            let all = yield this.model
+            this.count = all.length || 0
+        } catch (e) {
+            this.count = 0
+        }
 
-        this.APIKey = 'F4Host'
+        this.model = this.model.skip(pageIndex * pageSize);
+        this.model = this.model.limit(pageSize);
+        //this.model = this.model.orderBy(function (row) { return r.random(); });
+
         yield next
     },
 
-    // 获取四大金刚摄像师作品
-    'get+/f4/dresser': function*(next) {
-        this.model = f4Photographer.filter({
-            position: this.params.position
-        })
+    // 获取四大金刚摄影师作品
+    'get+/f4/photographer': function*(next) {
+        this.APIKey = 'F4Photographer'
+        this.model = f4Photographer.filter({})
 
+        let pageIndex = 0;
+        let pageSize = 10;
         _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex']) - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
                 }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+            } else if(k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize']) - 1
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
             } else if(k.indexOf('minPrice') !== -1) {
                 // 最低价格
-                this.model = this.model.filter(r.row('price').gt(Number(this.request.query['minPrice'])));
+                this.model = this.model.filter(r.row('salePrice').gt(parseInt(this.request.query['minPrice'])));
             } else if(k.indexOf('maxPrice') !== -1) {
                 // 最高价格
-                this.model = this.model.filter(r.row('price').lt(Number(this.request.query['maxPrice'])));
+                this.model = this.model.filter(r.row('salePrice').lt(parseInt(this.request.query['maxPrice'])));
             }
         })
 
-        this.model = this.model.orderBy(function (row) { return r.random(); });
+        try {
+            let all = yield this.model
+            this.count = all.length || 0
+        } catch (e) {
+            this.count = 0
+        }
 
-        this.APIKey = 'F4Photographer'
+        this.model = this.model.skip(pageIndex * pageSize);
+        this.model = this.model.limit(pageSize);
+        //this.model = this.model.orderBy(function (row) { return r.random(); });
+
         yield next
     },
 
     // 四大金刚作品——特色项目
     'get+/api/f4/team': function*(next) {
-        this.model = f4Team.filter({
-            position: this.params.position
-        })
+        this.APIKey = 'F4Team'
+        this.model = f4Team.filter({})
 
+        let pageIndex = 0;
+        let pageSize = 10;
         _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex']) - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
                 }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+            } else if(k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize']) - 1
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
             } else if(k.indexOf('minPrice') !== -1) {
                 // 最低价格
-                this.model = this.model.filter(r.row('price').gt(Number(this.request.query['minPrice'])));
+                this.model = this.model.filter(r.row('salePrice').gt(parseInt(this.request.query['minPrice'])));
             } else if(k.indexOf('maxPrice') !== -1) {
                 // 最高价格
-                this.model = this.model.filter(r.row('price').lt(Number(this.request.query['maxPrice'])));
+                this.model = this.model.filter(r.row('salePrice').lt(parseInt(this.request.query['maxPrice'])));
             }
         })
 
-        this.model = this.model.orderBy(function (row) { return r.random(); });
+        try {
+            let all = yield this.model
+            this.count = all.length || 0
+        } catch (e) {
+            this.count = 0
+        }
 
-        this.APIKey = 'F4Team'
+        this.model = this.model.skip(pageIndex * pageSize);
+        this.model = this.model.limit(pageSize);
+        //this.model = this.model.orderBy(function (row) { return r.random(); });
+
         yield next
     },
 

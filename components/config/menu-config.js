@@ -26,7 +26,7 @@ const MenuConfig = {
       link:'/movie'
     },
     {
-      cn:'婚介钻石',
+      cn:'婚戒钻石',
       en:'DIAMOND',
       link:'http://www.chinad9.com'
     },
@@ -68,7 +68,7 @@ const MenuConfig = {
       link:'/movie'
     },
     {
-      cn:'婚介钻石',
+      cn:'婚戒钻石',
       en:'DIAMOND',
       link:'http://www.chinad9.com'
     },
@@ -144,7 +144,7 @@ const MenuConfig = {
     {
       cn:'大礼包',
       en:'GIFT',
-      link:'/activity?type=gift'
+      link:'/active/libao'
     },
     {
       cn:'婚宴知识',
