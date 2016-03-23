@@ -123,9 +123,12 @@ const siteRouter = new Router()
     menuKey MenuConfig中配置的link字段
     parentKey MenuConfig中的顶层模块的key
   */
-let renderOption = (templateName, menuKey, parentKey,params) => {
+let renderOption = (templateName, menuKey, parentKey,params,seoTitle,seoKeywords,seoDescription) => {
   let p = params || {}
     return {
+      'title':seoTitle || '重庆金色百年婚礼集团_婚纱摄影_婚宴预订_婚庆制定_婚纱礼服_婚戒钻石_微电影_婚礼用品_婚车租凭',
+      'seoKeywords':seoKeywords || '重庆结婚网|重庆婚纱照网|重庆婚宴酒店网|重庆婚礼策划网|重庆婚纱礼服网|重庆珠宝饰品网|重庆结婚微电影网|重庆结婚用品网|重庆婚车租凭网',
+      'seoDescription':seoDescription || '金色百年(www.jsbn.com)是国内领先的结婚平台,国内唯一一站式结婚综合平台，是新人必上的结婚网! 咨询热线:400-015-9999',
       'reactMarkup': renderToString(ComponentsIndex[templateName]),
       'reactNavMarkup': renderToString(<Navigation menuKey={parentKey ||'/'} currentKey={menuKey} />),
       'main': templateName,// 客户端渲染使用的脚本名称和模板名称一致
