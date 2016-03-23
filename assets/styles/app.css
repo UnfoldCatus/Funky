@@ -724,6 +724,21 @@ a:hover {
 .adaptation-1680 .supplies-img-home .word-02:hover {
   background: url(../img/eavlee/home/hlyp.png) 0px -56px no-repeat;
 }
+/* uikit关闭按钮 */
+.uk-close:after {
+  display: none;
+}
+.uk-close-alt {
+  height: 24px;
+  width: 24px;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: url(../images/float-close.png) 0 0 no-repeat;
+}
+.uk-close-alt:hover {
+  background-position: 0 -24px;
+}
 /* 底部导航 */
 .adaptation-1200 .nav-bot .arrow-01 {
   left: 0;
