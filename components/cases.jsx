@@ -60,7 +60,7 @@ const Cases = React.createClass({
           <Banner {...CasesConfig['Banner'][0]} />
           <CasesCategory {...CasesConfig['CasesCategory']} />
           <div className='J_FilterCtrl' >
-            <ListFilter title={'风格'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['styleId']}  sorterKey={['id']} {...CasesConfig['StyleFilter']} />
+            <ListFilter title={'风格'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']}  sorterKey={['caseStyleId']} {...CasesConfig['StyleFilter']} />
             <ListFilter title={'价位'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']}  sorterKey={['minPrice','maxPrice']}
               {...CasesConfig['PriceFilter']} />
           </div>

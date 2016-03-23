@@ -23,7 +23,7 @@ const CasesConfig = {
     'displayTextPrefix':'找到最佳案例',
     'displayTextSuffix':'套',
     'params':{
-      'pageSize':9,
+      'pageSize':12,
       'pageIndex':1
     }
   },BaseConfig),
