@@ -44,9 +44,9 @@ const weddingApi = {
                 if (pageSize < 0) {
                     pageSize = 1
                 }
-            } else if(k.indexOf('caseStyleId') !== -1) {
+            } else if(k.indexOf('styleId') !== -1) {
                 // 风格 TODO:服务器返回的是字符串如"123,275,468,",这里采用"%id,%"的方式匹配
-                this.model = this.model.filter(r.row("caseStyle").match(".*?"+this.request.query['caseStyleId']+","+".*?"));
+                this.model = this.model.filter(r.row("caseStyle").match(".*?"+this.request.query['styleId']+","+".*?"));
             } else if(k.indexOf('minPrice') !== -1) {
                 // 最低价格
                 this.model = this.model.filter(r.row('totalCost').gt(Number(this.request.query['minPrice'])));
