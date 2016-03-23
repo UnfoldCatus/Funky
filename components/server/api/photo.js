@@ -38,7 +38,7 @@ const photoApi = {
                     pageIndex = 0
                 }
             } else if (k.indexOf('pageSize') !== -1) {
-                pageSize = parseInt(this.request.query['pageSize'] || '1') - 1
+                pageSize = parseInt(this.request.query['pageSize'] || '1')
                 if (pageSize < 0) {
                     pageSize = 1
                 }
