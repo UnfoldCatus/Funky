@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react'
 import _ from 'lodash'
 import { renderToString } from 'react-dom/server'
 import { MenuConfig } from './components/config/menu-config'
-import { ComponentsIndex } from './components/config/components-index'
+import { ComponentsIndex, ComponentsSeo } from './components/config/components-index'
   /*菜单*/
 import { Navigation } from './components/navigation.jsx'
 
@@ -123,12 +123,12 @@ const siteRouter = new Router()
     menuKey MenuConfig中配置的link字段
     parentKey MenuConfig中的顶层模块的key
   */
-let renderOption = (templateName, menuKey, parentKey,params,seoTitle,seoKeywords,seoDescription) => {
+let renderOption = (templateName, menuKey, parentKey,params) => {
   let p = params || {}
     return {
-      'title':seoTitle || '重庆金色百年婚礼集团_婚纱摄影_婚宴预订_婚庆制定_婚纱礼服_婚戒钻石_微电影_婚礼用品_婚车租凭',
-      'seoKeywords':seoKeywords || '重庆结婚网|重庆婚纱照网|重庆婚宴酒店网|重庆婚礼策划网|重庆婚纱礼服网|重庆珠宝饰品网|重庆结婚微电影网|重庆结婚用品网|重庆婚车租凭网',
-      'seoDescription':seoDescription || '金色百年(www.jsbn.com)是国内领先的结婚平台,国内唯一一站式结婚综合平台，是新人必上的结婚网! 咨询热线:400-015-9999',
+      'title':ComponentsSeo[templateName].seoTitle || '重庆金色百年婚礼集团_婚纱摄影_婚宴预订_婚庆制定_婚纱礼服_婚戒钻石_微电影_婚礼用品_婚车租凭',
+      'seoKeywords':ComponentsSeo[templateName].seoKeywords || '重庆结婚网|重庆婚纱照网|重庆婚宴酒店网|重庆婚礼策划网|重庆婚纱礼服网|重庆珠宝饰品网|重庆结婚微电影网|重庆结婚用品网|重庆婚车租凭网',
+      'seoDescription':ComponentsSeo[templateName].seoDescription || '金色百年(www.jsbn.com)是国内领先的结婚平台,国内唯一一站式结婚综合平台，是新人必上的结婚网! 咨询热线:400-015-9999',
       'reactMarkup': renderToString(ComponentsIndex[templateName]),
       'reactNavMarkup': renderToString(<Navigation menuKey={parentKey ||'/'} currentKey={menuKey} />),
       'main': templateName,// 客户端渲染使用的脚本名称和模板名称一致
@@ -276,7 +276,7 @@ siteRouter.get('/car', function* index(next) {
 
 /** 活动详情页 **/
 siteRouter.get('/active/:name', function* index(next) {
-  yield this.render('modules/default', renderOption('active', '/active', '/active', this.params))
+  yield this.render('modules/default', renderOption('active', '/active', '/', this.params))
 })
 
 export { siteRouter }
