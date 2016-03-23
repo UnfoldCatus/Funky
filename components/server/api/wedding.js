@@ -22,6 +22,7 @@ const weddingApi = {
 
     // 获取实景案例列表
     'get+/cases/:position': function*(next) {
+        this.APIKey = 'Cases'
         if (this.params.position === 'all') {
             this.model = cases.filter({})
         } else {
@@ -29,17 +30,20 @@ const weddingApi = {
                 position: this.params.position
             })
         }
-        this.model = this.model.orderBy(r.desc('weight'))
 
+        let pageIndex = 0;
+        let pageSize = 10;
         _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex'] || '1') - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
                 }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+            } else if (k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize'] || '1')
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
             } else if(k.indexOf('caseStyleId') !== -1) {
                 // 风格 TODO:服务器返回的是字符串如"123,275,468,",这里采用"%id,%"的方式匹配
                 this.model = this.model.filter(r.row("caseStyle").match(".*?"+this.request.query['caseStyleId']+","+".*?"));
@@ -52,7 +56,16 @@ const weddingApi = {
             }
         })
 
-        this.APIKey = 'Cases'
+        try {
+            let all = yield this.model
+            this.count = all.length || 0
+        } catch (e) {
+            this.count = 0
+        }
+
+        this.model = this.model.skip(pageIndex * pageSize).limit(pageSize)
+        this.model = this.model.orderBy(r.desc('weight'))
+
         yield next
     },
     // 获取实景案例详情
@@ -67,6 +80,7 @@ const weddingApi = {
 
     // 获取3D案例列表
     'get+/case3D/:position': function*(next) {
+        this.APIKey = 'Cases3D'
         if (this.params.position === 'all') {
             this.model = cases3D.filter({})
         } else {
@@ -76,19 +90,32 @@ const weddingApi = {
         }
         this.model = this.model.orderBy(r.desc('weight'))
 
+        let pageIndex = 0;
+        let pageSize = 10;
         _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex'] || '1') - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
                 }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+            } else if (k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize'] || '1')
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
             }
         })
 
-        this.APIKey = 'Cases3D'
+        try {
+            let all = yield this.model
+            this.count = all.length || 0
+        } catch (e) {
+            this.count = 0
+        }
+
+        this.model = this.model.skip(pageIndex * pageSize).limit(pageSize)
+        this.model = this.model.orderBy(r.desc('weight'))
+
         yield next
     },
     // 获取3D案例详情
@@ -103,6 +130,7 @@ const weddingApi = {
 
     // 婚礼跟拍列表
     'get+/followPhoto/:position': function*(next) {
+        this.APIKey = 'FollowPhoto'
         if (this.params.position === 'all') {
             this.model = followPhoto.filter({})
         } else {
@@ -110,17 +138,20 @@ const weddingApi = {
                 position: this.params.position
             })
         }
-        this.model = this.model.orderBy(r.desc('weight'))
 
+        let pageIndex = 0;
+        let pageSize = 10;
         _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex'] || '1') - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
                 }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+            } else if (k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize'] || '1')
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
             } else if(k.indexOf('seasonId') !== -1) {
                 // 分季ID
                 this.model = this.model.filter({
@@ -129,7 +160,16 @@ const weddingApi = {
             }
         })
 
-        this.APIKey = 'FollowPhoto'
+        try {
+            let all = yield this.model
+            this.count = all.length || 0
+        } catch (e) {
+            this.count = 0
+        }
+
+        this.model = this.model.skip(pageIndex * pageSize).limit(pageSize)
+        this.model = this.model.orderBy(r.desc('weight'))
+
         yield next
     },
     // 获取跟拍详情
@@ -171,6 +211,7 @@ const weddingApi = {
 
     // 婚礼视频列表
     'get+/followVideo/:position': function*(next) {
+        this.APIKey = 'FollowVideo'
         if (this.params.position === 'all') {
             this.model = followVideo.filter({})
         } else {
@@ -178,17 +219,20 @@ const weddingApi = {
                 position: this.params.position
             })
         }
-        this.model = this.model.orderBy(r.desc('weight'))
 
+        let pageIndex = 0;
+        let pageSize = 10;
         _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex'] || '1') - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
                 }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+            } else if (k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize'] || '1')
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
             } else if(k.indexOf('seasonId') !== -1) {
                 // 分季ID
                 this.model = this.model.filter({
@@ -197,7 +241,16 @@ const weddingApi = {
             }
         })
 
-        this.APIKey = 'FollowVideo'
+        try {
+            let all = yield this.model
+            this.count = all.length || 0
+        } catch (e) {
+            this.count = 0
+        }
+
+        this.model = this.model.skip(pageIndex * pageSize).limit(pageSize)
+        this.model = this.model.orderBy(r.desc('weight'))
+
         yield next
     },
     // 婚礼视频详情
