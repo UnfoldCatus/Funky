@@ -189,7 +189,7 @@ const MenuConfig = {
       link:'/f4'
     },
     {
-      cn:'婚宴知识',
+      cn:'婚礼学堂',
       en:'CLASS',
       link:'/weddingclass/3'
     }
