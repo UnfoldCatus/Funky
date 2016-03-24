@@ -49,7 +49,7 @@ const photoApi = {
                 this.model = this.model.filter(r.row("shootingStyle").match(".*?"+this.request.query['shootStyleId']+","+".*?"));
             } else if(k.indexOf('sampleType') !== -1) {
                 // 样片类型 0:婚纱摄影 1:艺术照 2:全家福
-                this.model = sample.filter({sampleType:parseInt(this.request.query['sampleType'])})
+                this.model = this.model.filter({sampleType:parseInt(this.request.query['sampleType'])})
             }
         })
 
