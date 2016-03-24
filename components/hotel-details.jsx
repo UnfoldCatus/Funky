@@ -139,7 +139,7 @@ const HotelHall = React.createClass({
                   return (
                       <li key={k} className={(k%2 === 1)?'item-box mgb20 mg0' :'item-box mgb20 mgr20'}>
                           <div className="title-box">
-                              <h2>{v.banquetHallName}</h2>
+                              <h2>{v.name}</h2>
                           </div>
                           <div className="img-box">
                               <MediaItem {...HotelDetailsConfig['CoverMediaItem']} mediaUrl={v.coverUrlWeb} />
