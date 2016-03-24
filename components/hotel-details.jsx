@@ -195,14 +195,9 @@ const HotelMenu = React.createClass({
                               </div>
                               <div className="cont-menu transition">
                                   <dl>
-                                      <dt>{v.aliasName}</dt>
-                                      {
-                                          _.map(v.dishesList,function(vx,ix){
-                                              return (
-                                                  <dd key={ix}>{vx.name}</dd>
-                                              )
-                                          })
-                                      }
+                                    {
+                                      v.dishesList.length>0 ? _.map(v.dishesList,function(vx,ix){return (<dd key={ix}>{vx.name}</dd>)}) : <span><b>*暂无菜单,请到店详询.</b></span>
+                                    }
                                   </dl>
                               </div>
                           </li>
