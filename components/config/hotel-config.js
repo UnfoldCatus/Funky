@@ -72,8 +72,14 @@ const HotelConfig = {
     SorterAndSearch:function(component){ //
       let p = {}
       $('.J_EventHooker').on('click',(evt)=>{
-        if ($(evt.target).hasClass('J_SorterButton')) { //排序按钮
-          let $icon = $(evt.target).find('.arrow-box')
+        let $target = null
+        if ($(evt.target).hasClass('J_SorterButton')) {
+          $target = $(evt.target)
+        }else if ($(evt.target).parent().hasClass('J_SorterButton')) {
+          $target = $(evt.target).parent()
+        }
+        if ($target && $target.length) { //排序按钮
+          let $icon = $target.find('.arrow-box')
           p['sort'] = $icon.attr('data-filter')
           if ($icon.hasClass('ascending')) {
             $icon.removeClass('ascending')
