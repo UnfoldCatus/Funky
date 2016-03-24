@@ -734,7 +734,7 @@ a:hover {
   padding: 0;
   border-radius: 0;
   box-shadow: none;
-  background: url(../images/float-close.png) 0 0 no-repeat;
+  background: url(../img/float-close.png) 0 0 no-repeat;
 }
 .uk-close-alt:hover {
   background-position: 0 -24px;
