@@ -7241,12 +7241,16 @@ a:hover {
 .adaptation-1200 .hlyp-view .info-box h1 {
   font-size: 16px;
   line-height: 28px;
-  margin-top: 10px;
+  margin-top: 6px;
   margin-bottom: 10px;
+  white-space: nowrap;
+  word-spacing: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .adaptation-1200 .hlyp-view .info-box h2 {
   font-size: 14px;
-  margin-top: 46px;
+  margin-top: 26px;
   margin-bottom: 12px;
 }
 .adaptation-1200 .hlyp-view .info-box p {
@@ -7264,6 +7268,56 @@ a:hover {
   display: inline-block;
   margin-left: 20px;
   width: 210px;
+}
+.adaptation-1200 .hlyp-view .info-box .price-panel {
+  margin-top: 10px;
+  padding: 5px;
+  background-color: #eee;
+}
+.adaptation-1200 .hlyp-view .info-box .price-panel dl {
+  *zoom: 1;
+  height: 20px;
+  line-height: 20px;
+  padding: 5px 10px;
+}
+.adaptation-1200 .hlyp-view .info-box .price-panel dl:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.adaptation-1200 .hlyp-view .info-box .price-panel dt {
+  float: left;
+  width: 60px;
+}
+.adaptation-1200 .hlyp-view .info-box .price-panel dd {
+  float: left;
+}
+.adaptation-1200 .hlyp-view .info-box .price-panel .yen {
+  font-size: 12px;
+  color: #333;
+  vertical-align: bottom;
+}
+.adaptation-1200 .hlyp-view .info-box .price-panel .price {
+  font-size: 14px;
+}
+.adaptation-1200 .hlyp-view .info-box .price-panel .cut-price .price {
+  text-decoration: line-through;
+}
+.adaptation-1200 .hlyp-view .info-box .price-panel .metatit {
+  color: #666;
+  font-size: 12px;
+}
+.adaptation-1200 .hlyp-view .info-box .price-panel .promo-price .yen {
+  color: #e93a75;
+  font-size: 18px;
+  line-height: 24px;
+}
+.adaptation-1200 .hlyp-view .info-box .price-panel .promo-price .price {
+  font-size: 30px;
+  color: #e93a75;
+  font-weight: bolder;
 }
 .adaptation-1200 .hlyp-view .switch-box {
   position: absolute;

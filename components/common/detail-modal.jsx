@@ -79,6 +79,22 @@ const InfoItem = React.createClass({
       <div className='standard-box'>
         <h1>{this.props.title}</h1>
         <p>{this.props.description}</p>
+        <div className="price-panel">
+          <dl className="cut-price">
+              <dt><span className="metatit">市场价:</span></dt>
+              <dd>
+                  <em className="yen">￥</em>
+                  <span className="price">{this.props.marketPrice}</span>
+              </dd>
+          </dl>
+          <dl className="promo-price">
+              <dt><span className="metatit">平台价:</span></dt>
+              <dd>
+                  <em className="yen">￥</em>
+                  <span className="price">{this.props.sellingPrice}</span>
+              </dd>
+          </dl>
+        </div>
         <h2>产品参数</h2>
         <ul className='list-l' style={params.length>4?{width:'210px'}:{}}>
           {
