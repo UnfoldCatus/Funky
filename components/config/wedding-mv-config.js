@@ -13,7 +13,11 @@ const WeddingMVConfig = {
   'VideoListItem':_.merge({
     'dataUrl':'recordVideo/record_video_list',
     'aspectRatio':'3:2',
-    'height':186
+    'height':186,
+    'params':{
+      'pageSize':4,
+      'pageIndex':1
+    }
   },BaseConfig)
 
 }

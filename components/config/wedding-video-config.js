@@ -13,7 +13,11 @@ const WeddingVideoConfig = {
   'VideoListItem':_.merge({
     'dataUrl':'followvideo/weddingvideo_list',
     'aspectRatio':'3:2',
-    'width':380
+    'width':380,
+    'params':{
+      'pageSize':3,
+      'pageIndex':1
+    }
   },BaseConfig)
 
 }

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { MediaItem } from './media-item.jsx'
 import _ from 'lodash'
+import { BaseConfig } from '../config/base'
 const VideoListItem = React.createClass({
   render: function() {
     let aspectRatio = this.props.aspectRatio
@@ -37,22 +38,30 @@ const VideoListItem = React.createClass({
   },
   getDefaultProps(){
     return {
-      dataUrl:''
+      dataUrl:undefined,
+      params:{}
     }
   },
   getInitialState() {
     return {
-      data:[]
+      data:[],
+      dataStore:[],
+      count:0,
+      currentIndex:0
     }
   },
+  componentWillReceiveProps(nextProps) {
+    BaseConfig['fetchFunc'](this,nextProps)(this,nextProps)
+  },
   componentDidMount() {
-    if (this.props.dataUrl !== undefined) {
-      fetch(this.props.baseUrl + this.props.dataUrl)
-      .then(res => {return res.json()})
-      .then(j=>{
-        this.setState({ data:j.data })
-      })
-    }
+    BaseConfig['fetchFunc'](this,null)(this)
+    // if (this.props.dataUrl !== undefined) {
+    //   fetch(this.props.baseUrl + this.props.dataUrl)
+    //   .then(res => {return res.json()})
+    //   .then(j=>{
+    //     this.setState({ data:j.data })
+    //   })
+    // }
   }
 })
 
