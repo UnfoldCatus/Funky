@@ -4,15 +4,15 @@ import _ from 'lodash'
 const VideoListItem = React.createClass({
   render: function() {
     let aspectRatio = this.props.aspectRatio
-    let width= this.props.width
+    let height= this.props.height
     return (
-        <ul className="movie-list">
+        <ul className="list-recommend">
             {
                 _.map(this.state.data,(v,k)=>{
                     return (
                         <li className="item-box" key={k}>
                             <div className='img-box'>
-                                <MediaItem aspectRatio={aspectRatio} width={width} mediaUrl={v.coverUrlWeb || '//placehold.it/380x260'} />
+                                <MediaItem aspectRatio={aspectRatio} height={height} mediaUrl={v.coverUrlWeb || '//placehold.it/380x260'} />
                                 <a className="layer-box" href={'/'}>
                                     <div className="layer"></div>
                                     <div className="info">
