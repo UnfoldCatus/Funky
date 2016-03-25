@@ -2874,7 +2874,7 @@ a:hover {
 .adaptation-1200 .hsjs-view .list-recommend .item-box {
   *zoom: 1;
   float: left;
-  width: 277.5px;
+  width: 380px;
   margin-right: 30px;
 }
 .adaptation-1200 .hsjs-view .list-recommend .item-box:after {
@@ -2889,7 +2889,7 @@ a:hover {
   position: relative;
   display: block;
   width: 100%;
-  height: 185px;
+  height: 253.33333333px;
 }
 .adaptation-1200 .hsjs-view .list-recommend .img-box img {
   width: 100%;
@@ -2932,6 +2932,219 @@ a:hover {
   font-size: 16px;
   margin-top: 80px;
   display: block;
+}
+.adaptation-1200 .hsjs-view .title-center {
+  margin-bottom: 50px;
+}
+.adaptation-1200 .hsjs-view .title-center h1 {
+  font-weight: normal;
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+.adaptation-1200 .hsjs-view .title-center span {
+  color: #bbb;
+  display: block;
+  text-align: center;
+  font-size: 12px;
+}
+.adaptation-1200 .hsjs-view .tab-box {
+  position: relative;
+  margin-bottom: 50px;
+  height: 185.66666667px;
+}
+.adaptation-1200 .hsjs-view .tab-box .overflow-box {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.adaptation-1200 .hsjs-view .tab-box .item-box {
+  overflow: hidden;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 185.66666667px;
+}
+.adaptation-1200 .hsjs-view .tab-box .item {
+  float: left;
+  text-align: center;
+  height: 100%;
+  position: absolute;
+  width: 208px;
+  margin-right: 40px;
+}
+.adaptation-1200 .hsjs-view .tab-box .pos-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.adaptation-1200 .hsjs-view .tab-box .pos-box:hover p {
+  color: #e93b78;
+}
+.adaptation-1200 .hsjs-view .tab-box .click-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+.adaptation-1200 .hsjs-view .tab-box .pic {
+  width: 100%;
+  background: #999;
+  height: 138.66666667px;
+  margin-bottom: 5px;
+}
+.adaptation-1200 .hsjs-view .tab-box img {
+  width: 100%;
+  height: 100%;
+}
+.adaptation-1200 .hsjs-view .tab-box p {
+  background-color: #f3f3f3;
+  overflow: hidden;
+  padding: 4px 2px;
+  -moz-transition: all 0.2s ease 0s;
+  -webkit-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  -ms-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+}
+.adaptation-1200 .hsjs-view .tab-box p span {
+  color: #333;
+  font-weight: normal;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 16px;
+}
+.adaptation-1200 .hsjs-view .tab-box .item-current p {
+  background-color: #ddd;
+}
+.adaptation-1200 .hsjs-view .tab-box .item-current p span {
+  color: #e93b78;
+  font-weight: bold;
+}
+.adaptation-1200 .hsjs-view .tab-box .arrow-lef {
+  position: absolute;
+  cursor: pointer;
+  left: -50px;
+  top: 65px;
+  -moz-transition: all 0.2s ease 0s;
+  -webkit-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  -ms-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  display: block;
+  border-color: transparent #eeeeee transparent transparent;
+  border-width: 30px 30px 30px 0;
+}
+.adaptation-1200 .hsjs-view .tab-box .arrow-rig {
+  position: absolute;
+  cursor: pointer;
+  right: -50px;
+  top: 65px;
+  -moz-transition: all 0.2s ease 0s;
+  -webkit-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  -ms-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  display: block;
+  border-color: transparent transparent transparent #eeeeee;
+  border-width: 30px 0 30px 30px;
+}
+.adaptation-1200 .hsjs-view .tab-box:hover .arrow-lef {
+  border-color: transparent #e1e1e1 transparent transparent;
+}
+.adaptation-1200 .hsjs-view .tab-box:hover .arrow-rig {
+  border-color: transparent transparent transparent #e1e1e1;
+}
+.adaptation-1200 .hsjs-view .tab-box .arrow-lef:hover {
+  border-color: transparent #e93b78 transparent transparent;
+}
+.adaptation-1200 .hsjs-view .tab-box .arrow-rig:hover {
+  border-color: transparent transparent transparent #e93b78;
+}
+.adaptation-1200 .hsjs-view .title-fj {
+  margin-bottom: 20px;
+}
+.adaptation-1200 .hsjs-view .title-fj h2 {
+  font-weight: normal;
+  text-align: center;
+  font-size: 24px;
+}
+.adaptation-1200 .hsjs-view .fj-list {
+  width: 1230px;
+  margin-right: -30px;
+  *zoom: 1;
+}
+.adaptation-1200 .hsjs-view .fj-list:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.adaptation-1200 .hsjs-view .fj-list .item-box {
+  *zoom: 1;
+  float: left;
+  width: 277.5px;
+  margin-right: 30px;
+}
+.adaptation-1200 .hsjs-view .fj-list .item-box:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.adaptation-1200 .hsjs-view .fj-list .img-box {
+  background: url(../img/ico-loading.gif) center center no-repeat;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 185px;
+}
+.adaptation-1200 .hsjs-view .fj-list .img-box img {
+  width: 100%;
+  height: 100%;
+}
+.adaptation-1200 .hsjs-view .fj-list .item-box {
+  margin-bottom: 30px;
+}
+.adaptation-1200 .hsjs-view .fj-list .layer-box {
+  background: url(../img/play-50.png) no-repeat center;
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  top: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -moz-transition: all 0.2s ease 0s;
+  -webkit-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  -ms-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+}
+.adaptation-1200 .hsjs-view .fj-list .layer-box:hover {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.adaptation-1200 .hsjs-view .fj-list .title-box {
+  height: 50px;
+  line-height: 50px;
+  padding: 0px 5px;
+}
+.adaptation-1200 .hsjs-view .fj-list .title-box span {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 14px;
 }
 .adaptation-1200 .xsys-view h2 {
   font-size: 22px;
@@ -5299,7 +5512,7 @@ a:hover {
 .adaptation-1200 .tjxq-view .list-recommend .item-box {
   *zoom: 1;
   float: left;
-  width: 277.5px;
+  width: 380px;
   margin-right: 30px;
 }
 .adaptation-1200 .tjxq-view .list-recommend .item-box:after {
@@ -5314,7 +5527,7 @@ a:hover {
   position: relative;
   display: block;
   width: 100%;
-  height: 185px;
+  height: 253.33333333px;
 }
 .adaptation-1200 .tjxq-view .list-recommend .img-box img {
   width: 100%;

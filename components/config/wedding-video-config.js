@@ -14,6 +14,7 @@ const WeddingVideoConfig = {
     'dataUrl':'followvideo/weddingvideo_list',
     'aspectRatio':'3:2',
     'width':380,
+    'link':'/weddingvideo',
     'params':{
       'pageSize':3,
       'pageIndex':1

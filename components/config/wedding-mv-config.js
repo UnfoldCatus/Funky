@@ -15,12 +15,22 @@ const WeddingMVConfig = {
     'aspectRatio':'3:2',
     'height':186,
     'link':'/weddingmv',
+    'showTitle':false,
     'params':{
       'pageSize':4,
       'pageIndex':1
     }
-  },BaseConfig)
+  },BaseConfig),
+  'Episode':_.merge({
+    'dataUrl':'recordVideoSeason/all',
+    'aspectRatio':'3:2',
+    'height':140
+  },BaseConfig),
+  'EpisodeListItem':_.merge({
+    'link':'/weddingmv',
+    'params':{}
 
+  },BaseConfig)
 }
 
 export { WeddingMVConfig }
