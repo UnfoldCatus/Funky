@@ -14,6 +14,7 @@ const WeddingMVConfig = {
     'dataUrl':'recordVideo/record_video_list',
     'aspectRatio':'3:2',
     'height':186,
+    'link':'/weddingmv',
     'params':{
       'pageSize':4,
       'pageIndex':1
