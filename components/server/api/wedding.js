@@ -68,11 +68,21 @@ const weddingApi = {
 
         yield next
     },
-    // 获取实景案例详情
+    // 获取实景案例详情,根据资源ID查询
     'get+/cases/detail/:id': function*(next) {
         this.model = cases.filter({
             id: parseInt(this.params.id)
         })
+
+        this.APIKey = 'Cases'
+        yield next
+    },
+
+    // 根据资源Id查询案例详情
+    'get+/detailByResourceId/:resourceId': function*(next) {
+        this.model = cases.filter({
+            caseId: parseInt(this.params.resourceId)
+        }).skip(0).limit(1)
 
         this.APIKey = 'Cases'
         yield next
