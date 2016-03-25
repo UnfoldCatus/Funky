@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { MediaSlider } from './common/media-slider.jsx'
 import { Banner } from './common/banner.jsx'
 import { WeddingPatConfig } from './config/wedding-pat-config'
-import { CasesList } from './common/cases-list.jsx'
+import { SchemeListItem } from './common/scheme-list-item.jsx'
 const WeddingPat = React.createClass({
   render () {
     return (
@@ -14,13 +14,18 @@ const WeddingPat = React.createClass({
           </div>
           <div className="layout-center-box">
               <Banner {...WeddingPatConfig['Banner'][0]} />
-              <CasesList {...WeddingPatConfig['CasesList']} />
+              <SchemeListItem {...WeddingPatConfig['SchemeListItem']} params={_.merge(this.state.params,WeddingPatConfig['SchemeListItem'].params)}/>
               <div onClick={this.loadMore} id="J_MoreButton">
                   <div className="more-btn"><span>点击查看更多</span></div>
               </div>
           </div>
       </div>
     )
+  },
+  getInitialState() {
+    return {
+      params:{}
+    }
   }
 })
 
