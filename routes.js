@@ -197,6 +197,10 @@ siteRouter.get('/weddingmv', function* index(next) {
   yield this.render('modules/default', renderOption('wedding-mv', '/weddingmv', '/shot'))
 })
 
+siteRouter.get('/weddingmv/:id', function* index(next) {
+  yield this.render('modules/default', renderOption('wedding-mv-details', '/weddingmv', '/shot',this.params))
+})
+
 /** 婚宴预订 **/
 // 列表
 siteRouter.get('/hotel', function* index(next) {

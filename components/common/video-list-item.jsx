@@ -6,15 +6,17 @@ const VideoListItem = React.createClass({
   render: function() {
     let aspectRatio = this.props.aspectRatio
     let height= this.props.height
+    let link = this.props.link
+
     return (
-        <ul className="list-recommend">
+        <ul className="list-recommend movie-list">
             {
                 _.map(this.state.data,(v,k)=>{
                     return (
                         <li className="item-box" key={k}>
                             <div className='img-box'>
                                 <MediaItem aspectRatio={aspectRatio} height={height} mediaUrl={v.coverUrlWeb || '//placehold.it/380x260'} />
-                                <a className="layer-box" href={'/'}>
+                                <a className="layer-box" href={link + '/'+v.id}>
                                     <div className="layer"></div>
                                     <div className="info">
                                         <h3>{v.name}</h3>

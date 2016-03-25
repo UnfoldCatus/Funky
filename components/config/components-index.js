@@ -29,6 +29,7 @@ import { F4 } from '../f4.jsx'
 import { WeddingPat } from '../wedding-pat.jsx'
 import { WeddingVideo } from '../wedding-video.jsx'
 import { WeddingMV } from '../wedding-mv.jsx'
+import { WeddingMVDetails } from '../wedding-mv-details.jsx'
 import { SchemeRequire } from '../scheme-require.jsx'
 
 import { Adv } from '../adv.jsx'
@@ -51,6 +52,7 @@ const ComponentsIndex = {
   'suite': <Suite />,
   'suite-details': <SuiteDetails />,
   'wedding-mv': <WeddingMV />,// 纪实MV
+  'wedding-mv-details': <WeddingMVDetails />,// 纪实MV
   'hotel': <Hotel />,
   'hotel-details': <HotelDetails />,
   'hall-details': <HallDetails />,
@@ -118,6 +120,11 @@ const ComponentsSeo= {
     'seoKeywords':'结婚微电影|结婚MV|婚纱摄影微电影|婚纱照微电影|婚纱照MV|婚纱摄影MV',
     'seoDescription':'金色百年婚礼微电影，专为新人提供优质的婚礼影像服务。服务内容包括婚礼跟拍、现场快剪、微电影、MV等，全方位满足新人不同层次的婚礼影像需求。金色百年婚礼微电影服务团队把时尚气质和人文理念融入到婚礼影像的制作中，把婚礼最真实、最感人的一面呈现给新人。'
   },// 纪实MV
+  'wedding-mv-details': {
+    'seoTitle':'',
+    'seoKeywords':'',
+    'seoDescription':''
+  },
   'hotel': {
     'seoTitle':'重庆婚宴酒店预订_重庆喜宴大饭店_重庆酒楼_重庆婚宴酒店推荐_重庆婚庆酒店_金色百年婚宴网站',
     'seoKeywords':'重庆酒店|酒宴|大饭店|婚宴|婚宴布置|重庆喜宴酒店|婚宴策划|重庆婚宴酒楼|重庆婚宴酒店推荐|婚庆酒店',
