@@ -41,6 +41,7 @@ import { Supply } from '../supply.jsx'
 import { Car } from '../car.jsx'
 
 import { Active } from '../common/active.jsx'
+import { WeddingClass } from '../wedding-class.jsx'
 
 const ComponentsIndex = {
   'home': <Home />,
@@ -72,7 +73,8 @@ const ComponentsIndex = {
   'movie-details': <MovieDetails />,
   'supply': <Supply />,
   'car': <Car />,
-  'active': <Active />
+  'active': <Active />,
+  'wedding-class': <WeddingClass />
 }
 const ComponentsSeo= {
   'home': {
@@ -225,6 +227,11 @@ const ComponentsSeo= {
     'seoKeywords':'',
     'seoDescription':''
   },
+  'wedding-class': {
+    'seoTitle':'',
+    'seoKeywords':'',
+    'seoDescription':''
+  }
 }
 
 
