@@ -249,8 +249,8 @@ const CameraList = React.createClass({
       fetch(CameraList.baseUrl + CameraList.dataUrl + '?pageIndex=' + this.state.pageIndex + '&pageSize=' + this.state.pageSize)
         .then(res => {return res.json()})
         .then(j=>{
-          let isMoreFlg = (j.count > this.state.pageSize + this.state.sumCount) ? true : false;
           if(j.success){
+            let isMoreFlg = (j.count > this.state.pageSize + this.state.sumCount) ? true : false;
             this.setState({
               personnelList: _.map(j.data || [],(v,k)=>{ return _.pick(v,['nickName', 'photoUrl', 'salePrice', 'priceRemark', 'description', 'workList']) }),
               sumCount: j.data.length,
