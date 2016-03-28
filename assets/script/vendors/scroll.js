@@ -22,6 +22,8 @@ $win.bind("mousewheel scroll", function() {
         }
     } else {
     }
+
+    tipTanTip(204,1);
     // if ($(this).scrollTop() >= 720) {
     //     if(!isFixed){
     //         isFixed = true;
@@ -48,27 +50,23 @@ $win.bind("mousewheel scroll", function() {
     // }
 });
 
-$hover_box.each(function(i){
-    $(this).css({display:"block"});
-});
-tipTanTip(204,1);
 //方案老大不喜欢。 1. 没有美女头像 2. 不直观，没有马上能找到在线咨询的地方。
-// $main_rig_func_box.bind("mouseenter",function(){
-//     if($win.scrollTop() >= 720){
-//         $hover_box.each(function(i){
-//             $(this).css({display:"block"});
-//         });
-//         tipTanTip(204,1);
-//     }else if ($win.scrollTop() < 720){
-//         $hover_box.each(function(i){
-//             $(this).css({display:"block"});
-//             if(i >= 4){
-//                 $(this).css({display:"none"});
-//             }
-//         });
-//         tipTanTip(163,1);
-//     }
-// });
+$main_rig_func_box.bind("mouseenter",function(){
+    if($win.scrollTop() >= 720){
+        $hover_box.each(function(i){
+            $(this).css({display:"block"});
+        });
+        tipTanTip(204,1);
+    }else if ($win.scrollTop() < 720){
+        $hover_box.each(function(i){
+            $(this).css({display:"block"});
+            if(i >= 4){
+                $(this).css({display:"none"});
+            }
+        });
+        tipTanTip(204,1);
+    }
+});
 
 $($hover_box[1]).bind("mouseenter",function(){
     $phone_window.width(120);
