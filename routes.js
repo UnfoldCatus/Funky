@@ -132,6 +132,7 @@ let renderOption = (templateName, menuKey, parentKey,params) => {
       'reactMarkup': renderToString(ComponentsIndex[templateName]),
       'reactNavMarkup': renderToString(<Navigation menuKey={parentKey ||'/'} currentKey={menuKey} />),
       'currentMenuKey':menuKey,
+      'parentMenuKey':parentKey,
       'main': templateName,// 客户端渲染使用的脚本名称和模板名称一致
       'params':JSON.stringify(p),
       'mode':(process.env.NODE_ENV === 'production')?'production':'development'
@@ -248,6 +249,9 @@ siteRouter.get('/followPhoto/:id', function* index(next) {
 /** 婚礼视频 **/
 siteRouter.get('/weddingvideo', function* index(next) {
     yield this.render('modules/default', renderOption('wedding-video', '/weddingvideo', '/scheme'))
+})
+siteRouter.get('/followVideo/:id', function* index(next) {
+  yield this.render('modules/default', renderOption('wedding-mv-details', '/weddingvideo', '/scheme',this.params))
 })
 /** 提交婚庆需求 **/
 siteRouter.get('/scheme-require', function* index(next) {

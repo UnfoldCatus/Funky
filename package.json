@@ -31,6 +31,7 @@
     "build-wedding-pat": "watchify ./src/client/wedding-pat.js -o 'uglifyjs -cm > ./assets/script/modules/wedding-pat.min.js'",
     "build-wedding-video": "watchify ./src/client/wedding-video.js -o 'uglifyjs -cm > ./assets/script/modules/wedding-video.min.js'",
     "build-wedding-mv": "watchify ./src/client/wedding-mv.js -o 'uglifyjs -cm > ./assets/script/modules/wedding-mv.min.js'",
+    "build-wedding-mv-details": "watchify ./src/client/wedding-mv-details.js -o 'uglifyjs -cm > ./assets/script/modules/wedding-mv-details.min.js'",
     "build-active": "watchify ./src/client/active.js -o 'uglifyjs -cm > ./assets/script/modules/active.min.js'",
     "build-wedding-class": "watchify ./src/client/wedding-class.js -o 'uglifyjs -cm > ./assets/script/modules/wedding-class.min.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
