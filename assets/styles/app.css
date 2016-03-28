@@ -191,6 +191,8 @@ a:hover {
 }
 .main-rig-func-box .hover-first-box {
   margin-top: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
 }
 .main-rig-func-box .hover-box .pos-box {
   width: 40px;
