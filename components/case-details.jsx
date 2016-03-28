@@ -75,7 +75,7 @@ const Price = React.createClass({
       f4String += (' ' + f4Map[v]);
     })
 
-    if (this.props.totalPrice) {
+    if (this.props.totalCost) {
       return (
         <div>
             <div className="info-title">
@@ -88,7 +88,7 @@ const Price = React.createClass({
                         <span className="pink-1-js">￥</span><b className="pink-1-js">{parseFloat(this.props.totalCost).toFixed(2)}</b>
                     </span>
                     <span className='del-pirce'>
-                        <span>原价: ￥</span><b>{parseFloat(this.props.originalPrice).toFixed(2)}</b>
+                        <span>原价: ￥</span><b>{parseFloat(this.props.originalPrice || this.props.totalCost).toFixed(2)}</b>
                     </span>
                 </div>
                 <div className='price-box'>
@@ -168,7 +168,9 @@ const CaseDetails = React.createClass({
     }
   },
   componentDidMount() {
-    let cfg = CaseDetailsConfig['CaseDetails']
+    // 由于case—details被多个模块共用 所以使用连接来进行区别
+    let detailsKey = this.props.dataCurrentKey || '/cases'
+    let cfg = CaseDetailsConfig[detailsKey]
     let fetchUrl = cfg['buildUrl'](this.props.dataParams,cfg['dataUrl'])
     if(fetchUrl){
       fetch(fetchUrl)

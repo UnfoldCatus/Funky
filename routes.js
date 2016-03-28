@@ -131,6 +131,7 @@ let renderOption = (templateName, menuKey, parentKey,params) => {
       'seoDescription':ComponentsSeo[templateName].seoDescription || '金色百年(www.jsbn.com)是国内领先的结婚平台,国内唯一一站式结婚综合平台，是新人必上的结婚网! 咨询热线:400-015-9999',
       'reactMarkup': renderToString(ComponentsIndex[templateName]),
       'reactNavMarkup': renderToString(<Navigation menuKey={parentKey ||'/'} currentKey={menuKey} />),
+      'currentMenuKey':menuKey,
       'main': templateName,// 客户端渲染使用的脚本名称和模板名称一致
       'params':JSON.stringify(p),
       'mode':(process.env.NODE_ENV === 'production')?'production':'development'
@@ -239,6 +240,10 @@ siteRouter.get('/cases/:id', function* index(next) {
 /** 婚礼跟拍 **/
 siteRouter.get('/weddingpat', function* index(next) {
     yield this.render('modules/default', renderOption('wedding-pat', '/weddingpat', '/scheme'))
+})
+
+siteRouter.get('/followPhoto/:id', function* index(next) {
+  yield this.render('modules/default', renderOption('case-details', '/weddingpat', '/scheme',this.params))
 })
 /** 婚礼视频 **/
 siteRouter.get('/weddingvideo', function* index(next) {

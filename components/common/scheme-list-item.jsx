@@ -5,6 +5,7 @@ import { MediaItem } from './media-item.jsx'
 import { ListCount } from './list-count.jsx'
 const SchemeListItem = React.createClass({
   render () {
+    let link = this.props.link || 'cases'
     let list = (
       <ul className="cases-list">
         {
@@ -13,7 +14,7 @@ const SchemeListItem = React.createClass({
                 <li className="item-box" key={k}>
                   <div className='img-box'>
                     <MediaItem aspectRatio={'3:2'} width={380} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'} />
-                    <a className="layer-box" href={'/cases/'+v.id} target='_blank'>
+                    <a className="layer-box" href={'/'+link+'/'+v.id} target='_blank'>
                       <div className="layer"/>
                       <div className="info">
                         <h3>{v.name}</h3>

@@ -12,6 +12,7 @@ const WeddingPatConfig = {
   },BaseConfig),
   'SchemeListItem':_.merge({
     'countPlugin':true,
+    'link':'followPhoto',
     'dataUrl':'followPhoto/weddingpat_list',
     'displayTextPrefix':'找到最佳案例',
     'displayTextSuffix':'套',

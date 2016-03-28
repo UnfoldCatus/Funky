@@ -3,6 +3,7 @@ import { MediaSlider } from './common/media-slider.jsx'
 import { Banner } from './common/banner.jsx'
 import { WeddingPatConfig } from './config/wedding-pat-config'
 import { SchemeListItem } from './common/scheme-list-item.jsx'
+import _ from 'lodash'
 const WeddingPat = React.createClass({
   render () {
     return (
