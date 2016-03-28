@@ -47,9 +47,9 @@ const Pringles = env.Thinky.createModel('pringles', {
     // 客片ID
     pringlesId: type.number(),
     // 创建时间
-    createTime: type.date(),
+    createTime: type.string(),
     // 修改时间
-    updateTime: type.date(),
+    updateTime: type.string(),
     // 操作员
     operater: type.number(),
     // 是否有效

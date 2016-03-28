@@ -50,9 +50,9 @@ const Car = env.Thinky.createModel('car', {
     // 汽车ID
     carId: type.number(),
     // 创建时间
-    createTime: type.date(),
+    createTime: type.string(),
     // 修改时间
-    updateTime: type.date(),
+    updateTime: type.string(),
     // 操作员
     operater: type.number(),
     // 是否有效 有效0：无效 1：有效
