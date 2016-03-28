@@ -23,30 +23,31 @@ $win.bind("mousewheel scroll", function() {
     } else {
     }
 
-    if ($(this).scrollTop() >= 720) {
-        if(!isFixed){
-            isFixed = true;
-            home_nav_fixed.animate({
-                top: 0
-            });
-        }
-
-        tipTanTip(204,1);
-        $hover_box.each(function(i){
-            if(i >= 4){
-                $(this).css({display:"block"});
-            }
-        });
-    } else if ($(this).scrollTop() < 720){
-        if(isFixed){
-            isFixed = false;
-            home_nav_fixed.animate({
-                top: -80
-            });
-        }
-
-        tipTanTip(0,0.2);
-    }
+    tipTanTip(204,1);
+    // if ($(this).scrollTop() >= 720) {
+    //     if(!isFixed){
+    //         isFixed = true;
+    //         home_nav_fixed.animate({
+    //             top: 0
+    //         });
+    //     }
+    //
+    //     tipTanTip(204,1);
+    //     $hover_box.each(function(i){
+    //         if(i >= 4){
+    //             $(this).css({display:"block"});
+    //         }
+    //     });
+    // } else if ($(this).scrollTop() < 720){
+    //     if(isFixed){
+    //         isFixed = false;
+    //         home_nav_fixed.animate({
+    //             top: -80
+    //         });
+    //     }
+    //
+    //     tipTanTip(0,0.2);
+    // }
 });
 
 //方案老大不喜欢。 1. 没有美女头像 2. 不直观，没有马上能找到在线咨询的地方。
