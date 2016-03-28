@@ -72,7 +72,7 @@ const Price = React.createClass({
     var f4String = ''
     var standardWeddingString = this.props.personDescription || '';
     _.each(standardWeddingString.split(','), function(v,k) {
-      f4String += (' ' + f4Map[v]);
+      f4String += (' ' + v);
     })
 
     if (this.props.totalCost) {
