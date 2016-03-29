@@ -155,7 +155,9 @@ const CaseDetails = React.createClass({
               <div className='line-left' />
                 <BasicInfo {...this.state.data} />
                 <Concept {...this.state.data} />
-                <Price {...this.state.data} />
+                {
+                  this.state.showPrice && <Price {...this.state.data} />
+                }
               </div>
           </div>
         </div>
@@ -164,10 +166,13 @@ const CaseDetails = React.createClass({
   },
   getInitialState: function() {
     return {
-      data:{}
+      data:{},
+      showPrice:true
     }
   },
   componentDidMount() {
+    // 跟拍不展示价格
+
     // 由于case—details被多个模块共用 所以使用连接来进行区别
     let detailsKey = this.props.dataCurrentKey || '/cases'
     let cfg = CaseDetailsConfig[detailsKey]
@@ -178,7 +183,7 @@ const CaseDetails = React.createClass({
         .then(j=>{
           if(j.success && j.data.length > 0) {
             // 因为后天返回的pcDetailImages是一个字符串,所以要转换成json
-            this.setState({data:j.data[0]},()=>{
+            this.setState({data:j.data[0], showPrice:cfg['type'] === 'pat' ? false : true},()=>{
               $("#slider_case_detail").Slider({
                 type: "Horizontal"
               })
