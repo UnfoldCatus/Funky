@@ -9,13 +9,11 @@ const advApi = {
     if (this.params.position === 'all') {
       this.model = adv.filter({})
     } else {
-      console.log(this.params.position);
       this.model = adv.filter({
         position: this.params.position
       })
     }
     this.model = this.model.orderBy(r.desc('weight'))
-
     _.each(this.request.query, (v, k) => {
       if (k.indexOf('pageSize') !== -1) {
         let limit = 0
