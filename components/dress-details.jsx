@@ -22,7 +22,7 @@ const DressDetails = React.createClass({
                   <li key={k} className="item-box">
                     <a className="img-box" data-uk-lightbox="{'group':'dress-img'}" data-lightbox-type='image' title={v.number}  href={v.imageUrl} >
                       <div className="layer-box"></div>
-                      <MediaItem aspectRatio='2:3' height={550} mediaUrl={v.imageUrl} />
+                      <MediaItem aspectRatio='2:3' height={550} mediaUrl={v.imageUrl} water={true} />
                     </a>
                     <div className="title-box">
                       <span>{v.number}</span>

@@ -20,7 +20,7 @@ const PringlesDetails = React.createClass({
             /*传入aspectRatio='1:-1' -1表示以100%作为值 见代码*/
             _.map(this.state.details, (v, k) => {
               return (
-                <MediaItem key={k} mediaUrl={v} width={1920} aspectRatio={'1:-1'} />
+                <MediaItem key={k} mediaUrl={v} width={1920} aspectRatio={'1:-1'} water={true} />
               );
             })
           }

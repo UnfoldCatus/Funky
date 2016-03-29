@@ -133,7 +133,7 @@ const CaseDetails = React.createClass({
                           imageListData.length && $.map(imageListData,function(v,k){
                               return (
                                   <li className="item transition-margin" key={k} data-big-img-url={v}>
-                                    <MediaItem aspectRatio='3:2' height={100} mediaUrl={v || 'http://placehold.it/150x100'} />
+                                    <MediaItem aspectRatio='3:2' height={100} mediaUrl={v || 'http://placehold.it/150x100'} water={true} />
                                   </li>
                               )
                           })

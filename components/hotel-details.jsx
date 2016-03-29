@@ -14,7 +14,7 @@ const HotelThumb = React.createClass({
                 return (
                   <a href={v.url || v} key={k} className='slider-hover-box' data-uk-lightbox='{group:"hotelThumb"}' >
                     <div className='big-img-box mgb30'>
-                      <MediaItem {...HotelDetailsConfig['HotelThumbMediaItem']} mediaUrl={v.url||v} />
+                      <MediaItem {...HotelDetailsConfig['HotelThumbMediaItem']} mediaUrl={v.url||v} water={true} />
                     </div>
                     <div className='slider-tip-box'>
                       <span>点击看大图</span>
@@ -112,7 +112,7 @@ const HotelIntroduction = React.createClass({
     return (
       <div className="hotel-info-box mgb30">
           <div className="img-box">
-              <MediaItem {...HotelDetailsConfig['CoverMediaItem']} mediaUrl={this.props.coverUrlWeb}/>
+              <MediaItem {...HotelDetailsConfig['CoverMediaItem']} mediaUrl={this.props.coverUrlWeb} />
           </div>
           <div className="p">
               <p>{ this.props.introduction }</p>
