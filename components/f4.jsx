@@ -101,7 +101,7 @@ const MoveItemBox = React.createClass({
                   </div>
                 </div>
                 <div id={v.id} className="uk-modal">
-                  <div className="uk-modal-dialog uk-modal-dialog-lightbox">
+                  <div className="uk-modal-dialog uk-modal-dialog-lightbox" style={{width:'800px'}}>
                     <a href="" className="uk-modal-close uk-close uk-close-alt"></a>
                     <MediaItem aspectRatio='3:2' width={800} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl}/>
                   </div>
