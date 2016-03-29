@@ -84,11 +84,11 @@ const HotelBaseInfo = React.createClass({
               <div className="etc">
                   <div className="item">
                       <em>大礼包</em>
-                      <a href="/sale-strategy?type=libao" target="_blank">通过金色百年预定婚宴，领取12999大礼包</a>
+                      <a href="/active/libao" target="_blank">通过金色百年预定婚宴，领取12999大礼包</a>
                   </div>
                   <div className="item">
                       <em>组合优惠</em>
-                      <a href="/sale-strategy?type=zuhe" target="_blank">消费项目越多，优惠力度越大</a>
+                      <a href="/active/zuhe" target="_blank">消费项目越多，优惠力度越大</a>
                   </div>
               </div>
           </div>
