@@ -43,7 +43,8 @@ const F4Config  = {
 
   'CameraList':_.merge({
     'dataUrl':'f4/camera'
-  },BaseConfig)
+  },BaseConfig),
+  'Filter':_.merge({},BaseConfig)
 }
 
 
