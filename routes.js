@@ -292,6 +292,10 @@ siteRouter.get('/weddingclass/:type', function* index(next) {
   yield this.render('modules/default', renderOption('wedding-class', '/weddingclass', '/', this.params))
 })
 
+/** 婚礼课堂 **/
+siteRouter.get('/weddingclass-details/:id', function* index(next) {
+  yield this.render('modules/default', renderOption('weddingclass-details', '/weddingclass', '/', this.params))
+})
 /** 活动详情页 **/
 siteRouter.get('/active/:name', function* index(next) {
   yield this.render('modules/default', renderOption('active', '/active', '/', this.params))

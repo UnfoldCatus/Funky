@@ -118,7 +118,7 @@ const PhotoItemBox = React.createClass({
             let pcDetailImages = v.pcDetailImages && JSON.parse(v.pcDetailImages) || [];
             return (
               <li key={k} className="item-box">
-                <a className="img-box" data-uk-lightbox="{'group':'img'}" data-lightbox-type='image' title={v.number}  href={v.imageUrl} >
+                <a className="img-box" data-uk-lightbox="{'group':'img'}" data-lightbox-type='image' title={v.number}  href={v.coverUrlWeb} >
                   <MediaItem aspectRatio='2:3' height={300} mediaUrl={v.coverUrlWeb} />
                   <div className="layer"></div>
                 </a>

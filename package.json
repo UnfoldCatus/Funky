@@ -34,6 +34,7 @@
     "build-wedding-mv-details": "watchify ./src/client/wedding-mv-details.js -o 'uglifyjs -cm > ./assets/script/modules/wedding-mv-details.min.js'",
     "build-active": "watchify ./src/client/active.js -o 'uglifyjs -cm > ./assets/script/modules/active.min.js'",
     "build-wedding-class": "watchify ./src/client/wedding-class.js -o 'uglifyjs -cm > ./assets/script/modules/wedding-class.min.js'",
+    "build-weddingclass-details": "watchify ./src/client/weddingclass-details.js -o 'uglifyjs -cm > ./assets/script/modules/weddingclass-details.min.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

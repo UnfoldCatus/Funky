@@ -16,12 +16,12 @@ const ClassList = React.createClass({
                   <img className="img-box" src={v.coverUrlWeb} />
                   <div className="inroduce">
                     <h2>
-                      <a href={'weddingroom/detail/'+v.id}>{v.title}</a>
+                      <a href={'/weddingclass-details/'+v.id}>{v.title}</a>
                       <span className="stime">{v.updateTime}</span>
                     </h2>
                     <p>
                       <span>{v.description}</span>
-                      <a href={'weddingroom/detail/'+v.id}>详情&gt;&gt;</a>
+                      <a href={'/weddingclass-details/'+v.id}>详情&gt;&gt;</a>
                     </p>
                   </div>
                 </li>

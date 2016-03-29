@@ -89,8 +89,8 @@ const SuiteList = React.createClass({
   componentDidMount() {
     const setupScrollbar = ()=>{
       $('.scrollbarall').length > 0 &&
-      $(".scrollbarall").each(function(index, element) {
-        var e = $(this);
+    _.each($(".scrollbarall"),(v,k) => {
+        let e = $(v)
         e.tinyscrollbar();
         e.find('.scrollbar').css({
           opacity: 0
