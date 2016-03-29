@@ -14,7 +14,13 @@ const SchemeConfig = {
   },BaseConfig),
   //列表数据
   'SchemeListItem': _.merge({
-    'dataUrl': 'cases/scheme_recommend_list'
+    'type':'cases',
+    'link':'/cases',
+    'dataUrl': 'cases/scheme_recommend_list',
+    'params':{ //因为是聚合页面，样片的个数固定
+      'pageSize':9,
+      'pageIndex':1
+    }
   },BaseConfig),
   'Group5':_.merge({
     'dataUrl':'adv/scheme_hot',// 数据请求地址

@@ -6,10 +6,12 @@ import _ from 'lodash'
 
 const CaseDetailsConfig  = {
   '/cases':_.merge({
-    'dataUrl':'cases/detail/:id'
+    'dataUrl':'cases/detail/:id',
+    'type':'cases'
   },BaseConfig),
   '/weddingpat':_.merge({
-    'dataUrl':'followPhoto/detail/:id'
+    'dataUrl':'followPhoto/detail/:id',
+    'type':'pat'
   },BaseConfig)
 }
 

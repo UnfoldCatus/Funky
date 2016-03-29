@@ -10,11 +10,12 @@ const HotelThumb = React.createClass({
         <div className='slider-box-4-js'>
           {
             _.map(this.props.data,(v,k)=>{
+              let url=v+'@90q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'
               if (0===k) {
                 return (
-                  <a href={v.url || v} key={k} className='slider-hover-box' data-uk-lightbox='{group:"hotelThumb"}' >
+                  <a href={v} key={k} className='slider-hover-box' data-uk-lightbox='{group:"hotelThumb"}' data-lightbox-type='image' >
                     <div className='big-img-box mgb30'>
-                      <MediaItem {...HotelDetailsConfig['HotelThumbMediaItem']} mediaUrl={v.url||v} />
+                      <MediaItem {...HotelDetailsConfig['HotelThumbMediaItem']} mediaUrl={v} water={false} />
                     </div>
                     <div className='slider-tip-box'>
                       <span>点击看大图</span>
@@ -23,7 +24,7 @@ const HotelThumb = React.createClass({
                 )
               }else {
                 return (
-                  <a href={v.url || v} key={k} data-uk-lightbox='{group:"hotelThumb"}'></a>
+                  <a href={url} key={k} data-uk-lightbox='{group:"hotelThumb"}' data-lightbox-type='image'></a>
                 )
               }
             })
@@ -112,7 +113,7 @@ const HotelIntroduction = React.createClass({
     return (
       <div className="hotel-info-box mgb30">
           <div className="img-box">
-              <MediaItem {...HotelDetailsConfig['CoverMediaItem']} mediaUrl={this.props.coverUrlWeb}/>
+              <MediaItem {...HotelDetailsConfig['CoverMediaItem']} mediaUrl={this.props.coverUrlWeb} water={false} />
           </div>
           <div className="p">
               <p>{ this.props.introduction }</p>
@@ -142,7 +143,7 @@ const HotelHall = React.createClass({
                               <h2>{v.name}</h2>
                           </div>
                           <div className="img-box">
-                              <MediaItem {...HotelDetailsConfig['CoverMediaItem']} mediaUrl={v.coverUrlWeb} />
+                              <MediaItem {...HotelDetailsConfig['CoverMediaItem']} mediaUrl={v.coverUrlWeb} water={false} />
                           </div>
                           <div className="info-box">
                             <ul className="clearfix">
