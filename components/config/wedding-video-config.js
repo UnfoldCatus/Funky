@@ -16,7 +16,7 @@ const WeddingVideoConfig = {
     'width':380,
     'link':'/followVideo',
     'params':{
-      'pageSize':3,
+      'pageSize':9,
       'pageIndex':1
     }
   },BaseConfig)

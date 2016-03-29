@@ -13,7 +13,7 @@ const SchemeListItem = React.createClass({
               return (
                 <li className="item-box" key={k}>
                   <div className='img-box'>
-                    <MediaItem aspectRatio={'3:2'} width={380} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'} />
+                    <MediaItem aspectRatio={'3:2'} width={380} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'} water={false}/>
                     <a className="layer-box" href={'/'+link+'/'+v.id} target='_blank'>
                       <div className="layer"/>
                       <div className="info">

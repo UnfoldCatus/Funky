@@ -16,7 +16,7 @@ const VideoListItem = React.createClass({
                     return (
                         <li className="item-box" key={k}>
                             <div className='img-box'>
-                                <MediaItem aspectRatio={aspectRatio} height={height} width={width} mediaUrl={v.coverUrlWeb || '//placehold.it/380x260'} />
+                                <MediaItem aspectRatio={aspectRatio} height={height} width={width} mediaUrl={v.coverUrlWeb || '//placehold.it/380x260'} water={false}/>
                                 <a className="layer-box" href={link + '/'+v.id}>
                                     <div className="layer"></div>
                                     <div className="info">

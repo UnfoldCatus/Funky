@@ -20,9 +20,9 @@ const DressDetails = React.createClass({
               _.map(this.state.dressItems, (v,k) => {
                 return (
                   <li key={k} className="item-box">
-                    <a className="img-box" data-uk-lightbox="{'group':'dress-img'}" data-lightbox-type='image' title={v.number}  href={v.imageUrl} >
+                    <a className="img-box" data-uk-lightbox="{'group':'dress-img'}" data-lightbox-type='image' title={v.number}  href={v.imageUrl+'@90Q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'} >
                       <div className="layer-box"></div>
-                      <MediaItem aspectRatio='2:3' height={550} mediaUrl={v.imageUrl} water={true} />
+                      <MediaItem aspectRatio='2:3' height={550} mediaUrl={v.imageUrl} water={false} />
                     </a>
                     <div className="title-box">
                       <span>{v.number}</span>

@@ -31,7 +31,9 @@ const Episode = React.createClass({
                     <li key={k} className='item' data-season-id={v.seasonId}>
                       <div className='pos-box'>
                         <div className='click-box'></div>
-                        <div className='pic'><MediaItem {...this.props} mediaUrl={v.coverUrlWeb}  /></div>
+                        <div className='pic'>
+                          <MediaItem {...this.props} mediaUrl={v.coverUrlWeb} water={false} />
+                        </div>
                         <p><span>{v.weddingDate}</span><br /><span>{v.name}</span></p>
                       </div>
                     </li>

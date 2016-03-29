@@ -13,7 +13,7 @@ const WeddingMVDetails = React.createClass({
       <div className="wdy-view">
         <div className="layout-center-box">
           <h1 className="title-vid">{name}</h1>
-            <MediaItem aspectRatio='3:2' width={1200} mediaUrl={poster} videoUrl={videoUrl}/>
+            <MediaItem aspectRatio='3:2' width={1200} mediaUrl={poster} videoUrl={videoUrl} water={false} />
             <p className="info-vid">{description}</p>
             <p className="info-vid">{date}</p>
             <p className="info-vid">{address}</p>

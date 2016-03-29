@@ -12,7 +12,7 @@ const Group5 = React.createClass({
               return (
                 <li key={k} className='big-box'>
                   <a href={v.linkUrl} className='l-item img-box' >
-                    <MediaItem {...dimension[0]} mediaUrl={v.coverUrlWeb||'//placehold.it/620x375'} videoUrl={v.videoUrl}/>
+                    <MediaItem {...dimension[0]} mediaUrl={v.coverUrlWeb||'//placehold.it/620x375'} videoUrl={v.videoUrl} water={false}/>
                   </a>
                 </li>
               )

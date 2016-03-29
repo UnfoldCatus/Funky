@@ -35,7 +35,7 @@ const ItemType = React.createClass({
                   <div className="animat-1-hive" />
                   <a href={hf} target="_blank">
                     <div className="img-box">
-                      <MediaItem aspectRatio='38:25' height={250} mediaUrl={v.coverUrlWeb} />
+                      <MediaItem aspectRatio='38:25' height={250} mediaUrl={v.coverUrlWeb} water={false} />
                       <i></i>
                     </div>
                     <div className="item-info">
