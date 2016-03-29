@@ -116,7 +116,16 @@ _.each(apiRouterList,(route,index)=>{
 /**
  platform 主站的页面路由
 **/
+const WeddingClassRootPath = {
+  '1':'/shot',
+  '2':'/hotel',
+  '3':'/scheme',
+  '4':'/dress',
+  '5':'/movie',
 
+  '7':'/supply',
+  '8':'/car'
+}
 const siteRouter = new Router()
   /**
     templateName: ejs模板名称
@@ -289,12 +298,12 @@ siteRouter.get('/car', function* index(next) {
 
 /** 婚礼课堂 **/
 siteRouter.get('/weddingclass/:type', function* index(next) {
-  yield this.render('modules/default', renderOption('wedding-class', '/weddingclass', '/', this.params))
+  yield this.render('modules/default', renderOption('wedding-class', '/weddingclass/'+this.params.type, WeddingClassRootPath[this.params.type]||'/', this.params))
 })
 
 /** 婚礼课堂 **/
-siteRouter.get('/weddingclass-details/:id', function* index(next) {
-  yield this.render('modules/default', renderOption('weddingclass-details', '/weddingclass', '/', this.params))
+siteRouter.get('/weddingclass-details/:type/:id', function* index(next) {
+  yield this.render('modules/default', renderOption('weddingclass-details', '/weddingclass/'+this.params.type, WeddingClassRootPath[this.params.type]||'/', this.params))
 })
 /** 活动详情页 **/
 siteRouter.get('/active/:name', function* index(next) {

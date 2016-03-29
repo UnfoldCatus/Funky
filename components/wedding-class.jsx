@@ -6,6 +6,7 @@ import { MediaItem } from './common/media-item.jsx'
 
 const ClassList = React.createClass({
   render() {
+    let type=this.props.type
     return(
       <div>
         <ul className="list-recommend">
@@ -16,12 +17,12 @@ const ClassList = React.createClass({
                   <img className="img-box" src={v.coverUrlWeb} />
                   <div className="inroduce">
                     <h2>
-                      <a href={'/weddingclass-details/'+v.id}>{v.title}</a>
+                      <a href={'/weddingclass-details/'+type+'/'+v.id}>{v.title}</a>
                       <span className="stime">{v.updateTime}</span>
                     </h2>
                     <p>
                       <span>{v.description}</span>
-                      <a href={'/weddingclass-details/'+v.id}>详情&gt;&gt;</a>
+                      <a href={'/weddingclass-details/'+type+'/'+v.id}>详情&gt;&gt;</a>
                     </p>
                   </div>
                 </li>
@@ -178,6 +179,7 @@ const TitleFilter = React.createClass({
 const WeddingClass = React.createClass({
   render () {
     let advUrl = WeddingClassConfig['MediaSlider'].dataUrl+this.state.classInfo.adv;
+    let type=this.props.dataParams && this.props.dataParams.type 
     return(
       <div className="ketang-view">
         <div className="bannar-all-box">
@@ -189,7 +191,7 @@ const WeddingClass = React.createClass({
           <div className="ktmain">
             <TitleFilter info={this.state.classInfo} handleSel={this.handleTabSel} />
             <div id="ktlist_box">
-              <ClassList info={this.state.classInfo} />
+              <ClassList info={this.state.classInfo} type={type} />
             </div>
           </div>
         </div>
