@@ -95,9 +95,15 @@ const MoveItemBox = React.createClass({
                     <span>时间：</span><span>{v.shootingTime.slice(0,10)}</span><br />
                     <span>地点：</span><span>{v.shootingAdress}</span><br />
                     <span>成本：￥</span><span>{v.costPrice}</span><br />
-                    <a href="#my-id" data-uk-modal>
+                    <a href={'#'+v.id} data-uk-modal>
                       <span className="play">点击观看</span>
                     </a>
+                  </div>
+                </div>
+                <div id={v.id} className="uk-modal">
+                  <div className="uk-modal-dialog uk-modal-dialog-lightbox">
+                    <a href="" class="uk-modal-close uk-close uk-close-alt"></a>
+                    <MediaItem aspectRatio='3:2' width={800} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl}/>
                   </div>
                 </div>
               </li>
