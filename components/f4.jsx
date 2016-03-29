@@ -89,7 +89,7 @@ const MoveItemBox = React.createClass({
             return (
               <li key={k} className="item-box">
                 <div className="img-box">
-                  <MediaItem aspectRatio='3:2' height={200} mediaUrl={v.coverUrlWeb} />
+                  <MediaItem aspectRatio='3:2' height={200} mediaUrl={v.coverUrlWeb} water={false} />
                   <div className="layer"></div>
                   <div className="info">
                     <span>时间：</span><span>{v.shootingTime.slice(0,10)}</span><br />
