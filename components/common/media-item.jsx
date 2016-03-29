@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import ShortId from 'shortid'
+import { BaseConfig } from '../config/base'
 import _ from 'lodash'
 /**
 
@@ -187,8 +188,8 @@ const ImageItem = React.createClass({
      **/
     let imageOption = '@' + this.props.width+'h_'+this.props.height+'w_'+'90Q'
     imageOption =  this.props.water? (imageOption+'|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'):imageOption
-    let mediaUrl = this.props.mediaUrl
-    // let mediaUrl = ( process.env.NODE_ENV === 'development')? this.props.mediaUrl: (this.props.mediaUrl + imageOption)
+    // let mediaUrl = this.props.mediaUrl
+    let mediaUrl = ( BaseConfig.mode === 'production')? (this.props.mediaUrl + imageOption): this.props.mediaUrl
     if (found && 3 === found.length) {
       width = parseInt(found[1])
       height = parseInt(found[2])
@@ -218,6 +219,11 @@ const ImageItem = React.createClass({
       )
     }
 
+  },
+  getDefaultProps(){
+    return {
+      water:true
+    }
   },
   // getInitialState() {
   //   return {

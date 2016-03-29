@@ -47,7 +47,7 @@ const SuiteList = React.createClass({
             return (
               <li className="item-box" key={k}>
                 <a className='img-box' href={ '/suite/'+v.id }>
-                  <MediaItem aspectRatio={'55:32'} height={320} mediaUrl={v.coverUrlWeb} />
+                  <MediaItem aspectRatio={'55:32'} height={320} mediaUrl={v.coverUrlWeb}  water={false}/>
                 </a>
                 <div className='r-box'>
                   <div className="price">
