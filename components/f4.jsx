@@ -116,12 +116,22 @@ const PhotoItemBox = React.createClass({
         {
           _.map(this.props.workList.slice(0,3), (v, k) => {
             let pcDetailImages = v.pcDetailImages && JSON.parse(v.pcDetailImages) || [];
+            let group = "{'group':'img"+v.id+"'}"
             return (
               <li key={k} className="item-box">
-                <a className="img-box" data-uk-lightbox="{'group':'img'}" data-lightbox-type='image' title={v.number}  href={v.coverUrlWeb} >
-                  <MediaItem aspectRatio='2:3' height={300} mediaUrl={v.coverUrlWeb} />
+                <a className="img-box" data-uk-lightbox={group} data-lightbox-type='image' title={v.number}
+                   href={v.coverUrlWeb+'@90q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'} >
+                  <MediaItem aspectRatio='2:3' height={300} mediaUrl={v.coverUrlWeb} water={false} />
                   <div className="layer"></div>
                 </a>
+                {
+                  _.map(pcDetailImages, (wv,wk) => {
+                    let url=wv+'@90q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'
+                    return (
+                      <a href={url} key={wk} data-uk-lightbox={group} data-lightbox-type='image'></a>
+                    );
+                  })
+                }
               </li>
             );
           })

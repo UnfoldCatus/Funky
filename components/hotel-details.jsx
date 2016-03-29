@@ -11,7 +11,6 @@ const HotelThumb = React.createClass({
           {
             _.map(this.props.data,(v,k)=>{
               let url=v+'@90q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'
-              console.log(url)
               if (0===k) {
                 return (
                   <a href={v} key={k} className='slider-hover-box' data-uk-lightbox='{group:"hotelThumb"}' data-lightbox-type='image' >
