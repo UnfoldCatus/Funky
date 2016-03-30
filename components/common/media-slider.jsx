@@ -43,6 +43,25 @@ const MediaSlider = React.createClass({
       ]
     }
   },
+  componentWillReceiveProps(nextProps) {
+    if (
+      nextProps.dataUrl &&
+      nextProps.dataUrl !== '' &&
+      nextProps.dataUrl !== this.props.dataUrl
+  ) {
+    let p = ''
+    if (_.size(nextProps.params)>0) {
+      p = '?'+$.param(nextProps.params)
+    }
+    fetch(nextProps.baseUrl + nextProps.dataUrl + p)
+    .then(res => {return res.json()})
+    .then(j=>{
+      this.setState({ data:j.data },()=>{
+        $('#slider_top').length>0 && $('#slider_top').Slider()
+      })
+    })
+    }
+  },
   componentDidMount() {
     /** 数据请求 **/
     if (this.props.dataUrl !== undefined) {
@@ -53,6 +72,7 @@ const MediaSlider = React.createClass({
       fetch(this.props.baseUrl + this.props.dataUrl + p)
       .then(res => {return res.json()})
       .then(j=>{
+        console.log(j.data);
         this.setState({ data:j.data },()=>{
           $('#slider_top').length>0 && $('#slider_top').Slider()
         })

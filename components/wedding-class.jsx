@@ -179,12 +179,12 @@ const TitleFilter = React.createClass({
 const WeddingClass = React.createClass({
   render () {
     let advUrl = WeddingClassConfig['MediaSlider'].dataUrl+this.state.classInfo.adv;
-    let type=this.props.dataParams && this.props.dataParams.type 
+    let type=this.props.dataParams && this.props.dataParams.type
     return(
       <div className="ketang-view">
         <div className="bannar-all-box">
           <div id="slider_top" className="slider-box bannar" style={{height:WeddingClassConfig['MediaSlider']['height']}}>
-            <MediaSlider key={advUrl} {...WeddingClassConfig['MediaSlider']} dataUrl={advUrl} />
+            <MediaSlider {...WeddingClassConfig['MediaSlider']} dataUrl={advUrl} />
           </div>
         </div>
         <div className="layout-center-box">
