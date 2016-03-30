@@ -186,12 +186,16 @@ function GetData(path, cb) {
   req.setTimeout(15000);
 
   req.on('error', function(e) {
-    req.res && req.res.abort();
+    if(req.res && req.res.abort && (typeof req.res.abort === 'function')) {
+      req.res.abort();
+    }
     req.abort();
     var err = new Error('服务器异常');
     cb(err);
   }).on('timeout', function() {
-    req.res && req.res.abort();
+    if(req.res && req.res.abort && (typeof req.res.abort === 'function')) {
+      req.res.abort();
+    }
     req.abort();
     var err = new Error('服务器超时');
     cb(err);
