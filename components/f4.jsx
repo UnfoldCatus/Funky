@@ -102,7 +102,7 @@ const MoveItemBox = React.createClass({
                 </div>
                 <div id={v.id} className="uk-modal">
                   <div className="uk-modal-dialog uk-modal-dialog-lightbox" style={{width:'800px'}}>
-                    <a href="" className="uk-modal-close uk-close uk-close-alt"></a>
+                    <a href="" className="uk-modal-close uk-close uk-close-alt" style={{zIndex:500}}></a>
                     <MediaItem aspectRatio='3:2' width={800} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl}/>
                   </div>
                 </div>
@@ -574,6 +574,18 @@ const F4 = React.createClass({
     }
 
     this.setState({type:ty});
+
+    // bind close
+    $('ul.movie-list').on('click',(evt)=>{
+      if (
+        $(evt.target).hasClass('uk-modal') ||
+        $(evt.target).hasClass('uk-close')) {
+          _.each(mejs.players,(v,k)=>{
+            v&&v.pause&&v.pause()
+          })
+      }
+
+    })
   },
 
   handleTabSel(ty) {

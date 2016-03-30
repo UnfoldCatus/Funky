@@ -130,7 +130,9 @@ const VideoItem = React.createClass({
   },
   loadMeidaElementVideo(vid){
     return ()=>{ //为了把初始化操作放到线程上去。
-      $('#'+vid).mediaelementplayer()
+      $('#'+vid).mediaelementplayer({
+        pauseOtherPlayers: true
+      })
     }
   },
   loadTaobaoVideo(vid,videoUrl,width,height,posterUrl){
