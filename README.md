@@ -61,4 +61,4 @@ Functional Reactive Structure
 `npm install`
 `npm update --save`
 `npm update --save-dev`
-`pm2 start pm2-deploy --env production`
+`pm2 start pm2-deploy.json --env production`
