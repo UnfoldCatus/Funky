@@ -214,7 +214,7 @@ const ImageItem = React.createClass({
     // }
     if (this.props.outerLink) {
       return (
-        <a href={this.props.outerLink} className='img-box' style={{display:'block'}}>
+        <a href={this.props.outerLink} className='img-box'>
           <div className='J_MediaWrapper' style={{'height':'100%'}} data-width={width} data-height={height}>
             <img src={mediaUrl} onError={this.imageNotLoaded}  />
           </div>

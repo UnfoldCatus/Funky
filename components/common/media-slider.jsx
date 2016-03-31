@@ -11,7 +11,7 @@ const MediaSlider = React.createClass({
           _.map(this.state.data,(v,k)=>{
             return (
               <li className='item transition-opacity-1' key={k} >
-                <MediaItem {...params} mediaUrl={v.coverUrlWeb} water={false} outerLink={v.linkUrl}/>
+                <MediaItem {...params} mediaUrl={v.coverUrlWeb} water={false} videoUrl={v.videoUrl} outerLink={v.linkUrl}/>
               </li>
             )
           })

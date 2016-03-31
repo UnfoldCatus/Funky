@@ -87,6 +87,9 @@ a:hover {
   display: block;
   width: 100%;
 }
+.bannar-all-box a {
+  display: block;
+}
 .mgt10 {
   margin-top: 10px;
 }
@@ -7020,6 +7023,7 @@ a:hover {
 .adaptation-1200 .wdy-view .list-recommend .img-box {
   float: left;
   position: relative;
+  width: 100%;
   height: 253.33333333px;
 }
 .adaptation-1200 .wdy-view .list-recommend .img-box img {
