@@ -151,22 +151,28 @@ const PhotoItemBox = React.createClass({
 const HostList = React.createClass({
   render() {
     return (
-      <ul className="movie-list">
+      <div>
+        <div className="screening-results">
+          <b>* 温馨提示：如遇节假日或者黄道吉日，预订价格或有波动，请以实际线下合同为准。 </b>
+          <span className="find">找到作品 <b>{this.state.count}</b> 套</span>
+        </div>
+        <ul className="movie-list">
 
-        {
-          _.map(this.state.personnelList, (v, k) => {
-            return(
-              <li key={k} className="item-box">
-                <Figure typeName="主持人" {...v} />
-                <MoveItemBox workList={v.workList}/>
-              </li>
-            );
-          })
-        }
-        {
-          this.state.moreFlg && <div className="more-btn" onClick={this.loadMore}><span>点击查看更多</span></div>
-        }
-      </ul>
+          {
+            _.map(this.state.personnelList, (v, k) => {
+              return(
+                <li key={k} className="item-box">
+                  <Figure typeName="主持人" {...v} />
+                  <MoveItemBox workList={v.workList}/>
+                </li>
+              );
+            })
+          }
+          {
+            this.state.moreFlg && <div className="more-btn" onClick={this.loadMore}><span>点击查看更多</span></div>
+          }
+        </ul>
+      </div>
     );
   },
 
@@ -177,9 +183,35 @@ const HostList = React.createClass({
       sumCount:0,
       moreFlg:true,
       personnelList:[],
+      count:0,
+      params:{}
     };
   },
+  componentWillReceiveProps(nextProps) {
+    const HostList = F4Config['HostList']
+    let query = '?' + $.param(_.merge(nextProps.filter,{pageIndex:1,pageSize:this.state.pageSize}))
+    if (HostList.dataUrl !== undefined) {
+      let url  = HostList.baseUrl + HostList.dataUrl + query
+      fetch(url)
+        .then(res => {return res.json()})
+        .then(j=>{
+          let isMoreFlg = (j.count > this.state.pageSize) ? true : false;
+          console.log(j.count,this.state.pageSize,this.state.sumCount,isMoreFlg);
+          if(j.success){
+            this.setState({
+              personnelList: _.map(j.data || [],(v,k)=>{
+                return _.pick(v,['nickName', 'photoUrl', 'salePrice', 'priceRemark', 'description', 'workList']) }),
+              sumCount: 0,
+              moreFlg:isMoreFlg,
+              pageIndex:1,
+              count:j.count,
+              params:nextProps.filter
 
+            })
+          }
+        })
+    }
+  },
   componentDidMount() {
     const HostList = F4Config['HostList']
     if (HostList.dataUrl !== undefined) {
@@ -191,10 +223,11 @@ const HostList = React.createClass({
             this.setState({
               personnelList: _.map(j.data || [],(v,k)=>{ return _.pick(v,['nickName', 'photoUrl', 'salePrice', 'priceRemark', 'description', 'workList']) }),
               sumCount: j.data.length,
-              moreFlg:isMoreFlg
+              moreFlg:isMoreFlg,
+              count:j.count
             })
 
-            this.props.onChange(j.count);
+
           }
         })
     }
@@ -204,23 +237,22 @@ const HostList = React.createClass({
     const HostList = F4Config['HostList']
     if (HostList.dataUrl !== undefined) {
       let ix = this.state.pageIndex + 1;
-      fetch(HostList.baseUrl + HostList.dataUrl + '?pageIndex=' + ix + '&pageSize=' + this.state.pageSize)
+      console.log(this.state.params);
+      fetch(HostList.baseUrl + HostList.dataUrl + '?pageIndex=' + ix + '&pageSize='  + this.state.pageSize +'&'+ $.param(this.state.params))
         .then(res => {return res.json()})
         .then(j=>{
           if(j.success){
             let isMoreFlg = (j.count > this.state.pageSize + this.state.sumCount) ? true : false;
             let tmpPl = this.state.personnelList;
-            console.log('1',tmpPl);
             tmpPl = tmpPl.concat(_.map(j.data || [],(v,k)=>{ return _.pick(v,['nickName', 'photoUrl', 'salePrice', 'priceRemark', 'description', 'workList']) }));
-            console.log('2',tmpPl);
             this.setState({
               personnelList: tmpPl,
               sumCount: this.state.sumCount + j.data.length,
               pageIndex: this.state.pageIndex + 1,
-              moreFlg:isMoreFlg
+              moreFlg:isMoreFlg,
+              count:j.count
             })
 
-            this.props.onChange(j.count);
           }
         })
     }
@@ -231,21 +263,28 @@ const HostList = React.createClass({
 const CameraList = React.createClass({
   render() {
     return (
-      <ul className="movie-list">
-        {
-          _.map(this.state.personnelList, (v, k) => {
-            return(
-              <li key={k} className="item-box">
-                <Figure typeName="摄像师" {...v} />
-                <MoveItemBox workList={v.workList}/>
-              </li>
-            );
-          })
-        }
-        {
-          this.state.moreFlg && <div className="more-btn" onClick={this.loadMore}><span>点击查看更多</span></div>
-        }
-      </ul>
+      <div>
+        <div className="screening-results">
+          <b>* 温馨提示：如遇节假日或者黄道吉日，预订价格或有波动，请以实际线下合同为准。 </b>
+          <span className="find">找到作品 <b>{this.state.count}</b> 套</span>
+        </div>
+        <ul className="movie-list">
+          {
+            _.map(this.state.personnelList, (v, k) => {
+              return(
+                <li key={k} className="item-box">
+                  <Figure typeName="摄像师" {...v} />
+                  <MoveItemBox workList={v.workList}/>
+                </li>
+              );
+            })
+          }
+          {
+            this.state.moreFlg && <div className="more-btn" onClick={this.loadMore}><span>点击查看更多</span></div>
+          }
+        </ul>
+      </div>
+
     );
   },
 
@@ -256,6 +295,7 @@ const CameraList = React.createClass({
       sumCount:0,
       moreFlg:true,
       personnelList:[],
+      count:0
     };
   },
 
@@ -270,10 +310,11 @@ const CameraList = React.createClass({
             this.setState({
               personnelList: _.map(j.data || [],(v,k)=>{ return _.pick(v,['nickName', 'photoUrl', 'salePrice', 'priceRemark', 'description', 'workList']) }),
               sumCount: j.data.length,
-              moreFlg:isMoreFlg
+              moreFlg:isMoreFlg,
+              count:j.count
             })
 
-            this.props.onChange(j.count);
+
           }
         })
     }
@@ -294,10 +335,10 @@ const CameraList = React.createClass({
               personnelList: tmpPl,
               sumCount: this.state.sumCount + j.data.length,
               pageIndex: this.state.pageIndex + 1,
-              moreFlg:isMoreFlg
+              moreFlg:isMoreFlg,
+              count:j.count
             })
 
-            this.props.onChange(j.count);
           }
         })
     }
@@ -308,21 +349,28 @@ const CameraList = React.createClass({
 const DresserList = React.createClass({
   render() {
     return (
-      <ul className="photo-list">
-        {
-          _.map(this.state.personnelList, (v, k) => {
-            return(
-              <li key={k} className="item-box">
-                <Figure typeName="化妆师" {...v} />
-                <PhotoItemBox workList={v.workList}/>
-              </li>
-            );
-          })
-        }
-        {
-          this.state.moreFlg && <div className="more-btn" onClick={this.loadMore}><span>点击查看更多</span></div>
-        }
-      </ul>
+      <div>
+        <div className="screening-results">
+          <b>* 温馨提示：如遇节假日或者黄道吉日，预订价格或有波动，请以实际线下合同为准。 </b>
+          <span className="find">找到作品 <b>{this.state.count}</b> 套</span>
+        </div>
+        <ul className="photo-list">
+          {
+            _.map(this.state.personnelList, (v, k) => {
+              return(
+                <li key={k} className="item-box">
+                  <Figure typeName="化妆师" {...v} />
+                  <PhotoItemBox workList={v.workList}/>
+                </li>
+              );
+            })
+          }
+          {
+            this.state.moreFlg && <div className="more-btn" onClick={this.loadMore}><span>点击查看更多</span></div>
+          }
+        </ul>
+      </div>
+
     );
   },
 
@@ -333,6 +381,7 @@ const DresserList = React.createClass({
       sumCount:0,
       moreFlg:true,
       personnelList:[],
+      count:0
     };
   },
 
@@ -347,10 +396,10 @@ const DresserList = React.createClass({
             this.setState({
               personnelList: _.map(j.data || [],(v,k)=>{ return _.pick(v,['nickName', 'photoUrl', 'salePrice', 'priceRemark', 'description', 'workList']) }),
               sumCount: j.data.length,
-              moreFlg:isMoreFlg
+              moreFlg:isMoreFlg,
+              count:j.count
             })
 
-            this.props.onChange(j.count);
           }
         })
     }
@@ -366,17 +415,15 @@ const DresserList = React.createClass({
           if(j.success){
             let isMoreFlg = (j.count > this.state.pageSize + this.state.sumCount) ? true : false;
             let tmpPl = this.state.personnelList;
-            console.log('1',tmpPl);
             tmpPl = tmpPl.concat(_.map(j.data || [],(v,k)=>{ return _.pick(v,['nickName', 'photoUrl', 'salePrice', 'priceRemark', 'description', 'workList']) }));
-            console.log('2',tmpPl);
             this.setState({
               personnelList: tmpPl,
               sumCount: this.state.sumCount + j.data.length,
               pageIndex: this.state.pageIndex + 1,
-              moreFlg:isMoreFlg
+              moreFlg:isMoreFlg,
+              count:j.count
             })
 
-            this.props.onChange(j.count);
           }
         })
     }
@@ -387,38 +434,70 @@ const DresserList = React.createClass({
 const PhotographerList = React.createClass({
   render() {
     return (
-      <ul className="photo-list">
-        {
-          _.map(this.state.personnelList, (v, k) => {
-            return(
-              <li key={k} className="item-box">
-                <Figure typeName="摄影师" {...v} />
-                <PhotoItemBox workList={v.workList}/>
-              </li>
-            );
-          })
-        }
-        {
-          this.state.moreFlg && <div className="more-btn" onClick={this.loadMore}><span>点击查看更多</span></div>
-        }
-      </ul>
+      <div>
+        <div className="screening-results">
+          <b>* 温馨提示：如遇节假日或者黄道吉日，预订价格或有波动，请以实际线下合同为准。 </b>
+          <span className="find">找到作品 <b>{this.state.count}</b> 套</span>
+        </div>
+        <ul className="photo-list">
+          {
+            _.map(this.state.personnelList, (v, k) => {
+              return(
+                <li key={k} className="item-box">
+                  <Figure typeName="摄影师" {...v} />
+                  <PhotoItemBox workList={v.workList}/>
+                </li>
+              );
+            })
+          }
+          {
+            this.state.moreFlg && <div className="more-btn" onClick={this.loadMore}><span>点击查看更多</span></div>
+          }
+        </ul>
+      </div>
+
     );
   },
-
-  getInitialState: function() {
+  getDefaultProps(){
+    return {
+      filter:{}
+    }
+  },
+  getInitialState() {
     return {
       pageIndex:1,
       pageSize:10,
       sumCount:0,
       moreFlg:true,
-      personnelList:[],
+      personnelList:[]
     };
   },
-
+  componentWillReceiveProps(nextProps) {
+    const PhotographerList = F4Config['PhotographerList']
+    let query = '?' + $.param(_.merge(nextProps.filter,_.pick(this.state,['pageIndex','pageSize'])))
+    if (PhotographerList.dataUrl !== undefined) {
+      let url  = PhotographerList.baseUrl + PhotographerList.dataUrl + query
+      fetch(url)
+        .then(res => {return res.json()})
+        .then(j=>{
+          let isMoreFlg = (j.count > this.state.pageSize + this.state.sumCount) ? true : false;
+          if(j.success){
+            this.setState({
+              personnelList: _.map(j.data || [],(v,k)=>{
+                return _.pick(v,['nickName', 'photoUrl', 'salePrice', 'priceRemark', 'description', 'workList']) }),
+              sumCount: j.data.length,
+              moreFlg:isMoreFlg,
+              count:j.count
+            })
+          }
+        })
+    }
+  },
   componentDidMount() {
     const PhotographerList = F4Config['PhotographerList']
     if (PhotographerList.dataUrl !== undefined) {
-      fetch(PhotographerList.baseUrl + PhotographerList.dataUrl + '?pageIndex=' + this.state.pageIndex + '&pageSize=' + this.state.pageSize)
+      fetch(PhotographerList.baseUrl + PhotographerList.dataUrl + '?' +
+      $.param(_.pick(this.state,['pageSize','pageIndex'])))
         .then(res => {return res.json()})
         .then(j=>{
           let isMoreFlg = (j.count > this.state.pageSize + this.state.sumCount) ? true : false;
@@ -426,11 +505,11 @@ const PhotographerList = React.createClass({
             this.setState({
               personnelList: _.map(j.data || [],(v,k)=>{ return _.pick(v,['nickName', 'photoUrl', 'salePrice', 'priceRemark', 'description', 'workList']) }),
               sumCount: j.data.length,
-              moreFlg:isMoreFlg
+              moreFlg:isMoreFlg,
+              count:j.count
             })
           }
 
-          this.props.onChange(j.count);
         })
     }
   },
@@ -452,10 +531,11 @@ const PhotographerList = React.createClass({
               personnelList: tmpPl,
               sumCount: this.state.sumCount + j.data.length,
               pageIndex: this.state.pageIndex + 1,
-              moreFlg:isMoreFlg
+              moreFlg:isMoreFlg,
+              count:j.count
             })
 
-            this.props.onChange(j.count);
+
           }
         })
     }
@@ -497,26 +577,26 @@ const TitleFilter = React.createClass({
 
 const F4 = React.createClass({
   render () {
-    let list = <HostList onChange={this.handleChange} />
+    let list = <HostList  filter={this.state.params}/>
     switch(this.state.type) {
       case 0:
       {
-        list = <HostList onChange={this.handleChange} />
+        list = <HostList filter={this.state.params}/>
         break;
       }
       case 1:
       {
-        list = <DresserList onChange={this.handleChange} />
+        list = <DresserList  filter={this.state.params}/>
         break;
       }
       case 2:
       {
-        list = <PhotographerList onChange={this.handleChange} />
+        list = <PhotographerList  filter={this.state.params} />
         break;
       }
       case 3:
       {
-        list = <CameraList onChange={this.handleChange} />
+        list = <CameraList  filter={this.state.params}/>
         break;
       }
     }
@@ -526,11 +606,10 @@ const F4 = React.createClass({
         <div className="layout-center-box">
           <Banner {...F4Config['Banner'][0]} />
           <TitleFilter type={this.state.type} handleSel={this.handleTabSel} />
-          <ListFilter title={'价格'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']} conditions={this.state.prices}  sorterKey={['minPrice','maxPrice']}/>
-          <div className="screening-results">
-            <b>* 温馨提示：如遇节假日或者黄道吉日，预订价格或有波动，请以实际线下合同为准。 </b>
-            <span className="find">找到作品 <b>{this.state.count}</b> 套</span>
+          <div className='J_FilterCtrl'>
+            <ListFilter title={'价格'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']} conditions={this.state.prices}  sorterKey={['minPrice','maxPrice']}/>
           </div>
+
           {
             list
           }
@@ -544,6 +623,7 @@ const F4 = React.createClass({
       prices: F4Config['Prices'], // config
       type:0,// 0:主持人 1:化妆师 2:摄影师 3:摄像师
       count:0,
+      params:{}
     };
   },
 
@@ -573,8 +653,8 @@ const F4 = React.createClass({
       }
     }
 
-    this.setState({type:ty});
-
+    this.setState({type:ty})
+    F4Config['Filter']['setupFilterClick']('multi',this)
     // bind close
     $('ul.movie-list').on('click',(evt)=>{
       if (
@@ -591,10 +671,7 @@ const F4 = React.createClass({
   handleTabSel(ty) {
     // 类型选择加载
     this.setState({type:ty});
-  },
-
-  handleChange(count) {
-    this.setState({count:count});
+    $('.l-box>.tab').trigger('click')
   }
 })
 
