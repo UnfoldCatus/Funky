@@ -142,7 +142,7 @@ const Suite = React.createClass({
     return (
       <div className="txbj-view">
         <div className="custom-banner bannar-all-box mgb30">
-          <div id="slider_top" className="slider-box-1-js bannar" style={{height:SuiteConfig['MediaSlider']['height']}}>
+          <div id="slider_top" className="slider-box bannar" style={{height:SuiteConfig['MediaSlider']['height']}}>
             <MediaSlider {...SuiteConfig['MediaSlider']}/>
           </div>
         </div>
