@@ -238,7 +238,8 @@ const HostList = React.createClass({
     if (HostList.dataUrl !== undefined) {
       let ix = this.state.pageIndex + 1;
       console.log(this.state.params);
-      fetch(HostList.baseUrl + HostList.dataUrl + '?pageIndex=' + ix + '&pageSize='  + this.state.pageSize +'&'+ $.param(this.state.params))
+      fetch(HostList.baseUrl + HostList.dataUrl + '?pageIndex=' + ix + '&pageSize='  +
+      this.state.pageSize +'&'+ $.param(_.omit(this.state.params,['pageIndex','pageSize'])))
         .then(res => {return res.json()})
         .then(j=>{
           if(j.success){
@@ -295,8 +296,35 @@ const CameraList = React.createClass({
       sumCount:0,
       moreFlg:true,
       personnelList:[],
-      count:0
+      count:0,
+      params:{}
+
     };
+  },
+  componentWillReceiveProps(nextProps) {
+    const CameraList = F4Config['CameraList']
+    let query = '?' + $.param(_.merge(nextProps.filter,{pageIndex:1,pageSize:this.state.pageSize}))
+    if (CameraList.dataUrl !== undefined) {
+      let url  = CameraList.baseUrl + CameraList.dataUrl + query
+      fetch(url)
+        .then(res => {return res.json()})
+        .then(j=>{
+          let isMoreFlg = (j.count > this.state.pageSize) ? true : false;
+          console.log(j.count,this.state.pageSize,this.state.sumCount,isMoreFlg);
+          if(j.success){
+            this.setState({
+              personnelList: _.map(j.data || [],(v,k)=>{
+                return _.pick(v,['nickName', 'photoUrl', 'salePrice', 'priceRemark', 'description', 'workList']) }),
+              sumCount: 0,
+              moreFlg:isMoreFlg,
+              pageIndex:1,
+              count:j.count,
+              params:nextProps.filter
+
+            })
+          }
+        })
+    }
   },
 
   componentDidMount() {
@@ -324,7 +352,8 @@ const CameraList = React.createClass({
     const CameraList = F4Config['CameraList']
     if (CameraList.dataUrl !== undefined) {
       let ix = this.state.pageIndex + 1;
-      fetch(CameraList.baseUrl + CameraList.dataUrl + '?pageIndex=' + ix + '&pageSize=' + this.state.pageSize)
+      fetch(CameraList.baseUrl + CameraList.dataUrl + '?pageIndex=' + ix + '&pageSize=' + this.state.pageSize+
+      '&'+ $.param(_.omit(this.state.params,['pageIndex','pageSize'])))
         .then(res => {return res.json()})
         .then(j=>{
           if(j.success){
@@ -381,10 +410,35 @@ const DresserList = React.createClass({
       sumCount:0,
       moreFlg:true,
       personnelList:[],
-      count:0
+      count:0,
+      params:{}
     };
   },
+  componentWillReceiveProps(nextProps) {
+    const DresserList = F4Config['DresserList']
+    let query = '?' + $.param(_.merge(nextProps.filter,{pageIndex:1,pageSize:this.state.pageSize}))
+    if (DresserList.dataUrl !== undefined) {
+      let url  = DresserList.baseUrl + DresserList.dataUrl + query
+      fetch(url)
+        .then(res => {return res.json()})
+        .then(j=>{
+          let isMoreFlg = (j.count > this.state.pageSize) ? true : false;
+          console.log(j.count,this.state.pageSize,this.state.sumCount,isMoreFlg);
+          if(j.success){
+            this.setState({
+              personnelList: _.map(j.data || [],(v,k)=>{
+                return _.pick(v,['nickName', 'photoUrl', 'salePrice', 'priceRemark', 'description', 'workList']) }),
+              sumCount: 0,
+              moreFlg:isMoreFlg,
+              pageIndex:1,
+              count:j.count,
+              params:nextProps.filter
 
+            })
+          }
+        })
+    }
+  },
   componentDidMount() {
     const DresserList = F4Config['DresserList']
     if (DresserList.dataUrl !== undefined) {
@@ -409,7 +463,7 @@ const DresserList = React.createClass({
     const DresserList = F4Config['DresserList']
     if (DresserList.dataUrl !== undefined) {
       let ix = this.state.pageIndex + 1;
-      fetch(DresserList.baseUrl + DresserList.dataUrl + '?pageIndex=' + ix + '&pageSize=' + this.state.pageSize)
+      fetch(DresserList.baseUrl + DresserList.dataUrl + '?pageIndex=' + ix + '&pageSize=' + this.state.pageSize +'&'+ $.param(_.omit(this.state.params,['pageIndex','pageSize'])))
         .then(res => {return res.json()})
         .then(j=>{
           if(j.success){
@@ -469,7 +523,8 @@ const PhotographerList = React.createClass({
       pageSize:10,
       sumCount:0,
       moreFlg:true,
-      personnelList:[]
+      personnelList:[],
+      params:{}
     };
   },
   componentWillReceiveProps(nextProps) {
@@ -487,7 +542,8 @@ const PhotographerList = React.createClass({
                 return _.pick(v,['nickName', 'photoUrl', 'salePrice', 'priceRemark', 'description', 'workList']) }),
               sumCount: j.data.length,
               moreFlg:isMoreFlg,
-              count:j.count
+              count:j.count,
+              params:nextProps.filter
             })
           }
         })
@@ -518,7 +574,7 @@ const PhotographerList = React.createClass({
     const PhotographerList = F4Config['PhotographerList']
     if (PhotographerList.dataUrl !== undefined) {
       let ix = this.state.pageIndex + 1;
-      fetch(PhotographerList.baseUrl + PhotographerList.dataUrl + '?pageIndex=' + ix + '&pageSize=' + this.state.pageSize)
+      fetch(PhotographerList.baseUrl + PhotographerList.dataUrl + '?pageIndex=' + ix + '&pageSize=' + this.state.pageSize +'&'+ $.param(_.omit(this.state.params,['pageIndex','pageSize'])))
         .then(res => {return res.json()})
         .then(j=>{
           if(j.success){
