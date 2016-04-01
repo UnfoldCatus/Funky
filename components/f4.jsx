@@ -388,6 +388,7 @@ F4的设计蛮费心思
 
 const F4 = React.createClass({
   render () {
+
     return (
       <div className='f4-view'>
         <div className='layout-center-box'>
@@ -404,10 +405,19 @@ const F4 = React.createClass({
     }
   },
   componentDidMount() {
+    let table = {
+      'host':0,
+      'dresser':1,
+      'photographer':2,
+      'camera':3
+    }
     /**
     每次点击都会改变索引值
     这个值联系着所有的配置数据。
     **/
+    this.setState({
+      currentTabIndex:table[this.props.dataParams.tab || 'host']
+    })
     $('.J_Tab').on('click','span',(evt)=>{
       this.setState({
         currentTabIndex:$(evt.target).attr('data-index')
