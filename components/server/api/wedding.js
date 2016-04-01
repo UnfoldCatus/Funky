@@ -315,9 +315,9 @@ const weddingApi = {
                     pageIndex = 0
                 }
             } else if(k.indexOf('pageSize') !== -1) {
-                pageSize = parseInt(this.request.query['pageSize']) - 1
+                pageSize = parseInt(this.request.query['pageSize'])
                 if (pageSize < 0) {
-                    pageSize = 1
+                    pageSize = 10
                 }
             } else if(k.indexOf('minPrice') !== -1) {
                 // 最低价格
@@ -356,9 +356,9 @@ const weddingApi = {
                     pageIndex = 0
                 }
             } else if(k.indexOf('pageSize') !== -1) {
-                pageSize = parseInt(this.request.query['pageSize']) - 1
+                pageSize = parseInt(this.request.query['pageSize'])
                 if (pageSize < 0) {
-                    pageSize = 1
+                    pageSize = 10
                 }
             } else if(k.indexOf('minPrice') !== -1) {
                 // 最低价格
@@ -397,9 +397,9 @@ const weddingApi = {
                     pageIndex = 0
                 }
             } else if(k.indexOf('pageSize') !== -1) {
-                pageSize = parseInt(this.request.query['pageSize']) - 1
+                pageSize = parseInt(this.request.query['pageSize'])
                 if (pageSize < 0) {
-                    pageSize = 1
+                    pageSize = 10
                 }
             } else if(k.indexOf('minPrice') !== -1) {
                 // 最低价格
@@ -438,9 +438,9 @@ const weddingApi = {
                     pageIndex = 0
                 }
             } else if(k.indexOf('pageSize') !== -1) {
-                pageSize = parseInt(this.request.query['pageSize']) - 1
+                pageSize = parseInt(this.request.query['pageSize'])
                 if (pageSize < 0) {
-                    pageSize = 1
+                    pageSize = 10
                 }
             } else if(k.indexOf('minPrice') !== -1) {
                 // 最低价格
@@ -479,9 +479,9 @@ const weddingApi = {
                     pageIndex = 0
                 }
             } else if(k.indexOf('pageSize') !== -1) {
-                pageSize = parseInt(this.request.query['pageSize']) - 1
+                pageSize = parseInt(this.request.query['pageSize'])
                 if (pageSize < 0) {
-                    pageSize = 1
+                    pageSize = 10
                 }
             } else if(k.indexOf('minPrice') !== -1) {
                 // 最低价格
