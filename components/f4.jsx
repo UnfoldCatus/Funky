@@ -246,6 +246,16 @@ const StaffList = React.createClass({
           设置state 显示数据
       */
     BaseConfig['fetchFunc'](this,null)(this)
+    $('ul.movie-list').on('click',(evt)=>{
+      if (
+        $(evt.target).hasClass('uk-modal') ||
+        $(evt.target).hasClass('uk-close')) {
+          _.each(mejs.players,(v,k)=>{
+            v&&v.pause&&v.pause()
+          })
+      }
+
+    })
   }
 })
 
