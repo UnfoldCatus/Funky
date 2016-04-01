@@ -75,7 +75,7 @@ const BaseConfig = {
       })
     }
   },
-  fetchFunc : function(component,nextProps){
+  fetchFunc : function(component,nextProps,shuffle){
     if (null === nextProps) {
       return (component)=>{
         const loadMore=()=>{
@@ -97,7 +97,8 @@ const BaseConfig = {
             if (t.length === component.state.count) {
               $('#J_MoreButton').hide()
             }
-            component.setState({'data':t,'dataStore':temp,'currentIndex':currentIndex})
+            console.log(t,temp,currentIndex);
+            component.setState({'data':shuffle?_.shuffle(t):t,'dataStore':temp,'currentIndex':currentIndex})
           })
         }
         const loadLess = ()=>{
@@ -125,6 +126,7 @@ const BaseConfig = {
             }
             let temp = []
             temp[0] = j.data
+            console.log(j.data,temp);
             component.setState({ data:j.data,count:j.count,dataStore:temp })
           })
         }
@@ -150,7 +152,8 @@ const BaseConfig = {
             }
             let temp = []
             temp[0] = j.data
-            component.setState({ data:j.data,count:j.count,dataStore:temp,currentIndex:0 })
+            console.log(j.data,temp);
+            component.setState({ data:shuffle?_.shuffle(j.data):j.data,count:j.count,dataStore:temp,currentIndex:0 })
           })
         }
       }

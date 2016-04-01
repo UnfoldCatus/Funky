@@ -79,6 +79,60 @@ const Figure = React.createClass({
   }
 })
 
+const MovieModal = React.createClass({
+  render () {
+
+    return (
+      <div id={this.props.item.id} className="uk-modal">
+        <div className="uk-modal-dialog uk-modal-dialog-lightbox" style={{width:'800px',height:'533px'}}>
+          <a href="" className="uk-modal-close uk-close uk-close-alt" style={{zIndex:500}}></a>
+          {
+            this.state.show &&
+            (
+              <MediaItem aspectRatio='3:2' width={800} mediaUrl={this.props.item.coverUrlWeb} videoUrl={this.props.item.videoUrl}/>
+            )
+          }
+        </div>
+      </div>
+    )
+  },
+  getDefaultProps(){
+    return {
+      item:{
+        id:'default',
+        videoUrl:null,
+        coverUrlWeb:'//placehold.it/800x533'
+      }
+    }
+  },
+  getInitialState: function() {
+    return {
+      show:false
+    };
+  },
+  componentDidMount() {
+    let self = this
+    $('#' + this.props.item.id).on({
+      'show.uk.modal':()=> {
+        console.log("Modal is visible.");
+        this.setState({
+          show:true
+        })
+      },
+
+      'hide.uk.modal': ()=> {
+        console.log("Element is not visible.");
+
+        this.setState({
+          show:false
+        })
+      }
+    })
+  }
+
+})
+
+
 const MoveItemBox = React.createClass({
   render() {
     return (
@@ -99,12 +153,7 @@ const MoveItemBox = React.createClass({
                     </a>
                   </div>
                 </div>
-                <div id={v.id} className="uk-modal">
-                  <div className="uk-modal-dialog uk-modal-dialog-lightbox" style={{width:'800px'}}>
-                    <a href="" className="uk-modal-close uk-close uk-close-alt" style={{zIndex:500}}></a>
-                    <MediaItem aspectRatio='3:2' width={800} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl}/>
-                  </div>
-                </div>
+                <MovieModal item={v} />
               </li>
             );
           })
@@ -225,7 +274,7 @@ const StaffList = React.createClass({
     }
   },
   componentWillReceiveProps(nextProps) {
-    BaseConfig['fetchFunc'](this,nextProps)(this,nextProps)
+    BaseConfig['fetchFunc'](this,nextProps,true)(this,nextProps)
   },
   componentDidMount() {
       /*
@@ -245,7 +294,7 @@ const StaffList = React.createClass({
           如果没有才请求相应pageIndex的数据 成功后放到dataStore的对应下标的数组中
           设置state 显示数据
       */
-    BaseConfig['fetchFunc'](this,null)(this)
+    BaseConfig['fetchFunc'](this,null,true)(this)
     $('ul.movie-list').on('click',(evt)=>{
       if (
         $(evt.target).hasClass('uk-modal') ||
