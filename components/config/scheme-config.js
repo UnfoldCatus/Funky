@@ -15,7 +15,7 @@ const SchemeConfig = {
   //列表数据
   'SchemeListItem': _.merge({
     'type':'cases',
-    'link':'/cases',
+    'link':'cases',
     'dataUrl': 'cases/scheme_recommend_list',
     'params':{ //因为是聚合页面，样片的个数固定
       'pageSize':9,
