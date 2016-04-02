@@ -129,6 +129,60 @@ const HotelRecommend = React.createClass({
 })
 
 
+const CasesShow = React.createClass({
+  render () {
+    let recommend = this.state.data[0] //第一个
+    let secondary = this.state.data.slice(1,5) //剩下四个
+    return (
+      <div>
+        <h2 className="mgb10">本厅婚礼实例</h2>
+        <div className='Case-box mgb20'>
+          <MediaItem />
+          <div className='info-box'>
+            <h3>{recommend.name}</h3>
+            <p>{recommend.description.slice(0,140)}</p>
+            <div className='theme-box clearfix'>
+              <span className='theme'>主题:<b>朱雀</b></span>
+              <span className='theme'>风格:<b></b></span>
+              <span className='theme'>色系:<b></b></span>
+            </div>
+          </div>
+        </div>
+        <ul className="list-2-js list-case clearfix">
+          {
+            _.map(secondary,(v,k)=>{
+              return (
+                <li className="item-box column-mg20-17 mg0" key={k}>
+                  <a className="hover-box transition-opacity" href='/'>
+                  <div className="pos-box">
+                      <h3>{v.name}</h3>
+                      <div className="etc-info"><b>{parseInt(v.sceneCost)!==0?'￥'+parseFloat(v.sceneCost).toFixed(2):''}</b><span>（{v.weddingDate}）</span></div>
+                      <div className="btn-box"></div>
+                      <div classNameL="mask-bg"></div>
+                  </div>
+                </a>
+                <MediaItem />
+              </li>
+              )
+            })
+          }
+        </ul>
+      </div>
+    )
+  },
+  getDefaultProps(){
+    return {
+      dataUrl:undefined
+    }
+  },
+  getInitialState() {
+    return {
+      data:[]
+    };
+  },
+})
+
+
 const HallDetails = React.createClass({
   render () {
     let thumbs = JSON.parse(this.state.details.pcDetailImages||'[]')
@@ -149,6 +203,7 @@ const HallDetails = React.createClass({
               <div className="banquet-img-box mgb30">
                   <img src={this.state.details.graphicDesignUrl}/>
               </div>
+              <CasesShow />
             </div>
           </div>
           <div className='recommend-adv-box'>
