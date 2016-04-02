@@ -178,7 +178,7 @@ const PhotoItemBox = React.createClass({
             let group = "{'group':'img"+v.id+"'}"
             return (
               <li key={k} className="item-box">
-                <a className="img-box" data-uk-lightbox={group} data-lightbox-type='image' data-uk-modal="{center:true}" title={v.number}
+                <a className="img-box" data-uk-lightbox={group} data-lightbox-type='image' title={v.number}
                    href={v.coverUrlWeb+'@90q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'} >
                   <MediaItem aspectRatio='2:3' height={300} mediaUrl={v.coverUrlWeb} water={false} />
                   <div className="layer"></div>
