@@ -148,7 +148,7 @@ const MoveItemBox = React.createClass({
                     <span>时间：</span><span>{v.shootingTime && v.shootingTime.slice(0,10)}</span><br />
                     <span>地点：</span><span>{v.shootingAdress}</span><br />
                     <span>成本：￥</span><span>{v.costPrice}</span><br />
-                    <a href={'#'+v.id} data-uk-modal>
+                    <a href={'#'+v.id} data-uk-modal="{center:true}">
                       <span className="play">点击观看</span>
                     </a>
                   </div>
@@ -178,7 +178,7 @@ const PhotoItemBox = React.createClass({
             let group = "{'group':'img"+v.id+"'}"
             return (
               <li key={k} className="item-box">
-                <a className="img-box" data-uk-lightbox={group} data-lightbox-type='image' title={v.number}
+                <a className="img-box" data-uk-lightbox={group} data-lightbox-type='image' data-uk-modal="{center:true}" title={v.number}
                    href={v.coverUrlWeb+'@90q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'} >
                   <MediaItem aspectRatio='2:3' height={300} mediaUrl={v.coverUrlWeb} water={false} />
                   <div className="layer"></div>
