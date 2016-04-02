@@ -23,6 +23,9 @@ const HallDetailsConfig  = {
       'pageSize':6,
       'pageIndex':1
     }
+  },BaseConfig),
+  'CasesShow':_.merge({
+    'dataUrl':'detailByResourceId/'
   },BaseConfig)
 
 }
