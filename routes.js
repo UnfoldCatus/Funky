@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react'
 import _ from 'lodash'
 import { renderToString } from 'react-dom/server'
 import { MenuConfig } from './components/config/menu-config'
-import { ComponentsIndex } from './components/config/components-index'
+import { ComponentsIndex, ComponentsSeo } from './components/config/components-index'
   /*菜单*/
 import { Navigation } from './components/navigation.jsx'
 
@@ -116,7 +116,16 @@ _.each(apiRouterList,(route,index)=>{
 /**
  platform 主站的页面路由
 **/
+const WeddingClassRootPath = {
+  '1':'/shot',
+  '2':'/hotel',
+  '3':'/scheme',
+  '4':'/dress',
+  '5':'/movie',
 
+  '7':'/supply',
+  '8':'/car'
+}
 const siteRouter = new Router()
   /**
     templateName: ejs模板名称
@@ -126,8 +135,13 @@ const siteRouter = new Router()
 let renderOption = (templateName, menuKey, parentKey,params) => {
   let p = params || {}
     return {
+      'title':ComponentsSeo[templateName].seoTitle || '重庆金色百年婚礼集团_婚纱摄影_婚宴预订_婚庆制定_婚纱礼服_婚戒钻石_微电影_婚礼用品_婚车租凭',
+      'seoKeywords':ComponentsSeo[templateName].seoKeywords || '重庆结婚网|重庆婚纱照网|重庆婚宴酒店网|重庆婚礼策划网|重庆婚纱礼服网|重庆珠宝饰品网|重庆结婚微电影网|重庆结婚用品网|重庆婚车租凭网',
+      'seoDescription':ComponentsSeo[templateName].seoDescription || '金色百年(www.jsbn.com)是国内领先的结婚平台,国内唯一一站式结婚综合平台，是新人必上的结婚网! 咨询热线:400-015-9999',
       'reactMarkup': renderToString(ComponentsIndex[templateName]),
       'reactNavMarkup': renderToString(<Navigation menuKey={parentKey ||'/'} currentKey={menuKey} />),
+      'currentMenuKey':menuKey,
+      'parentMenuKey':parentKey,
       'main': templateName,// 客户端渲染使用的脚本名称和模板名称一致
       'params':JSON.stringify(p),
       'mode':(process.env.NODE_ENV === 'production')?'production':'development'
@@ -194,6 +208,10 @@ siteRouter.get('/weddingmv', function* index(next) {
   yield this.render('modules/default', renderOption('wedding-mv', '/weddingmv', '/shot'))
 })
 
+siteRouter.get('/weddingmv/:id', function* index(next) {
+  yield this.render('modules/default', renderOption('wedding-mv-details', '/weddingmv', '/shot',this.params))
+})
+
 /** 婚宴预订 **/
 // 列表
 siteRouter.get('/hotel', function* index(next) {
@@ -225,17 +243,24 @@ siteRouter.get('/cases', function* index(next) {
     yield this.render('modules/default', renderOption('cases', '/cases', '/scheme'))
 })
 /**  实景案例详情 **/
-siteRouter.get('/case-details', function* index(next) {
-  yield this.render('modules/default', renderOption('case-details', '/cases', '/scheme'))
+siteRouter.get('/cases/:id', function* index(next) {
+  yield this.render('modules/default', renderOption('case-details', '/cases', '/scheme',this.params))
 })
 
 /** 婚礼跟拍 **/
 siteRouter.get('/weddingpat', function* index(next) {
     yield this.render('modules/default', renderOption('wedding-pat', '/weddingpat', '/scheme'))
 })
+
+siteRouter.get('/followPhoto/:id', function* index(next) {
+  yield this.render('modules/default', renderOption('case-details', '/weddingpat', '/scheme',this.params))
+})
 /** 婚礼视频 **/
 siteRouter.get('/weddingvideo', function* index(next) {
     yield this.render('modules/default', renderOption('wedding-video', '/weddingvideo', '/scheme'))
+})
+siteRouter.get('/followVideo/:id', function* index(next) {
+  yield this.render('modules/default', renderOption('wedding-mv-details', '/weddingvideo', '/scheme',this.params))
 })
 /** 提交婚庆需求 **/
 siteRouter.get('/scheme-require', function* index(next) {
@@ -271,9 +296,18 @@ siteRouter.get('/car', function* index(next) {
   yield this.render('modules/default', renderOption('car', '/car', '/car'))
 })
 
+/** 婚礼课堂 **/
+siteRouter.get('/weddingclass/:type', function* index(next) {
+  yield this.render('modules/default', renderOption('wedding-class', '/weddingclass/'+this.params.type, WeddingClassRootPath[this.params.type]||'/', this.params))
+})
+
+/** 婚礼课堂 **/
+siteRouter.get('/weddingclass-details/:type/:id', function* index(next) {
+  yield this.render('modules/default', renderOption('weddingclass-details', '/weddingclass/'+this.params.type, WeddingClassRootPath[this.params.type]||'/', this.params))
+})
 /** 活动详情页 **/
 siteRouter.get('/active/:name', function* index(next) {
-  yield this.render('modules/default', renderOption('active', '/active', '/active', this.params))
+  yield this.render('modules/default', renderOption('active', '/active', '/', this.params))
 })
 
 export { siteRouter }

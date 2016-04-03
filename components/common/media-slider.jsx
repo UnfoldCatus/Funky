@@ -11,7 +11,7 @@ const MediaSlider = React.createClass({
           _.map(this.state.data,(v,k)=>{
             return (
               <li className='item transition-opacity-1' key={k} >
-                <MediaItem {...params} mediaUrl={v.coverUrlWeb} outerLink={v.linkUrl}/>
+                <MediaItem {...params} mediaUrl={v.coverUrlWeb} water={false} videoUrl={v.videoUrl} outerLink={v.linkUrl}/>
               </li>
             )
           })
@@ -43,6 +43,26 @@ const MediaSlider = React.createClass({
       ]
     }
   },
+  componentWillReceiveProps(nextProps) {
+    if (
+      nextProps.dataUrl &&
+      nextProps.dataUrl !== '' &&
+      nextProps.dataUrl !== this.props.dataUrl
+  ) {
+    let p = ''
+    if (_.size(nextProps.params)>0) {
+      p = '?'+$.param(nextProps.params)
+    }
+    console.log(nextProps.baseUrl);
+    fetch(nextProps.baseUrl + nextProps.dataUrl + p)
+    .then(res => {return res.json()})
+    .then(j=>{
+      this.setState({ data:j.data },()=>{
+        $('#slider_top').length>0 && $('#slider_top').Slider()
+      })
+    })
+    }
+  },
   componentDidMount() {
     /** 数据请求 **/
     if (this.props.dataUrl !== undefined) {
@@ -50,9 +70,11 @@ const MediaSlider = React.createClass({
       if (_.size(this.props.params)>0) {
         p = '?'+$.param(this.props.params)
       }
+      console.log(this.props.baseUrl);
       fetch(this.props.baseUrl + this.props.dataUrl + p)
       .then(res => {return res.json()})
       .then(j=>{
+        console.log(j.data);
         this.setState({ data:j.data },()=>{
           $('#slider_top').length>0 && $('#slider_top').Slider()
         })

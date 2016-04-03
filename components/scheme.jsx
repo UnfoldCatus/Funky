@@ -74,9 +74,9 @@ const Scheme = React.createClass({
   render () {
     return (
       <div className='hqdz-home-view'>
-        <div id='slider_top' className='slider-box bannar-all-box mgb30' >
-          <div className='bannar' style={{height:SchemeConfig['MediaSlider']['height']}}>
-            <MediaSlider {...SchemeConfig['MediaSlider']} />
+        <div className='bannar-all-box mgb30'>
+          <div id='slider_top' className='slider-box bannar' style={{height:SchemeConfig['MediaSlider']['height']}}>
+              <MediaSlider {...SchemeConfig['MediaSlider']} />
           </div>
         </div>
         <div className='layout-center-box'>

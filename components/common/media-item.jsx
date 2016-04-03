@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import ShortId from 'shortid'
+import { BaseConfig } from '../config/base'
 import _ from 'lodash'
 /**
 
@@ -129,7 +130,9 @@ const VideoItem = React.createClass({
   },
   loadMeidaElementVideo(vid){
     return ()=>{ //为了把初始化操作放到线程上去。
-      $('#'+vid).mediaelementplayer()
+      $('#'+vid).mediaelementplayer({
+        pauseOtherPlayers: true
+      })
     }
   },
   loadTaobaoVideo(vid,videoUrl,width,height,posterUrl){
@@ -184,16 +187,23 @@ const ImageItem = React.createClass({
     /**
       图片压缩参数: 如果是在development环境下就不要加压缩参数。
       水印: 如果配置了要显示水印才显示。
+     如果是100%这样的,就不带
      **/
-    let imageOption = '@' + this.props.width+'h_'+this.props.height+'w_'+'90Q'
+    let imageOption = '@';
+    if (this.props.width !== '100%') {
+      imageOption = imageOption + this.props.width+'w_';
+    }
+    if (this.props.height !== '100%') {
+      imageOption = imageOption + this.props.height+'h_';
+    }
+    imageOption = imageOption + '90Q';
     imageOption =  this.props.water? (imageOption+'|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'):imageOption
-    let mediaUrl = this.props.mediaUrl
-    // let mediaUrl = ( process.env.NODE_ENV === 'development')? this.props.mediaUrl: (this.props.mediaUrl + imageOption)
+    // let mediaUrl = this.props.mediaUrl
+    let mediaUrl = this.props.mediaUrl + imageOption;//( BaseConfig.mode === 'production')? (this.props.mediaUrl + imageOption): this.props.mediaUrl
     if (found && 3 === found.length) {
       width = parseInt(found[1])
       height = parseInt(found[2])
     }
-
 
     // if (this.state.errorState) {
     //   return (
@@ -218,6 +228,11 @@ const ImageItem = React.createClass({
       )
     }
 
+  },
+  getDefaultProps(){
+    return {
+      water:true
+    }
   },
   // getInitialState() {
   //   return {

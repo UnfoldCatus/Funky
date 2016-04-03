@@ -129,6 +129,93 @@ const HotelRecommend = React.createClass({
 })
 
 
+const CasesShow = React.createClass({
+  render () {
+    let recommend = this.state.data[0] //第一个
+    let secondary = this.state.data.slice(1,5) //剩下四个
+    if (recommend) {
+      return (
+        <div>
+          <h2 className="mgb10">本厅婚礼实例</h2>
+          <div className='Case-box mgb20'>
+            <div className='img-box'>
+              <MediaItem width={720} aspectRatio={'1:-1'} mediaUrl={recommend.coverUrlWeb} />
+            </div>
+            <div className='info-box'>
+              <h3>{recommend.name}</h3>
+              <p>{recommend.description.slice(0,140)}</p>
+              <div className='theme-box clearfix'>
+                <span className='theme'>主题:<b>朱雀</b></span>
+                <span className='theme'>风格:<b></b></span>
+                <span className='theme'>色系:<b></b></span>
+              </div>
+            </div>
+          </div>
+          <ul className="list-2-js list-case clearfix">
+            {
+              _.map(secondary,(v,k)=>{
+                return (
+                  <li className="item-box column-mg20-17 mg0" key={k}>
+                    <a className="hover-box transition-opacity" href={'/cases/'+v.id}>
+                    <div className="pos-box">
+                        <h3>{v.name}</h3>
+                        <div className="etc-info"><b>{parseInt(v.senceCost)!==0?'￥'+parseFloat(v.senceCost).toFixed(2):''}</b><span>（{v.holdingTime}）</span></div>
+                        <div className="btn-box"></div>
+                        <div classNameL="mask-bg"></div>
+                    </div>
+                  </a>
+                  <div className='img-box'>
+                    <MediaItem width={463} aspectRatio={'1:-1'} mediaUrl={v.coverUrlWeb} />
+                  </div>
+                </li>
+                )
+              })
+            }
+          </ul>
+        </div>
+      )
+    }else {
+      return null
+    }
+
+  },
+  getDefaultProps(){
+    return {
+      dataUrl:undefined
+    }
+  },
+  getInitialState() {
+    return {
+      data:[]
+    }
+  },
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.dataUrl !== undefined && nextProps.caseId) {
+      let casesIDs = nextProps.caseId.split(',') || []
+      Promise.all(_.map(casesIDs.slice(0,5),(v,k)=>{
+        return fetch(nextProps.baseUrl + nextProps.dataUrl+v).then(res=>res.json()).then(j=>j.data[0])
+      })).then((data)=>{
+        this.setState({
+          data:data
+        })
+      })
+    }
+  },
+  componentDidMount() {
+    if (this.props.dataUrl !== undefined && this.props.caseId) {
+      let casesIDs = this.props.caseId.split(',') || []
+      Promise.all(_.map(casesIDs,(v,k)=>{
+        return fetch(this.props.baseUrl + this.props.dataUrl+v).then(res=>res.json()).then(j=>j.data[0])
+      })).then((data)=>{
+        this.setState({
+          data:data
+        })
+      })
+    }
+  }
+})
+
+
 const HallDetails = React.createClass({
   render () {
     let thumbs = JSON.parse(this.state.details.pcDetailImages||'[]')
@@ -149,6 +236,7 @@ const HallDetails = React.createClass({
               <div className="banquet-img-box mgb30">
                   <img src={this.state.details.graphicDesignUrl}/>
               </div>
+              <CasesShow {..._.merge(this.state.details,HallDetailsConfig['CasesShow'])} caseId={this.state.details.caseId}/>
             </div>
           </div>
           <div className='recommend-adv-box'>

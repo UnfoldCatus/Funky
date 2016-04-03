@@ -61,9 +61,8 @@ const carApi = {
             this.count = 0
         }
 
-        this.model = this.model.skip(pageIndex * pageSize);
-        this.model = this.model.limit(pageSize);
         this.model = this.model.orderBy(r.desc('weight'))
+        this.model = this.model.skip(pageIndex * pageSize).limit(pageSize);
 
         yield next
     },

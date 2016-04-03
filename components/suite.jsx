@@ -47,7 +47,7 @@ const SuiteList = React.createClass({
             return (
               <li className="item-box" key={k}>
                 <a className='img-box' href={ '/suite/'+v.id }>
-                  <MediaItem aspectRatio={'55:32'} height={320} mediaUrl={v.coverUrlWeb} />
+                  <MediaItem aspectRatio={'55:32'} height={320} mediaUrl={v.coverUrlWeb}  water={false}/>
                 </a>
                 <div className='r-box'>
                   <div className="price">
@@ -89,8 +89,8 @@ const SuiteList = React.createClass({
   componentDidMount() {
     const setupScrollbar = ()=>{
       $('.scrollbarall').length > 0 &&
-      $(".scrollbarall").each(function(index, element) {
-        var e = $(this);
+    _.each($(".scrollbarall"),(v,k) => {
+        let e = $(v)
         e.tinyscrollbar();
         e.find('.scrollbar').css({
           opacity: 0
@@ -142,7 +142,7 @@ const Suite = React.createClass({
     return (
       <div className="txbj-view">
         <div className="custom-banner bannar-all-box mgb30">
-          <div id="slider_top" className="slider-box-1-js bannar" style={{height:SuiteConfig['MediaSlider']['height']}}>
+          <div id="slider_top" className="slider-box bannar" style={{height:SuiteConfig['MediaSlider']['height']}}>
             <MediaSlider {...SuiteConfig['MediaSlider']}/>
           </div>
         </div>

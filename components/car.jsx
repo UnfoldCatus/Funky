@@ -36,7 +36,7 @@ const CarItemList = React.createClass({
               return (
                 <li key={k} className='item-box' data-id={v.id}>
                   <div className='img-box'>
-                    <MediaItem aspectRatio={'3:2'} width={380} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'}/>
+                    <MediaItem aspectRatio={'3:2'} width={380} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'} water={false}/>
                   </div>
                   <div className='brd'>
                     <div className="htile">
@@ -91,7 +91,7 @@ const CarItemList = React.createClass({
 })
 
 
-
+//<ListFilter title={'婚车档次'} name={'name'} klass={'ico-17-js ico-17-1-js'} valueKey={['id']}  sorterKey={['levelId']} {...CarConfig['LevelCategory']}/>
 const Car = React.createClass({
   render () {
     return (
@@ -104,7 +104,6 @@ const Car = React.createClass({
           </div>
         </div>
         <div className="layout-center-box clearfix J_FilterCtrl">
-          <ListFilter title={'婚车档次'} name={'name'} klass={'ico-17-js ico-17-1-js'} valueKey={['id']}  sorterKey={['levelId']} {...CarConfig['LevelCategory']}/>
           <ListFilter title={'婚车车型'} name={'name'} klass={'ico-17-js ico-17-2-js'} valueKey={['id']} sorterKey={['modelsId']} {...CarConfig['ModelCategory']}/>
           <ListFilter title={'婚车品牌'} name={'name'} klass={'ico-17-js ico-17-3-js'} valueKey={['id']} sorterKey={['brandId']} {...CarConfig['BrandCategory']} />
           <ListFilter title={'婚车价格'} name={'name'} klass={'ico-17-js ico-17-4-js'} valueKey={['minPrice','maxPrice']}  sorterKey={['minPrice','maxPrice']} {...CarConfig['PriceCategory']}  />

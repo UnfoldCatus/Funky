@@ -327,7 +327,10 @@ const Hotel = React.createClass({
   },
   getInitialState() {
     return {
-      params:{}
+      params:{
+        sort:'price',
+        order:'asc'
+      }
     }
   },
   componentDidMount() {

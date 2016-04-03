@@ -10,11 +10,12 @@ const HotelThumb = React.createClass({
         <div className='slider-box-4-js'>
           {
             _.map(this.props.data,(v,k)=>{
+              let url=v+'@90q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'
               if (0===k) {
                 return (
-                  <a href={v.url || v} key={k} className='slider-hover-box' data-uk-lightbox='{group:"hotelThumb"}' >
+                  <a href={v} key={k} className='slider-hover-box' data-uk-lightbox='{group:"hotelThumb"}' data-lightbox-type='image' >
                     <div className='big-img-box mgb30'>
-                      <MediaItem {...HotelDetailsConfig['HotelThumbMediaItem']} mediaUrl={v.url||v} />
+                      <MediaItem {...HotelDetailsConfig['HotelThumbMediaItem']} mediaUrl={v} water={false} />
                     </div>
                     <div className='slider-tip-box'>
                       <span>点击看大图</span>
@@ -23,7 +24,7 @@ const HotelThumb = React.createClass({
                 )
               }else {
                 return (
-                  <a href={v.url || v} key={k} data-uk-lightbox='{group:"hotelThumb"}'></a>
+                  <a href={url} key={k} data-uk-lightbox='{group:"hotelThumb"}' data-lightbox-type='image'></a>
                 )
               }
             })
@@ -84,11 +85,11 @@ const HotelBaseInfo = React.createClass({
               <div className="etc">
                   <div className="item">
                       <em>大礼包</em>
-                      <a href="/sale-strategy?type=libao" target="_blank">通过金色百年预定婚宴，领取12999大礼包</a>
+                      <a href="/active/libao" target="_blank">通过金色百年预定婚宴，领取12999大礼包</a>
                   </div>
                   <div className="item">
                       <em>组合优惠</em>
-                      <a href="/sale-strategy?type=zuhe" target="_blank">消费项目越多，优惠力度越大</a>
+                      <a href="/active/zuhe" target="_blank">消费项目越多，优惠力度越大</a>
                   </div>
               </div>
           </div>
@@ -112,7 +113,7 @@ const HotelIntroduction = React.createClass({
     return (
       <div className="hotel-info-box mgb30">
           <div className="img-box">
-              <MediaItem {...HotelDetailsConfig['CoverMediaItem']} mediaUrl={this.props.coverUrlWeb}/>
+              <MediaItem {...HotelDetailsConfig['CoverMediaItem']} mediaUrl={this.props.coverUrlWeb} water={false} />
           </div>
           <div className="p">
               <p>{ this.props.introduction }</p>
@@ -139,10 +140,10 @@ const HotelHall = React.createClass({
                   return (
                       <li key={k} className={(k%2 === 1)?'item-box mgb20 mg0' :'item-box mgb20 mgr20'}>
                           <div className="title-box">
-                              <h2>{v.banquetHallName}</h2>
+                              <h2>{v.name}</h2>
                           </div>
                           <div className="img-box">
-                              <MediaItem {...HotelDetailsConfig['CoverMediaItem']} mediaUrl={v.coverUrlWeb} />
+                              <MediaItem {...HotelDetailsConfig['CoverMediaItem']} mediaUrl={v.coverUrlWeb} water={false} />
                           </div>
                           <div className="info-box">
                             <ul className="clearfix">
@@ -195,14 +196,9 @@ const HotelMenu = React.createClass({
                               </div>
                               <div className="cont-menu transition">
                                   <dl>
-                                      <dt>{v.aliasName}</dt>
-                                      {
-                                          _.map(v.dishesList,function(vx,ix){
-                                              return (
-                                                  <dd key={ix}>{vx.name}</dd>
-                                              )
-                                          })
-                                      }
+                                    {
+                                      v.dishesList.length>0 ? _.map(v.dishesList,function(vx,ix){return (<dd key={ix}>{vx.name}</dd>)}) : <span><b>*暂无菜单,请到店详询.</b></span>
+                                    }
                                   </dl>
                               </div>
                           </li>

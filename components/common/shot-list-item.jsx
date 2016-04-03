@@ -18,7 +18,7 @@ const ShotListItem = React.createClass({
               return (
                 <li className="item-box" key={k}>
                   <a className='img-box' href={link+'/'+v.id} target='_blank'>
-                    <MediaItem  aspectRatio={'2:3'} width={380} mediaUrl={v.coverUrlWeb} />
+                    <MediaItem  aspectRatio={'2:3'} width={380} mediaUrl={v.coverUrlWeb} water={false} />
                     <div className="layer-box" />
                     <MediaLayer  {...v} type={type} />
                   </a>

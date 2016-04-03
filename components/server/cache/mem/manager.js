@@ -86,14 +86,18 @@ MEMUtil.prototype.getData = function(url, path, cb)
         req.setTimeout(5000);
 
         req.on('error',function(e) {
-            req.res && req.res.abort();
+            if(req.res && req.res.abort && (typeof req.res.abort === 'function')) {
+                req.res.abort();
+            }
             req.abort();
             data.message = '服务器错误';
             data.code = 404;
             cb(null,data);
 
         }).on('timeout',function(e) {
-            req.res && req.res.abort();
+            if(req.res && req.res.abort && (typeof req.res.abort === 'function')) {
+                req.res.abort();
+            }
             req.abort();
             data.message = 'request timeout';
             data.code = 404;

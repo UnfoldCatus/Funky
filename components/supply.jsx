@@ -20,7 +20,7 @@ let SupplyItemList = React.createClass({
               return (
                 <li key={k} className='item-box' data-id={v.id} style={{cursor:'pointer'}}>
                   <div className='img-box'>
-                    <MediaItem {...this.props} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'}/>
+                    <MediaItem {...this.props} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'} water={false} />
                   </div>
                   <div className='content-box'>
                     <div className='title'>

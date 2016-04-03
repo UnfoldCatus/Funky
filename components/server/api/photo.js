@@ -30,7 +30,6 @@ const photoApi = {
 
         let pageIndex = 0;
         let pageSize = 10;
-        this.model = this.model.orderBy(r.desc('weight'))
         _.each(this.request.query, (v, k) => {
             if (k.indexOf('pageIndex') !== -1) {
                 pageIndex = parseInt(this.request.query['pageIndex'] || '1') - 1
@@ -38,7 +37,7 @@ const photoApi = {
                     pageIndex = 0
                 }
             } else if (k.indexOf('pageSize') !== -1) {
-                pageSize = parseInt(this.request.query['pageSize'] || '1') - 1
+                pageSize = parseInt(this.request.query['pageSize'] || '1')
                 if (pageSize < 0) {
                     pageSize = 1
                 }
@@ -48,6 +47,9 @@ const photoApi = {
             } else if(k.indexOf('shootStyleId') !== -1) {// 风格ID
                 // 风格 TODO:服务器返回的是字符串如"123,275,468,",这里采用"%id,%"的方式匹配
                 this.model = this.model.filter(r.row("shootingStyle").match(".*?"+this.request.query['shootStyleId']+","+".*?"));
+            } else if(k.indexOf('sampleType') !== -1) {
+                // 样片类型 0:婚纱摄影 1:艺术照 2:全家福
+                this.model = this.model.filter({sampleType:parseInt(this.request.query['sampleType'])})
             }
         })
 
@@ -58,6 +60,7 @@ const photoApi = {
             this.count = 0
         }
 
+        this.model = this.model.orderBy(r.desc('weight'))
         this.model = this.model.skip(pageIndex * pageSize).limit(pageSize)
 
         yield next
@@ -73,9 +76,7 @@ const photoApi = {
 
     // 客片列表
     'get+/pringles/:position': function*(next) {
-
         this.APIKey = 'Pringles'
-
         if (this.params.position === 'all') {
             this.model = pringles.filter({})
         } else {
@@ -85,29 +86,35 @@ const photoApi = {
 
         }
 
-        try {
-            let all = yield this.model
-            this.count = all.length
-        } catch (e) {
-            this.count = 0
-        }
-
-        this.model = this.model.orderBy(r.desc('weight'))
+        let pageIndex = 0;
+        let pageSize = 10;
         _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = parseInt(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex'] || '1') - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
                 }
-                this.model = this.model.skip(limit * parseInt(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(parseInt(this.request.query["pageSize"] || '10'));
+            } else if (k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize'] || '1')
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
             } else if (k.indexOf('seasonId') !== -1) {
                 this.model = this.model.filter({
                     seasonId: parseInt(this.request.query['seasonId'])
                 })
             }
         })
+
+        try {
+            let all = yield this.model
+            this.count = all.length || 0
+        } catch (e) {
+            this.count = 0
+        }
+
+        this.model = this.model.orderBy(r.desc('weight'))
+        this.model = this.model.skip(pageIndex * pageSize).limit(pageSize)
 
         yield next
     },
@@ -190,6 +197,7 @@ const photoApi = {
 
     // 婚纱摄影-纪实MV列表
     'get+/recordVideo/:position': function*(next) {
+        this.APIKey = 'RecordVideo'
         if (this.params.position === 'all') {
             this.model = recordVideo.filter({})
         } else {
@@ -198,23 +206,19 @@ const photoApi = {
             })
         }
 
-        try {
-            let all = yield this.model
-            this.count = all.length
-        } catch (e) {
-            this.count = 0
-        }
-
-        //this.model = this.model.orderBy(r.desc('weight'))
+        let pageIndex = 0;
+        let pageSize = 10;
         _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = parseInt(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex'] || '1') - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
                 }
-                this.model = this.model.skip(limit * parseInt(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(parseInt(this.request.query["pageSize"] || '10'));
+            } else if (k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize'] || '1')
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
             } else if(k.indexOf('seasonId') !== -1) {
                 // 分季ID
                 this.model = this.model.filter({
@@ -229,7 +233,16 @@ const photoApi = {
             }
         })
 
-        this.APIKey = 'RecordVideo'
+        try {
+            let all = yield this.model
+            this.count = all.length || 0
+        } catch (e) {
+            this.count = 0
+        }
+
+        this.model = this.model.orderBy(r.desc('weight'))
+        this.model = this.model.skip(pageIndex * pageSize).limit(pageSize)
+
         yield next
     },
     // 婚纱摄影-纪实MV列表详情

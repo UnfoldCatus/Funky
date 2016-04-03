@@ -5,8 +5,13 @@ import { BaseConfig } from './base'
 import _ from 'lodash'
 
 const CaseDetailsConfig  = {
-  'CaseDetails':_.merge({
-    'dataUrl':'cases/detail/:id'
+  '/cases':_.merge({
+    'dataUrl':'cases/detail/:id',
+    'type':'cases'
+  },BaseConfig),
+  '/weddingpat':_.merge({
+    'dataUrl':'followPhoto/detail/:id',
+    'type':'pat'
   },BaseConfig)
 }
 

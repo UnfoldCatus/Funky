@@ -14,7 +14,7 @@ const SuiteDetails = React.createClass({
                   return (
                     <div key={k} className='bottom' style={{height:'auto'}}>
                       <div className='img-box'>
-                        <MediaItem width={1200} aspectRadio={'1:-1'} mediaUrl={v} />
+                        <MediaItem width={1200} aspectRadio={'1:-1'} mediaUrl={v} water={false} />
                       </div>
                     </div>
                   )

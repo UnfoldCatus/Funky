@@ -13,6 +13,7 @@ const wdyVideoApi = {
 
     // 获取案例
     'get+/video/:position': function*(next) {
+        this.APIKey = 'Movie'
         if (this.params.position === 'all') {
             this.model = wdyVideo.filter({})
         } else {
@@ -21,16 +22,20 @@ const wdyVideoApi = {
             })
         }
 
+        let pageIndex = 0;
+        let pageSize = 10;
         _.each(this.request.query, (v, k) => {
-            if (k.indexOf('pageSize') !== -1) {
-                let limit = 0
-                limit = Number(this.request.query['pageIndex'] || '1') - 1
-                if (limit < 0) {
-                    limit = 0
+            if (k.indexOf('pageIndex') !== -1) {
+                pageIndex = parseInt(this.request.query['pageIndex'] || '1') - 1
+                if (pageIndex < 0) {
+                    pageIndex = 0
                 }
-                this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-                this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-            } else if(k.indexOf('videoType') !== -1) {
+            } else if (k.indexOf('pageSize') !== -1) {
+                pageSize = parseInt(this.request.query['pageSize'] || '1')
+                if (pageSize < 0) {
+                    pageSize = 1
+                }
+            }  else if(k.indexOf('videoType') !== -1) {
                 this.model = wdyVideo.filter({
                     type: Number(this.request.query['videoType'])
                 })
@@ -43,7 +48,16 @@ const wdyVideoApi = {
             }
         })
 
-        this.APIKey = 'Movie'
+        try {
+            let all = yield this.model
+            this.count = all.length || 0
+        } catch (e) {
+            this.count = 0
+        }
+
+        this.model = this.model.orderBy(r.desc('weight'))
+        this.model = this.model.skip(pageIndex * pageSize).limit(pageSize)
+
         yield next
     },
 

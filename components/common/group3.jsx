@@ -12,7 +12,7 @@ const Group3 = React.createClass({
             return (
               <li key={k} className='item-box'>
                 <div className='img-box'>
-                  <MediaItem aspectRatio={'38:25'} height={250} mediaUrl={v.coverUrlWeb}/>
+                  <MediaItem aspectRatio={'38:25'} height={250} mediaUrl={v.coverUrlWeb} water={false} />
                 </div>
                 <div className='title-box'>
                   <span>{names[0] || '金色百年'}</span>

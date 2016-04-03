@@ -10,10 +10,17 @@ const WeddingPatConfig = {
     'aspectRatio':'192:45',
     'height':450
   },BaseConfig),
-  'CasesList':_.merge({
-    'dataUrl':'followPhoto/weddingpat_list'
+  'SchemeListItem':_.merge({
+    'countPlugin':true,
+    'link':'followPhoto',
+    'dataUrl':'followPhoto/weddingpat_list',
+    'displayTextPrefix':'找到最佳案例',
+    'displayTextSuffix':'套',
+    'params':{
+      'pageSize':12,
+      'pageIndex':1
+    }
   },BaseConfig)
-
 }
 
 
