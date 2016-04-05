@@ -103,7 +103,7 @@ const HotelList = React.createClass({
           <span className="item">默认排序</span>
           <span className="item J_SorterButton">
             <em>价格</em>
-            <span className="arrow-box ascending J_SorterArrow" data-filter='price'>
+            <span className="arrow-box descending J_SorterArrow" data-filter='price'>
               <i className="arrow-up"></i>
               <i className="arrow-down"></i>
             </span>
@@ -329,7 +329,7 @@ const Hotel = React.createClass({
     return {
       params:{
         sort:'price',
-        order:'asc'
+        order:'desc'
       }
     }
   },
