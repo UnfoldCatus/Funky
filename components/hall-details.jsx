@@ -131,6 +131,7 @@ const HotelRecommend = React.createClass({
 
 const CasesShow = React.createClass({
   render () {
+    console.log(this.state.data[0])
     let recommend = this.state.data[0] //第一个
     let secondary = this.state.data.slice(1,5) //剩下四个
     if (recommend) {
@@ -145,9 +146,9 @@ const CasesShow = React.createClass({
               <h3>{recommend.name}</h3>
               <p>{recommend.description.slice(0,140)}</p>
               <div className='theme-box clearfix'>
-                <span className='theme'>主题:<b>朱雀</b></span>
-                <span className='theme'>风格:<b></b></span>
-                <span className='theme'>色系:<b></b></span>
+                <span className='theme'>主题:<b>{recommend.theme}</b></span>
+                <span className='theme'>风格:<b>{recommend.caseStyleName}</b></span>
+                <span className='theme'>色系:<b>{recommend.color}</b></span>
               </div>
             </div>
           </div>
