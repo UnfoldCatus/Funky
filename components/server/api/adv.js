@@ -21,8 +21,8 @@ const advApi = {
         if (limit < 0) {
           limit = 0
         }
-        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
+        this.model = this.model.skip(limit * parseInt(this.request.query["pageSize"] || '10'));
+        this.model = this.model.limit(parseInt(this.request.query["pageSize"] || '10'));
       }
     })
 

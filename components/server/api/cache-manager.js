@@ -10,11 +10,14 @@ const MEMUtil = mem.Instance()
 
 // 缓存管理API
 const cacheManagerApi = {
-
   // 更新db缓存
   'get+/dbUpdateCache/:moduleName': function*(next) {
-    DBUtil.updateDBCacheData(this.params.moduleName);
-    this.body = 'ok'
+    if (DBUtil.isCacheDataUsable(this.params.moduleName)) {
+      DBUtil.updateDBCacheData(this.params.moduleName);
+      this.body = 'ok'
+    } else {
+      this.body = 'no'
+    }
   },
 
   // 更新内存缓存
@@ -25,9 +28,13 @@ const cacheManagerApi = {
 
   // 更新缓存
   'get+/updateCache/:moduleName': function*(next) {
-    DBUtil.updateDBCacheData(this.params.moduleName);
-    MEMUtil.clearCache();
-    this.body = 'ok'
+    if (DBUtil.isCacheDataUsable(this.params.moduleName)) {
+      DBUtil.updateDBCacheData(this.params.moduleName);
+      MEMUtil.clearCache();
+      this.body = 'ok'
+    } else {
+      this.body = 'no'
+    }
   }
 }
 
