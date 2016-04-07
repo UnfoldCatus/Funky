@@ -74,15 +74,12 @@ const Group5 = React.createClass({
       fetch(this.props.baseUrl + this.props.dataUrl)
       .then(res => {return res.json()})
       .then(j =>{
-        console.log(j);
         let five = j.data
         let size = _.size(five)
         _.times(5-size,()=>{
           five.push({})
         })
-        this.setState({ data:j.data },()=>{
-          console.log('has data loaded');
-        })
+        this.setState({ data:j.data })
       })
     }
   }

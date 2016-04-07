@@ -131,7 +131,6 @@ const HotelRecommend = React.createClass({
 
 const CasesShow = React.createClass({
   render () {
-    console.log(this.state.data[0])
     let recommend = this.state.data[0] //第一个
     let secondary = this.state.data.slice(1,5) //剩下四个
     if (recommend) {

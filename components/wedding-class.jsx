@@ -51,9 +51,6 @@ const ClassList = React.createClass({
   },
 
   componentDidMount() {
-
-    console.log(this.props.info)
-
     let DataList = WeddingClassConfig['DataList'];
     let url = DataList.baseUrl+DataList.dataUrl+this.props.info.position+'?pageIndex=1&pageSize=5';
     let tmp = this.state.contents;

@@ -254,7 +254,6 @@ function Link() {
             arr.push(pointer.key);
             pointer = pointer.next;
         }
-        console.log(arr.join(", "));
         return arr;
     }
 }
