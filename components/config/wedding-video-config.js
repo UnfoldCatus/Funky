@@ -6,7 +6,7 @@ const WeddingVideoConfig = {
     {'imageUrl':'//img2.jsbn.com/static/hlsp.jpg'}
   ],
   'MediaSlider':_.merge({
-    'dataUrl':'adv/weddingvideo_top',
+    'dataUrl':'vda/weddingvideo_top',
     'aspectRatio':'192:45',
     'height':450
   },BaseConfig),

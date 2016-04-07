@@ -8,7 +8,7 @@ const SchemeConfig = {
     }
   ],
   'MediaSlider':_.merge({
-    'dataUrl':'adv/scheme_top',
+    'dataUrl':'vda/scheme_top',
     'aspectRatio':'192:68',
     'height':680
   },BaseConfig),
@@ -23,7 +23,7 @@ const SchemeConfig = {
     }
   },BaseConfig),
   'Group5':_.merge({
-    'dataUrl':'adv/scheme_hot',// 数据请求地址
+    'dataUrl':'vda/scheme_hot',// 数据请求地址
     'dimension':[  //4+1 4和1的尺寸配置
       {
         'aspectRatio':'124:75',

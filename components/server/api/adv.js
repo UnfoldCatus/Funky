@@ -4,7 +4,7 @@ import env from '../cache/config'
 let r = env.Thinky.r
 const advApi = {
   // 广告
-  'get+/adv/:position': function*(next) {
+  'get+/vda/:position': function*(next) {
 
     if (this.params.position === 'all') {
       this.model = adv.filter({})

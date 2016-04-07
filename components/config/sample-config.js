@@ -22,7 +22,7 @@ const SampleConfig  = {
 
   },BaseConfig),
   'MediaSlider':_.merge({
-    'dataUrl':'adv/samples_top',
+    'dataUrl':'vda/samples_top',
     'aspectRatio':'192:45',
     'height':450
   },BaseConfig),

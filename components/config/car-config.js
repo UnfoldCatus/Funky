@@ -8,7 +8,7 @@ const CarConfig = {
     'imageUrl': '//img2.jsbn.com/static/ypxs.jpg'
   }],
   'MediaSlider': _.merge({
-    'dataUrl': 'adv/car_top',
+    'dataUrl': 'vda/car_top',
     'height': 450,
     'aspectRatio': '192:45'
   }, BaseConfig),

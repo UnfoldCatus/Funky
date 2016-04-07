@@ -8,7 +8,7 @@ const SupplyConfig = {
     'imageUrl': '//img2.jsbn.com/static/ypxs.jpg'
   }],
   'MediaSlider': _.merge({
-    'dataUrl': 'adv/supplies_top',
+    'dataUrl': 'vda/supplies_top',
     'height': 450,
     'aspectRatio': '192:45'
   }, BaseConfig),
