@@ -229,6 +229,7 @@ function SyncFun(module, sumCount, dataList, index, count, cb) {
 
           // 1.获取所有的宴会厅
           let banquetHalls = [];
+          console.log(dataList)
           for(let i = 0; i < data.data.length; i++) {
             if(dataList[data.data[i].hotelId]) {
             } else {
@@ -244,25 +245,17 @@ function SyncFun(module, sumCount, dataList, index, count, cb) {
               if (error) {
                 cb(error);
               }
-              else {
-                models[module].save(data.data).then(function(result, error) {
-                  if (error) {
-                    cb(error);
-                  } else {
-                    SyncFun(module, sumCount, dataList, index + 1, count, cb);
-                  }
-                });
-              }
-            });
-          } else {
-            models[module].save(data.data).then(function(result, error) {
-              if (error) {
-                cb(error);
-              } else {
-                SyncFun(module, sumCount, dataList, index + 1, count, cb);
-              }
             });
           }
+
+          models[module].save(data.data).then(function(result, error) {
+            if (error) {
+              cb(error);
+            } else {
+              SyncFun(module, sumCount, dataList, index + 1, count, cb);
+            }
+          });
+
         } else {
           cb(null);
         }
