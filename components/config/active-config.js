@@ -411,131 +411,116 @@ const ActiveConfig = {
       }
     ]
   },
-  '3yhq':{
+  '4ybf':{
     kClass:'topic',
     pic:[
       {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_01.jpg',
+        'url':'//img2.jsbn.com/static/activities/4ybf/01.jpg',
         'href':false,
         'hrefUrl':''
       },
       {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_02.jpg',
+        'url':'//img2.jsbn.com/static/activities/4ybf/02.jpg',
         'href':false,
         'hrefUrl':''
       },
       {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_03.jpg',
+        'url':'//img2.jsbn.com/static/activities/4ybf/03.jpg',
         'href':false,
         'hrefUrl':''
       },
       {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_04.jpg',
-        'href':true,
-        'hrefUrl':'/suite'
-      },
-      {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_05.jpg',
-        'href':true,
-        'hrefUrl':'/suite'
-      },
-      {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_06.jpg',
+        'url':'//img2.jsbn.com/static/activities/4ybf/04.jpg',
         'href':false,
         'hrefUrl':''
       },
       {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_07.jpg',
-        'href':false,
-        'hrefUrl':''
-      },
-      {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_08.jpg',
-        'href':false,
-        'hrefUrl':''
-      },
-      {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_09.jpg',
-        'href':false,
-        'hrefUrl':''
-      },
-      {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_10.jpg',
-        'href':false,
-        'hrefUrl':''
-      },
-      {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_11.jpg',
+        'url':'//img2.jsbn.com/static/activities/4ybf/05.jpg',
         'href':true,
         'hrefUrl':'//chat16.live800.com/live800/chatClient/chatbox.jsp?companyID=533854&configID=75804&jid=6937519900&skillId=4927'
       },
       {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_12.jpg',
+        'url':'//img2.jsbn.com/static/activities/4ybf/06.jpg',
         'href':false,
         'hrefUrl':''
       },
       {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_13.jpg',
+        'url':'//img2.jsbn.com/static/activities/4ybf/07.jpg',
         'href':false,
         'hrefUrl':''
       },
       {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_14.jpg',
+        'url':'//img2.jsbn.com/static/activities/4ybf/08.jpg',
         'href':false,
         'hrefUrl':''
       },
       {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_15.jpg',
+        'url':'//img2.jsbn.com/static/activities/4ybf/09.jpg',
+        'href':false,
+        'hrefUrl':''
+      },
+      {
+        'url':'//img2.jsbn.com/static/activities/4ybf/10.jpg',
+        'href':false,
+        'hrefUrl':''
+      },
+      {
+        'url':'//img2.jsbn.com/static/activities/4ybf/11.jpg',
         'href':true,
         'hrefUrl':'//chat16.live800.com/live800/chatClient/chatbox.jsp?companyID=533854&configID=75804&jid=6937519900&skillId=4927'
       },
       {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_16.jpg',
+        'url':'//img2.jsbn.com/static/activities/4ybf/12.jpg',
         'href':false,
         'hrefUrl':''
       },
       {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_17.jpg',
+        'url':'//img2.jsbn.com/static/activities/4ybf/13.jpg',
         'href':false,
         'hrefUrl':''
       },
       {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_18.jpg',
+        'url':'//img2.jsbn.com/static/activities/4ybf/14.jpg',
         'href':false,
         'hrefUrl':''
       },
       {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_19.jpg',
+        'url':'//img2.jsbn.com/static/activities/4ybf/15.jpg',
+        'href':true,
+        'hrefUrl':'//chat16.live800.com/live800/chatClient/chatbox.jsp?companyID=533854&configID=75804&jid=6937519900&skillId=4927'
+      },
+      {
+        'url':'//img2.jsbn.com/static/activities/4ybf/16.jpg',
         'href':false,
         'hrefUrl':''
       },
       {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_20.jpg',
+        'url':'//img2.jsbn.com/static/activities/4ybf/17.jpg',
         'href':false,
         'hrefUrl':''
       },
       {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_21.jpg',
+        'url':'//img2.jsbn.com/static/activities/4ybf/18.jpg',
         'href':false,
         'hrefUrl':''
       },
       {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_22.jpg',
+        'url':'//img2.jsbn.com/static/activities/4ybf/19.jpg',
         'href':false,
         'hrefUrl':''
       },
       {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_23.jpg',
+        'url':'//img2.jsbn.com/static/activities/4ybf/20.jpg',
         'href':false,
         'hrefUrl':''
       },
       {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_24.jpg',
+        'url':'//img2.jsbn.com/static/activities/4ybf/21.jpg',
         'href':false,
         'hrefUrl':''
       },
       {
-        'url':'//img2.jsbn.com/static/activities/3mhq/langman_25.jpg',
+        'url':'//img2.jsbn.com/static/activities/4ybf/22.jpg',
         'href':false,
         'hrefUrl':''
       }
