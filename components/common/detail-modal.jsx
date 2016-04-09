@@ -215,6 +215,7 @@ const DetailModal = React.createClass({
       $("#Float").css("height",$(window).height() - 40 + "px")
       $("#Float").fadeIn(400)
       $("body").css({overflow:"hidden"})
+      $('.scrollbarall').data('plugin_tinyscrollbar').update()
       $('#Float img').load(()=>{ // 内部图片加载完成后再update滚动条
         $('.scrollbarall').data('plugin_tinyscrollbar').update()
       })
