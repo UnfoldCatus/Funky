@@ -108,26 +108,6 @@ var createCache = function (alg_name, maxsize) {
         print: print
     }
 
-    // 定时器，五分钟检测一次
-    setInterval(function () {
-        var cache = obj.cache;
-        var queue = obj.queue;
-
-        for (var key in cache) {
-            if (!cache[key]) continue;
-            var insertTime = cache[key].insertTime;
-            var expire = cache[key].expire;
-            var curTime = +new Date();
-            var node = cache[key]["node"];
-
-            // 如果过期时间存在并且已经过期
-            if (expire && curTime - insertTime > expire) {
-                queue.del(node);
-                cache[key] = null;
-            }
-        }
-    }, Config.MemConfig.cache_time_check);
-
     return obj;
 }
 

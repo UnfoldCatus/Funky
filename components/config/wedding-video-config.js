@@ -11,7 +11,7 @@ const WeddingVideoConfig = {
     'height':450
   },BaseConfig),
   'VideoListItem':_.merge({
-    'dataUrl':'followvideo/weddingvideo_list',
+    'dataUrl':'followVideo/weddingvideo_list',
     'aspectRatio':'3:2',
     'width':380,
     'link':'/followVideo',
