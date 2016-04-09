@@ -229,7 +229,6 @@ function SyncFun(module, sumCount, dataList, index, count, cb) {
 
           // 1.获取所有的宴会厅
           let banquetHalls = [];
-          console.log(dataList)
           for(let i = 0; i < data.data.length; i++) {
             if(dataList[data.data[i].hotelId]) {
             } else {

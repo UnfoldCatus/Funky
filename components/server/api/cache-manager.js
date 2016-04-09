@@ -10,15 +10,6 @@ const MEMUtil = mem.Instance()
 
 // 缓存管理API
 const cacheManagerApi = {
-  // 更新db缓存
-  'get+/dbUpdateCache/:moduleName': function*(next) {
-    if (DBUtil.isCacheDataUsable(this.params.moduleName)) {
-      DBUtil.updateDBCacheData(this.params.moduleName);
-      this.body = 'ok'
-    } else {
-      this.body = 'no'
-    }
-  },
 
   // 更新内存缓存
   'get+/memUpdateCache': function*(next) {
