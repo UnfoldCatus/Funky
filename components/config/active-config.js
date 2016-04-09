@@ -466,8 +466,8 @@ const ActiveConfig = {
       },
       {
         'url':'//img2.jsbn.com/static/activities/4ybf/11.jpg',
-        'href':true,
-        'hrefUrl':'//chat16.live800.com/live800/chatClient/chatbox.jsp?companyID=533854&configID=75804&jid=6937519900&skillId=4927'
+        'href':false,
+        'hrefUrl':''
       },
       {
         'url':'//img2.jsbn.com/static/activities/4ybf/12.jpg',
@@ -476,8 +476,8 @@ const ActiveConfig = {
       },
       {
         'url':'//img2.jsbn.com/static/activities/4ybf/13.jpg',
-        'href':false,
-        'hrefUrl':''
+        'href':true,
+        'hrefUrl':'//chat16.live800.com/live800/chatClient/chatbox.jsp?companyID=533854&configID=75804&jid=6937519900&skillId=4927'
       },
       {
         'url':'//img2.jsbn.com/static/activities/4ybf/14.jpg',
@@ -486,8 +486,8 @@ const ActiveConfig = {
       },
       {
         'url':'//img2.jsbn.com/static/activities/4ybf/15.jpg',
-        'href':true,
-        'hrefUrl':'//chat16.live800.com/live800/chatClient/chatbox.jsp?companyID=533854&configID=75804&jid=6937519900&skillId=4927'
+        'href':false,
+        'hrefUrl':''
       },
       {
         'url':'//img2.jsbn.com/static/activities/4ybf/16.jpg',
@@ -496,8 +496,8 @@ const ActiveConfig = {
       },
       {
         'url':'//img2.jsbn.com/static/activities/4ybf/17.jpg',
-        'href':false,
-        'hrefUrl':''
+        'href':true,
+        'hrefUrl':'//chat16.live800.com/live800/chatClient/chatbox.jsp?companyID=533854&configID=75804&jid=6937519900&skillId=4927'
       },
       {
         'url':'//img2.jsbn.com/static/activities/4ybf/18.jpg',
