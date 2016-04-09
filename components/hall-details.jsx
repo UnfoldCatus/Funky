@@ -11,11 +11,12 @@ const HallThumb = React.createClass({
         <div className='slider-box-4-js'>
           {
             _.map(this.props.data,(v,k)=>{
+              let url=v+'@90q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'
               if (0===k) {
                 return (
-                  <a href={v.url || v} key={k} className='slider-hover-box' data-uk-lightbox='{group:"hallThumb"}' >
+                  <a href={url} key={k} className='slider-hover-box' data-uk-lightbox='{group:"hallThumb"}' data-lightbox-type='image' >
                     <div className='big-img-box mgb30'>
-                      <MediaItem {...HallDetailsConfig['HallThumbMediaItem']} mediaUrl={v.url||v} />
+                      <MediaItem {...HallDetailsConfig['HallThumbMediaItem']} mediaUrl={v} water={false} />
                     </div>
                     <div className='slider-tip-box'>
                       <span>点击看大图</span>
@@ -24,7 +25,7 @@ const HallThumb = React.createClass({
                 )
               }else {
                 return (
-                  <a href={v.url || v} key={k} data-uk-lightbox='{group:"hallThumb"}'></a>
+                  <a href={url} key={k} data-uk-lightbox='{group:"hallThumb"}' data-lightbox-type='image'></a>
                 )
               }
             })
