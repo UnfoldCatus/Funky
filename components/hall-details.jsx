@@ -47,7 +47,7 @@ const HallBaseInfo = React.createClass({
           <h1 className="mgb10">{this.props.name}</h1>
           <div className="p mgb30 clearfix">
               <p>最大桌数<b>{this.props.maxTableNum}</b></p>
-              <p>柱子<span><b>{parseInt(this.props.pillarNumber)>0?'有':'无' || '无'}</b></span></p>
+              <p>柱子<span><b>{parseInt(this.props.pillerNum)>0?'有':'无' || '无'}</b></span></p>
               <p>可用面积<span><b>{this.props.area}</b>平方米</span></p>
               <p>形状<span><b>{this.props.shape}</b></span></p>
               <p>层高<span><b>{this.props.height}</b>米</span></p>
@@ -56,7 +56,7 @@ const HallBaseInfo = React.createClass({
       </div>
     )
   },
-  getDefaultProps(){
+    getDefaultProps(){
     return {
       data:{
         'name':'金色百年'

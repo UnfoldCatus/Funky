@@ -148,7 +148,7 @@ const HotelHall = React.createClass({
                           <div className="info-box">
                             <ul className="clearfix">
                                 <li className="li_w1"><span >桌数：</span><span><span>{(v.maxTableNum || '--')}</span><span>桌</span></span></li>
-                                <li className="li_w1"><span>柱子：</span><span>{(v.pillarNumber==='0')?'无':'有' || '--'}</span></li>
+                                <li className="li_w1"><span>柱子：</span><span>{parseInt(v.pillerNum)>0?'有':'无' || '--'}</span></li>
                                 <li className="li_w2"><span>面积：</span><span><span>{(v.area||'--')}</span><span>平方米</span></span></li>
                                 <li className="li_w1"><span>形状：</span><span>{v.shape || '--'}</span></li>
                                 <li className="li_w1"><span>层高：</span><span><span>{v.height || '--'}</span><span>米</span></span></li>
