@@ -734,54 +734,41 @@ a:hover {
   display: none;
 }
 .uk-close-alt {
-  height: 24px;
-  width: 24px;
+  height: 36px;
+  width: 36px;
   padding: 0;
   border-radius: 0;
   box-shadow: none;
-  background: url(../img/float-close.png) 0 0 no-repeat;
-}
-.uk-close-alt:hover {
-  background-position: 0 -24px;
+  background: url(../img/fancybox_sprite.png) 0 0 no-repeat;
 }
 /* uikit左右按钮 */
 .uk-slidenav-previous {
   position: relative;
 }
-.uk-slidenav-previous:after {
+.uk-slidenav-previous:before {
   position: absolute;
   top: 50%;
-  left: 50%;
-  margin-top: -28px;
-  margin-left: -17px;
+  left: 0;
+  margin-top: -18px;
   display: block;
   content: "";
-  width: 35px;
-  height: 56px;
-  background: url(../img/arrow-big-js.png) 0 0 no-repeat;
-  opacity: 0;
-}
-.uk-slidenav-previous:hover:after {
-  background-image: url(../img/arrow-big-hover-js.png);
+  width: 36px;
+  height: 36px;
+  background: url(../img/fancybox_sprite.png) 0 -36px no-repeat;
 }
 .uk-slidenav-next {
   position: relative;
 }
-.uk-slidenav-next:after {
+.uk-slidenav-next:before {
   position: absolute;
   top: 50%;
-  left: 50%;
-  margin-top: -28px;
-  margin-left: -17px;
+  right: 0;
+  margin-top: -18px;
   display: block;
   content: "";
-  width: 35px;
-  height: 56px;
-  background: url(../img/arrow-big-js.png) 0 -56px no-repeat;
-  opacity: 0;
-}
-.uk-slidenav-next:hover:after {
-  background-image: url(../img/arrow-big-hover-js.png);
+  width: 36px;
+  height: 36px;
+  background: url(../img/fancybox_sprite.png) 0 -72px no-repeat;
 }
 /* 底部导航 */
 .adaptation-1200 .nav-bot .arrow-01 {

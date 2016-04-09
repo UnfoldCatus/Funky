@@ -16,7 +16,7 @@ const DBConfig = {
   // 酒店区域
   FilterConditionHotelDistrictPath: '/api/hotelDistrict/all',
   // 广告数据
-  AdvPath:"/api/adv/all",
+  AdvPath:"/api/vda/all",
   // 样片数据
   SamplePath:"/api/sample/all",
   // 客片数据

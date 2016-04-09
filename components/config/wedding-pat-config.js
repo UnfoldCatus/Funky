@@ -6,7 +6,7 @@ const WeddingPatConfig = {
     { 'imageUrl':'//img2.jsbn.com/static/hlgp.jpg' }
   ],
   'MediaSlider':_.merge({
-    'dataUrl':'adv/weddingpat_top',
+    'dataUrl':'vda/weddingpat_top',
     'aspectRatio':'192:45',
     'height':450
   },BaseConfig),

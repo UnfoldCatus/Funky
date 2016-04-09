@@ -3,7 +3,7 @@ import _ from 'lodash'
 
 const HomeConfig = {
   'MediaSlider': _.merge({
-    'dataUrl': 'adv/index_top',
+    'dataUrl': 'vda/index_top',
     'aspectRatio': '192:68',
     'height': 680
   }, BaseConfig), // 广告轮播
@@ -13,7 +13,7 @@ const HomeConfig = {
     'imageUrl':'//img2.jsbn.com/static/home-03.jpg'
   }], //静态banner广告
   'Group5': _.merge({
-    'dataUrl': 'adv/index_hot_top', // 数据请求地址
+    'dataUrl': 'vda/index_hot_top', // 数据请求地址
     'dimension': [ //4+1 4和1的尺寸配置
       {
         'aspectRatio': '124:75',
@@ -29,7 +29,7 @@ const HomeConfig = {
       首页的分栏目聚合
     */
     _.merge({
-      'dataUrl': 'adv/index_mid_01',
+      'dataUrl': 'vda/index_mid_01',
       'titleClassName': 'photography-img-home',
       'hrefs': [
         '/shot',
@@ -37,7 +37,7 @@ const HomeConfig = {
       ]
     }, BaseConfig),
     _.merge({
-      'dataUrl': 'adv/index_mid_02',
+      'dataUrl': 'vda/index_mid_02',
       'titleClassName': 'banquet-img-home',
       'hrefs': [
         '/hotel',
@@ -45,7 +45,7 @@ const HomeConfig = {
       ]
     }, BaseConfig),
     _.merge({
-      'dataUrl': 'adv/index_mid_03',
+      'dataUrl': 'vda/index_mid_03',
       'titleClassName': 'dress-img-home',
       'hrefs': [
         '/dress',
@@ -53,7 +53,7 @@ const HomeConfig = {
       ]
     }, BaseConfig),
     _.merge({
-      'dataUrl': 'adv/index_mid_04',
+      'dataUrl': 'vda/index_mid_04',
       'titleClassName': 'supplies-img-home',
       'hrefs': [
         '/supply',
@@ -63,7 +63,7 @@ const HomeConfig = {
   ],
   'Group3':[ // 底部三个推荐栏目
     _.merge({
-      'dataUrl':'adv/index_publicity'
+      'dataUrl':'vda/index_publicity'
     },BaseConfig)
   ],
   'BottomNav':[ // 底部导航圆形按钮

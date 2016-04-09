@@ -216,7 +216,9 @@ const CasesShow = React.createClass({
   }
 })
 
-
+//<div className="sel-card-jsbn">
+//<span className="item">同价位</span>
+//</div>
 const HallDetails = React.createClass({
   render () {
     let thumbs = JSON.parse(this.state.details.pcDetailImages||'[]')
@@ -245,9 +247,6 @@ const HallDetails = React.createClass({
               <div className="title-rcmd">
                   <h1>推荐酒店</h1>
                   <div className="line-middle" />
-              </div>
-              <div className="sel-card-jsbn">
-                  <span className="item">同价位</span>
               </div>
               <HotelRecommend {...HallDetailsConfig['HotelRecommend']} conditions={recommendCondition} />
             </div>

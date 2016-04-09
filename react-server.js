@@ -95,7 +95,6 @@ let dataFetchMiddleWare = function*(next) {
   if (this.APIKey) {
     // DBUtil.isCacheDataUsable 方法 返回真表示数据缓存可用。否则表示数据正在同步。不可以从缓存拉
     if (DBUtil.isCacheDataUsable(this.APIKey)) {
-      console.log('dbCache:', this.request.url);
       try {
         //从缓存数据库中去查询。
         if (this.model) {
@@ -105,12 +104,10 @@ let dataFetchMiddleWare = function*(next) {
           resData.count = this.count || resData.data.length
         }
       } catch (err) {
-        console.log('数据库异常memCache:', this.request.url);
         //缓存数据不可用。 去做代理数据请求
         resData  = yield* proxyFetcher(this.request.url,this.request.url)
       }
     } else {
-      console.log('memCache:', this.request.url);
       //缓存数据不可用。 去做代理数据请求
       resData  = yield* proxyFetcher(this.request.url,this.request.url)
     }

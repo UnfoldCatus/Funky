@@ -61,7 +61,6 @@ const MovieDetails = React.createClass({
   componentDidMount() {
     /** 请求微电影详情 **/
     let request = this.props.dataParams;
-    console.log('------'+JSON.stringify(request))
     if(request['id']) {
       let fetchUrl = BaseConfig['baseUrl']+'video/detail/'+request['id'];
       fetch(fetchUrl)

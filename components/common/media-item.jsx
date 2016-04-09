@@ -160,13 +160,9 @@ const VideoItem = React.createClass({
           this.props.height,
           this.props.mediaUrl
         ),0)
-      }else if (-1 !== this.props.videoUrl.indexOf('.mp4')) { // 不自动播放的MediaElement视频 此次改动在正式上线前要删除。因为数据迁移的视频地址没有改完才需要这部分代码
+      } else if (-1 !== this.props.videoUrl.indexOf('.mp4')) { // 不自动播放的MediaElement视频 此次改动在正式上线前要删除。因为数据迁移的视频地址没有改完才需要这部分代码
         setTimeout(this.loadMeidaElementVideo(this.state.genID),0)
-      }else {
-        console.log('视频地址格式错误')
       }
-
-
     }
   }
 })
@@ -261,14 +257,14 @@ const MediaItem = React.createClass({
         height = parseInt(this.props.width*parseFloat(factors[1])/parseFloat(factors[0]))
       }
       width = this.props.width
-    }else if(this.props.height) {
+    } else if(this.props.height) {
       if (factors[0] === '-1') {
         width='100%'
       }else {
         width = parseInt(this.props.height*parseFloat(factors[0])/parseFloat(factors[1]))
       }
       height = this.props.height
-    }else {
+    } else {
       console.log('高度或者宽度必须指定一个啊.');
     }
 

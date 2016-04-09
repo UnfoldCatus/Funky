@@ -42,8 +42,6 @@ const BaseConfig = {
            if ( ''===$(evt.target).attr('data-value') ) {
              _.unset(filterParams,'all.'+$(evt.target).attr('data-key'))
            }
-
-           console.log(JSON.stringify(filterParams,null,4));
            component.setState({
              params:_.merge(filterParams['all'],component.state.params)
            })
@@ -64,9 +62,6 @@ const BaseConfig = {
                 _.unset(filterParams,v)
               }
            })
-
-
-           console.log(filterParams);
 
            component.setState({
              params:_.merge(filterParams,component.state.params)
@@ -97,7 +92,6 @@ const BaseConfig = {
             if (t.length === component.state.count) {
               $('#J_MoreButton').hide()
             }
-            console.log(t,temp,currentIndex);
             component.setState({'data':shuffle?_.shuffle(t):t,'dataStore':temp,'currentIndex':currentIndex})
           })
         }
@@ -126,7 +120,6 @@ const BaseConfig = {
             }
             let temp = []
             temp[0] = j.data
-            console.log(j.data,temp);
             component.setState({ data:j.data,count:j.count,dataStore:temp })
           })
         }
@@ -152,7 +145,6 @@ const BaseConfig = {
             }
             let temp = []
             temp[0] = j.data
-            console.log(j.data,temp);
             component.setState({ data:shuffle?_.shuffle(j.data):j.data,count:j.count,dataStore:temp,currentIndex:0 })
           })
         }
