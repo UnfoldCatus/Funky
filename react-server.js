@@ -94,10 +94,10 @@ let dataFetchMiddleWare = function*(next) {
   }
 
   if (this.APIKey) {
-    let resData = MEMUtil.getMemCache(this.request.url)
-    if (resData != null) {
-      this.body = resData
-    } else {
+    //let resData = MEMUtil.getMemCache(this.request.url)
+    //if (resData != null) {
+    //  this.body = resData
+    //} else {
       // 没有在内存缓存的情况下,走后续的缓存策略
       // DBUtil.isCacheDataUsable 方法 返回真表示数据缓存可用。否则表示数据正在同步。不可以从缓存拉
       if (DBUtil.isCacheDataUsable(this.APIKey)) {
@@ -142,10 +142,10 @@ let dataFetchMiddleWare = function*(next) {
       }
 
       // 把结果缓存到内存
-      MEMUtil.setMemCache(this.request.url, resData)
+      //MEMUtil.setMemCache(this.request.url, resData)
 
       this.body = resData
-    }
+    //}
   }
 
   yield next
