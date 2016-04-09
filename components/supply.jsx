@@ -17,10 +17,33 @@ let SupplyItemList = React.createClass({
         <ul className="list-recommend J_Item">
           {
             _.map(this.state.data,(v,k)=>{
+
+              // 如果市场价和售价相等,就不展示市场价格
+              let priceInfo;
+              let sellingPrice = parseFloat(v.sellingPrice || '0').toFixed(2);
+              let marketPrice = parseFloat(v.marketPrice || '0').toFixed(2);
+              if (sellingPrice === marketPrice) {
+                priceInfo = (
+                  <div className="price-box">
+                    <b className="in-price"><em>￥</em></b>
+                    <b className='in-price'>{sellingPrice}</b>
+                  </div>
+                )
+              } else {
+                priceInfo = (
+                  <div className="price-box">
+                    <b className="in-price"><em>￥</em></b>
+                    <b className='in-price'>{sellingPrice}</b>
+                    <span>￥</span>
+                    <span className="tm-price">{marketPrice}</span>
+                  </div>
+                )
+              }
+
               return (
                 <li key={k} className='item-box' data-id={v.id} style={{cursor:'pointer'}}>
                   <div className='img-box'>
-                    <MediaItem {...this.props} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'} water={false} />
+                    <MediaItem aspectRatio={'1:1'} width={275}  {...this.props} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'} water={false} />
                   </div>
                   <div className='content-box'>
                     <div className='title'>
@@ -30,12 +53,9 @@ let SupplyItemList = React.createClass({
                           (v.suppliesNumber || '0') + '个'
                         }</p>
                     </div>
-                    <div className="price-box">
-                      <b className="in-price"><em>￥</em></b>
-                      <b className='in-price'>{parseFloat(v.sellingPrice || '0').toFixed(2)}</b>
-                      <span>￥</span>
-                      <span className="tm-price">{parseFloat(v.marketPrice || '0').toFixed(2)}</span>
-                    </div>
+                    {
+                      priceInfo
+                    }
                   </div>
                 </li>
               )
