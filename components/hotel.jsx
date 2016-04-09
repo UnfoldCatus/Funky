@@ -64,7 +64,7 @@ const ListItemHallList = React.createClass({
                   <span>{v.name}</span>
                   <span><b>{v.maxTableNum}</b><em>桌</em></span>
                   <span>{v.height+'米'}</span>
-                  <span>{parseInt(v.pillarNumber)>0?'有':'无'}</span>
+                  <span>{parseInt(v.pillerNum)>0?'有':'无'}</span>
                 </a>
               </dd>
             )

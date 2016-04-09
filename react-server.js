@@ -145,7 +145,7 @@ let dataFetchMiddleWare = function*(next) {
       //MEMUtil.setMemCache(this.request.url, resData)
 
       this.body = resData
-    //}
+  //  }
   }
 
   yield next
