@@ -5,7 +5,7 @@ var http = require('http');
 var cache = require("./cache");
 var Config = require("../config.js");
 
-var myCache = cache.createCache("LFU", Config.MemConfig.cache_max_size);
+var myCache = cache.createCache();
 var memTool = null;
 
 //查询工具类
