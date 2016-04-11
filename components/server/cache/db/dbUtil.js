@@ -333,16 +333,15 @@ DBUtil.prototype.updateDBCacheData = function(moduleName) {
 exports.Instance = function() {
   // 分三级数据拉取级别
   // 一级资源,更新比较频繁的资源
-  var tasks1 = ['Adv', 'Hotel','Sample', 'Pringles', 'PringlesSeason','RecordVideo', 'RecordVideoSeason', 'Suite',
-    'Cases', 'FollowPhoto', 'FollowPhotoSeason', 'FollowVideo', 'FollowVideoSeason', 'F4Photographer', 'F4Camera',
-    'F4Dresser', 'F4Host', 'F4Team', 'Cases3D', 'Dress', 'Movie'
+  var tasks1 = [
+    'Adv', 'Sample', 'Pringles', 'RecordVideo', 'FollowPhoto', 'FollowVideo',
+    'PringlesSeason', 'RecordVideoSeason', 'FollowPhotoSeason', 'FollowVideoSeason',
+    'Cases3D', 'Suite', 'WeddingClass', 'Dress', 'Movie'
   ];
 
   // 二级资源,更新不是很平凡的资源
   var tasks2 = [
-    'Car', 'Supplies', 'FilterConditionCarModels', 'FilterConditionCarLevel',
-    'FilterConditionCarBrand', 'FilterConditionSuppliesBrand',
-    'FilterConditionSuppliesType', 'WeddingClass'
+    'Hotel', 'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host', 'Cases', 'F4Team', 'Car', 'Supplies'
   ];
 
   // 三级资源,不经常更新的资源
@@ -350,7 +349,9 @@ exports.Instance = function() {
     'FilterConditionShootStyle', 'FilterConditionExterior',
     'FilterConditionHotelType', 'FilterConditionHotelDistrict',
     'FilterConditionCaseStyle', 'FilterConditionDressBrand',
-    'FilterConditionDressType'
+    'FilterConditionDressType','FilterConditionCarModels',
+    'FilterConditionCarLevel', 'FilterConditionCarBrand',
+    'FilterConditionSuppliesBrand', 'FilterConditionSuppliesType'
   ];
 
   if (dbTool == null) {
@@ -382,7 +383,7 @@ exports.Instance = function() {
       }, Config.DBConfig.cache_time_check*2);
 
       setInterval(function() {
-        _.each(tasks3, function(v) {
+        _.each(tasks2, function(v) {
           Sync(v)
         })
       }, Config.DBConfig.cache_time_check*4);

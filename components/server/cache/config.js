@@ -3,7 +3,7 @@
  */
 const DBConfig = {
   cache_flg: true, // DB数据库缓存开关 true开启 false关闭
-  cache_time_check: 60000*30, // 缓存清理时间,30分钟
+  cache_time_check: 60000*60*12, // 缓存清理时间,半天
   rethink:{
     db:'venus',
     host:'127.0.0.1',
