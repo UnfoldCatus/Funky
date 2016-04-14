@@ -157,15 +157,13 @@ ReactServer.use(dataFetchMiddleWare)
 
 ReactServer.use(siteRouter.routes()) // 网站路由
 
-
-console.log(process.env.NODE_ENV);
-
 /**服务器异常处理**/
 if (process.env.NODE_ENV === 'test') {
   module.exports = ReactServer.callback();
 } else {
   ReactServer.listen(7001);
-  console.log((process.env.NODE_ENV === 'production')?'open http://cq.jsbn.com':'open http://cd.jsbn.com:7001')
+  console.log(process.env.NODE_ENV);
+  //console.log((process.env.NODE_ENV === 'production')?'open http://cq.jsbn.com':'open http://cd.jsbn.com:7001')
 }
 
 ReactServer.on('error', function (err) {
