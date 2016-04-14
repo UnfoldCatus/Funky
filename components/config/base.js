@@ -2,7 +2,7 @@ import _ from 'lodash'
 const Mode = process.env.NODE_ENV || $('#J_Matrix').attr('data-mode')
 const BaseConfig = {
   mode:Mode,
-  baseUrl:'api/',
+  baseUrl:(Mode === 'production')?'//cq.jsbn.com/api/':'//cd.jsbn.com:7001/api/',
   buildUrl:function(params,urlTemplate){
       /*
         客户端渲染时， 由于是外部引入脚本的方式
