@@ -75,26 +75,37 @@ const ThumbItem = React.createClass({
 const InfoItem = React.createClass({
   render () {
     let params = this.props.parameter.split('|') || []
+    // 租车和用品这两个字段不一样
+    let sellingPrice = this.props.sellingPrice || this.props.rentalPrice
+    let priceInfo;
+    if(this.props.marketPrice != 0 || sellingPrice != 0) {
+      priceInfo = (
+        <div className="price-panel">
+          <dl className="cut-price">
+            <dt><span className="metatit">市场价:</span></dt>
+            <dd>
+              <em className="yen">￥</em>
+              <span className="price">{this.props.marketPrice}</span>
+            </dd>
+          </dl>
+          <dl className="promo-price">
+            <dt><span className="metatit">平台价:</span></dt>
+            <dd>
+              <em className="yen">￥</em>
+              <span className="price">{sellingPrice}</span>
+            </dd>
+          </dl>
+        </div>
+      )
+    }
+
     return (
       <div className='standard-box'>
         <h1>{this.props.title}</h1>
         <p>{this.props.description}</p>
-        <div className="price-panel">
-          <dl className="cut-price">
-              <dt><span className="metatit">市场价:</span></dt>
-              <dd>
-                  <em className="yen">￥</em>
-                  <span className="price">{this.props.marketPrice}</span>
-              </dd>
-          </dl>
-          <dl className="promo-price">
-              <dt><span className="metatit">平台价:</span></dt>
-              <dd>
-                  <em className="yen">￥</em>
-                  <span className="price">{this.props.sellingPrice}</span>
-              </dd>
-          </dl>
-        </div>
+        {
+          priceInfo
+        }
         <h2>产品参数</h2>
         <ul className='list-l' style={params.length>4?{width:'210px'}:{}}>
           {
@@ -215,6 +226,7 @@ const DetailModal = React.createClass({
       $("#Float").css("height",$(window).height() - 40 + "px")
       $("#Float").fadeIn(400)
       $("body").css({overflow:"hidden"})
+      $('.scrollbarall').data('plugin_tinyscrollbar').update()
       $('#Float img').load(()=>{ // 内部图片加载完成后再update滚动条
         $('.scrollbarall').data('plugin_tinyscrollbar').update()
       })

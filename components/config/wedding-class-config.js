@@ -6,7 +6,7 @@ import _ from 'lodash'
 
 const WeddingClassConfig  = {
   'MediaSlider':_.merge({
-    'dataUrl':'adv/',
+    'dataUrl':'vda/',
     'aspectRatio':'192:65',
     'height':650
   },BaseConfig),

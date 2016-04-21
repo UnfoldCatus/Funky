@@ -64,6 +64,7 @@ ReactServer.use(function*(next){
   this.APIKey = null
   yield next
 })
+
 ReactServer.use(apiRouter.routes()) // api路由
 /**
 
@@ -93,53 +94,62 @@ let dataFetchMiddleWare = function*(next) {
   }
 
   if (this.APIKey) {
-    // DBUtil.isCacheDataUsable 方法 返回真表示数据缓存可用。否则表示数据正在同步。不可以从缓存拉
-    if (DBUtil.isCacheDataUsable(this.APIKey)) {
-      console.log('dbCache:', this.request.url);
-      try {
-        //从缓存数据库中去查询。
-        if (this.model) {
-          resData.data = yield this.model.run()
-          resData.code = 200
-          resData.success = true
-          resData.count = this.count || resData.data.length
+    let resCacheData = MEMUtil.getMemCache(this.request.url)
+    if (resCacheData != null) {
+      this.body = resCacheData
+    } else {
+      // 没有在内存缓存的情况下,走后续的缓存策略
+      // DBUtil.isCacheDataUsable 方法 返回真表示数据缓存可用。否则表示数据正在同步。不可以从缓存拉
+      if (DBUtil.isCacheDataUsable(this.APIKey)) {
+        try {
+          //从缓存数据库中去查询。
+          if (this.model) {
+            resData.data = yield this.model.run()
+            resData.code = 200
+            resData.success = true
+            resData.count = this.count || resData.data.length
+          }
+        } catch (err) {
+          //缓存数据不可用。 去做代理数据请求
+          resData  = yield* proxyFetcher(this.request.url,this.request.url)
         }
-      } catch (err) {
-        console.log('数据库异常memCache:', this.request.url);
+      } else {
         //缓存数据不可用。 去做代理数据请求
         resData  = yield* proxyFetcher(this.request.url,this.request.url)
       }
-    } else {
-      console.log('memCache:', this.request.url);
-      //缓存数据不可用。 去做代理数据请求
-      resData  = yield* proxyFetcher(this.request.url,this.request.url)
-    }
 
-    // 针对2.0的套系数据格式进行修正
-    if (this.APIKey === 'Suite') {
-      resData.data = _.isArray(resData.data) ? resData.data : []
-      if ( resData.data.length > 0 && resData.data[0]['pcDetailImages']) {
-        let images = []
-        let origin = JSON.parse(resData.data[0]['pcDetailImages'])
-        let keys = [
-          'pc_detailImages',
-          'pc_serviceImages',
-          'pc_cosmeticImages',
-          'pc_clothShootImages',
-          'pc_baseSampleImages',
-          'pc_processImages'
-        ]
-        _.each(keys, function(v) {
-          _.each(origin[v] || [], function(v1) {
-            images.push(v1)
+      // 针对2.0的套系数据格式进行修正
+      if (this.APIKey === 'Suite') {
+        resData.data = _.isArray(resData.data) ? resData.data : []
+        if ( resData.data.length > 0 && resData.data[0]['pcDetailImages']) {
+          let images = []
+          let origin = JSON.parse(resData.data[0]['pcDetailImages'])
+          let keys = [
+            'pc_detailImages',
+            'pc_serviceImages',
+            'pc_cosmeticImages',
+            'pc_clothShootImages',
+            'pc_baseSampleImages',
+            'pc_processImages'
+          ]
+          _.each(keys, function(v) {
+            _.each(origin[v] || [], function(v1) {
+              images.push(v1)
+            })
           })
-        })
-        resData.data[0]['pcDetailImages'] = JSON.stringify(images)
+          resData.data[0]['pcDetailImages'] = JSON.stringify(images)
+        }
       }
-    }
 
-    this.body = resData
+      // 把结果缓存到内存
+      if(resData.success) {
+        MEMUtil.setMemCache(this.request.url, resData)
+      }
+
+      this.body = resData
+    }
   }
+
   yield next
 }
 
@@ -147,15 +157,13 @@ ReactServer.use(dataFetchMiddleWare)
 
 ReactServer.use(siteRouter.routes()) // 网站路由
 
-
-console.log(process.env.NODE_ENV);
-
 /**服务器异常处理**/
 if (process.env.NODE_ENV === 'test') {
   module.exports = ReactServer.callback();
 } else {
   ReactServer.listen(7001);
-  console.log((process.env.NODE_ENV === 'production')?'open http://cq.jsbn.com':'open http://cd.jsbn.com:7001')
+  console.log(process.env.NODE_ENV);
+  //console.log((process.env.NODE_ENV === 'production')?'open http://cq.jsbn.com':'open http://cd.jsbn.com:7001')
 }
 
 ReactServer.on('error', function (err) {

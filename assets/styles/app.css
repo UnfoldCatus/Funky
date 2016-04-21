@@ -734,15 +734,41 @@ a:hover {
   display: none;
 }
 .uk-close-alt {
-  height: 24px;
-  width: 24px;
+  height: 36px;
+  width: 36px;
   padding: 0;
   border-radius: 0;
   box-shadow: none;
-  background: url(../img/float-close.png) 0 0 no-repeat;
+  background: url(../img/fancybox_sprite.png) 0 0 no-repeat;
 }
-.uk-close-alt:hover {
-  background-position: 0 -24px;
+/* uikit左右按钮 */
+.uk-slidenav-previous {
+  position: relative;
+}
+.uk-slidenav-previous:before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -18px;
+  display: block;
+  content: "";
+  width: 36px;
+  height: 36px;
+  background: url(../img/fancybox_sprite.png) 0 -36px no-repeat;
+}
+.uk-slidenav-next {
+  position: relative;
+}
+.uk-slidenav-next:before {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -18px;
+  display: block;
+  content: "";
+  width: 36px;
+  height: 36px;
+  background: url(../img/fancybox_sprite.png) 0 -72px no-repeat;
 }
 /* 底部导航 */
 .adaptation-1200 .nav-bot .arrow-01 {

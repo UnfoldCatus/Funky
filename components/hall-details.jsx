@@ -11,11 +11,12 @@ const HallThumb = React.createClass({
         <div className='slider-box-4-js'>
           {
             _.map(this.props.data,(v,k)=>{
+              let url=v+'@90q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'
               if (0===k) {
                 return (
-                  <a href={v.url || v} key={k} className='slider-hover-box' data-uk-lightbox='{group:"hallThumb"}' >
+                  <a href={url} key={k} className='slider-hover-box' data-uk-lightbox='{group:"hallThumb"}' data-lightbox-type='image' >
                     <div className='big-img-box mgb30'>
-                      <MediaItem {...HallDetailsConfig['HallThumbMediaItem']} mediaUrl={v.url||v} />
+                      <MediaItem {...HallDetailsConfig['HallThumbMediaItem']} mediaUrl={v} water={false} />
                     </div>
                     <div className='slider-tip-box'>
                       <span>点击看大图</span>
@@ -24,7 +25,7 @@ const HallThumb = React.createClass({
                 )
               }else {
                 return (
-                  <a href={v.url || v} key={k} data-uk-lightbox='{group:"hallThumb"}'></a>
+                  <a href={url} key={k} data-uk-lightbox='{group:"hallThumb"}' data-lightbox-type='image'></a>
                 )
               }
             })
@@ -47,7 +48,7 @@ const HallBaseInfo = React.createClass({
           <h1 className="mgb10">{this.props.name}</h1>
           <div className="p mgb30 clearfix">
               <p>最大桌数<b>{this.props.maxTableNum}</b></p>
-              <p>柱子<span><b>{parseInt(this.props.pillarNumber)>0?'有':'无' || '无'}</b></span></p>
+              <p>柱子<span><b>{parseInt(this.props.pillerNum)>0?'有':'无' || '无'}</b></span></p>
               <p>可用面积<span><b>{this.props.area}</b>平方米</span></p>
               <p>形状<span><b>{this.props.shape}</b></span></p>
               <p>层高<span><b>{this.props.height}</b>米</span></p>
@@ -56,7 +57,7 @@ const HallBaseInfo = React.createClass({
       </div>
     )
   },
-  getDefaultProps(){
+    getDefaultProps(){
     return {
       data:{
         'name':'金色百年'
@@ -131,6 +132,7 @@ const HotelRecommend = React.createClass({
 
 const CasesShow = React.createClass({
   render () {
+    console.log(this.state.data[0])
     let recommend = this.state.data[0] //第一个
     let secondary = this.state.data.slice(1,5) //剩下四个
     if (recommend) {
@@ -145,9 +147,9 @@ const CasesShow = React.createClass({
               <h3>{recommend.name}</h3>
               <p>{recommend.description.slice(0,140)}</p>
               <div className='theme-box clearfix'>
-                <span className='theme'>主题:<b>朱雀</b></span>
-                <span className='theme'>风格:<b></b></span>
-                <span className='theme'>色系:<b></b></span>
+                <span className='theme'>主题:<b>{recommend.theme}</b></span>
+                <span className='theme'>风格:<b>{recommend.caseStyleName}</b></span>
+                <span className='theme'>色系:<b>{recommend.color}</b></span>
               </div>
             </div>
           </div>
@@ -215,7 +217,9 @@ const CasesShow = React.createClass({
   }
 })
 
-
+//<div className="sel-card-jsbn">
+//<span className="item">同价位</span>
+//</div>
 const HallDetails = React.createClass({
   render () {
     let thumbs = JSON.parse(this.state.details.pcDetailImages||'[]')
@@ -244,9 +248,6 @@ const HallDetails = React.createClass({
               <div className="title-rcmd">
                   <h1>推荐酒店</h1>
                   <div className="line-middle" />
-              </div>
-              <div className="sel-card-jsbn">
-                  <span className="item">同价位</span>
               </div>
               <HotelRecommend {...HallDetailsConfig['HotelRecommend']} conditions={recommendCondition} />
             </div>

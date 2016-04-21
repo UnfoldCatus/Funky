@@ -5,11 +5,21 @@ var http = require('http');
 var cache = require("./cache");
 var Config = require("../config.js");
 
-var myCache = cache.createCache("LFU", Config.MemConfig.cache_max_size);
+var myCache = cache.createCache();
 var memTool = null;
 
 //查询工具类
 function MEMUtil() {};
+
+MEMUtil.prototype.getMemCache = function(url)
+{
+    return myCache.get(url);
+}
+
+MEMUtil.prototype.setMemCache = function(url, data)
+{
+    myCache.set(url, data, Config.MemConfig.cache_timeout);
+}
 
 /*
   获取数据 GET

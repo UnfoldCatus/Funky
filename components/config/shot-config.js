@@ -41,7 +41,7 @@ const ShotConfig = {
   },BaseConfig),
   //顶部广告
   'MediaSlider':_.merge({
-    'dataUrl':'adv/shot_top',
+    'dataUrl':'vda/shot_top',
     'aspectRatio':'192:68',
     'height':680
   },BaseConfig)

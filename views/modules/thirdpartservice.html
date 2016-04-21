@@ -1,11 +1,24 @@
 <% if (mode === 'production') {%>
   <script language="javascript" src="http://chat16.live800.com/live800/chatClient/monitor.js?jid=6937519900&companyID=533854&configID=75803&codeType=custom"></script>
+  <script type='text/javascript'>
+    (function(m, ei, q, i, a, j, s) {
+      m[a] = m[a] || function() {
+                (m[a].a = m[a].a || []).push(arguments)
+              };
+      j = ei.createElement(q),
+              s = ei.getElementsByTagName(q)[0];
+      j.async = true;
+      j.charset = 'UTF-8';
+      j.src = i + '?v=' + new Date().getUTCDate();
+      s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '//eco-api.meiqia.com/dist/meiqia.js', '_MEIQIA');
+    _MEIQIA('entId', 12020);
+  </script>
   <script type="text/javascript">
     var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
     document.write(unescape("%3Cspan id='cnzz_stat_icon_1256096526' style='display:block;text-align:center;margin-bottom:20px;' %3E%3C/span%3E%3Cscript src='" + cnzz_protocol +
       "s11.cnzz.com/z_stat.php%3Fid%3D1256096526%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
   </script>
-
   <script>
     /*百度统计*/
     var _hmt = _hmt || [];
@@ -17,4 +30,4 @@
     })()
   </script>
   <%}%>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=pANA02VPcarYYYHHY5Ddux2Z"></script>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=pANA02VPcarYYYHHY5Ddux2Z"></script>

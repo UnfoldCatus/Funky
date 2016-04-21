@@ -74,7 +74,7 @@ const filterConditionApi = {
     yield next
   },
 
-  'get+/hotelType/all':function*(next){ //风格
+  'get+/hotelType/all':function*(next){ // 酒店类型
     if (this.params.position === 'all') {
       this.model = filterConditionHotelType.filter({})
     } else {
@@ -134,7 +134,6 @@ const filterConditionApi = {
         position: this.params.position
       })
     }
-    this.model = this.model.orderBy(r.desc('weight'))
 
     _.each(this.request.query, (v, k) => {
       if (k.indexOf('pageSize') !== -1) {
@@ -147,6 +146,8 @@ const filterConditionApi = {
         this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
       }
     })
+
+    this.model = this.model.orderBy(r.desc('weight'))
 
     this.APIKey = 'FilterConditionHotelDistrict';
     yield next

@@ -3,7 +3,7 @@
  */
 const DBConfig = {
   cache_flg: true, // DB数据库缓存开关 true开启 false关闭
-  cache_time_check: 60000*30, // 缓存清理时间,30分钟
+  cache_time_check: 60000*60*12, // 缓存清理时间,半天
   rethink:{
     db:'venus',
     host:'127.0.0.1',
@@ -16,7 +16,7 @@ const DBConfig = {
   // 酒店区域
   FilterConditionHotelDistrictPath: '/api/hotelDistrict/all',
   // 广告数据
-  AdvPath:"/api/adv/all",
+  AdvPath:"/api/vda/all",
   // 样片数据
   SamplePath:"/api/sample/all",
   // 客片数据
@@ -86,14 +86,13 @@ const DBConfig = {
 const Thinky = require('thinky')(DBConfig.rethink);
 
 const MemConfig = {
-  cache_timeout: 60000*5,// 缓存时间
-  cache_time_check: 60000*5,// 缓存清理时间
-  cache_max_size: 100*100*3 // 最大缓存数
+  cache_timeout: 60000*10,// 缓存时间
+  cache_max_size: 1000*3 // 最大缓存数
 };
 
 module.exports = {
   'APIPort': "8088",
-  'APIHost': (process.env.NODE_ENV === 'production')?'10.44.120.114':'120.25.252.134',
+  'APIHost': (process.env.NODE_ENV === 'production')?'127.0.0.1':'120.25.252.134',
   'DBConfig':DBConfig,
   'Thinky':Thinky,
   'MemConfig':MemConfig

@@ -33,8 +33,36 @@ const CarItemList = React.createClass({
         <ul className='list-recommend J_Item'>
           {
             _.map(this.state.data,(v,k)=>{
+
+              let rentalPrice = parseFloat(v.rentalPrice).toFixed(2);
+              let marketPrice = parseFloat(v.marketPrice).toFixed(2);
+              let marketPriceInfo = null;
+              if (v.marketPrice > 0 && marketPrice !== rentalPrice) {
+                marketPriceInfo = <span className='spa2'>市场价：<em>{String.fromCharCode(165)+marketPrice}</em></span>
+              }
+              let priceInfo;
+              if (v.rentalPrice === 0) {
+                priceInfo = (
+                  <p className="pname">
+                    <span className='spa1'>{'面议'}</span>
+                    {
+                      marketPriceInfo
+                    }
+                  </p>
+                )
+              } else {
+                priceInfo = (
+                  <p className="pname">
+                    <span className='spa1'>{String.fromCharCode(165)+rentalPrice}</span>
+                    {
+                      marketPriceInfo
+                    }
+                  </p>
+                )
+              }
+
               return (
-                <li key={k} className='item-box' data-id={v.id}>
+                <li key={k} className='item-box' data-id={v.id} style={{cursor:'pointer'}}>
                   <div className='img-box'>
                     <MediaItem aspectRatio={'3:2'} width={380} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'} water={false}/>
                   </div>
@@ -42,10 +70,9 @@ const CarItemList = React.createClass({
                     <div className="htile">
                       <span>{v.title}</span>
                     </div>
-                    <p className="pname">
-                      <span className='spa1'>{v.rentalPrice===0?'面议': String.fromCharCode(165)+parseFloat(v.rentalPrice).toFixed(2)}</span>
-                      <span className='spa2'>市场价：<em>{String.fromCharCode(165)+parseFloat(v.marketPrice).toFixed(2)}</em></span>
-                    </p>
+                    {
+                      priceInfo
+                    }
                   </div>
                 </li>
               )

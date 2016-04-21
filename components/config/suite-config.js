@@ -8,7 +8,7 @@ const SuiteConfig = {
   ],
   //顶部广告
   'MediaSlider':_.merge({
-    'dataUrl':'adv/suite_top',
+    'dataUrl':'vda/suite_top',
     'aspectRatio':'192:45',
     'height':450
   },BaseConfig),

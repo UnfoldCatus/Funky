@@ -17,10 +17,12 @@ let SupplyItemList = React.createClass({
         <ul className="list-recommend J_Item">
           {
             _.map(this.state.data,(v,k)=>{
+              let sellingPrice = parseFloat(v.sellingPrice || '0').toFixed(2);
+              let marketPrice = parseFloat(v.marketPrice || '0').toFixed(2);
               return (
                 <li key={k} className='item-box' data-id={v.id} style={{cursor:'pointer'}}>
                   <div className='img-box'>
-                    <MediaItem {...this.props} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'} water={false} />
+                    <MediaItem aspectRatio={'1:1'} width={275}  {...this.props} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'} water={false} />
                   </div>
                   <div className='content-box'>
                     <div className='title'>
@@ -32,9 +34,9 @@ let SupplyItemList = React.createClass({
                     </div>
                     <div className="price-box">
                       <b className="in-price"><em>￥</em></b>
-                      <b className='in-price'>{parseFloat(v.sellingPrice || '0').toFixed(2)}</b>
+                      <b className='in-price'>{sellingPrice}</b>
                       <span>￥</span>
-                      <span className="tm-price">{parseFloat(v.marketPrice || '0').toFixed(2)}</span>
+                      <span className="tm-price">{marketPrice}</span>
                     </div>
                   </div>
                 </li>

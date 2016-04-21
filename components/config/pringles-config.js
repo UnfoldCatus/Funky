@@ -31,7 +31,7 @@ const PringlesConfig  = {
 
   },BaseConfig),
   'MediaSlider':_.merge({
-    'dataUrl':'adv/pringles_top',
+    'dataUrl':'vda/pringles_top',
     'aspectRatio':'192:45',
     'height':450
   },BaseConfig)

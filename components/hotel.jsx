@@ -64,7 +64,7 @@ const ListItemHallList = React.createClass({
                   <span>{v.name}</span>
                   <span><b>{v.maxTableNum}</b><em>桌</em></span>
                   <span>{v.height+'米'}</span>
-                  <span>{parseInt(v.pillarNumber)>0?'有':'无'}</span>
+                  <span>{parseInt(v.pillerNum)>0?'有':'无'}</span>
                 </a>
               </dd>
             )
@@ -103,7 +103,7 @@ const HotelList = React.createClass({
           <span className="item">默认排序</span>
           <span className="item J_SorterButton">
             <em>价格</em>
-            <span className="arrow-box ascending J_SorterArrow" data-filter='price'>
+            <span className="arrow-box descending J_SorterArrow" data-filter='price'>
               <i className="arrow-up"></i>
               <i className="arrow-down"></i>
             </span>
@@ -223,7 +223,7 @@ const HotelListItem = React.createClass({
         <div className='info-box'>
           <div className='content-box'>
             <a href={'/hotel/'+this.props.id} className='img-box'>
-              <MediaItem {...HotelConfig['HotelList']} mediaUrl={this.props.coverUrlWeb} />
+              <MediaItem {...HotelConfig['HotelList']} mediaUrl={this.props.coverUrlWeb} water={false} />
             </a>
             <div className='info'>
               <div className='title clearfix'>
@@ -329,7 +329,7 @@ const Hotel = React.createClass({
     return {
       params:{
         sort:'price',
-        order:'asc'
+        order:'desc'
       }
     }
   },

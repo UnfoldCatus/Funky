@@ -30,7 +30,7 @@ apiRouter.get('/', function* apiRoot(next) {
   yield next
   // 列出所有资源到列表
   this.body = {
-    '/api/adv/:position':'广告',
+    '/api/vda/:position':'广告',
     '/api/hotel/:position?minTable=最小容客桌数&maxTable=最大容客桌数&minPrice=最小价格&maxPrice=最大价格&isGift=是否有礼包1有0没有&isDisaccount=是否有优惠1有0没有&sort=按什么排序price:按价格排序table:按桌数排序&order=排序方式asc正序desc倒序&hotelName=酒店名称模糊匹配&cityId=所在市区&hotelType=根据酒店类型筛选的Id进行传值':'酒店列表',
     '/api/hotel/detail/:id':'酒店详情,此处的ID不是hotelID是数据里面的发布id',
     '/api/banquetHall/list?hotelId=酒店ID':'获取宴会厅列表',

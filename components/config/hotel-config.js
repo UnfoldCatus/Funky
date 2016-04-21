@@ -3,7 +3,7 @@ import _ from 'lodash'
 
 const HotelConfig = {
   'MediaSlider':_.merge({
-    'dataUrl':'adv/hotel_top',
+    'dataUrl':'vda/hotel_top',
     'aspectRatio':'192:45',
     'height':450
   },BaseConfig),
@@ -72,6 +72,10 @@ const HotelConfig = {
     SorterAndSearch:function(component){ //
       let p = {}
       $('.J_EventHooker').on('click',(evt)=>{
+      //在进行排序和礼品优惠筛选前，先把状态中的酒店搜索复制到搜索框
+        let hotelNameCondition = component.state.params && component.state.params.hotelName || ''
+        $('.J_SearchName').val(hotelNameCondition)
+
         let $target = null
         if ($(evt.target).hasClass('J_SorterButton')) {
           $target = $(evt.target)
@@ -100,21 +104,29 @@ const HotelConfig = {
           }else {
             p[$(evt.target).attr('data-filter')] = 0
           }
+          p = _.merge(component.state.params,p)
+          if (p[$(evt.target).attr('data-filter')] === 0) {
+            p = _.omit(p,[$(evt.target).attr('data-filter')])
+          }
           component.setState({
-            'params':_.merge(component.state.params,p)
+            'params':p
           })
         }
 
       })
       $('.J_FindByName').on('click',(evt)=>{
-        let searchKey =$.trim($('.J_SearchName').val())
-        if ('' !== searchKey) {
+        let searchKey =$.trim($('.J_SearchName').val()) || ''
+        // if ('' !== searchKey) {
           searchKey = decodeURIComponent(searchKey)
           p['hotelName'] = searchKey
+          p = _.merge(component.state.params,p)
+          if (p['hotelName'] === '') {
+            p = _.omit(p,['hotelName'])
+          }
           component.setState({
-            'params':_.merge(component.state.params,p)
+            'params':p
           })
-        }
+        // }
       })
     }
 }

@@ -114,15 +114,12 @@ const MovieModal = React.createClass({
     let self = this
     $('#' + this.props.item.id).on({
       'show.uk.modal':()=> {
-        console.log("Modal is visible.");
         this.setState({
           show:true
         })
       },
 
       'hide.uk.modal': ()=> {
-        console.log("Element is not visible.");
-
         this.setState({
           show:false
         })
@@ -176,7 +173,6 @@ const PhotoItemBox = React.createClass({
           _.map(this.props.workList && this.props.workList.slice(0,3), (v, k) => {
             let pcDetailImages = v.pcDetailImages && JSON.parse(v.pcDetailImages) || [];
             let group = "{'group':'img"+v.id+"'}"
-            console.log(group)
             return (
               <li key={v.id} className="item-box">
                 <a className="img-box" data-uk-lightbox={group} data-lightbox-type='image' title={v.number}

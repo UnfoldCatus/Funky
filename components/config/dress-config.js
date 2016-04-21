@@ -3,7 +3,7 @@ import _ from 'lodash'
 
 const DressConfig  = {
   'MediaSlider':_.merge({
-    'dataUrl':'adv/dress_top',
+    'dataUrl':'vda/dress_top',
     'aspectRatio':'192:45',
     'height':450
   },BaseConfig),
